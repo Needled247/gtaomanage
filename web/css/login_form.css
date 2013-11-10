@@ -1,0 +1,50 @@
+        body {
+		  background-color: #ededed;
+		}
+		table.formbg {
+		  background:url(../image/login_form.gif);
+		  width:510px;
+		  height:255px;
+		  margin-top:11%;
+		}
+		input,button,select,textarea{outline:none}
+		textarea{resize:none}
+		input.user,input.pwd,input.code {
+		  border:0px;
+		  font-family:微软雅黑;
+		  height:30px;
+		  margin-left:105px;
+		  padding:5px 11px;
+		}
+		input.user,input.pwd {
+		  width:210px;
+		  background: url('../image/textbox.gif') no-repeat left top;		  
+		}
+		input.user {
+		  margin-top:58px;	
+		}
+		input.pwd {
+		  margin-top:6px;		  
+		}
+		input.code {
+		  width:100px;
+		  margin-top:9px;
+		  background: url('../image/textbox_code.gif') no-repeat left top;
+		}
+		input.imgCode,input.btn {
+		  border:0px;
+		  cursor:pointer;
+		  cursor:hand;
+		}
+		input.imgCode {
+		  width: 96px;
+		  height:29px;		  
+		  background: url('makeCertPic.jsp') no-repeat left top;
+		}
+		input.btn {
+			margin-left:205px;
+			margin-top:10px;
+			background:url(../image/login_btn.gif);
+			width:100px;
+			height:42px;
+		}
