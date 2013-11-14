@@ -15,7 +15,10 @@
 	String receipt_id=request.getParameter("receipt_id");
 	String username=request.getParameter("username").toLowerCase();
 	String pay_type=request.getParameter("pay_type");
-	String charge_type=request.getParameter("charge_type");
+	String charge_type=request.getParameter("charge_type1");
+    String charge_type2=request.getParameter("charge_type2");
+    String charge_type3=request.getParameter("charge_type3");
+    String charge_type4=request.getParameter("charge_type4");
 	String act_id=request.getParameter("act_id");
 	String actsub_id=request.getParameter("actsub_id");
 	String note=request.getParameter("note");
@@ -24,7 +27,8 @@
 	String save_admin=request.getParameter("save_admin");
 	String tel=request.getParameter("tel");
 	//System.out.println(qc_bs_name+","+charge_date+","+receipt_id+","+username+","+charge_type+","+note+","+realname+","+addr);
-	
+
+    //TODO:修改录入信息的js，sql，还有这里查询的sql。
 	String get_data_sql="select ga.act_name,gas.actsub_name,pt.pay_type_name,fc.charge_id,bi.name,fc.charge_date,fc.username,fc.receipt_id,fc.is_new,ct.charge_type_name,fc.note,fc.charge_amount,fc.save_admin,fc.save_time,mi.group_id,ui.srealname,ui.stele,tu.sfeephone,gc.contract_name,gc.is_gg,gc.is_xk,gc.contract_type from gtm_act ga,gtm_act_sub gas,gtm_pay_type pt,gtm_contract gc,gtm_business_info bi,GTM_MAINFORM_INFO mi,GTM_CHARGE_TYPE ct,GTM_FRONT_CHARGE fc,TBL_USERSINFO ui,tbl_users tu where fc.act_sub_id=gas.actsub_id and gas.act_id=ga.act_id and fc.pay_type_id=pt.pay_type_id and fc.username=mi.username and fc.username=ui.susername and fc.username=tu.susername and fc.bs_id=bi.id and mi.contract_id=gc.contract_id and fc.charge_type_id=ct.charge_type_id";
 	String get_count_sql="select count(*) from gtm_act ga,gtm_act_sub gas,gtm_pay_type pt,gtm_contract gc,gtm_business_info bi,GTM_MAINFORM_INFO mi,GTM_CHARGE_TYPE ct,GTM_FRONT_CHARGE fc,TBL_USERSINFO ui,tbl_users tu where fc.act_sub_id=gas.actsub_id and gas.act_id=ga.act_id and fc.pay_type_id=pt.pay_type_id and fc.username=mi.username and fc.username=ui.susername and fc.username=tu.susername and fc.bs_id=bi.id and mi.contract_id=gc.contract_id and fc.charge_type_id=ct.charge_type_id";
 	String gridStr="";

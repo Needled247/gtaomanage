@@ -12,7 +12,7 @@
 	Statement st=null;
 	ResultSet rs=null;
 	
-	conn=ConnPoolBean.getConn();
+	conn=ConnPoolBean.getRadiusConn();
 	st=conn.createStatement();
 	rs=st.executeQuery(sql);
 	String msg="";

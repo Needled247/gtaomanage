@@ -21,7 +21,10 @@
             			'addr',
             			'tel',
             			'receipt_id',
-            			'charge_type',
+            			'charge_type1',
+                        'charge_type2',
+                        'charge_type3',
+                        'charge_type4',
             			'pay_type',
             			{name:'charge_amount',type:'float'},
             			'note',
@@ -45,6 +48,7 @@
     		         actionMethods : {
     		        	 read : 'POST'
     		         },
+                     //TODO:HERE
     		         url: 'getQcInfo.jsp',
     		         reader: {
     		             type: 'json',

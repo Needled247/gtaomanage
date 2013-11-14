@@ -142,12 +142,12 @@
 					queryMode:'local',
 					editable: false					
 		        },{
-		            id: 'charge_type',
-			        name: 'charge_type',
+		            id: 'charge_type1',
+			        name: 'charge_type1',
 			        xtype:'combobox',
 			        margin: '5 0 10 30',
-			        fieldLabel:'收费类别',
-			        store: Ext.data.StoreManager.lookup('charge_type'),
+			        fieldLabel:'收费类1',
+			        store: Ext.data.StoreManager.lookup('charge_type1'),
 			        labelWidth: 60,
 					width: 190,
 					valueField:'id',
@@ -155,8 +155,80 @@
 					value:'',
 					minChars:1,
 					queryMode:'local',
-					editable: false
+					editable: false,
+                    listeners:{
+                        select:function(){
+                            var cid = Ext.getCmp('charge_type1').getValue();
+                            Ext.getCmp('charge_type2').clearValue();
+                            Ext.getCmp('charge_type3').clearValue();
+                            Ext.getCmp('charge_type4').clearValue();
+                            Ext.getCmp('charge_type2').store.proxy.url = 'get_charge_type_son.jsp?cid='+cid+'&level=2';
+                            Ext.getCmp('charge_type2').store.load();
+                        }
+                    }
 		        },{
+                        id: 'charge_type2',
+                        name: 'charge_type2',
+                        xtype:'combobox',
+                        margin: '5 0 10 30',
+                        fieldLabel:'收费类2',
+                        store: Ext.data.StoreManager.lookup('charge_type2'),
+                        labelWidth: 60,
+                        width: 190,
+                        valueField:'id',
+                        displayField:'name',
+                        value:'',
+                        minChars:1,
+                        queryMode:'local',
+                        editable: false,
+                        listeners:{
+                            select:function(){
+                                var cid = Ext.getCmp('charge_type2').getValue();
+                                Ext.getCmp('charge_type3').clearValue();
+                                Ext.getCmp('charge_type4').clearValue();
+                                Ext.getCmp('charge_type3').store.proxy.url = 'get_charge_type_son.jsp?cid='+cid+'&level=3';
+                                Ext.getCmp('charge_type3').store.load();
+                            }
+                        }
+                    },{
+                        id: 'charge_type3',
+                        name: 'charge_type3',
+                        xtype:'combobox',
+                        margin: '5 0 10 30',
+                        fieldLabel:'收费类3',
+                        store: Ext.data.StoreManager.lookup('charge_type3'),
+                        labelWidth: 60,
+                        width: 190,
+                        valueField:'id',
+                        displayField:'name',
+                        value:'',
+                        minChars:1,
+                        queryMode:'local',
+                        editable: false,
+                        listeners:{
+                            select:function(){
+                                var cid = Ext.getCmp('charge_type3').getValue();
+                                Ext.getCmp('charge_type4').clearValue();
+                                Ext.getCmp('charge_type4').store.proxy.url = 'get_charge_type_son.jsp?cid='+cid+'&level=4';
+                                Ext.getCmp('charge_type4').store.load();
+                            }
+                        }
+                    },{
+                        id: 'charge_type4',
+                        name: 'charge_type4',
+                        xtype:'combobox',
+                        margin: '5 0 10 30',
+                        fieldLabel:'收费类4',
+                        store: Ext.data.StoreManager.lookup('charge_type4'),
+                        labelWidth: 60,
+                        width: 190,
+                        valueField:'id',
+                        displayField:'name',
+                        value:'',
+                        minChars:1,
+                        queryMode:'local',
+                        editable: false
+                    },{
             		xtype:'textfield',
             		id: 'tel',
             		name: 'tel',

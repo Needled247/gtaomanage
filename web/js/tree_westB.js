@@ -24,7 +24,7 @@
 		     autoLoad: true
 		 });
 		 
-		 Ext.define('charge_type', {
+		 Ext.define('charge_type1', {
 		     extend: 'Ext.data.Model',
 		     fields: [
 		         {name: 'id', type: 'string'},
@@ -33,8 +33,8 @@
 		 });
 
 		 Ext.create('Ext.data.Store', {
-			 model: 'charge_type',
-			 storeId: 'charge_type',
+			 model: 'charge_type1',
+			 storeId: 'charge_type1',
 		     proxy: {
 		         type: 'ajax',
 		         url: 'get_charge_type.jsp',
@@ -44,6 +44,69 @@
 		     },
 		     autoLoad: true
 		 });
+
+        Ext.define('charge_type2', {
+            extend: 'Ext.data.Model',
+            fields: [
+                {name: 'id', type: 'string'},
+                {name: 'name', type: 'string'}
+            ]
+        });
+
+        Ext.create('Ext.data.Store', {
+            model: 'charge_type2',
+            storeId: 'charge_type2',
+            proxy: {
+                type: 'ajax',
+                url: '',
+                reader: {
+                    type: 'json'
+                }
+            },
+            autoLoad: false
+        });
+
+        Ext.define('charge_type3', {
+            extend: 'Ext.data.Model',
+            fields: [
+                {name: 'id', type: 'string'},
+                {name: 'name', type: 'string'}
+            ]
+        });
+
+        Ext.create('Ext.data.Store', {
+            model: 'charge_type3',
+            storeId: 'charge_type3',
+            proxy: {
+                type: 'ajax',
+                url: '',
+                reader: {
+                    type: 'json'
+                }
+            },
+            autoLoad: false
+        });
+
+        Ext.define('charge_type4', {
+            extend: 'Ext.data.Model',
+            fields: [
+                {name: 'id', type: 'string'},
+                {name: 'name', type: 'string'}
+            ]
+        });
+
+        Ext.create('Ext.data.Store', {
+            model: 'charge_type4',
+            storeId: 'charge_type4',
+            proxy: {
+                type: 'ajax',
+                url: '',
+                reader: {
+                    type: 'json'
+                }
+            },
+            autoLoad: false
+        });
 		 
 		 Ext.define('ml_type', {
 		     extend: 'Ext.data.Model',
