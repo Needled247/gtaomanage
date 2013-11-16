@@ -179,15 +179,11 @@
 					gridStr+="},";
 				}
 			}
-		
 		rs.close();
 		st.close();
 		conn.close();
-		
 		gridStr=gridStr.replaceFirst(",$", "");
-	
 	//System.out.println(gridStr);
 	response.setContentType("text/json;charset=UTF-8");
 	response.getWriter().print("{totalCount:"+count+",data:["+gridStr+"]}");
-	
 %>

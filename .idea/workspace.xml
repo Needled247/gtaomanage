@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/page/business/get_charge_type_son.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/fc_save.js" afterPath="$PROJECT_DIR$/web/js/fc_save.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/page/business/getQcInfo.jsp" afterPath="$PROJECT_DIR$/web/page/business/getQcInfo.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/page/business/get_charge_type.jsp" afterPath="$PROJECT_DIR$/web/page/business/get_charge_type.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/qc_grid.js" afterPath="$PROJECT_DIR$/web/js/qc_grid.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/qc_north.js" afterPath="$PROJECT_DIR$/web/js/qc_north.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/tree_westB.js" afterPath="$PROJECT_DIR$/web/js/tree_westB.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/page/validate.jsp" afterPath="$PROJECT_DIR$/web/page/validate.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="gtaomanage.iws" />
@@ -26,7 +21,7 @@
     <file path="$PROJECT_DIR$/../FileSys/web/NewPlantFile.jsp" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1383878305060" ignored="false" />
     <file path="/Tools.java" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1383900511110" ignored="false" />
     <file path="/SessionFilter.java" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1384103274279" ignored="false" />
-    <file path="/Dummy.txt" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1384418822467" ignored="false" />
+    <file path="/Dummy.txt" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1384566445696" ignored="false" />
     <file path="/tree_westB.js" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1384409984911" ignored="false" />
     <file path="/get_ic_excel.jsp" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1384140139593" ignored="false" />
     <file path="/get_charge_type.jsp" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1384310659777" ignored="false" />
@@ -97,7 +92,7 @@
       <file leaf-file-name="qc_north.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/js/qc_north.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="179" column="88" selection-start="6005" selection-end="6005" vertical-scroll-proportion="0.0">
+            <state line="214" column="25" selection-start="7350" selection-end="7815" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -106,7 +101,7 @@
       <file leaf-file-name="get_charge_type_son.jsp" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/page/business/get_charge_type_son.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="88" selection-start="362" selection-end="381" vertical-scroll-proportion="-3.1764705">
+            <state line="9" column="88" selection-start="362" selection-end="381" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -137,10 +132,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="getQcInfo.jsp" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="getQcInfo.jsp" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/page/business/getQcInfo.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="59" selection-start="1522" selection-end="1533" vertical-scroll-proportion="0.97402596">
+            <state line="5" column="33" selection-start="262" selection-end="262" vertical-scroll-proportion="-4.4117646">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fc_save.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/js/fc_save.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="134" column="46" selection-start="4294" selection-end="4294" vertical-scroll-proportion="0.8618421">
               <folding />
             </state>
           </provider>
@@ -149,7 +153,7 @@
       <file leaf-file-name="validate.jsp" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/page/validate.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="35" selection-start="497" selection-end="510" vertical-scroll-proportion="-9.705882">
+            <state line="14" column="35" selection-start="497" selection-end="510" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -158,7 +162,7 @@
       <file leaf-file-name="validate.jsp" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/tools/validate.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="34" selection-start="2221" selection-end="2221" vertical-scroll-proportion="-10.588235">
+            <state line="57" column="34" selection-start="2221" selection-end="2221" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -182,7 +186,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/ds/ConnPoolBean.java" />
         <option value="$PROJECT_DIR$/src/tools/MD5.java" />
         <option value="$PROJECT_DIR$/src/tools/MakeCertPic.java" />
         <option value="$PROJECT_DIR$/src/bean/IcInfoBean.java" />
@@ -196,8 +199,9 @@
         <option value="$PROJECT_DIR$/web/js/qc_grid.js" />
         <option value="$PROJECT_DIR$/web/page/validate.jsp" />
         <option value="$PROJECT_DIR$/web/js/tree_westB.js" />
-        <option value="$PROJECT_DIR$/web/js/qc_north.js" />
         <option value="$PROJECT_DIR$/web/page/business/getQcInfo.jsp" />
+        <option value="$PROJECT_DIR$/web/js/qc_north.js" />
+        <option value="$PROJECT_DIR$/web/js/fc_save.js" />
       </list>
     </option>
   </component>
@@ -242,8 +246,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -291,6 +295,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="tools" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gtaomanage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gtaomanage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -543,7 +565,11 @@
       <created>1384161602394</created>
       <updated>1384161602394</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="2013-11-14&#10;">
+      <created>1384418859112</created>
+      <updated>1384418859112</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -568,12 +594,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32871974" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39965397" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -582,7 +607,7 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32871974" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32871974" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32871974" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -592,11 +617,12 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.60553634" order="0" side_tool="false" content_ui="combo" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39446366" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39446366" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32871974" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -667,53 +693,34 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web/page/main.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="53" selection-start="170" selection-end="183" vertical-scroll-proportion="0.2935421">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/page/business/main_business.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="57" selection-start="943" selection-end="943" vertical-scroll-proportion="0.52837574">
-          <folding />
-        </state>
+        <state line="18" column="57" selection-start="943" selection-end="943" vertical-scroll-proportion="0.52837574" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/page/business/get_excel.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-16.445784">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-16.445784" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/tools/Tools.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="36" selection-start="2755" selection-end="2769" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="87" column="36" selection-start="2755" selection-end="2769" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/page/business/get_dz_excel.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="94" selection-start="4805" selection-end="4805" vertical-scroll-proportion="0.24096386">
-          <folding />
-        </state>
+        <state line="86" column="94" selection-start="4805" selection-end="4805" vertical-scroll-proportion="0.24096386" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/page/business/get_ic_excel.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="25" selection-start="513" selection-end="532" vertical-scroll-proportion="0.060240965">
-          <folding />
-        </state>
+        <state line="14" column="25" selection-start="513" selection-end="532" vertical-scroll-proportion="0.060240965" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/page/business/getIcInfo.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="91" selection-start="8258" selection-end="8258" vertical-scroll-proportion="0.11111111">
-          <folding />
-        </state>
+        <state line="94" column="91" selection-start="8258" selection-end="8258" vertical-scroll-proportion="0.11111111" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/qc_south.js">
@@ -723,14 +730,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/page/business/get_charge_type.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="63" selection-start="245" selection-end="261" vertical-scroll-proportion="-0.88235295">
-          <folding />
-        </state>
+        <state line="7" column="63" selection-start="245" selection-end="261" vertical-scroll-proportion="-0.88235295" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/page/business/get_charge_type_son.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="88" selection-start="362" selection-end="381" vertical-scroll-proportion="-3.1764705">
+        <state line="9" column="88" selection-start="362" selection-end="381" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/page/validate.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="35" selection-start="497" selection-end="510" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/tools/validate.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="34" selection-start="2221" selection-end="2221" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/qc_north.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="214" column="25" selection-start="7350" selection-end="7815" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/tree_westB.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="107" column="27" selection-start="2593" selection-end="2593" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -749,37 +782,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/page/validate.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="35" selection-start="497" selection-end="510" vertical-scroll-proportion="-9.705882">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/tools/validate.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="34" selection-start="2221" selection-end="2221" vertical-scroll-proportion="-10.588235">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/tree_westB.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="107" column="27" selection-start="2593" selection-end="2593" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/qc_north.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="179" column="88" selection-start="6005" selection-end="6005" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/page/business/getQcInfo.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="59" selection-start="1522" selection-end="1533" vertical-scroll-proportion="0.97402596">
+        <state line="5" column="33" selection-start="262" selection-end="262" vertical-scroll-proportion="-4.4117646">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/fc_save.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="134" column="46" selection-start="4294" selection-end="4294" vertical-scroll-proportion="0.8618421">
           <folding />
         </state>
       </provider>

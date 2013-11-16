@@ -113,22 +113,91 @@
 					queryMode:'local',
 					editable: false
             	},{
-            		id: 'fc_ct',
-					name: 'fc_ct',
+            		id: 'fc_ct1',
+					name: 'fc_ct1',
 					xtype:'combobox',
-	                fieldLabel: '收费类别',
-	                store: Ext.data.StoreManager.lookup('charge_type'),
+	                fieldLabel: '收费类1',
+	                store: Ext.data.StoreManager.lookup('charge_type1'),
 	                margin: '10 30 10 30',
 	                labelWidth: 90,
 	                width: 420,
 	                valueField:'id',
 					displayField:'name',
 					allowBlank: false,
-					blankText: '请选择收费类别',
+					blankText: '请选择收费1类别',
+                    listeners:{
+                        select:function(){
+                            var cid = Ext.getCmp('fc_ct1').getValue();
+                            Ext.getCmp('fc_ct2').clearValue();
+                            Ext.getCmp('fc_ct3').clearValue();
+                            Ext.getCmp('fc_ct4').clearValue();
+                            Ext.getCmp('fc_ct2').store.proxy.url = 'get_charge_type_son.jsp?cid='+cid+'&level=2';
+                            Ext.getCmp('fc_ct2').store.load();
+                        }
+                    },
 					minChars:1,
 					queryMode:'local',
 					editable: false
             	},{
+                        id: 'fc_ct2',
+                        name: 'fc_ct2',
+                        xtype:'combobox',
+                        fieldLabel: '收费类2',
+                        store: Ext.data.StoreManager.lookup('charge_type2'),
+                        margin: '10 30 10 30',
+                        labelWidth: 90,
+                        width: 420,
+                        valueField:'id',
+                        displayField:'name',
+                        minChars:1,
+                        queryMode:'local',
+                        listeners:{
+                            select:function(){
+                                var cid = Ext.getCmp('fc_ct2').getValue();
+                                Ext.getCmp('fc_ct3').clearValue();
+                                Ext.getCmp('fc_ct4').clearValue();
+                                Ext.getCmp('fc_ct3').store.proxy.url = 'get_charge_type_son.jsp?cid='+cid+'&level=3';
+                                Ext.getCmp('fc_ct3').store.load();
+                            }
+                        },
+                        editable: false
+                    },{
+                        id: 'fc_ct3',
+                        name: 'fc_ct3',
+                        xtype:'combobox',
+                        fieldLabel: '收费类3',
+                        store: Ext.data.StoreManager.lookup('charge_type3'),
+                        margin: '10 30 10 30',
+                        labelWidth: 90,
+                        width: 420,
+                        valueField:'id',
+                        displayField:'name',
+                        minChars:1,
+                        queryMode:'local',
+                        listeners:{
+                            select:function(){
+                                var cid = Ext.getCmp('fc_ct3').getValue();
+                                Ext.getCmp('fc_ct4').clearValue();
+                                Ext.getCmp('fc_ct4').store.proxy.url = 'get_charge_type_son.jsp?cid='+cid+'&level=4';
+                                Ext.getCmp('fc_ct4').store.load();
+                            }
+                        },
+                        editable: false
+                    },{
+                        id: 'fc_ct4',
+                        name: 'fc_ct4',
+                        xtype:'combobox',
+                        fieldLabel: '收费类4',
+                        store: Ext.data.StoreManager.lookup('charge_type4'),
+                        margin: '10 30 10 30',
+                        labelWidth: 90,
+                        width: 420,
+                        valueField:'id',
+                        displayField:'name',
+                        minChars:1,
+                        queryMode:'local',
+                        editable: false
+                    },{
 	            	xtype:'textfield',
 	                fieldLabel: '收费金额',
 	                id: 'fc_amount',
