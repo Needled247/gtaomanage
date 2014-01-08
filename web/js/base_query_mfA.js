@@ -16,8 +16,7 @@
             layout: 'border',
             frame: true,
             items: [
-            	Ext.create('My.mfA_north'),
-            	Ext.create('My.cg_A')
+            	Ext.create('My.mfA_tabPanel')
             ],
             
             tbar: Ext.create('Ext.toolbar.Toolbar',{

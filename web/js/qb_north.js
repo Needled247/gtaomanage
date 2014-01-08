@@ -1,5 +1,5 @@
 ﻿Ext.define('My.qb_north', {
-    extend: 'Ext.form.FieldSet',
+    extend: 'Ext.panel.Panel',
     
     constructor: function() {	
     	
@@ -10,6 +10,7 @@
             title: '<font color="red">*</font>合同信息查询条件<font color="red">*</font>',
             margin: '10 10 5 10',
             height: 150,
+            frame:true,
             collapsible: true,
             autoScroll: true,
 		            layout: {

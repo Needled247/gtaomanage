@@ -1,7 +1,5 @@
 ﻿<%@page language="java" pageEncoding="UTF-8"%>
-<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.NumberFormat"%>
-<%@page import="java.util.Calendar"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="ds.ConnPoolBean"%>
 <%@page import="java.sql.ResultSet"%>

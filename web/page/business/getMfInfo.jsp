@@ -6,7 +6,10 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 
-<%	
+<%
+    /**
+     *查询用户主要信息
+     */
 	String startPage=request.getParameter("start");
 	String countPage=request.getParameter("limit");
 	String menu_txt=request.getParameter("menu_txt");

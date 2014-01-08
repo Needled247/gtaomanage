@@ -1,10 +1,7 @@
 ﻿Ext.define('My.query_charge', {
     extend: 'Ext.panel.Panel',
 	
-    constructor: function() {    	
-
-   	
-		 
+    constructor: function() {
     	//初始化
         Ext.apply(this, {       	
         	title: '营业厅收费信息',
@@ -18,8 +15,9 @@
             layout: 'border',
             frame: true,
             items: [
-            	Ext.create('My.qc_north'),
-            	Ext.create('My.qc_grid')
+            	//Ext.create('My.qc_north'),
+            	//Ext.create('My.qc_grid')
+                Ext.create('My.qc_tabPanel')
             ],
             tbar: Ext.create('Ext.toolbar.Toolbar',{
             	id:'qc_tb1',
@@ -41,11 +39,9 @@
 	            		}
 	            	},
 					handler: function(){
-						if(Ext.getCmp('qc_north')==undefined){
-							Ext.getCmp('query_charge').remove('noqc_north');
-							Ext.getCmp('query_charge').remove('noqc_grid');
-							Ext.getCmp('query_charge').add(Ext.create('My.qc_north'));
-							Ext.getCmp('query_charge').add(Ext.create('My.qc_grid'));
+						if(Ext.getCmp('qc_tabPanel')==undefined){
+							Ext.getCmp('query_charge').remove('noqc_tabPanel');
+							Ext.getCmp('query_charge').add(Ext.create('My.qc_tabPanel'));
 							setSubBtns(['addmf','bs_name','admin_fn','ex_fn']);
 							if(Ext.getCmp('bs_name').isHidden()){
 								Ext.getCmp('bs_name').setValue(Ext.bs_did);
@@ -61,11 +57,9 @@
 					allowDepress: false,
 					enableToggle: true,
 					handler: function(){						
-						if(Ext.getCmp('noqc_north')==undefined){							
-							Ext.getCmp('query_charge').remove('qc_north');
-							Ext.getCmp('query_charge').remove('qc_grid');
-							Ext.getCmp('query_charge').add(Ext.create('My.noqc_north'));
-							Ext.getCmp('query_charge').add(Ext.create('My.noqc_grid'));
+						if(Ext.getCmp('noqc_tabPanel')==undefined){
+							Ext.getCmp('query_charge').remove('qc_tabPanel');
+							Ext.getCmp('query_charge').add(Ext.create('My.noqc_tabPanel'));
 							setSubBtns(['addmf','bs_name','admin_fn','ex_fn']);
 							if(Ext.getCmp('bs_name').isHidden()){
 								Ext.getCmp('bs_name').setValue(Ext.bs_did);

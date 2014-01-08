@@ -1,13 +1,9 @@
 ﻿Ext.define('My.toolbar_north', {
     extend: 'Ext.toolbar.Toolbar',
     constructor: function() {
-        	
-    	
-    	
         Ext.apply(this, {
-            
         	region: 'north',
-        	height: 65,
+        	height: 50,//原65
         	margin: '5 5 5 5',
 //        	frame: true,
         	items: [{

@@ -1,5 +1,6 @@
 ﻿Ext.define('My.qb_grid', {
     extend: 'Ext.grid.Panel',
+    title:'查询结果',
     
     constructor: function() {
     	

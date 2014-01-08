@@ -1,10 +1,10 @@
 ﻿Ext.define('My.noquery_charge', {
     extend: 'Ext.panel.Panel',
 	
-    constructor: function() {    	
+    constructor: function() {
 
-   	
-		 
+
+
     	//初始化
         Ext.apply(this, {       	
         	title: '非用户收费信息',

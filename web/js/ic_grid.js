@@ -74,17 +74,17 @@
                 dataIndex: 'big_id',
                 width: 90
             },{
-                header: '合同名称',
-                dataIndex: 'contract_name',
-                width: 280
+                header: '总收入',
+                dataIndex: 'income_total',
+                width: 200
             },{
                 header: '各项收入汇总明细',
                 dataIndex: 'income_detail',
                 width: 660
             },{
-                header: '总收入',
-                dataIndex: 'income_total',
-                width: 200
+                header: '合同名称',
+                dataIndex: 'contract_name',
+                width: 280
             },{
                 header: '写字楼收入',
                 dataIndex: 'xzl',

@@ -239,6 +239,69 @@
 		     },
 		     autoLoad: true
 		 });
+
+        Ext.define('net_prop', {
+            extend: 'Ext.data.Model',
+            fields: [
+                {name: 'id', type: 'string'},
+                {name: 'name', type: 'string'}
+            ]
+        });
+
+        Ext.create('Ext.data.Store', {
+            model: 'net_prop',
+            storeId: 'net_prop',
+            proxy: {
+                type: 'ajax',
+                url: 'get_net_prop.jsp',
+                reader: {
+                    type: 'json'
+                }
+            },
+            autoLoad: true
+        });
+
+        Ext.define('old_net_prop', {
+            extend: 'Ext.data.Model',
+            fields: [
+                {name: 'id', type: 'string'},
+                {name: 'name', type: 'string'}
+            ]
+        });
+
+        Ext.create('Ext.data.Store', {
+            model: 'old_net_prop',
+            storeId: 'old_net_prop',
+            proxy: {
+                type: 'ajax',
+                url: 'get_oldnet_prop.jsp',
+                reader: {
+                    type: 'json'
+                }
+            },
+            autoLoad: true
+        });
+
+        Ext.define('user_prop', {
+            extend: 'Ext.data.Model',
+            fields: [
+                {name: 'id', type: 'string'},
+                {name: 'name', type: 'string'}
+            ]
+        });
+
+        Ext.create('Ext.data.Store', {
+            model: 'user_prop',
+            storeId: 'user_prop',
+            proxy: {
+                type: 'ajax',
+                url: 'get_user_prop.jsp',
+                reader: {
+                    type: 'json'
+                }
+            },
+            autoLoad: true
+        });
 		 
 		 Ext.define('huodong', {
 		     extend: 'Ext.data.Model',
@@ -335,6 +398,7 @@
 						}
 					}
 				},{
+                    //TODO:子菜单
 					id:'C1',
 					hidden:true,
 	            	xtype:'button',

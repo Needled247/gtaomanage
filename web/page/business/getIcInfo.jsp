@@ -202,8 +202,15 @@
 					}
 					*/
 				}
+                String totalTemp = "";
+                if(bs_name.equals("")){
+                    totalTemp = "所有营业厅";
+                }
+                else {
+                    totalTemp = finalHall;
+                }
                 tempJson = "{income_date:'<b><p><font color=#8B0000>从"+startDate+"</font></p><p><font color=green>至"+endDate+"</font></p></b>',";
-                tempJson += "hall_id:'"+finalHall+"总收入',";
+                tempJson += "hall_id:'" + totalTemp + "总收入',";
                 tempJson += "big_id:'-',";
                 tempJson += "contract_name:'-',";
                 tempJson += "income_total:'<b>￥<font color=royalblue>"+finalIncoming+"</font></b>',";

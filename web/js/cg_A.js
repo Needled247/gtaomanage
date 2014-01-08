@@ -1,11 +1,13 @@
 ﻿Ext.define('My.cg_A', {
     extend: 'Ext.grid.Panel',
+    title:'查询结果',
     
     constructor: function() {
-    	
+
     	//创建grid
     	Ext.define('cg_A', {
             extend: 'Ext.data.Model',
+            title:'查询结果',
             fields: [
     		            //{ name: 'ask_date', type: 'date', dateFormat: 'Y-m-d' },
     		            //{ name: 'ask_time', type: 'date', dateFormat: 'H:i:s' },

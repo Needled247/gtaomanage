@@ -9,12 +9,11 @@
 			name:'mfA_north',
             title: '<font color="red">*</font>基本功能查询条件<font color="red">*</font>',
             margin: '10 10 5 10',
-            height: 190,
             collapsible: true,
             autoScroll: true,
 		            layout: {
 		            	type: 'table',
-		            	columns: 3
+		            	columns: 4
 		            },
 		            items:[{
 		            		xtype:'datefield',
@@ -73,6 +72,42 @@
 			            		}
 			            	}
 	            		},{
+                        xtype:'textfield',
+                        id: 'payee',
+                        name: 'payee',
+                        fieldLabel: '收款人',
+                        margin: '5 0 10 30',
+                        labelWidth: 60,
+                        width: 200,
+                        value:'',
+                        maxLength: 10,
+                        enforceMaxLength: true,
+                        listeners:{
+                            specialkey:function(f,e){
+                                if (e.getKey() == e.ENTER) {
+                                    document.getElementById('qbtn').click();
+                                }
+                            }
+                        }
+                    },{
+                        xtype:'textfield',
+                        id: 'admit',
+                        name: 'admit',
+                        fieldLabel: '接待人',
+                        margin: '5 0 10 30',
+                        labelWidth: 60,
+                        width: 200,
+                        value:'',
+                        maxLength: 10,
+                        enforceMaxLength: true,
+                        listeners:{
+                            specialkey:function(f,e){
+                                if (e.getKey() == e.ENTER) {
+                                    document.getElementById('qbtn').click();
+                                }
+                            }
+                        }
+                    },{
 		            		xtype:'textfield',
 		            		id: 'un',
 		            		name: 'un',
@@ -137,6 +172,48 @@
 			            		}
 			            	}
 	            		},{
+                        id: 'user_prop',
+                        name: 'user_prop',
+                        xtype:'combobox',
+                        fieldLabel:'用户性质',
+                        store: Ext.data.StoreManager.lookup('user_prop'),
+                        margin: '5 0 10 30',
+                        labelWidth: 60,
+                        width: 200,
+                        valueField:'id',
+                        displayField:'name',
+                        value:'',
+                        queryMode:'local',
+                        editable: false
+                    },{
+                        id: 'net_prop',
+                        name: 'net_prop',
+                        xtype:'combobox',
+                        fieldLabel:'网络性质',
+                        store: Ext.data.StoreManager.lookup('net_prop'),
+                        margin: '5 0 10 30',
+                        labelWidth: 60,
+                        width: 200,
+                        valueField:'id',
+                        displayField:'name',
+                        value:'',
+                        queryMode:'local',
+                        editable: false
+                    },{
+                        id: 'old_net_prop',
+                        name: 'old_net_prop',
+                        xtype:'combobox',
+                        fieldLabel:'原网络性质',
+                        store: Ext.data.StoreManager.lookup('old_net_prop'),
+                        margin: '5 0 10 30',
+                        labelWidth: 70,
+                        width: 200,
+                        valueField:'id',
+                        displayField:'name',
+                        value:'',
+                        queryMode:'local',
+                        editable: false
+                    },{
 			            	xtype:'datefield',
 			                fieldLabel: '重新启用时间',
 			                id: 're_time',
@@ -168,9 +245,9 @@
 		            		xtype:'textfield',
 		            		id: 'tel',
 		            		name: 'tel',
-		                    fieldLabel: '联系电话',
+		                    fieldLabel: '报装人电话',
 		                    margin: '5 0 10 30',
-		                    labelWidth: 60,
+		                    labelWidth: 70,
 					      	width: 200,
 					      	value:'',
 							maxLength: 11,
@@ -187,6 +264,90 @@
 			            		}
 			            	}
 	            		},{
+                        xtype:'textfield',
+                        id: 'user_mobile',
+                        name: 'user_mobile',
+                        fieldLabel: '使用人电话',
+                        margin: '5 0 10 30',
+                        labelWidth: 70,
+                        width: 200,
+                        value:'',
+                        maxLength: 11,
+                        enforceMaxLength: true,
+//				            regex: /^\d{1,11}$/,
+//				            regexText: '请输入数字',
+                        listeners:{
+                            specialkey:function(f,e){
+                                if(this.isValid()){
+                                    if (e.getKey() == e.ENTER) {
+                                        document.getElementById('qbtn').click();
+                                    }
+                                }
+                            }
+                        }
+                    },{
+                        xtype:'textfield',
+                        id: 'user_phone',
+                        name: 'user_phone',
+                        fieldLabel: '固话',
+                        margin: '5 0 10 30',
+                        labelWidth: 60,
+                        width: 200,
+                        value:'',
+                        maxLength: 11,
+                        enforceMaxLength: true,
+//				            regex: /^\d{1,11}$/,
+//				            regexText: '请输入数字',
+                        listeners:{
+                            specialkey:function(f,e){
+                                if(this.isValid()){
+                                    if (e.getKey() == e.ENTER) {
+                                        document.getElementById('qbtn').click();
+                                    }
+                                }
+                            }
+                        }
+                    },{
+                        xtype:'textfield',
+                        id: 'user_email',
+                        name: 'user_email',
+                        fieldLabel: '邮箱',
+                        margin: '5 0 10 30',
+                        labelWidth: 60,
+                        width: 200,
+                        value:'',
+                        maxLength: 11,
+                        enforceMaxLength: true,
+//				            regex: /^\d{1,11}$/,
+//				            regexText: '请输入数字',
+                        listeners:{
+                            specialkey:function(f,e){
+                                if(this.isValid()){
+                                    if (e.getKey() == e.ENTER) {
+                                        document.getElementById('qbtn').click();
+                                    }
+                                }
+                            }
+                        }
+                    },{
+                        id: 'weixin',
+                        name: 'weixin',
+                        margin: '5 0 10 30',
+                        xtype:'combobox',
+                        fieldLabel: '微信用户',
+                        labelWidth: 60,
+                        store:new Ext.data.SimpleStore(
+                            {
+                                fields:['id','name'],
+                                data:[['1','是'],['0','否']]
+                            }),
+                        queryMode:'local',
+                        width: 200,
+                        value:'',
+                        valueField:'id',
+                        displayField:'name',
+                        editable: false
+                    },{
 			            	xtype:'datefield',
 			                fieldLabel: '截止时间',
 			                id: 'end_time',
@@ -469,7 +630,6 @@
 	            		}]
             
         });
-        
         this.callParent(arguments);
         
     }

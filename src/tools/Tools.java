@@ -30,6 +30,17 @@ public class Tools
         return value;
     }
 
+    public String replaceBsName(String bs_name){
+        String rtnName = "";
+        if(bs_name.equals("")){
+            rtnName = "所有营业厅";
+        }
+        else {
+            rtnName = bs_name;
+        }
+        return rtnName;
+    }
+
     /**
      * Author：蒋浩
      * @param list

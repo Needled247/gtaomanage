@@ -16,8 +16,7 @@
             layout: 'border',
             frame: true,
             items: [
-            	Ext.create('My.qb_north'),
-            	Ext.create('My.qb_grid')
+            	Ext.create('My.qb_tabPanel')
             ],
             tbar: Ext.create('Ext.toolbar.Toolbar',{
             	id:'qb_tb',
