@@ -1,10 +1,6 @@
 <component name="libraryTable">
   <library name="jsf-api">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../复件 gtaomanage/WEB-INF/lib/jsf-api.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../复件 gtaomanage/WEB-INF/lib/jsf-impl.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../复件 gtaomanage/WEB-INF/lib/jstl-impl.jar!/" />
-    </CLASSES>
+    <CLASSES />
     <JAVADOC />
     <SOURCES />
   </library>

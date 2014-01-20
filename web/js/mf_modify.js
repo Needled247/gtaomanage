@@ -96,6 +96,137 @@
 	    				editable: false,
 	    				readOnly: true
 	            	},{
+                            xtype:'textfield',
+                            fieldLabel: '收款人',
+                            id: 'mf_payee',
+                            name: 'mf_payee',
+                            margin: '10 30 10 30',
+                            labelWidth: 90,
+                            width: 210,
+                            value: '',
+                            allowBlank: false,
+                            blankText: '请填写收款人',
+                            editable: true
+                        },{
+                            xtype:'textfield',
+                            fieldLabel: '接待人',
+                            id: 'mf_admit',
+                            name: 'mf_admit',
+                            margin: '10 30 10 30',
+                            labelWidth: 90,
+                            width: 210,
+                            value: '',
+                            allowBlank: false,
+                            blankText: '请填写接待人',
+                            editable: true
+                        },{
+                            xtype:'textfield',
+                            fieldLabel: '使用人电话',
+                            id: 'mf_user_mobile',
+                            name: 'mf_user_mobile',
+                            margin: '10 30 10 30',
+                            labelWidth: 90,
+                            width: 210,
+                            value: '',
+                            allowBlank: false,
+                            blankText: '请填写使用人电话',
+                            editable: true
+                        },{
+                            xtype:'textfield',
+                            fieldLabel: '固定电话',
+                            id: 'mf_user_phone',
+                            name: 'mf_user_phone',
+                            margin: '10 30 10 30',
+                            labelWidth: 90,
+                            width: 210,
+                            value: '',
+                            allowBlank: false,
+                            blankText: '请填写固定电话',
+                            editable: true
+                        },{
+                            id: 'mf_onet_prop',
+                            name: 'mf_onet_prop',
+                            margin: '10 30 10 30',
+                            xtype:'combobox',
+                            fieldLabel: '原网络性质',
+                            labelWidth: 90,
+                            store: Ext.StoreManager.lookup('old_net_prop'),
+                            queryMode:'local',
+                            width: 210,
+                            valueField:'id',
+                            displayField:'name',
+                            allowBlank: false,
+                            blankText: '请选择用户原网络性质',
+                            editable: false
+                        },{
+                            id: 'mf_user_prop',
+                            name: 'mf_user_prop',
+                            margin: '10 30 10 30',
+                            xtype:'combobox',
+                            fieldLabel: '用户性质',
+                            labelWidth: 90,
+                            store: Ext.StoreManager.lookup('user_prop'),
+                            queryMode:'local',
+                            width: 210,
+                            valueField:'id',
+                            displayField:'name',
+                            allowBlank: false,
+                            blankText: '请选择用户性质',
+                            editable: false
+                        },{
+                            id: 'mf_net_prop',
+                            name: 'mf_net_prop',
+                            margin: '10 30 10 30',
+                            xtype:'combobox',
+                            fieldLabel: '网络性质',
+                            labelWidth: 90,
+                            store: Ext.StoreManager.lookup('net_prop'),
+                            queryMode:'local',
+                            width: 210,
+                            valueField:'id',
+                            displayField:'name',
+                            allowBlank: false,
+                            blankText: '请选择网络性质',
+                            editable: false
+                        },{
+                            xtype:'datefield',
+                            fieldLabel: '乐视起始时间',
+                            id: 'mdf_letv_start',
+                            name: 'le_start',
+                            margin: '10 30 10 30',
+                            labelWidth: 90,
+                            width: 210,
+                            value: '',
+                            format: 'Y-m-d',
+                            allowBlank: false,
+                            blankText: '请选择乐视起始时间',
+                            editable: true
+                        },{
+                            xtype:'datefield',
+                            fieldLabel: '乐视到期时间',
+                            id: 'mdf_letv_end',
+                            name: 'le_end',
+                            margin: '10 30 10 30',
+                            labelWidth: 90,
+                            width: 210,
+                            value: '',
+                            format: 'Y-m-d',
+                            allowBlank: false,
+                            blankText: '请选择乐视到期时间',
+                            editable: true
+                        },{
+                            xtype:'textfield',
+                            fieldLabel: '乐视MAC地址',
+                            id: 'mdf_letv_mac',
+                            name: 'le_mac',
+                            margin: '10 30 10 30',
+                            labelWidth: 90,
+                            width: 210,
+                            value: '',
+                            allowBlank: false,
+                            blankText: '请填写乐视MAC地址',
+                            editable: true
+                        },{
 		            	xtype:'datefield',
 		                fieldLabel: '启用时间',
 		                id: 'mf_futime',
@@ -152,6 +283,39 @@
 						blankText: '请选择是否IT卡用户',
 						editable: false
 	            	},{
+                            xtype:'datefield',
+                            fieldLabel: 'IT卡到期时间',
+                            id: 'mdf_it_end',
+                            name: 'it_end',
+                            margin: '10 30 10 30',
+                            labelWidth: 90,
+                            width: 210,
+                            value: '',
+                            format: 'Y-m-d',
+                            allowBlank: false,
+                            blankText: '请选择IT卡到期时间',
+                            editable: true
+                        },{
+                            id: 'mf_weixin',
+                            name: 'mf_weixin',
+                            margin: '10 30 10 30',
+                            xtype:'combobox',
+                            fieldLabel: '是否关注微信',
+                            labelWidth: 90,
+                            store:new Ext.data.SimpleStore(
+                                {
+                                    fields:['id','name'],
+                                    data:[['1','是'],['0','否']]
+                                }),
+                            queryMode:'local',
+                            width: 210,
+                            valueField:'id',
+                            displayField:'name',
+                            value:'',
+                            allowBlank: false,
+                            blankText: '请选择是否关注微信',
+                            editable: false
+                        },{
 		               	xtype:'numberfield',
 		                fieldLabel: '宣传单号',
 		                id: 'mf_leaflet',
@@ -397,8 +561,16 @@
         						var gm=Ext.getCmp('mf_gm').getStore().findRecord('name',Ext.getCmp('mf_gm').getRawValue());        						
         						Ext.getCmp('mf_gm').setValue(gm.get('id'));        						
         						var gg=Ext.data.StoreManager.lookup('gg_state').findRecord('name',Ext.getCmp('mf_gg').getRawValue());        						
-        						Ext.getCmp('mf_gg').setValue(gg.get('id'));						
-        						var mf_hetong=Ext.data.StoreManager.lookup('hetong').findRecord('name',Ext.getCmp('mf_hetong').getRawValue(),0,false,true,true);
+        						Ext.getCmp('mf_gg').setValue(gg.get('id'));
+                                var onp=Ext.data.StoreManager.lookup('old_net_prop').findRecord('name',Ext.getCmp('mf_onet_prop').getRawValue());
+                                Ext.getCmp('mf_onet_prop').setValue(onp.get('id'));
+                                var np=Ext.data.StoreManager.lookup('net_prop').findRecord('name',Ext.getCmp('mf_net_prop').getRawValue());
+                                Ext.getCmp('mf_net_prop').setValue(np.get('id'));
+                                var up=Ext.data.StoreManager.lookup('user_prop').findRecord('name',Ext.getCmp('mf_user_prop').getRawValue());
+                                Ext.getCmp('mf_user_prop').setValue(up.get('id'));
+                                var wx=Ext.getCmp('mf_weixin').getStore().findRecord('name',Ext.getCmp('mf_weixin').getRawValue());
+                                Ext.getCmp('mf_weixin').setValue(wx.get('id'));
+                                var mf_hetong=Ext.data.StoreManager.lookup('hetong').findRecord('name',Ext.getCmp('mf_hetong').getRawValue(),0,false,true,true);
         						if(mf_hetong==null){
         							alert('您输入的合同名称不正确');
         						}else{

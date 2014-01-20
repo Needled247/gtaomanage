@@ -75,6 +75,18 @@
 	        							Ext.getCmp('mf_sbnote').setValue(r.get('mf_sbnote'));
 	        							Ext.getCmp('mf_zhnote').setValue(r.get('mf_zhnote'));
 	        							Ext.getCmp('mf_tsnote').setValue(r.get('mf_tsnote'));
+                                        Ext.getCmp('mf_payee').setValue(r.get('payee'));
+                                        Ext.getCmp('mf_admit').setValue(r.get('admit'));
+                                        Ext.getCmp('mf_user_mobile').setValue(r.get('user_mobile'));
+                                        Ext.getCmp('mf_user_phone').setValue(r.get('user_phone'));
+                                        Ext.getCmp('mf_onet_prop').setRawValue(r.get('onet_prop_value'));
+                                        Ext.getCmp('mf_user_prop').setRawValue(r.get('user_prop_value'));
+                                        Ext.getCmp('mf_net_prop').setRawValue(r.get('net_prop_value'));
+                                        Ext.getCmp('mf_weixin').setRawValue(r.get('weixin'));
+                                        Ext.getCmp('mdf_letv_start').setValue(r.get('letv_start'));
+                                        Ext.getCmp('mdf_letv_end').setValue(r.get('letv_end'));
+                                        Ext.getCmp('mdf_letv_mac').setValue(r.get('letv_mac'));
+                                        Ext.getCmp('mdf_it_end').setValue(r.get('it_end'));
 	        						}else{
 	        							alert('请先选择一行记录');
 	        						}										
@@ -101,7 +113,15 @@
 										alert('请先选择一行记录');
 									}
 								}
-							}
+							},
+                            {
+                                text: '添加代收费信息',
+                                icon: '../../image/add.png',
+                                scale: 'small',
+                                handler: function(){
+                                    Ext.create('My.mf_agent_save');
+                                }
+                            }
 				            ]
             			},
             			{
@@ -123,6 +143,14 @@
 //				            			}
 				            			Ext.getCmp('de_type').hide();
 				            			Ext.getCmp('ml_type').hide();
+                                        Ext.getCmp('tt_num').hide();
+                                        Ext.getCmp('tt_userid').hide();
+                                        Ext.getCmp('tt_start').hide();
+                                        Ext.getCmp('tt_end').hide();
+                                        Ext.getCmp('tt_type').hide();
+                                        if(Ext.getCmp('bs_name').isHidden()){
+                                            Ext.getCmp('bs_name').show();
+                                        }
 				                        if(Ext.getCmp('mfA_north')==undefined){
 											Ext.getCmp('base_query_mfA').add(Ext.create('My.mfA_north'));
 										}
@@ -144,6 +172,14 @@
 				            			if(Ext.getCmp('ml_type').isHidden()){
 				            				Ext.getCmp('ml_type').show();
 				            			}
+                                        if(Ext.getCmp('bs_name').isHidden()){
+                                            Ext.getCmp('bs_name').show();
+                                        }
+                                        Ext.getCmp('tt_num').hide();
+                                        Ext.getCmp('tt_userid').hide();
+                                        Ext.getCmp('tt_start').hide();
+                                        Ext.getCmp('tt_end').hide();
+                                        Ext.getCmp('tt_type').hide();
 				                    }
 				            	  },{
 				            		text: '注销续费',
@@ -161,9 +197,47 @@
 				            			}
 				            			if(Ext.getCmp('ml_type').isHidden()){
 				            				Ext.getCmp('ml_type').show();
-				            			}				            			
+				            			}
+                                        if(Ext.getCmp('bs_name').isHidden()){
+                                            Ext.getCmp('bs_name').show();
+                                        }
+                                        Ext.getCmp('tt_num').hide();
+                                        Ext.getCmp('tt_userid').hide();
+                                        Ext.getCmp('tt_start').hide();
+                                        Ext.getCmp('tt_end').hide();
+                                        Ext.getCmp('tt_type').hide();
 				                    }
-				            	  }]           
+				            	  },{
+                                text: '铁通业务查询',
+                                icon: '../../image/sq1.png',
+                                handler: function() {
+                                    var params=Ext.getCmp('cg_A').getStore().getProxy().extraParams;
+                                    params['menu_txt']='10';
+//				            			Ext.getCmp('cg_A').getStore().loadPage(0);
+                                    Ext.getCmp('cg_A').getStore().removeAll();
+                                    Ext.getCmp('select_btn').setText(this.text);
+//				            			Ext.getCmp('reset_btn').hide();
+                                    Ext.getCmp('base_query_mfA').remove('mfA_north');
+                                    if(Ext.getCmp('tt_num').isHidden()){
+                                        Ext.getCmp('tt_num').show();
+                                    }
+                                    if(Ext.getCmp('tt_userid').isHidden()){
+                                        Ext.getCmp('tt_userid').show();
+                                    }
+                                    if(Ext.getCmp('tt_start').isHidden()){
+                                        Ext.getCmp('tt_start').show();
+                                    }
+                                    if(Ext.getCmp('tt_end').isHidden()){
+                                        Ext.getCmp('tt_end').show();
+                                    }
+                                    if(Ext.getCmp('tt_type').isHidden()){
+                                        Ext.getCmp('tt_type').show();
+                                    }
+                                    Ext.getCmp('bs_name').hide();
+                                    Ext.getCmp('de_type').hide();
+                                    Ext.getCmp('ml_type').hide();
+                                }
+                            }]
 				        },
             			{
 		            		id: 'bs_name',
@@ -236,7 +310,56 @@
 							editable: false,
 							allowBlank: false,
 							blankText: '请选择查询条件'
-		            	},
+		            	},{
+                        id: 'tt_num',
+                        name: 'tt_num',
+                        xtype:'textfield',
+                        hidden:true,
+                        emptyText:'铁通号码',
+                        width: 110,
+                        value:'',
+                        editable: true,
+                        queryMode:'local'
+                        },{
+                        id: 'tt_userid',
+                        name: 'tt_userid',
+                        xtype:'textfield',
+                        hidden:true,
+                        emptyText:'用户账号',
+                        width: 110,
+                        value:'',
+                        editable: true,
+                        queryMode:'local'
+                        }, {
+                        id: 'tt_start',
+                        name: 'tt_start',
+                        xtype:'datefield',
+                        format: 'Y-m-d',
+                        hidden:true,
+                        emptyText:'开通时间',
+                        width: 110,
+                        value:'',
+                        editable: true,
+                        queryMode:'local'
+                        }, {
+                        id: 'tt_end',
+                        name: 'tt_end',
+                        xtype:'datefield',
+                        format: 'Y-m-d',
+                        hidden:true,
+                        emptyText:'到期时间',
+                        width: 110,
+                        value:'',
+                        editable: true,
+                        queryMode:'local'
+                        }, {
+                        id: 'tt_type',
+                        name: 'tt_type',
+                        xtype:'checkboxfield',
+                        hidden:true,
+                        boxLabel: '月查询',
+                        inputValue: '1'
+                        },
         				{
         					xtype:'button',
 	        				text: '查询信息',
@@ -286,6 +409,20 @@
 	        						params['endDate']=Ext.getCmp('endDate').getRawValue();
 	        						params['save_admin']=Ext.getCmp('save_admin').getValue();
 									params['opt_time']=Ext.getCmp('opt_time').getRawValue();
+                                    params['letv_start']=Ext.getCmp('letv_start').getRawValue();
+                                    params['letv_end']=Ext.getCmp('letv_end').getRawValue();
+                                    params['letv_mac']=Ext.getCmp('letv_mac').getValue();
+                                    params['it_end']=Ext.getCmp('mf_it_end').getRawValue();
+                                    params['user_prop']=Ext.getCmp('user_prop').getValue();
+                                    params['net_prop']=Ext.getCmp('net_prop').getValue();
+                                    params['old_net_prop']=Ext.getCmp('old_net_prop').getValue();
+                                    params['user_mobile']=Ext.getCmp('user_mobile').getValue();
+                                    params['user_phone']=Ext.getCmp('user_phone').getValue();
+                                    params['user_email']=Ext.getCmp('user_email').getValue();
+                                    params['weixin']=Ext.getCmp('weixin').getValue();
+                                    params['payee']=Ext.getCmp('payee').getValue();
+                                    params['admit']=Ext.getCmp('admit').getValue();
+                                    params['gm_mac']=Ext.getCmp('gm_mac').getValue();
 	        					}else if(Ext.getCmp('select_btn').getText()=='其他餐型续费'){	        						
 	        						if(!Ext.getCmp('de_type').isValid()){
 	        							return;
@@ -323,6 +460,16 @@
 	        						params['bs_name']=Ext.getCmp('bs_name').getValue();
 	        						params['ml_type']=Ext.getCmp('ml_type').getValue();
 	        					}
+                                //铁通查询
+                                else if(Ext.getCmp('select_btn').getText()=='铁通业务查询'){
+                                    params['menu_txt']='10';
+                                    //铁通字段
+                                    params['tt_num']=Ext.getCmp('tt_num').getValue();
+                                    params['tt_userid']=Ext.getCmp('tt_userid').getValue();
+                                    params['tt_start']=Ext.getCmp('tt_start').getRawValue();
+                                    params['tt_end']=Ext.getCmp('tt_end').getRawValue();
+                                    params['tt_type']=Ext.getCmp('tt_type').getValue();
+                                }
 	        					
 	        					Ext.getCmp('cg_A').getStore().loadPage(1);
 	        				}        		
@@ -364,6 +511,15 @@
 	        					Ext.getCmp('endDate').reset();
 	        					Ext.getCmp('save_admin').reset();
 								Ext.getCmp('opt_time').reset();
+                                Ext.getCmp('tt_num').reset();
+                                Ext.getCmp('tt_userid').reset();
+                                Ext.getCmp('tt_start').reset();
+                                Ext.getCmp('tt_end').reset();
+                                Ext.getCmp('mf_it_end').reset();
+                                Ext.getCmp('letv_start').reset();
+                                Ext.getCmp('letv_end').reset();
+                                Ext.getCmp('letv_mac').reset();
+                                Ext.getCmp('gm_mac').reset();
 	        				}
         				},
         				{
@@ -423,7 +579,21 @@
 	        						reqStr+='&endDate='+params['endDate'];
 	        						reqStr+='&save_admin='+encodeURI(encodeURI(params['save_admin']));
 									reqStr+='&opt_time='+params['opt_time'];
-	        					}else if(Ext.getCmp('select_btn').getText()=='其他餐型续费'){
+                                    reqStr+='&letv_start='+params['letv_start'];
+                                    reqStr+='&letv_end='+params['letv_end'];
+                                    reqStr+='&letv_mac='+encodeURI(encodeURI(params['letv_mac']));
+                                    reqStr+='&it_end='+params['it_end'];
+                                    reqStr+='&user_prop='+params['user_prop'];
+                                    reqStr+='&net_prop='+params['net_prop'];
+                                    reqStr+='&old_net_prop='+params['old_net_prop'];
+                                    reqStr+='&user_mobile='+params['user_mobile'];
+                                    reqStr+='&user_phone='+params['user_phone'];
+                                    reqStr+='&user_email='+encodeURI(encodeURI(params['user_email']));
+                                    reqStr+='&weixin='+params['weixin'];
+                                    reqStr+='&payee='+encodeURI(encodeURI(params['payee']));
+                                    reqStr+='&admit='+encodeURI(encodeURI(params['admit']));
+                                    reqStr+='&gm_mac='+encodeURI(encodeURI(params['gm_mac']));
+                                }else if(Ext.getCmp('select_btn').getText()=='其他餐型续费'){
 	        						if(!Ext.getCmp('de_type').isValid()){
 	        							return;
 	        						}
@@ -452,6 +622,7 @@
 	        							reqStr+='&ml_type='+params['ml_type'];
 	        						}
 	        					}
+                                //TODO:铁通导出
 //	        					window.location.href="get_excel.jsp?"+reqStr;
 	        					window.open("get_excel.jsp?"+reqStr);
 	        				}

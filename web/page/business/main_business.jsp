@@ -4,8 +4,8 @@
   <head>   
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title><%=Tools.getPropertiesValue("title") %></title>
-	<link rel="stylesheet" type="text/css" href="../../js/extjs/resources/css/ext-all.css">
-	<link rel="stylesheet" type="text/css" href="../../js/extjs/resources/css/ext-patch.css">
+      <link rel="stylesheet" type="text/css" href="../../js/extjs/resources/css/ext-all-gray.css">
+      <link rel="stylesheet" type="text/css" href="../../js/extjs/resources/css/ext-patch.css">
 	<link rel="stylesheet" type="text/css" href="../../css/example.css">
 	<style type="text/css">
 		p {

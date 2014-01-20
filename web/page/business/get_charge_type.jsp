@@ -5,7 +5,7 @@
 <%@page import="java.sql.Statement"%>
 
 <%
-	String get_data_sql="select charge_type_id,charge_type_name from gtm_charge_type_new where charge_level=1 order by charge_type_id";
+    String get_data_sql="select charge_type_id,charge_type_name from gtm_charge_type order by charge_type_id";
 	Connection conn=null;
 	Statement st=null;
 	ResultSet rs=null;	

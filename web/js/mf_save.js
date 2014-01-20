@@ -105,8 +105,7 @@
 											Ext.getCmp('mf_lt').setRawValue(result.line_type);
 											Ext.getCmp('mf_hetong').setRawValue(result.contract_name);
 											Ext.getCmp('mf_gm').setRawValue(result.mf_gm);
-											var gg=Ext.data.StoreManager.lookup('gg_state').findRecord('id',result.mf_gg);        						
-			        						Ext.getCmp('mf_gg').setRawValue(gg.get('name'));
+			        						Ext.getCmp('mf_gg').setRawValue(Ext.data.StoreManager.lookup('gg_state').findRecord('id',result.mf_gg).get('name'));
 											Ext.getCmp('mf_cxnote').setValue(result.mf_cxnote);
 											Ext.getCmp('mf_hdnote').setValue(result.mf_hdnote);
 											Ext.getCmp('mf_sbnote').setValue(result.mf_sbnote);
@@ -190,6 +189,99 @@
 	    				editable: false,
 	    				readOnly: true
 	            	},{
+                        xtype:'textfield',
+                        fieldLabel: '收款人',
+                        id: 'mf_payee',
+                        name: 'mf_payee',
+                        margin: '10 30 10 30',
+                        labelWidth: 90,
+                        width: 210,
+                        value: '',
+                        allowBlank: false,
+                        blankText: '请填写收款人',
+                        editable: true
+                    },{
+                        xtype:'textfield',
+                        fieldLabel: '接待人',
+                        id: 'mf_admit',
+                        name: 'mf_admit',
+                        margin: '10 30 10 30',
+                        labelWidth: 90,
+                        width: 210,
+                        value: '',
+                        allowBlank: false,
+                        blankText: '请填写接待人',
+                        editable: true
+                    },{
+                        xtype:'textfield',
+                        fieldLabel: '使用人电话',
+                        id: 'mf_user_mobile',
+                        name: 'mf_user_mobile',
+                        margin: '10 30 10 30',
+                        labelWidth: 90,
+                        width: 210,
+                        value: '',
+                        allowBlank: false,
+                        blankText: '请填写使用人电话',
+                        editable: true
+                    },{
+                        xtype:'textfield',
+                        fieldLabel: '固定电话',
+                        id: 'mf_user_phone',
+                        name: 'mf_user_phone',
+                        margin: '10 30 10 30',
+                        labelWidth: 90,
+                        width: 210,
+                        value: '',
+                        allowBlank: false,
+                        blankText: '请填写固定电话',
+                        editable: true
+                    },{
+                        id: 'mf_onet_prop',
+                        name: 'mf_onet_prop',
+                        margin: '10 30 10 30',
+                        xtype:'combobox',
+                        fieldLabel: '原网络性质',
+                        labelWidth: 90,
+                        store: Ext.StoreManager.lookup('old_net_prop'),
+                        queryMode:'local',
+                        width: 210,
+                        valueField:'id',
+                        displayField:'name',
+                        allowBlank: false,
+                        blankText: '请选择用户原网络性质',
+                        editable: false
+                    },{
+                        id: 'mf_user_prop',
+                        name: 'mf_user_prop',
+                        margin: '10 30 10 30',
+                        xtype:'combobox',
+                        fieldLabel: '用户性质',
+                        labelWidth: 90,
+                        store: Ext.StoreManager.lookup('user_prop'),
+                        queryMode:'local',
+                        width: 210,
+                        valueField:'id',
+                        displayField:'name',
+                        allowBlank: false,
+                        blankText: '请选择用户性质',
+                        editable: false
+                    },{
+                        id: 'mf_net_prop',
+                        name: 'mf_net_prop',
+                        margin: '10 30 10 30',
+                        xtype:'combobox',
+                        fieldLabel: '网络性质',
+                        labelWidth: 90,
+                        store: Ext.StoreManager.lookup('net_prop'),
+                        queryMode:'local',
+                        width: 210,
+                        valueField:'id',
+                        displayField:'name',
+                        allowBlank: false,
+                        blankText: '请选择网络性质',
+                        editable: false
+                    },{
 		            	xtype:'datefield',
 		                fieldLabel: '启用时间',
 		                id: 'mf_futime',
@@ -244,8 +336,92 @@
 		      			displayField:'name',
 						allowBlank: false,
 						blankText: '请选择是否IT卡用户',
-						editable: false
+						editable: false,
+                        listeners:{
+                            select:function(arg){
+                                var isit = Ext.getCmp('mf_isit').getValue();
+                                if(isit=='1'){
+                                    Ext.getCmp('it_end').setDisabled(false);
+                                }
+                                else{
+                                    Ext.getCmp('it_end').setDisabled(true);
+                                }
+                            }
+                        }
 	            	},{
+                        xtype:'datefield',
+                        fieldLabel: 'IT卡截止时间',
+                        id: 'it_end',
+                        name: 'it_end',
+                        margin: '10 30 10 30',
+                        labelWidth: 90,
+                        width: 210,
+                        value: '',
+                        format: 'Y-m-d',
+                        editable: false,
+                        disabled:true
+                    },{
+                        id: 'mf_weixin',
+                        name: 'mf_weixin',
+                        margin: '10 30 10 30',
+                        xtype:'combobox',
+                        fieldLabel: '是否关注微信',
+                        labelWidth: 90,
+                        store:new Ext.data.SimpleStore(
+                            {
+                                fields:['id','name'],
+                                data:[['1','是'],['0','否']]
+                            }),
+                        queryMode:'local',
+                        width: 210,
+                        valueField:'id',
+                        displayField:'name',
+                        allowBlank: false,
+                        blankText: '请选择是否关注微信',
+                        editable: false
+                    },{
+                        xtype:'datefield',
+                        fieldLabel: '乐视启用时间',
+                        id: 'le_start',
+                        name: 'le_start',
+                        margin: '10 30 10 30',
+                        labelWidth: 90,
+                        width: 210,
+                        value: '',
+                        format: 'Y-m-d',
+                        editable: true,
+                        listeners:{
+                            change:function(){
+                                if(Ext.getCmp('le_start').getValue()!=''){
+                                    Ext.getCmp('le_end').setDisabled(false);
+                                    Ext.getCmp('le_mac').setDisabled(false);
+                                }
+                            }
+                        }
+                    },{
+                        xtype:'datefield',
+                        fieldLabel: '乐视到期时间',
+                        id: 'le_end',
+                        name: 'le_end',
+                        margin: '10 30 10 30',
+                        labelWidth: 90,
+                        width: 210,
+                        value: '',
+                        format: 'Y-m-d',
+                        editable: true,
+                        disabled:true
+                    },{
+                        xtype:'textfield',
+                        fieldLabel: '乐视MAC地址',
+                        id: 'le_mac',
+                        name: 'le_mac',
+                        margin: '10 30 10 30',
+                        labelWidth: 90,
+                        width: 210,
+                        value: '',
+                        editable: true,
+                        disabled:true
+                    },{
 		               	xtype:'numberfield',
 		                fieldLabel: '宣传单号',
 		                id: 'mf_leaflet',

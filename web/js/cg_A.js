@@ -3,9 +3,10 @@
     title:'查询结果',
     
     constructor: function() {
-
+         var cgModel;
+        var cgStore;
     	//创建grid
-    	Ext.define('cg_A', {
+        cgModel = Ext.define('cg_A', {
             extend: 'Ext.data.Model',
             title:'查询结果',
             fields: [
@@ -36,7 +37,25 @@
             			'mf_hdnote',
             			'mf_sbnote',
             			'mf_zhnote',
-            			'mf_tsnote'
+            			'mf_tsnote',
+                        'onet_prop_value',
+                        'user_prop_value',
+                        'net_prop_value',
+                        'payee',
+                        'admit',
+                        'user_mobile',
+                        'user_phone',
+                        'weixin',
+                        'longNum',
+                        'shortNum',
+                        'balance',
+                        'tt_open',
+                        'tt_close',
+                        'letv_start',
+                        'letv_end',
+                        'letv_mac',
+                        'it_end',
+                        'gm_mac'
             		]
         	});
         	
@@ -66,8 +85,8 @@
 //            	 }],
     		     autoLoad: false
     		 });
-    	
-        Ext.apply(this, {
+
+        cgStore = Ext.apply(this, {
 //        	title: '报装跟进修改查询',
             region: 'center',
             margin: '8 0 0 0',
@@ -131,22 +150,40 @@
             }],
             
             plugins: [{
-	            ptype: 'rowexpander',	            
-	            rowBodyTpl : [
+	            ptype: 'rowexpander',
+                rowBodyTpl : [
 	            	'<p><b>邮箱地址&nbsp;:&nbsp;<font color="#8B0000">{email}</font></b>',
 	                '<b style="margin-left:40px;">房屋性质&nbsp;:&nbsp;<font color="#8B0000">{house_type}</font></b>',
 	                '<b style="margin-left:40px;">走线方式&nbsp;:&nbsp;<font color="#8B0000">{line_type}</font></b>',	                
 	                '<b style="margin-left:40px;">录入人&nbsp;:&nbsp;<font color="#8B0000">{save_admin}</font></b>',
 	                '<b style="margin-left:40px;">录入时间&nbsp;:&nbsp;<font color="#8B0000">{save_time}</font></b></p>',
+                    '<p><b>原网络性质&nbsp;:&nbsp;<font color="#8B0000">{onet_prop_value}</font></b>',
+                    '<b style="margin-left:40px;">用户性质&nbsp;:&nbsp;<font color="#8B0000">{user_prop_value}</font></b>',
+                    '<b style="margin-left:40px;">网络性质&nbsp;:&nbsp;<font color="#8B0000">{net_prop_value}</font></b>',
+                    '<b style="margin-left:40px;">收款人&nbsp;:&nbsp;<font color="#8B0000">{payee}</font></b>',
+                    '<b style="margin-left:40px;">接待人&nbsp;:&nbsp;<font color="#8B0000">{admit}</font></b></p>',
+                    '<p><b>使用人电话&nbsp;:&nbsp;<font color="#8B0000">{user_mobile}</font></b>',
+                    '<b style="margin-left:40px;">固定电话&nbsp;:&nbsp;<font color="#8B0000">{user_phone}</font></b>',
+                    '<b style="margin-left:40px;">是否关注微信&nbsp;:&nbsp;<font color="#8B0000">{weixin}</font></b></p>',
 	                '<p><b>光猫类型&nbsp;:&nbsp;<font color="#8B0000">{mf_gm}</font></b>',
+                    '<b style="margin-left:40px;">光猫MAC地址&nbsp;:&nbsp;<font color="#8B0000">{gm_mac}</font></b>',
 	                '<b style="margin-left:40px;">光改情况&nbsp;:&nbsp;<font color="#8B0000">{mf_gg}</font></b>',
 	                '<b style="margin-left:40px;">是否IT卡用户&nbsp;:&nbsp;<font color="#8B0000">{isit}</font></b>',
+                    '<b style="margin-left:40px;">IT卡到期时间&nbsp;:&nbsp;<font color="#8B0000">{it_end}</font></b>',
 	                '<b style="margin-left:40px;">光纤开通时间&nbsp;:&nbsp;<font color="#8B0000">{opt_time}</font></b></p>',	                
 	                '<p><b>所属合同&nbsp;:&nbsp;<font color="#8B0000">{contract_name}</font></b></p>',	      
 	                '<p><b>餐型备注&nbsp;:&nbsp;<font color="#8B0000">{mf_cxnote}</font></b></p>',
 	                '<p><b>活动备注&nbsp;:&nbsp;<font color="#8B0000">{mf_hdnote}</font></b></p>',
 	                '<p><b>设备备注&nbsp;:&nbsp;<font color="#8B0000">{mf_sbnote}</font></b></p>',
-	                '<p><b>特殊备注&nbsp;:&nbsp;<font color="#8B0000">{mf_tsnote}</font></b></p>'
+	                '<p><b>特殊备注&nbsp;:&nbsp;<font color="#8B0000">{mf_tsnote}</font></b></p>',
+                    '<p><b>铁通长号&nbsp;:&nbsp;<font color="#8B0000">{longNum}</font></b>',
+                    '<b style="margin-left:40px;">铁通短号&nbsp;:&nbsp;<font color="#8B0000">{shortNum}</font></b>',
+                    '<b style="margin-left:40px;">赠送时间&nbsp;:&nbsp;<font color="#8B0000">{balance}</font></b>',
+                    '<b style="margin-left:40px;">开通时间&nbsp;:&nbsp;<font color="#8B0000">{tt_open}</font></b>',
+                    '<b style="margin-left:40px;">到期时间&nbsp;:&nbsp;<font color="#8B0000">{tt_close}</font></b></p>',
+                    '<p><b>乐视开通时间&nbsp;:&nbsp;<font color="#8B0000">{letv_start}</font></b>',
+                    '<b style="margin-left:40px;">乐视到期时间&nbsp;:&nbsp;<font color="#8B0000">{letv_end}</font></b>',
+                    '<b style="margin-left:40px;">乐视盒子MAC地址&nbsp;:&nbsp;<font color="#8B0000">{letv_mac}</font></b></p>'
 	            ]
         	}],
             
@@ -168,7 +205,6 @@
                 }
             })            
         });
-        
         this.callParent(arguments);
         
     }

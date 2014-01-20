@@ -24,7 +24,7 @@
 		     autoLoad: true
 		 });
 		 
-		 Ext.define('charge_type1', {
+		 Ext.define('charge_type', {
 		     extend: 'Ext.data.Model',
 		     fields: [
 		         {name: 'id', type: 'string'},
@@ -33,8 +33,8 @@
 		 });
 
 		 Ext.create('Ext.data.Store', {
-			 model: 'charge_type1',
-			 storeId: 'charge_type1',
+			 model: 'charge_type',
+			 storeId: 'charge_type',
 		     proxy: {
 		         type: 'ajax',
 		         url: 'get_charge_type.jsp',
@@ -44,7 +44,7 @@
 		     },
 		     autoLoad: true
 		 });
-
+        /*
         Ext.define('charge_type2', {
             extend: 'Ext.data.Model',
             fields: [
@@ -107,6 +107,7 @@
             },
             autoLoad: false
         });
+        */
 		 
 		 Ext.define('ml_type', {
 		     extend: 'Ext.data.Model',
@@ -390,6 +391,7 @@
 							Ext.getCmp('viewport').remove('setup_debug');
 							Ext.getCmp('viewport').remove('home_service');
 							Ext.getCmp('viewport').remove('zc_charge');
+                            Ext.getCmp('viewport').remove('data_analysis');
 							Ext.getCmp('viewport').add(Ext.create('My.base_query_mfA'));
 							setSubBtns(['addmf','bs_name','ex_fn','admin_fn']);
 							if(Ext.getCmp('bs_name').isHidden()){
@@ -398,7 +400,6 @@
 						}
 					}
 				},{
-                    //TODO:子菜单
 					id:'C1',
 					hidden:true,
 	            	xtype:'button',
@@ -417,6 +418,7 @@
 							Ext.getCmp('viewport').remove('setup_debug');
 							Ext.getCmp('viewport').remove('home_service');
 							Ext.getCmp('viewport').remove('zc_charge');
+                            Ext.getCmp('viewport').remove('data_analysis');
 							Ext.getCmp('viewport').add(Ext.create('My.query_charge'));
 							setSubBtns(['addmf','bs_name','admin_fn','ex_fn']);
 							if(Ext.getCmp('bs_name').isHidden()){								
@@ -443,6 +445,7 @@
 							Ext.getCmp('viewport').remove('query_zzsale');
 							Ext.getCmp('viewport').remove('setup_debug');
 							Ext.getCmp('viewport').remove('home_service');
+                            Ext.getCmp('viewport').remove('data_analysis');
 							Ext.getCmp('viewport').add(Ext.create('My.zc_charge'));
 							setSubBtns(['addmf','bs_name','admin_fn','ex_fn']);
 							if(Ext.getCmp('bs_name').isHidden()){								
@@ -469,6 +472,7 @@
 							Ext.getCmp('viewport').remove('setup_debug');
 							Ext.getCmp('viewport').remove('home_service');
 							Ext.getCmp('viewport').remove('zc_charge');
+                            Ext.getCmp('viewport').remove('data_analysis');
 							Ext.getCmp('viewport').add(Ext.create('My.query_buildinfo'));
 							setSubBtns(['addmf','bs_name','admin_fn','ex_fn']);
 							if(Ext.getCmp('bs_name').isHidden()){
@@ -495,6 +499,7 @@
 							Ext.getCmp('viewport').remove('setup_debug');
 							Ext.getCmp('viewport').remove('home_service');
 							Ext.getCmp('viewport').remove('zc_charge');
+                            Ext.getCmp('viewport').remove('data_analysis');
 							Ext.getCmp('viewport').add(Ext.create('My.income_count'));
 							setSubBtns(['bs_name','ex_fn']);
 							if(Ext.getCmp('bs_name').isHidden()){
@@ -504,6 +509,30 @@
 						}
 					}
 				},{
+                    id:'H1',
+                    hidden:true,
+                    xtype:'button',
+                    width:150,
+                    text: '&nbsp;&nbsp;数据统计/分析',
+                    textAlign: 'left',
+                    icon: '../../image/chart.png',
+                    scale: 'medium',
+                    handler: function(){
+                        if(Ext.getCmp('data_analysis')==undefined){
+                            Ext.getCmp('viewport').remove('setup_ask');
+                            Ext.getCmp('viewport').remove('query_charge');
+                            Ext.getCmp('viewport').remove('base_query_mfA');
+                            Ext.getCmp('viewport').remove('query_buildinfo');
+                            Ext.getCmp('viewport').remove('query_zzsale');
+                            Ext.getCmp('viewport').remove('setup_debug');
+                            Ext.getCmp('viewport').remove('home_service');
+                            Ext.getCmp('viewport').remove('zc_charge');
+                            Ext.getCmp('viewport').remove('income_count');
+                            Ext.getCmp('viewport').add(Ext.create('My.data_analysis'));
+                            setSubBtns(['data_class']);
+                        }
+                    }
+                },{
 					id:'F1',
 					hidden:true,
 						xtype:'button',

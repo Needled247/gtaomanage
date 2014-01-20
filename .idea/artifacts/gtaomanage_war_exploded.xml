@@ -10,6 +10,8 @@
         <element id="directory" name="lib">
           <element id="library" level="project" name="jsf-api" />
           <element id="library" level="project" name="ojdbc14" />
+          <element id="library" level="project" name="sqljdbc4" />
+          <element id="library" level="project" name="c3p0-0.9.1.1" />
         </element>
       </element>
     </root>

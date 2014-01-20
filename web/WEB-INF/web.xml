@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
   <display-name></display-name>
+  <servlet>
+      <servlet-name>QuartzInit</servlet-name>
+      <servlet-class>tools.QuartzInit</servlet-class>
+      <load-on-startup>0</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>QuartzInit</servlet-name>
+      <url-pattern>/QuartzInit</url-pattern>
+  </servlet-mapping>
   <welcome-file-list>
     <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>

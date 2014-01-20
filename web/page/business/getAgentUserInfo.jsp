@@ -13,13 +13,7 @@
 	String getUserinfo_sql="SELECT u.SUSERNAME,ui.SREALNAME,i.SISPNAME,u.SFEEPHONE,sl.istationid FROM TBL_USERS u,TBL_USERSINFO ui,TBL_ISPLIST i,TBL_DISTLIST dl,TBL_STATIONLIST sl WHERE u.SUSERNAME=ui.SUSERNAME and u.IISPID=i.IISPID and u.idistid=dl.idistid and dl.istationid=sl.istationid and u.SUSERNAME='"+username+"'";
 	String getBI_sql="select name from GTM_BUSINESS_INFO where id=";
 	String getGluser_sql="select * from GTM_MAINFORM_INFO gmf,gtm_cat_type ct,gtm_contract gc where gmf.contract_id=gc.contract_id and gmf.cat_type_id=ct.cat_id and username='"+gluser+"'";
-	if(!bsn.equals("")){		
-		if(bsn.equals("1")){
-			dwIsExist_sql+=" AND (sl.istationid=1 or sl.istationid=2 or sl.istationid=0)";
-		}else{
-			dwIsExist_sql+=" AND (sl.istationid="+bsn+" or sl.istationid=0)";
-		}
-	}
+
 	String status="";
 	String userinfo="";
 	Connection conn=null;

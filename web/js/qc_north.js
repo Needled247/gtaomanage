@@ -142,6 +142,21 @@
 					queryMode:'local',
 					editable: false					
 		        },{
+                        id: 'charge_type',
+                        name: 'charge_type',
+                        xtype:'combobox',
+                        margin: '5 0 10 30',
+                        fieldLabel:'收费类别',
+                        store: Ext.data.StoreManager.lookup('charge_type'),
+                        labelWidth: 60,
+                        width: 190,
+                        valueField:'id',
+                        displayField:'name',
+                        value:'',
+                        minChars:1,
+                        queryMode:'local',
+                        editable: false
+                    }/*{
 		            id: 'charge_type1',
 			        name: 'charge_type1',
 			        xtype:'combobox',
@@ -228,7 +243,7 @@
                         minChars:1,
                         queryMode:'local',
                         editable: false
-                    },{
+                    }*/,{
             		xtype:'textfield',
             		id: 'tel',
             		name: 'tel',
