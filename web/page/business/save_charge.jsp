@@ -36,7 +36,9 @@
 	
 	String get_max_sql="select charge_id from gtm_front_charge where rownum=1 order by charge_id desc";
 	int cid=1;
-	String sql_first="insert into gtm_front_charge values("+bs_name+","+charge_date+",'"+username+"',"+is_new+",'"+receipt_id+"',"+charge_type_id+","+charge_amount+",'"+note+"','"+true_name+"',"+save_time+",";
+	String sql_first="insert into gtm_front_charge " +
+            "values("+bs_name+","+charge_date+",'"+username+"',"+is_new+",'"+receipt_id+"',"+charge_type_id+","+charge_amount+",'"
+            +note+"','"+true_name+"',"+save_time+",";
 	String sql_end=","+pay_type_id+","+fc_actsub+")";
 	String update_sql="update gtm_front_charge set bs_id="+bs_name+",is_new="+is_new+",receipt_id='"+receipt_id+"',charge_type_id="+charge_type_id+",charge_amount="+charge_amount+",note='"+note+"',pay_type_id="+pay_type_id+",act_sub_id="+fc_actsub+" where charge_id="+charge_id;
 	
@@ -68,6 +70,43 @@
 		st.executeUpdate(update_sql);
 		st.executeUpdate(sql_logadd_first+logId+sql_logadd_end+charge_id+"')");
 	}
+
+        /**
+         * 先判断光猫款、安装费是否选中
+         * 如果选中，获取最大charge_id，+1，然后如果是光猫款，把收费类别改为“光猫押金”...
+         * 然后获取光猫款文本框的值，修改原有值，拼接SQL，执行。
+         */
+    /*
+        光猫款项
+     */
+    if(request.getParameter("gm_cost")!=null&&request.getParameter("gm_cost").equals("1")){
+        rs=st.executeQuery(get_max_sql);
+        int chargeId = 1;
+        if(rs.next()){
+            chargeId=rs.getInt("charge_id")+1;
+        }
+        String first="insert into gtm_front_charge " +
+                "values("+bs_name+","+charge_date+",'"+username+"',"+is_new+",'"+receipt_id+"',7,"+request.getParameter("gm_cash")+",'"
+                +note+"','"+true_name+"',"+save_time+",";
+        String end=","+pay_type_id+","+fc_actsub+")";
+        st.executeUpdate(first+chargeId+end);
+    }
+
+    /*
+        安装费用
+     */
+    if(request.getParameter("setup_cost")!=null&&request.getParameter("setup_cost").equals("1")){
+        rs=st.executeQuery(get_max_sql);
+        int chargeId = 1;
+        if(rs.next()){
+            chargeId=rs.getInt("charge_id")+1;
+        }
+        String first="insert into gtm_front_charge " +
+                "values("+bs_name+","+charge_date+",'"+username+"',"+is_new+",'"+receipt_id+"',38,"+request.getParameter("setup_cash")+",'"
+                +note+"','"+true_name+"',"+save_time+",";
+        String end=","+pay_type_id+","+fc_actsub+")";
+        st.executeUpdate(first+chargeId+end);
+    }
 	
 	if(rs!=null){
 		rs.close();

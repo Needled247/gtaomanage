@@ -1,9 +1,14 @@
 package tools;
 
 import bean.IcInfoBean;
+import ds.ConnPoolBean;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 
@@ -116,5 +121,50 @@ public class Tools
                 "<b>¹âÃ¨¿î&nbsp;:&nbsp;£¤<font color=red>" + param14 + "</font></b>&nbsp;&nbsp;&nbsp;&nbsp;" +
                 "</p>'},";
         return formatStr;
+    }
+
+    public static String policy2BandWidth(int policy){
+        String bandWidth = "";
+        Connection conn = ConnPoolBean.getRadiusConn();
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "SELECT SPOLICYNAME FROM GTM_POLICY WHERE IPOLICYID="+policy;
+        try{
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery(sql);
+            while (rs.next()){
+                bandWidth = rs.getString("SPOLICYNAME");
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        finally {
+            if(conn!=null){
+                try{
+                    conn.close();
+                }
+                catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if(pstmt!=null){
+                try{
+                    pstmt.close();
+                }
+                catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if(rs!=null){
+                try{
+                    rs.close();
+                }
+                catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+        return bandWidth;
     }
 }

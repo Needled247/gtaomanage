@@ -88,7 +88,8 @@
                                         Ext.getCmp('mdf_letv_mac').setValue(r.get('letv_mac'));
                                         Ext.getCmp('mdf_it_end').setValue(r.get('it_end'));
 	        						}else{
-	        							alert('请先选择一行记录');
+                                        Ext.create('My.mf_modify');
+                                        Ext.getCmp('mf_modify').setTitle('修改用户信息');
 	        						}										
 								}
 							},
@@ -110,7 +111,8 @@
 											//return (text==Ext.getCmp('fc_act').getValue());
 										//});
 									}else{
-										alert('请先选择一行记录');
+                                        Ext.create('My.fc_save');
+                                        Ext.getCmp('fc_save').setTitle('添加收费信息');
 									}
 								}
 							},
@@ -520,6 +522,13 @@
                                 Ext.getCmp('letv_end').reset();
                                 Ext.getCmp('letv_mac').reset();
                                 Ext.getCmp('gm_mac').reset();
+                                Ext.getCmp('user_prop').reset();
+                                Ext.getCmp('net_prop').reset();
+                                Ext.getCmp('old_net_prop').reset();
+                                Ext.getCmp('user_mobile').reset();
+                                Ext.getCmp('user_phone').reset();
+                                Ext.getCmp('user_email').reset();
+                                Ext.getCmp('weixin').reset();
 	        				}
         				},
         				{

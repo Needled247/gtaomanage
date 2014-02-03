@@ -55,7 +55,8 @@
                         'letv_end',
                         'letv_mac',
                         'it_end',
-                        'gm_mac'
+                        'gm_mac',
+                        'scertno'
             		]
         	});
         	
@@ -153,6 +154,7 @@
 	            ptype: 'rowexpander',
                 rowBodyTpl : [
 	            	'<p><b>邮箱地址&nbsp;:&nbsp;<font color="#8B0000">{email}</font></b>',
+                    '<b style="margin-left:40px;">身份证号&nbsp;:&nbsp;<font color="#8B0000">{scertno}</font></b>',
 	                '<b style="margin-left:40px;">房屋性质&nbsp;:&nbsp;<font color="#8B0000">{house_type}</font></b>',
 	                '<b style="margin-left:40px;">走线方式&nbsp;:&nbsp;<font color="#8B0000">{line_type}</font></b>',	                
 	                '<b style="margin-left:40px;">录入人&nbsp;:&nbsp;<font color="#8B0000">{save_admin}</font></b>',

@@ -7,45 +7,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/image/chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/image/statistics.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/tools/BmuSyncer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/tools/QuartzInit.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/tools/QuartzManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/c3p0_0_9_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/data_analysis.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/data_detail.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/data_north.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/data_panel.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/page/business/getAgentUserInfo.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/page/business/getChartInfo.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/mf_agent_save.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/page/business/save_agent_charge.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/sqljdbc4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ds/ConnPoolBean.java" afterPath="$PROJECT_DIR$/src/ds/ConnPoolBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/app.js" afterPath="$PROJECT_DIR$/web/js/app.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/page/business/UserValueCalculator.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/page/business/getMainChartDetail.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/page/business/get_fc_save_user.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/page/business/get_modify_user.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tools/Tools.java" afterPath="$PROJECT_DIR$/src/tools/Tools.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/base_query_mfA.js" afterPath="$PROJECT_DIR$/web/js/base_query_mfA.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/cg_A.js" afterPath="$PROJECT_DIR$/web/js/cg_A.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/data_analysis.js" afterPath="$PROJECT_DIR$/web/js/data_analysis.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/data_detail.js" afterPath="$PROJECT_DIR$/web/js/data_detail.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/data_panel.js" afterPath="$PROJECT_DIR$/web/js/data_panel.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/fc_save.js" afterPath="$PROJECT_DIR$/web/js/fc_save.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/page/business/getChartInfo.jsp" afterPath="$PROJECT_DIR$/web/page/business/getChartInfo.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/page/business/getMfInfo.jsp" afterPath="$PROJECT_DIR$/web/page/business/getMfInfo.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/page/business/getQcInfo.jsp" afterPath="$PROJECT_DIR$/web/page/business/getQcInfo.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/page/business/getUserInfo.jsp" afterPath="$PROJECT_DIR$/web/page/business/getUserInfo.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/page/business/get_charge_type.jsp" afterPath="$PROJECT_DIR$/web/page/business/get_charge_type.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/page/business/get_excel.jsp" afterPath="$PROJECT_DIR$/web/page/business/get_excel.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gtaomanage.iml" afterPath="$PROJECT_DIR$/gtaomanage.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/gtaomanage_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/gtaomanage_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/jsf_api.xml" afterPath="$PROJECT_DIR$/.idea/libraries/jsf_api.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/page/business/main_business.jsp" afterPath="$PROJECT_DIR$/web/page/business/main_business.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/mfA_north.js" afterPath="$PROJECT_DIR$/web/js/mfA_north.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/mf_modify.js" afterPath="$PROJECT_DIR$/web/js/mf_modify.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/mf_save.js" afterPath="$PROJECT_DIR$/web/js/mf_save.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/qc_grid.js" afterPath="$PROJECT_DIR$/web/js/qc_grid.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/qc_north.js" afterPath="$PROJECT_DIR$/web/js/qc_north.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/page/business/save_mainform.jsp" afterPath="$PROJECT_DIR$/web/page/business/save_mainform.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/tree_westB.js" afterPath="$PROJECT_DIR$/web/js/tree_westB.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/page/business/save_charge.jsp" afterPath="$PROJECT_DIR$/web/page/business/save_charge.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="gtaomanage.iws" />
@@ -61,9 +37,9 @@
     <file path="$PROJECT_DIR$/../FileSys/web/EditFile.jsp" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1383877921392" ignored="false" />
     <file path="$PROJECT_DIR$/../FileSys/web/NewCompFile.jsp" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1383878283154" ignored="false" />
     <file path="$PROJECT_DIR$/../FileSys/web/NewPlantFile.jsp" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1383878305060" ignored="false" />
-    <file path="/Tools.java" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1389168592325" ignored="false" />
+    <file path="/Tools.java" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1390703052091" ignored="false" />
     <file path="/SessionFilter.java" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1384103274279" ignored="false" />
-    <file path="/Dummy.txt" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1390181694191" ignored="false" />
+    <file path="/Dummy.txt" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1391452238473" ignored="false" />
     <file path="/tree_westB.js" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1388712147174" ignored="false" />
     <file path="/get_ic_excel.jsp" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1384140139593" ignored="false" />
     <file path="/get_charge_type.jsp" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1389859391478" ignored="false" />
@@ -72,11 +48,11 @@
     <file path="/validate.jsp" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1384414302697" ignored="false" />
     <file path="/getQcInfo.jsp" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1389860703548" ignored="false" />
     <file path="/mfA_north.js" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1390202572696" ignored="false" />
-    <file path="/base_query_mfA.js" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1389679965924" ignored="false" />
+    <file path="/base_query_mfA.js" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1390966765989" ignored="false" />
     <file path="/testTab.js" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1387185589482" ignored="false" />
     <file path="/main_business.jsp" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1389766373775" ignored="false" />
-    <file path="/cg_A.js" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1389597429867" ignored="false" />
-    <file path="/a.dummy" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1390202636176" ignored="false" />
+    <file path="/cg_A.js" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1390795460849" ignored="false" />
+    <file path="/a.dummy" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1390358702058" ignored="false" />
     <file path="$PROJECT_DIR$/../FileSysFix/src/spring-config.xml" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1387355275818" ignored="false" />
     <file path="/spring-config.xml" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1387355244992" ignored="false" />
     <file path="/mfA_tabPanel.js" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1388130394959" ignored="false" />
@@ -101,7 +77,7 @@
     <file path="/noqc_grid.js" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1388738958646" ignored="false" />
     <file path="/qb_north.js" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1388741242056" ignored="false" />
     <file path="/qb_grid.js" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1388739308806" ignored="false" />
-    <file path="/getMfInfo.jsp" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1389689718756" ignored="false" />
+    <file path="/getMfInfo.jsp" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1390967179491" ignored="false" />
     <file path="/get_net_prop.jsp" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1389143921302" ignored="false" />
     <file path="/get_oldnet_prop.jsp" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1389144185099" ignored="false" />
     <file path="/get_user_prop.jsp" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1389144435591" ignored="false" />
@@ -142,15 +118,20 @@
     <file path="/SearchUserBillInterface.java" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1389410049622" ignored="false" />
     <file path="$PROJECT_DIR$/../BillSysFix/src/struts.xml" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1389409902416" ignored="false" />
     <file path="/struts.xml" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1389409896248" ignored="false" />
-    <file path="/mf_modify.js" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1389682654835" ignored="false" />
+    <file path="/mf_modify.js" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1390731053995" ignored="false" />
     <file path="/get_excel.jsp" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1389687478731" ignored="false" />
     <file path="/app.js" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1389766110779" ignored="false" />
     <file path="/data_north.js" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1389769488913" ignored="false" />
-    <file path="/data_analysis.js" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1389862456939" ignored="false" />
-    <file path="/data_panel.js" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1390203670833" ignored="false" />
-    <file path="/fc_save.js" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1389859799745" ignored="false" />
-    <file path="/data_detail.js" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1390200231946" ignored="false" />
-    <file path="/getChartInfo.jsp" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1390198751604" ignored="false" />
+    <file path="/data_analysis.js" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1390208428051" ignored="false" />
+    <file path="/data_panel.js" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1390445694611" ignored="false" />
+    <file path="/fc_save.js" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1390892428437" ignored="false" />
+    <file path="/data_detail.js" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1390717016440" ignored="false" />
+    <file path="/getChartInfo.jsp" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1390445416700" ignored="false" />
+    <file path="/getMainChartDetail.jsp" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1390715992975" ignored="false" />
+    <file path="/get_fc_save_user.jsp" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1390727407374" ignored="false" />
+    <file path="/get_modify_user.jsp" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1390729152179" ignored="false" />
+    <file path="/UserValueCalculator.jsp" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1390807855483" ignored="false" />
+    <file path="/save_charge.jsp" changelist="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" time="1390898718514" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,7 +151,6 @@
     <sortChildren value="false" />
   </component>
   <component name="DebuggerManager">
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -207,6 +187,7 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -216,52 +197,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="data_analysis.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/js/data_analysis.js">
+      <file leaf-file-name="mfA_north.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/js/mfA_north.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="38" selection-start="244" selection-end="244" vertical-scroll-proportion="0.30769232">
+            <state line="459" column="48" selection-start="22214" selection-end="22223" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="data_panel.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/js/data_panel.js">
+      <file leaf-file-name="base_query_mfA.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/js/base_query_mfA.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="14" selection-start="798" selection-end="798" vertical-scroll-proportion="0.0">
+            <state line="520" column="54" selection-start="24391" selection-end="24401" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="data_detail.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/js/data_detail.js">
+      <file leaf-file-name="getMfInfo.jsp" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/page/business/getMfInfo.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="41" selection-start="415" selection-end="756" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#1157#1815#0" expanded="false" />
-                <element signature="e#1873#2436#0" expanded="false" />
-                <element signature="e#2498#3761#0" expanded="false" />
-                <element signature="e#3821#5085#0" expanded="false" />
-                <element signature="e#5142#6406#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="getChartInfo.jsp" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/page/business/getChartInfo.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="36" selection-start="201" selection-end="201" vertical-scroll-proportion="-3.5294118">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="data_north.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/js/data_north.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="60" selection-start="1860" selection-end="1860" vertical-scroll-proportion="0.0">
+            <state line="132" column="66" selection-start="6895" selection-end="6895" vertical-scroll-proportion="0.055762082">
               <folding />
             </state>
           </provider>
@@ -285,22 +242,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/web/page/business/getMfInfo.jsp" />
-        <option value="$PROJECT_DIR$/web/page/business/get_excel.jsp" />
-        <option value="$PROJECT_DIR$/web/js/app.js" />
-        <option value="$PROJECT_DIR$/web/page/business/main_business.jsp" />
-        <option value="$PROJECT_DIR$/web/js/tree_westB.js" />
-        <option value="$PROJECT_DIR$/web/js/mf_agent_save.js" />
-        <option value="$PROJECT_DIR$/web/page/business/get_charge_type.jsp" />
-        <option value="$PROJECT_DIR$/web/js/qc_grid.js" />
-        <option value="$PROJECT_DIR$/web/page/business/getQcInfo.jsp" />
-        <option value="$PROJECT_DIR$/web/js/fc_save.js" />
-        <option value="$PROJECT_DIR$/web/js/data_north.js" />
-        <option value="$PROJECT_DIR$/web/page/business/getChartInfo.jsp" />
-        <option value="$PROJECT_DIR$/web/js/data_detail.js" />
         <option value="$PROJECT_DIR$/web/js/mfA_north.js" />
+        <option value="$PROJECT_DIR$/web/page/business/getChartInfo.jsp" />
         <option value="$PROJECT_DIR$/web/js/data_panel.js" />
+        <option value="$PROJECT_DIR$/web/page/business/getMainChartDetail.jsp" />
+        <option value="$PROJECT_DIR$/src/tools/Tools.java" />
+        <option value="$PROJECT_DIR$/web/js/data_detail.js" />
         <option value="$PROJECT_DIR$/web/js/data_analysis.js" />
+        <option value="$PROJECT_DIR$/web/page/business/get_fc_save_user.jsp" />
+        <option value="$PROJECT_DIR$/web/page/business/get_modify_user.jsp" />
+        <option value="$PROJECT_DIR$/web/js/mf_modify.js" />
+        <option value="$PROJECT_DIR$/web/js/cg_A.js" />
+        <option value="$PROJECT_DIR$/web/page/business/UserValueCalculator.jsp" />
+        <option value="$PROJECT_DIR$/web/js/fc_save.js" />
+        <option value="$PROJECT_DIR$/web/page/business/save_charge.jsp" />
+        <option value="$PROJECT_DIR$/web/js/base_query_mfA.js" />
+        <option value="$PROJECT_DIR$/web/page/business/getMfInfo.jsp" />
       </list>
     </option>
   </component>
@@ -442,16 +399,16 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="76" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="100" />
-    <property name="OverrideImplement.combined" value="true" />
     <property name="project.structure.proportion" value="0.15" />
+    <property name="OverrideImplement.combined" value="true" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="100" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="78" />
+    <property name="recentsLimit" value="5" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="E:/Coding/quartz-2.2.0/lib/slf4j-log4j12-1.6.6.jar!/" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="103" />
@@ -467,17 +424,17 @@
     <property name="FullScreen" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
-    <property name="options.lastSelected" value="preferences.pluginManager" />
+    <property name="options.lastSelected" value="appearance" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="options.searchVisible" value="true" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -515,19 +472,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -554,6 +498,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -599,12 +556,6 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="true" type="com.intellij.persistence.run.ConsoleRunConfigurationType" factoryName="Query Language Console">
-      <option name="VM_PARAMETERS" value="" />
-      <option name="USER_CFG_CLASS" />
-      <option name="CONTEXT_PROVIDER" />
-      <method />
-    </configuration>
     <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local">
       <deployment />
       <server-settings />
@@ -616,8 +567,14 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <method />
     </configuration>
+    <configuration default="true" type="com.intellij.persistence.run.ConsoleRunConfigurationType" factoryName="Query Language Console">
+      <option name="VM_PARAMETERS" value="" />
+      <option name="USER_CFG_CLASS" />
+      <option name="CONTEXT_PROVIDER" />
+      <method />
+    </configuration>
     <configuration default="false" name="Tomcat 7.0" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7.0">
-      <option name="COMMON_VM_ARGUMENTS" value="-Xms512m  -Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=512m" />
+      <option name="COMMON_VM_ARGUMENTS" value="-Xms256m -Xmx512m -XX:PermSize=128m -XX:MaxPermSize=256m" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="gtaomanage:war exploded">
@@ -742,7 +699,11 @@
       <created>1389150287670</created>
       <updated>1389150287670</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="添加字段已完成，图表未动态添加数据。&#10;">
+      <created>1390205458226</created>
+      <updated>1390205458226</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -766,36 +727,36 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1320" height="784" extended-state="6" />
+    <frame x="-8" y="-8" width="1320" height="784" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32847896" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39965397" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43598616" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2768166" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32871974" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32871974" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32847896" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32871974" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2096" sideWeight="0.5647249" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2192" sideWeight="0.5291262" order="0" side_tool="false" content_ui="combo" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43527508" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47087377" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32847896" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32871974" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -841,7 +802,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="2014-01-08&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加字段已完成，图表未动态添加数据。&#10;" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -859,6 +820,7 @@
     <MESSAGE value="2013-11-14&#10;" />
     <MESSAGE value="2013-11-16&#10;" />
     <MESSAGE value="2014-01-08&#10;" />
+    <MESSAGE value="添加字段已完成，图表未动态添加数据。&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -870,127 +832,101 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web/js/save_mainform1.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="13" selection-start="431" selection-end="431" vertical-scroll-proportion="-11.329577">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/qc_grid.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="66" selection-start="196" selection-end="196" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1389861307352" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1389861307352" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1389861307352" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1389861307352" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1389861307352" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1389861307352" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/fc_save.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="229" column="58" selection-start="6867" selection-end="6867" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/js/mf_modify.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-35.12316">
+        <state line="9" column="63" selection-start="243" selection-end="243" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tools/BmuSyncer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="32" selection-start="793" selection-end="793" vertical-scroll-proportion="-2.8658087" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/page/business/getMainChartDetail.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="67" column="44" selection-start="2696" selection-end="2696" vertical-scroll-proportion="0.95167285" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/cg_A.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="156" column="95" selection-start="4701" selection-end="4701" vertical-scroll-proportion="10.450512" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/save_mainform.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.9440559" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/page/business/UserValueCalculator.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="45" selection-start="445" selection-end="445" vertical-scroll-proportion="0.5444646" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gtm_sql/FUNC.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gtm_sql/GTM_ACT.sql">
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorReferencesProvider">
+        <state />
+      </provider>
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorProvider">
+        <state />
+      </provider>
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleGeneralEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="9" selection-start="22" selection-end="22" vertical-scroll-proportion="0.102564104" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/mf_save.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="110" selection-start="3283" selection-end="3283" vertical-scroll-proportion="1.2690059">
+        <state line="361" column="32" selection-start="13198" selection-end="13206" vertical-scroll-proportion="1.9405594">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/page/business/save_mainform.jsp">
+    <entry file="file://$PROJECT_DIR$/web/page/business/save_charge.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="41" selection-start="641" selection-end="648" vertical-scroll-proportion="0.2788104">
-          <folding />
-        </state>
+        <state line="108" column="90" selection-start="4776" selection-end="4776" vertical-scroll-proportion="0.6040892" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/fc_save.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="109" column="110" selection-start="4504" selection-end="4504" vertical-scroll-proportion="0.20979021" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/mfA_north.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="20" selection-start="330" selection-end="330" vertical-scroll-proportion="0.5924596">
+        <state line="459" column="48" selection-start="22214" selection-end="22223" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/base_query_mfA.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="249" column="123" selection-start="12182" selection-end="12182" vertical-scroll-proportion="0.0">
+        <state line="520" column="54" selection-start="24391" selection-end="24401" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/page/business/getMfInfo.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="116" selection-start="1825" selection-end="1825" vertical-scroll-proportion="-0.64705884">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/tree_westB.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="8" selection-start="107" selection-end="107" vertical-scroll-proportion="-0.37701976">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/page/business/getQcInfo.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="42" selection-start="435" selection-end="447" vertical-scroll-proportion="0.47058824">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/qc_north.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="441" column="60" selection-start="17357" selection-end="17364" vertical-scroll-proportion="0.26062846">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/data_detail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="41" selection-start="415" selection-end="756" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#1157#1815#0" expanded="false" />
-            <element signature="e#1873#2436#0" expanded="false" />
-            <element signature="e#2498#3761#0" expanded="false" />
-            <element signature="e#3821#5085#0" expanded="false" />
-            <element signature="e#5142#6406#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/data_north.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="60" selection-start="1860" selection-end="1860" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/data_panel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="14" selection-start="798" selection-end="798" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/data_analysis.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="38" selection-start="244" selection-end="244" vertical-scroll-proportion="0.30769232">
+        <state line="132" column="66" selection-start="6895" selection-end="6895" vertical-scroll-proportion="0.055762082">
           <folding />
         </state>
       </provider>

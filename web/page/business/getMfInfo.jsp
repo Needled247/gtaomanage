@@ -21,7 +21,6 @@
 	Connection conn=null;
 	Statement st=null;
 	ResultSet rs=null;
-	//System.out.println(startPage+","+countPage+","+menu_txt);
 	if(menu_txt.equals("0")){
 		response.setContentType("text/json;charset=UTF-8");
 		response.getWriter().print("{totalCount:"+count+",data:["+gridStr+"]}");
@@ -78,7 +77,7 @@
                             "tu.sfeephone,gmf.group_id,gmf.leaflet_no,tui.stele,tui.semail,gmf.house_type_id,gmf.line_type_id," +
                             "gmf.save_admin,gmf.save_time,gc.contract_name,gmf.oldnet_prop_id,gmf.user_prop_id,gmf.net_prop," +
                             "gmf.payee,gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end," +
-                            "gmf.letv_mac,gmf.it_end,tui.spostcode " +
+                            "gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
                             "from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td," +
                             "GTM_MAINFORM_INFO gmf,GTM_BUSINESS_INFO bi,gtm_contract gc " +
                             "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername " +
@@ -208,8 +207,8 @@
                 get_count_sql+=" and to_char(gmf.it_end,'yyyy-mm-dd')='"+it_end+"'";
             }
             if(!user_prop.equals("")){
-                get_data_sql+=" and gmf.user_prop="+user_prop;
-                get_count_sql+=" and gmf.user_prop="+user_prop;
+                get_data_sql+=" and gmf.user_prop_id="+user_prop;
+                get_count_sql+=" and gmf.user_prop_id="+user_prop;
             }
             if(!net_prop.equals("")){
                 get_data_sql+=" and gmf.net_prop="+net_prop;
@@ -256,7 +255,7 @@
                     "gmf.tsnote,gmf.isit,gmf.opt_usetime,bi.name,gi.susername,tui.srealname,ti.sispname,gmf.dfirstdate," +
                     "gi.doverdate,gi.sfeephone,gmf.group_id,gmf.leaflet_no,tui.stele,tui.semail,gmf.house_type_id,gmf.line_type_id," +
                     "gmf.save_admin,gmf.save_time,gc.contract_name,gmf.oldnet_prop_id,gmf.user_prop_id,gmf.net_prop," +
-                    "gmf.payee,gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode " +
+                    "gmf.payee,gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
                     "from gtm_gg_state gg,gtm_cat_type cat,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td,GTM_MAINFORM_INFO gmf," +
                     "GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
                     "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and gi.susername=tui.susername " +
@@ -288,7 +287,7 @@
                     "gmf.tsnote,gmf.isit,gmf.opt_usetime,bi.name,tu.susername,tui.srealname,ti.sispname,gmf.dfirstdate," +
                     "tu.doverdate,tu.sfeephone,gmf.group_id,gmf.leaflet_no,tui.stele,tui.semail,gmf.house_type_id,gmf.line_type_id," +
                     "gmf.save_admin,gmf.save_time,gc.contract_name,gmf.oldnet_prop_id,gmf.user_prop_id,gmf.net_prop,gmf.payee," +
-                    "gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode " +
+                    "gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
                     "from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td," +
                     "GTM_MAINFORM_INFO gmf,GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
                     "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername " +
@@ -324,7 +323,7 @@
                     "gmf.tsnote,gmf.isit,gmf.opt_usetime,bi.name,tu.susername,tui.srealname,ti.sispname,gmf.dfirstdate," +
                     "tu.doverdate,tu.sfeephone,gmf.group_id,gmf.leaflet_no,tui.stele,tui.semail,gmf.house_type_id,gmf.line_type_id," +
                     "gmf.save_admin,gmf.save_time,gc.contract_name,gmf.oldnet_prop_id,gmf.user_prop_id,gmf.net_prop,gmf.payee," +
-                    "gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode " +
+                    "gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
                     "from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td,GTM_MAINFORM_INFO gmf," +
                     "GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
                     "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername and tu.susername=gmf.username " +
@@ -359,7 +358,7 @@
                     "gmf.tsnote,gmf.isit,gmf.opt_usetime,bi.name,gi.susername,tui.srealname,ti.sispname,gmf.dfirstdate," +
                     "gi.doverdate,gi.sfeephone,gmf.group_id,gmf.leaflet_no,tui.stele,tui.semail,gmf.house_type_id,gmf.line_type_id," +
                     "gmf.save_admin,gmf.save_time,gc.contract_name,gmf.oldnet_prop_id,gmf.user_prop_id,gmf.net_prop," +
-                    "gmf.payee,gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode " +
+                    "gmf.payee,gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
                     "from gtm_gg_state gg,gtm_cat_type cat,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td,GTM_MAINFORM_INFO gmf," +
                     "GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
                     "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and gi.susername=tui.susername " +
@@ -393,7 +392,7 @@
                     "gmf.tsnote,gmf.isit,gmf.opt_usetime,bi.name,tu.susername,tui.srealname,ti.sispname,gmf.dfirstdate," +
                     "tu.doverdate,tu.sfeephone,gmf.group_id,gmf.leaflet_no,tui.stele,tui.semail,gmf.house_type_id,gmf.line_type_id," +
                     "gmf.save_admin,gmf.save_time,gc.contract_name,gmf.oldnet_prop_id,gmf.user_prop_id,gmf.net_prop," +
-                    "gmf.payee,gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode " +
+                    "gmf.payee,gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
                     "from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td,GTM_MAINFORM_INFO gmf," +
                     "GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
                     "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername " +
@@ -430,7 +429,7 @@
                     "gmf.tsnote,gmf.isit,gmf.opt_usetime,bi.name,tu.susername,tui.srealname,ti.sispname,gmf.dfirstdate," +
                     "tu.doverdate,tu.sfeephone,gmf.group_id,gmf.leaflet_no,tui.stele,tui.semail,gmf.house_type_id,gmf.line_type_id," +
                     "gmf.save_admin,gmf.save_time,gc.contract_name,gmf.oldnet_prop_id,gmf.user_prop_id,gmf.net_prop," +
-                    "gmf.payee,gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode " +
+                    "gmf.payee,gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
                     "from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td,GTM_MAINFORM_INFO gmf," +
                     "GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
                     "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername " +
@@ -468,7 +467,7 @@
                     "bi.name,tu.susername,tui.srealname,ti.sispname,gmf.dfirstdate,tu.doverdate,tu.sfeephone,gmf.group_id,gmf.leaflet_no,tui.stele," +
                     "tui.semail,gmf.house_type_id,gmf.line_type_id,gmf.save_admin,gmf.save_time,gc.contract_name,gmf.oldnet_prop_id,gmf.user_prop_id," +
                     "gmf.net_prop,gmf.payee,gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gpu.longNum,gpu.shortNum,gpu.email,gpu.balance," +
-                    "gpu.maturitytime,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode " +
+                    "gpu.maturitytime,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
                     "from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td,GTM_MAINFORM_INFO gmf," +
                     "GTM_BUSINESS_INFO bi,gtm_contract gc,gtm_phone_user gpu " +
                     "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername and tu.susername=gmf.username " +
@@ -514,7 +513,7 @@
 				
 		int endPage=Integer.parseInt(startPage)+Integer.parseInt(countPage);
 		get_data_sql+=" and rownum<="+endPage+" minus "+get_data_sql+" and rownum<="+startPage;
-		
+    System.out.println(get_count_sql);
 		rs=st.executeQuery(get_count_sql);
 			rs.next();
 			count=rs.getInt(1);
@@ -609,6 +608,12 @@
 					}else{
 						gridStr+="line_type:'',";				
 					}
+                    if(rs.getString("scertno")!=null){
+                        gridStr += "scertno:'"+rs.getString("scertno")+"',";
+                    }
+                    else {
+                        gridStr += "scertno:'',";
+                    }
 					if(rs.getString("save_admin")!=null){
 						gridStr+="save_admin:'"+new String(rs.getString("save_admin").getBytes("iso-8859-1"),"gbk")+"',";
 					}else{
@@ -804,5 +809,5 @@
 	//System.out.println(gridStr);
 	response.setContentType("text/json;charset=UTF-8");
 	response.getWriter().print("{totalCount:"+count+",data:["+gridStr+"]}");
-	
+
 %>

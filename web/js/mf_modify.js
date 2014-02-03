@@ -2,7 +2,6 @@
     extend: 'Ext.Window',
     
     constructor: function() {
-		
         Ext.apply(this, {
         	id: 'mf_modify',
             name: 'mf_modify',
@@ -21,6 +20,101 @@
         	name:'mf_form',
             layout:'fit',
             bodyStyle:'background-color:transparent',
+            tbar: Ext.create('Ext.toolbar.Toolbar',{
+//            	border: false,
+                height: 40,
+                items: [
+                    '-',
+                    {
+                        xtype:'textfield',
+                        id: 'mf_modify_user',
+                        name: 'mf_modify_user',
+                        width: 200,
+                        allowBlank: false,
+                        blankText: '请输入用户账号',
+                        fieldLabel: '用户账号',
+                        labelWidth: 60,
+                        maxLength: 20,
+                        enforceMaxLength: true,
+//			            regex: /[a-zA-Z]{2}\d+/,
+//		            	regexText: '请输入正确的用户账号(以两位字母开头)',
+                        submitValue: false,
+                        listeners:{
+                            specialkey:function(f,e){
+                                if (e.getKey() == e.ENTER) {
+                                    document.getElementById('mf_modify_user_btn').click();
+                                }
+                            }
+                        }
+                    },'-',{
+                        xtype:'button',
+                        text: '搜索用户信息',
+                        id:'mf_modify_user_btn',
+                        icon: '../../image/find_user.png',
+                        scale: 'medium',
+                        handler: function(){
+                            if(!Ext.getCmp('mf_modify_user').isValid()){
+                                alert('请输入用户账号');
+                                return;
+                            }
+                            var bsn="";
+                            if(Ext.getCmp('bs_name').isHidden()){
+                                bsn=Ext.bs_did;
+                            }
+                            Ext.Ajax.request({
+                                url: 'get_modify_user.jsp',
+                                method: 'POST',
+                                params: {
+                                    userid : Ext.getCmp('mf_modify_user').value,
+                                    bs_name : bsn
+                                },
+                                success: function(response){
+                                    var result = Ext.decode(response.responseText);
+                                    if(result.realname.length>0){
+                                        Ext.getCmp('mf_rname').setValue(result.realname);
+                                        Ext.getCmp('mf_bs').setRawValue(result.bs_name);
+                                        Ext.getCmp('mf_user').setValue(result.username);
+                                        Ext.getCmp('mf_id').setValue(result.username);
+                                        Ext.getCmp('mf_bandtype').setValue(result.mealtype);
+                                        Ext.getCmp('mf_addr').setValue(result.address);
+                                        Ext.getCmp('mf_futime').setValue(result.starttime);
+                                        Ext.getCmp('mf_opt').setValue(result.opt_time);
+                                        Ext.getCmp('mf_leaflet').setValue(result.leaflet_no);
+                                        Ext.getCmp('mf_group').setValue(result.group_id);
+                                        Ext.getCmp('mf_ht').setRawValue(result.house_type);
+                                        Ext.getCmp('mf_lt').setRawValue(result.line_type);
+                                        Ext.getCmp('mf_isit').setRawValue(result.isit);
+                                        Ext.getCmp('mf_hetong').setRawValue(result.contract_name);
+                                        Ext.getCmp('mf_retime').setValue(result.mf_retime);
+                                        Ext.getCmp('mf_gm').setRawValue(result.mf_gm);
+                                        Ext.getCmp('mf_gg').setRawValue(result.mf_gg);
+                                        Ext.getCmp('mf_cxnote').setValue(result.mf_cxnote);
+                                        Ext.getCmp('mf_hdnote').setValue(result.mf_hdnote);
+                                        Ext.getCmp('mf_sbnote').setValue(result.mf_sbnote);
+                                        Ext.getCmp('mf_zhnote').setValue(result.mf_zhnote);
+                                        Ext.getCmp('mf_tsnote').setValue(result.mf_tsnote);
+                                        Ext.getCmp('mf_payee').setValue(result.payee);
+                                        Ext.getCmp('mf_admit').setValue(result.admit);
+                                        Ext.getCmp('mf_user_mobile').setValue(result.user_mobile);
+                                        Ext.getCmp('mf_user_phone').setValue(result.user_phone);
+                                        Ext.getCmp('mf_onet_prop').setRawValue(result.onet_prop_value);
+                                        Ext.getCmp('mf_user_prop').setRawValue(result.user_prop_value);
+                                        Ext.getCmp('mf_net_prop').setRawValue(result.net_prop_value);
+                                        Ext.getCmp('mf_weixin').setRawValue(result.weixin);
+                                        Ext.getCmp('mdf_letv_start').setValue(result.letv_start);
+                                        Ext.getCmp('mdf_letv_end').setValue(result.letv_end);
+                                        Ext.getCmp('mdf_letv_mac').setValue(result.letv_mac);
+                                        Ext.getCmp('mdf_it_end').setValue(result.it_end);
+                                    }else{
+                                        alert("您搜索的用户账号不存在");
+                                        Ext.getCmp('mf_form').getForm().reset();
+                                    }
+                                }
+                            });
+                        }
+                    }
+                ]
+            }),
         items: [{
             xtype: 'fieldset',
             title: '<font color="red">*</font>用户主要信息<font color="red">*</font>',

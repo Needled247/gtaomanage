@@ -2,6 +2,13 @@
     extend: 'Ext.panel.Panel',
 
     /**
+     * 数据分析功能暂停，代码列表及功能如下：
+     * data_analysis.js  放控件
+     * data_panel.js  图表显示主容器
+     * data_detail.js  图表显示window（弹出）
+     * getMainChartDetail.jsp  主容器初始化Server端
+     * getChartInfo.jsp  window数据来源
+     * ----------------------------------------------------------------------
      * 初始化时ajax取数据，需要post的参数有：
      * 1、用户权限，根据权限确定输出的图表。
      * 2、营业厅，功能同上
@@ -28,19 +35,24 @@
             name:'data_class',
             items: [{
                     text: '新装类',
-                    menu: new Ext.menu.Menu({
+                    menu:new Ext.menu.Menu({
                         ignoreParentClicks: true,
                         items: [
                             {
                                 text: '新装指标分析'
                             },{
-                                text: '餐型分析'
+                                text: '新装餐型分析'
                             },{
-                                text: '带宽分析'
+                                text: '新装带宽分析'
                             },{
-                                text: '网络性质分析'
+                                text: '新装网络性质分析'
                             }
-                        ]
+                        ],
+                        listeners:{
+                            'click':function(menu,item){
+                                Ext.getCmp('chart_type').setValue(item.text);
+                            }
+                        }
                     })
                 },{
                     text: '续费类',
@@ -50,7 +62,7 @@
                             {
                                 text: '续费统计'
                             },{
-                                text: '带宽分析'
+                                text: '续费带宽分析'
                             },{
                                 text: '预存网费统计'
                             },{
@@ -58,7 +70,12 @@
                             },{
                                 text: '赠送时长统计'
                             }
-                        ]
+                        ],
+                        listeners:{
+                            'click':function(menu,item){
+                                Ext.getCmp('chart_type').setValue(item.text);
+                            }
+                        }
                     })
                 },{
                     text: '停机注销类',
@@ -70,13 +87,18 @@
                             },{
                                 text: '停机注销用户统计'
                             },{
-                                text: '餐型分析'
+                                text: '停机注销餐型分析'
                             },{
-                                text: '带宽分析'
+                                text: '停机注销带宽分析'
                             },{
                                 text: '在网时间分析'
                             }
-                        ]
+                        ],
+                        listeners:{
+                            'click':function(menu,item){
+                                Ext.getCmp('chart_type').setValue(item.text);
+                            }
+                        }
                     })
                 },{
                     text: 'IT卡服务类',
@@ -86,7 +108,12 @@
                             {
                                 text: '时间统计'
                             }
-                        ]
+                        ],
+                        listeners:{
+                            'click':function(menu,item){
+                                Ext.getCmp('chart_type').setValue(item.text);
+                            }
+                        }
                     })
                 }
             ]
@@ -131,6 +158,12 @@
                     text:'分析类别',
                     menu:infoMenu
                 },
+                {
+                    xtype:'hiddenfield',
+                    id:'chart_type',
+                    name:'chart_type',
+                    value:''
+                },
             	{
             		xtype:'button',
 	        		text: '开始统计',
@@ -138,7 +171,7 @@
 	        		icon: '../../image/statistics.png',
 	        		scale: 'medium',
 	        		handler: function(){
-	        			
+	        			/*
 	        			if(!Ext.getCmp('startDate').isValid()){
 	        				return;
 	        			}
@@ -146,13 +179,16 @@
 	        			if(!Ext.getCmp('endDate').isValid()){
 	        				return;
 	        			}
-	        			
+	        			*/
+	        			/*
 	        			var params = Ext.getCmp('main_chart').getStore().getProxy().extraParams;
 	        			params['zc_bs_name']=Ext.getCmp('bs_name').getValue();
 	        			params['startDate']=Ext.getCmp('startDate').getRawValue();
 	        			params['endDate']=Ext.getCmp('endDate').getRawValue();
 	        			params['zc_type']=Ext.getCmp('zct').getValue();
 	        			Ext.getCmp('main_chart').getStore().loadPage(1);
+	        			*/
+                        alert(Ext.getCmp('chart_type').getValue());
 	        		}        		
         		},
         		{
@@ -173,7 +209,6 @@
         		}
         	]})
         });
-        
         this.callParent(arguments);
         
     }

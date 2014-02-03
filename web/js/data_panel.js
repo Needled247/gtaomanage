@@ -2,99 +2,80 @@
     extend: 'Ext.panel.Panel',
     
     constructor: function() {
-        /**
-         * Creating a Store
-         */
         Ext.define('setup_Store', {
             extend: 'Ext.data.Model',
-            fields: ['num', 'name']
+            fields: ['num','num2', 'name']
         });
-        /**
-         * 点数据
-         * @type {*}
-         */
         var store = Ext.create('Ext.data.Store', {
             model: 'setup_Store',
-            /*
-            autoLoad:false,
-            proxy:{
-                type:'ajax',
-                actionMethods:{
-                    read:'POST'
-                },
-                url:'getChartInfo.jsp',
-                method:'POST',
-                reader:{
-                    type:'json',
-                    root:'data'
+            storeId:'main_chart',
+            proxy: {
+                type: 'ajax',
+                url: 'getChartInfo.jsp',
+                method: 'POST',
+                actionMethods: { read: 'POST' },
+                reader: {
+                    type: 'json'
                 }
             },
-            */
-            data: [
-                { num: 1515, name: '新装' },
-                { num: 2313, name: '包年续费' },
-                { num: 687, name: '其他续费' },
-                { num: 139, name: '停机注销' }
-            ]
+            autoLoad: false
         });
+        store.load({params:{bs_name:Ext.bs_did}});
 
         var chart = Ext.create('Ext.chart.Chart', {
             id:'main_chart',
             name:'main_chart',
             animate: true,
-            shadow: true,
             store: store,
             axes: [
                 {
-                    title: '数量',
                     type: 'Numeric',
                     position: 'left',
-                    fields: ['num'],
+                    fields: ['num', 'num2'],
+                    label: {
+                        renderer: Ext.util.Format.numberRenderer('0,0')
+                    },
+                    title: '数量',
+                    grid: true,
                     minimum: 0
                 },
                 {
-                    title: '名称',
                     type: 'Category',
                     position: 'bottom',
-                    fields: ['name']
+                    fields: ['name'],
+                    title: '名称'
                 }
             ],
             series: [
                 {
                     type: 'column',
                     xField: 'name',
-                    yField: 'num',
+                    yField: ['num','num2'],
+                    style:{
+                        width:'80'
+                    },
                     highlight: true,
+                    stacked: true,
                     listeners:{
                         itemmousedown:function(obj){
                             Ext.create('My.data_detail');
                             Ext.getCmp('data_detail').setTitle(obj.storeItem.data['name']);
                         }
                     },
+                    label: {
+                        display: 'outside',
+                        'text-anchor': 'middle',
+                        field: ['num','num2'],
+                        renderer: Ext.util.Format.numberRenderer('0,0'),
+                        orientation: 'horizontal',
+                        color: '#333'
+                    },
                     tips: {
                         trackMouse: true,
-                        width: 110,
-                        height: 60,
                         renderer: function(storeItem, item) {
                             this.setTitle(storeItem.get('name')+"数量");
-                            this.update(storeItem.get('num')+"个");
+                            this.update("完成"+storeItem.get('num')+"个<br>定额"+(parseInt(storeItem.get('num2'))+parseInt(storeItem.get('num')))+"个");
                         }
-                    },
-                    markerConfig: {
-                        type: 'circle',
-                        size: 4,
-                        radius: 4,
-                        'stroke-width': 0,
-                        fill: '#38B8BF',
-                        stroke: '#38B8BF'
-                    },
-                    renderer:  function(sprite, storeItem, barAttr, i, store) {
-                        var colors = ['rgb(0,229,238)',
-                            'rgb(255,215,0)',
-                            'rgb(0,238,118)',
-                            'rgb(255,48,48)'];
-                        barAttr.fill = colors[i % colors.length];
-                        return barAttr;
                     }
                 }
             ]

@@ -11,93 +11,55 @@
             ]
         });
 
-        var store = Ext.create('Ext.data.JsonStore', {
-            /*
+        var store1 = Ext.create('Ext.data.JsonStore', {
             model:'chartModel',
+            storeId:'bandStore',
             autoLoad:false,
             proxy:{
                 type:'ajax',
-                actionMethods:{
-                    read:'POST'
-                },
-                url:'getChartInfo.jsp',
+                actionMethods:{read:'POST'},
+                url:'getMainChartDetail.jsp',
                 method:'POST',
-                reader:{
-                    type:'json',
-                    root:'data'
-                }
-            },
-            */
-            fields: ['name', 'data1'],
-            data: [
-                { 'name': '4M',   'data1': 521},
-                { 'name': '10M',   'data1': 1000},
-                { 'name': '20M',   'data1': 750},
-                { 'name': '50M', 'data1': 59},
-                { 'name': '100M',  'data1': 92}
-            ]
-        });
+                reader:{type:'json'}
+            }
+        }).load({params:{type:1}});
 
         var store2 = Ext.create('Ext.data.JsonStore', {
-            /*
-             model:'chartModel',
-             autoLoad:false,
-             proxy:{
-             type:'ajax',
-             actionMethods:{
-             read:'POST'
-             },
-             url:'getChartInfo.jsp',
-             method:'POST',
-             reader:{
-             type:'json',
-             root:'data'
-             }
-             },
-             */
-            fields: ['name', 'data1'],
-            data: [
-                { 'name': '包年',   'data1': 2345},
-                { 'name': '包月',   'data1': 1262},
-                { 'name': '包季',   'data1': 514},
-                { 'name': '其他', 'data1': 286}
-            ]
-        });
+            model:'chartModel',
+            storeId:'mtStore',
+            autoLoad:false,
+            proxy:{
+                type:'ajax',
+                actionMethods:{read:'POST'},
+                url:'getMainChartDetail.jsp',
+                method:'POST',
+                reader:{type:'json'}
+            }
+        }).load({params:{type:2}});
 
         var store3 = Ext.create('Ext.data.JsonStore', {
-            /*
-             model:'chartModel',
-             autoLoad:false,
-             proxy:{
-             type:'ajax',
-             actionMethods:{
-             read:'POST'
-             },
-             url:'getChartInfo.jsp',
-             method:'POST',
-             reader:{
-             type:'json',
-             root:'data'
-             }
-             },
-             */
-            fields: ['name', 'data1'],
-            data: [
-                { 'name': '光纤',   'data1': 2345},
-                { 'name': '非光纤',   'data1': 1262}
-            ]
-        });
+            model:'chartModel',
+            storeId:'fiberStore',
+            autoLoad:false,
+            proxy:{
+                type:'ajax',
+                actionMethods:{read:'POST'},
+                url:'getMainChartDetail.jsp',
+                method:'POST',
+                reader:{type:'json'}
+            }
+        }).load({params:{type:3}});
 
         var bandwitch_pie = Ext.create('Ext.chart.Chart', {
             title:'带宽比例',
             width:290,
             height:290,
             animate: true,
-            store: store,
+            store: store1,
             theme: 'Base:gradients',
             series: [{
                 type: 'pie',
-                field: 'data1',
+                field: 'data',
                 showInLegend: true,
                 tips: {
                     trackMouse: true,
@@ -106,10 +68,10 @@
                     renderer: function(storeItem, item) {
                         // calculate and display percentage on hover
                         var total = 0;
-                        store.each(function(rec) {
-                            total += rec.get('data1');
+                        store1.each(function(rec) {
+                            total += parseInt(rec.get('data'));
                         });
-                        this.setTitle(storeItem.get('name') + ': ' + Math.round(storeItem.get('data1') / total * 100) + '%      '+storeItem.get('data1')+'个');
+                        this.setTitle(storeItem.get('name') + ': ' + Math.round(storeItem.get('data') / total * 100) + '%      '+storeItem.get('data')+'个');
                     }
                 },
                 highlight: {
@@ -135,19 +97,18 @@
             theme: 'Base:gradients',
             series: [{
                 type: 'pie',
-                field: 'data1',
+                field: 'data',
                 showInLegend: true,
                 tips: {
                     trackMouse: true,
                     width: 140,
                     height: 28,
                     renderer: function(storeItem, item) {
-                        // calculate and display percentage on hover
                         var total = 0;
                         store.each(function(rec) {
-                            total += rec.get('data1');
+                            total += rec.get('data');
                         });
-                        this.setTitle(storeItem.get('name') + ': ' + Math.round(storeItem.get('data1') / total * 100) + '%      '+storeItem.get('data1')+'个');
+                        this.setTitle(storeItem.get('name') + ': ' + Math.round(storeItem.get('data') / total * 100) + '%      '+storeItem.get('data')+'个');
                     }
                 },
                 highlight: {
@@ -173,7 +134,7 @@
             theme: 'Base:gradients',
             series: [{
                 type: 'pie',
-                field: 'data1',
+                field: 'data',
                 showInLegend: true,
                 tips: {
                     trackMouse: true,
@@ -183,9 +144,9 @@
                         // calculate and display percentage on hover
                         var total = 0;
                         store.each(function(rec) {
-                            total += rec.get('data1');
+                            total += rec.get('data');
                         });
-                        this.setTitle(storeItem.get('name') + ': ' + Math.round(storeItem.get('data1') / total * 100) + '%      '+storeItem.get('data1')+'个');
+                        this.setTitle(storeItem.get('name') + ': ' + Math.round(storeItem.get('data') / total * 100) + '%      '+storeItem.get('data')+'个');
                     }
                 },
                 highlight: {
@@ -255,3 +216,19 @@
         
     }
 });
+
+function MergerSimilarItems(store){
+    var arr = eval(store);
+    for(var i=0;i<arr.length;i++){
+        alert(arr[i].name);
+    }
+    /*
+    for(var i=0;i<store.length;i++){
+        if(arr[store[i].name]!==undefined){
+            arr[store[i].name].data = parseInt(arr[store[i].name].data)+parseInt(store[i].data);
+        }else{
+            arr[store[i].name] = store[i];
+        }
+    }
+    console.log(arr);   */
+}

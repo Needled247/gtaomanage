@@ -21,6 +21,105 @@
         	name:'fc_form',
             layout:'fit',
             bodyStyle:'background-color:transparent',
+            tbar: Ext.create('Ext.toolbar.Toolbar',{
+//            	border: false,
+                height: 40,
+                items: [
+                    '-',
+                    {
+                        xtype:'textfield',
+                        id: 'fc_save_userId',
+                        name: 'fc_save_userId',
+                        width: 200,
+                        allowBlank: false,
+                        blankText: '请输入用户账号',
+                        fieldLabel: '用户账号',
+                        labelWidth: 60,
+                        maxLength: 20,
+                        enforceMaxLength: true,
+                        submitValue: false,
+                        listeners:{
+                            specialkey:function(f,e){
+                                if (e.getKey() == e.ENTER) {
+                                    document.getElementById('fc_search_btn').click();
+                                }
+                            }
+                        }
+                    },'-',{
+                        xtype:'button',
+                        text: '搜索用户信息',
+                        id:'fc_search_btn',
+                        icon: '../../image/find_user.png',
+                        scale: 'medium',
+                        handler: function(){
+                            if(!Ext.getCmp('fc_save_userId').isValid()){
+                                alert('请输入用户账号');
+                                return;
+                            }
+                            var bsn="";
+                            if(Ext.getCmp('bs_name').isHidden()){
+                                bsn=Ext.bs_did;
+                            }
+                            Ext.Ajax.request({
+                                url: 'get_fc_save_user.jsp',
+                                method: 'POST',
+                                params: {
+                                    userid : Ext.getCmp('fc_save_userId').value,
+                                    bs_name : bsn
+                                },
+                                success: function(response){
+                                    var result = Ext.decode(response.responseText);
+                                    if(result.realname.length>0){
+                                        Ext.getCmp('fc_bs').setRawValue(result.station);
+                                        Ext.getCmp('fc_rname').setValue(result.realname);
+                                        Ext.getCmp('fc_user').setValue(Ext.getCmp('fc_save_userId').value);
+                                    }else{
+                                        alert("您搜索的用户账号不存在");
+                                    }
+                                }
+                            });
+                        }
+                    },
+                    {
+                        boxLabel:'光猫款',
+                        xtype:'checkboxfield',
+                        name:'gm_cost',
+                        id:'gm_cost',
+                        inputValue: '1',
+                        uncheckedValues: '0',
+                        listeners:{
+                            change:function(obj,checked){
+                                var gm = Ext.getCmp('gm_cash');
+                                if(checked==true){
+                                    gm.setDisabled(false);
+                                }
+                                else{
+                                    gm.setDisabled(true);
+                                }
+                            }
+                        }
+                    },
+                    {
+                        boxLabel:'安装费',
+                        name:'setup_cost',
+                        id:'setup_cost',
+                        inputValue: '1',
+                        uncheckedValues: '0',
+                        xtype:'checkboxfield',
+                        listeners:{
+                            change:function(obj,checked){
+                                var setup = Ext.getCmp('setup_cash');
+                                if(checked==true){
+                                    setup.setDisabled(false);
+                                }
+                                else{
+                                    setup.setDisabled(true);
+                                }
+                            }
+                        }
+                    }
+                ]
+            }),
         items: [{
             xtype: 'fieldset',
             title: '<font color="red">*</font>营业厅收费信息<font color="red">*</font>',
@@ -142,7 +241,38 @@
 	                maxLength: 12,
 	                regex: /(^-?\d{1,8}$)|(^-?\d{1,8}\.\d{1,2}$)/,
 		            regexText: '请输入正确的收费金额'
-            	},{
+            	},
+                {
+                    xtype:'textfield',
+                    fieldLabel: '光猫款',
+                    id: 'gm_cash',
+                    name: 'gm_cash',
+                    margin: '10 30 10 30',
+                    labelWidth: 90,
+                    blankText: '请输入金额',
+                    width: 420,
+                    disabled:true,
+                    enforceMaxLength: true,
+                    maxLength: 12,
+                    regex: /(^-?\d{1,8}$)|(^-?\d{1,8}\.\d{1,2}$)/,
+                    regexText: '请输入正确的金额'
+                },
+                {
+                    xtype:'textfield',
+                    fieldLabel: '安装费用',
+                    id: 'setup_cash',
+                    name: 'setup_cash',
+                    margin: '10 30 10 30',
+                    labelWidth: 90,
+                    blankText: '请输入金额',
+                    width: 420,
+                    disabled:true,
+                    enforceMaxLength: true,
+                    maxLength: 12,
+                    regex: /(^-?\d{1,8}$)|(^-?\d{1,8}\.\d{1,2}$)/,
+                    regexText: '请输入正确的金额'
+                },
+                {
 	                id: 'fc_isnew',
 	                name: 'fc_isnew',
 	                margin: '10 30 10 30',
@@ -326,7 +456,6 @@
             	}
             ]
         });
-        
         this.callParent(arguments);
         
     }
