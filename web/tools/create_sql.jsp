@@ -415,8 +415,8 @@
 	}
 */
 
-	//GTM_FRONT_CHARGE
-/*	String del_bs_sql="delete from GTM_FRONT_CHARGE";
+	//GTM_FRONT_CHARGE_NEW
+/*	String del_bs_sql="delete from GTM_FRONT_CHARGE_NEW";
 	String get_max_sql="select charge_id from gtm_front_charge where rownum=1 order by charge_id desc";
 	int cid=1;
 	Connection conn=ConnPoolBean.getRadiusConn();
@@ -441,7 +441,7 @@
 			data = row.split(",");
 			String save_time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 			save_time="to_date('"+save_time+"','yyyy-mm-dd hh24:mi:ss')";			
-			String verify_sql="insert into GTM_FRONT_CHARGE values ("+data[0]+",to_date('"+data[1].trim()+"','yyyy-mm-dd'),'"+data[2].trim().toLowerCase()+"',"+data[3]+",'"+new String(data[4].trim().getBytes("gbk"),"iso-8859-1")+"',"+data[5]+","+data[6].trim()+",'"+new String(data[7].trim().getBytes("gbk"),"iso-8859-1")+"','admin',"+save_time+","+cid+")";
+			String verify_sql="insert into GTM_FRONT_CHARGE_NEW values ("+data[0]+",to_date('"+data[1].trim()+"','yyyy-mm-dd'),'"+data[2].trim().toLowerCase()+"',"+data[3]+",'"+new String(data[4].trim().getBytes("gbk"),"iso-8859-1")+"',"+data[5]+","+data[6].trim()+",'"+new String(data[7].trim().getBytes("gbk"),"iso-8859-1")+"','admin',"+save_time+","+cid+")";
 			System.out.println(verify_sql);
 			st.executeUpdate(verify_sql);
 		}

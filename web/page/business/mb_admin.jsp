@@ -1,7 +1,7 @@
 <%@ page language="java" import="tools.Tools" pageEncoding="UTF-8"%>
 <%
 	int did=(Integer)session.getAttribute("did");
-	if(did!=601){
+	if(did!=666){
 		response.sendRedirect("../../login.jsp");
 	}
 %>

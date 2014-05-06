@@ -132,18 +132,6 @@
 		        			window.open("get_dz_excel.jsp?"+reqStr);
 		        		}
 					},
-                    {
-                        text: '财务对账表（汇总）',
-                        handler: function(){
-                            var reqStr='';
-                            reqStr+='bs_id=';
-                            reqStr+='&bs_name=';
-                            reqStr+='&startDate='+Ext.getCmp('startDate').getRawValue();
-                            reqStr+='&endDate='+Ext.getCmp('endDate').getRawValue();
-                            //	        			window.location.href="get_ic_excel.jsp?"+reqStr;
-                            window.open("get_dz_excel.jsp?"+reqStr);
-                        }
-                    },
 					{
 						text: '社区收入表',
 		        		handler: function(){

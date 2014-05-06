@@ -27,25 +27,27 @@
     String finalHall = "";
     String finalGG = "",finalXZL="",finalXZ="",finalIncoming="",finalXK="";
 	
-	String get_group_sql="select * from (select gc.contract_id,gc.contract_name,gc.big_id,bi.name,sum(fc.charge_amount) from GTM_MAINFORM_INFO gmf join gtm_front_charge fc on fc.username=gmf.username and fc.charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and fc.charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss') right join gtm_contract gc on gmf.contract_id=gc.contract_id join gtm_business_info bi on gc.hall_id=bi.id"+temp+" group by gc.contract_id,gc.contract_name,gc.big_id,bi.name) where rownum<=";
+	String get_group_sql="select * from (select gc.contract_id,gc.contract_name,gc.big_id,bi.name,sum(fc.charge_amount) from GTM_MAINFORM_INFO gmf join gtm_front_charge_new fc on fc.username=gmf.username and fc.charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and fc.charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss') right join gtm_contract gc on gmf.contract_id=gc.contract_id join gtm_business_info bi on gc.hall_id=bi.id"+temp+" group by gc.contract_id,gc.contract_name,gc.big_id,bi.name) where rownum<=";
 	String get_noht_sql="select sum(nc.charge_amount) from gtm_nonuser_charge nc where nc.charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and nc.charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss') and nc.contract_id=";
 	String get_noctstart_sql="select sum(nc.charge_amount) from gtm_nonuser_charge nc where nc.charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and nc.charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss') and nc.contract_id=";
+    String get_noctstart_sql2="select sum(nc.charge_amount) from gtm_nonuser_charge nc where nc.charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and nc.charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss') ";
 	String get_noctend_sql=" and nc.charge_type_id=";
-	String get_xzl_sql="select sum(fc.charge_amount) from GTM_MAINFORM_INFO gmf,gtm_contract gc,gtm_front_charge fc where fc.username=gmf.username and gmf.contract_id=gc.contract_id and fc.charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and fc.charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss') and gc.contract_type=2 and gc.contract_id=";
-	String get_gg_sql="select sum(fc.charge_amount) from GTM_MAINFORM_INFO gmf,gtm_contract gc,gtm_front_charge fc where fc.username=gmf.username and gmf.contract_id=gc.contract_id and fc.charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and fc.charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss') and gc.is_gg=1 and gc.contract_id=";
-	String get_xz_sql="select sum(fc.charge_amount) from GTM_MAINFORM_INFO gmf,gtm_contract gc,gtm_front_charge fc where fc.username=gmf.username and gmf.contract_id=gc.contract_id and fc.charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and fc.charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss') and fc.is_new=1 and gc.contract_id=";
-	String get_xk_sql="select sum(fc.charge_amount) from GTM_MAINFORM_INFO gmf,gtm_contract gc,gtm_front_charge fc where fc.username=gmf.username and gmf.contract_id=gc.contract_id and fc.charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and fc.charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss') and gc.is_xk=1 and gc.contract_id=";
-	String get_start_sql="select ct.charge_type_name,sum(fc.charge_amount),ct.charge_type_id from GTM_MAINFORM_INFO gmf join gtm_front_charge fc on fc.username=gmf.username and fc.charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and fc.charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss') and gmf.contract_id=";
+	String get_xzl_sql="select sum(fc.charge_amount) from GTM_MAINFORM_INFO gmf,gtm_contract gc,gtm_front_charge_new fc where fc.username=gmf.username and gmf.contract_id=gc.contract_id and fc.charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and fc.charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss') and gc.contract_type=2 and gc.contract_id=";
+	String get_gg_sql="select sum(fc.charge_amount) from GTM_MAINFORM_INFO gmf,gtm_contract gc,gtm_front_charge_new fc where fc.username=gmf.username and gmf.contract_id=gc.contract_id and fc.charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and fc.charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss') and gc.is_gg=1 and gc.contract_id=";
+	String get_xz_sql="select sum(fc.charge_amount) from GTM_MAINFORM_INFO gmf,gtm_contract gc,gtm_front_charge_new fc where fc.username=gmf.username and gmf.contract_id=gc.contract_id and fc.charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and fc.charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss') and fc.is_new=1 and gc.contract_id=";
+	String get_xk_sql="select sum(fc.charge_amount) from GTM_MAINFORM_INFO gmf,gtm_contract gc,gtm_front_charge_new fc where fc.username=gmf.username and gmf.contract_id=gc.contract_id and fc.charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and fc.charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss') and gc.is_xk=1 and gc.contract_id=";
+	String get_start_sql="select ct.charge_type_name,sum(fc.charge_amount),ct.charge_type_id from GTM_MAINFORM_INFO gmf join gtm_front_charge_new fc on fc.username=gmf.username and fc.charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and fc.charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss') and gmf.contract_id=";
 	String get_end_sql=" right join gtm_charge_type ct on fc.charge_type_id=ct.charge_type_id group by ct.charge_type_name,ct.charge_type_id order by ct.charge_type_id";
-	//String get_count_sql="select count(*) from (select gc.contract_id from GTM_MAINFORM_INFO gmf join gtm_front_charge fc on gmf.username=fc.username and fc.charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and fc.charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss') right join gtm_contract gc on gmf.contract_id=gc.contract_id join gtm_business_info bi on gc.hall_id=bi.id "+temp+" group by gc.contract_id)";
+	//String get_count_sql="select count(*) from (select gc.contract_id from GTM_MAINFORM_INFO gmf join gtm_front_charge_new fc on gmf.username=fc.username and fc.charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and fc.charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss') right join gtm_contract gc on gmf.contract_id=gc.contract_id join gtm_business_info bi on gc.hall_id=bi.id "+temp+" group by gc.contract_id)";
 	String get_count_sql="select count(*) from gtm_contract gc"+temp;
     //汇总sql  开始
-    String get_xzlTotal_sql="select sum(fc.charge_amount) from GTM_MAINFORM_INFO gmf,gtm_contract gc,gtm_front_charge fc where fc.username=gmf.username and gmf.contract_id=gc.contract_id"+temp1+" and fc.charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and fc.charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss') and gc.contract_type=2";
-    String get_ggTotal_sql="select sum(fc.charge_amount) from GTM_MAINFORM_INFO gmf,gtm_contract gc,gtm_front_charge fc where fc.username=gmf.username and gmf.contract_id=gc.contract_id"+temp1+" and fc.charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and fc.charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss') and gc.is_gg=1";
-    String get_xzTotal_sql="select sum(fc.charge_amount) from GTM_MAINFORM_INFO gmf,gtm_contract gc,gtm_front_charge fc where fc.username=gmf.username and gmf.contract_id=gc.contract_id"+temp1+" and fc.charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and fc.charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss') and fc.is_new=1";
-    String get_xkTotal_sql="select sum(fc.charge_amount) from GTM_MAINFORM_INFO gmf,gtm_contract gc,gtm_front_charge fc where fc.username=gmf.username and gmf.contract_id=gc.contract_id"+temp1+" and fc.charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and fc.charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss') and gc.is_xk=1";
-    String get_total_sql="select sum(charge_amount) from gtm_front_charge fc,GTM_MAINFORM_INFO gmf where fc.username=gmf.username and charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss')"+temp1;
+    String get_xzlTotal_sql="select sum(fc.charge_amount) from GTM_MAINFORM_INFO gmf,gtm_contract gc,gtm_front_charge_new fc where fc.username=gmf.username and gmf.contract_id=gc.contract_id"+temp1+" and fc.charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and fc.charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss') and gc.contract_type=2";
+    String get_ggTotal_sql="select sum(fc.charge_amount) from GTM_MAINFORM_INFO gmf,gtm_contract gc,gtm_front_charge_new fc where fc.username=gmf.username and gmf.contract_id=gc.contract_id"+temp1+" and fc.charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and fc.charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss') and gc.is_gg=1";
+    String get_xzTotal_sql="select sum(fc.charge_amount) from GTM_MAINFORM_INFO gmf,gtm_contract gc,gtm_front_charge_new fc where fc.username=gmf.username and gmf.contract_id=gc.contract_id"+temp1+" and fc.charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and fc.charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss') and fc.is_new=1";
+    String get_xkTotal_sql="select sum(fc.charge_amount) from GTM_MAINFORM_INFO gmf,gtm_contract gc,gtm_front_charge_new fc where fc.username=gmf.username and gmf.contract_id=gc.contract_id"+temp1+" and fc.charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and fc.charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss') and gc.is_xk=1";
+    String get_total_sql="select sum(charge_amount) from gtm_front_charge_new fc,GTM_MAINFORM_INFO gmf where fc.username=gmf.username and charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss')"+temp1;
     String get_nototal_sql="select sum(charge_amount) from gtm_nonuser_charge nc where charge_date>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss') and charge_date<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss')"+notemp;
+    String getTotalDetailSql = "select ct.charge_type_name,sum(fc.charge_amount),ct.charge_type_id from GTM_MAINFORM_INFO gmf join gtm_front_charge_new fc on fc.username=gmf.username and fc.charge_date>=to_date('"+startDate+"','yyyy-mm-dd hh24:mi:ss') and fc.charge_date<=to_date('"+endDate+"','yyyy-mm-dd hh24:mi:ss') right join gtm_charge_type ct on fc.charge_type_id=ct.charge_type_id group by ct.charge_type_name,ct.charge_type_id order by ct.charge_type_id";
     //汇总sql  结束
 	String gridStr="";
 	int count=0;
@@ -194,13 +196,6 @@
                         finalIncoming = noht1;
                     }
                     gridStr+="</p>'},";
-					/*
-					if((c%3)==0){
-						gridStr=gridStr.replaceFirst("<p>$", "'},");
-					}else{
-						gridStr+="</p>'},";
-					}
-					*/
 				}
                 String totalTemp = "";
                 if(bs_name.equals("")){
@@ -218,7 +213,28 @@
                 tempJson += "gg:'￥"+finalGG+"',";
                 tempJson += "xz:'￥"+finalXZ+"',";
                 tempJson += "xk:'￥"+finalXK+"',";
-                tempJson += "income_detail:''},";
+                tempJson+="income_detail:'<p>";
+                total_rs=total_st.executeQuery(getTotalDetailSql);
+                int i=0;
+                while(total_rs.next()){
+                    no_rs=no_st.executeQuery(get_noctstart_sql2+get_noctend_sql+total_rs.getInt(3));
+                    no_rs.next();
+                    String inoht=no_rs.getString(1);
+                    if(inoht==null){
+                        inoht="0";
+                    }
+                    String cost=total_rs.getString(2);
+                    if(cost==null){
+                        cost="0";
+                    }
+                    cost=NumberFormat.getInstance().format(Double.parseDouble(cost)+Double.parseDouble(inoht)).replaceAll(",", "");
+                    tempJson+="<b>"+new String(total_rs.getString(1).getBytes("iso-8859-1"),"gbk")+"&nbsp;:&nbsp;￥<font color=red>"+cost+"</font></b>&nbsp;&nbsp;&nbsp;&nbsp;";
+                    i++;
+                    if((i%4)==0){
+                        tempJson+="</p><p>";
+                    }
+                }
+                tempJson+="</p>'},";
 			}
 		if(no_rs!=null){
 			no_rs.close();

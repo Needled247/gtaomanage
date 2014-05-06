@@ -34,4 +34,19 @@ public class ConnPoolBean
         }
         return conn;
     }
+
+    public static Connection getNetPayConn(){
+        Connection conn = null;
+        try{
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+            String url = "jdbc:sqlserver://10.1.0.234:1433;DatabaseName=gtaonew";
+            String user = "bill";
+            String pass = "gtaoadmin";
+            conn = DriverManager.getConnection(url,user,pass);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return conn;
+    }
 }

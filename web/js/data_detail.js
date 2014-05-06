@@ -10,6 +10,20 @@
                 {name:'data',type:'string'}
             ]
         });
+        var chartInfo = Ext.chart_id;
+
+        var tblStore = Ext.create('Ext.data.JsonStore', {
+            fields: ['class','thisMonth','lastMonth','plus'],//定义字段
+            storeId:'tblStore',
+            autoLoad:false,
+            proxy:{
+                type:'ajax',
+                actionMethods:{read:'POST'},
+                url:'/gtaomanage/getDetailTableInfo',
+                method:'POST',
+                reader:{type:'json'}
+            }
+        }).load({params:{chart_info:chartInfo}});
 
         var store1 = Ext.create('Ext.data.JsonStore', {
             model:'chartModel',
@@ -18,11 +32,11 @@
             proxy:{
                 type:'ajax',
                 actionMethods:{read:'POST'},
-                url:'getMainChartDetail.jsp',
+                url:'/gtaomanage/getMainChartDetail',
                 method:'POST',
                 reader:{type:'json'}
             }
-        }).load({params:{type:1}});
+        }).load({params:{type:1,chart_info:chartInfo}});
 
         var store2 = Ext.create('Ext.data.JsonStore', {
             model:'chartModel',
@@ -31,32 +45,67 @@
             proxy:{
                 type:'ajax',
                 actionMethods:{read:'POST'},
-                url:'getMainChartDetail.jsp',
+                url:'/gtaomanage/getMainChartDetail',
                 method:'POST',
                 reader:{type:'json'}
             }
-        }).load({params:{type:2}});
+        }).load({params:{type:2,chart_info:chartInfo}});
+
 
         var store3 = Ext.create('Ext.data.JsonStore', {
             model:'chartModel',
-            storeId:'fiberStore',
+            storeId:'mainStore',
             autoLoad:false,
             proxy:{
                 type:'ajax',
                 actionMethods:{read:'POST'},
-                url:'getMainChartDetail.jsp',
+                url:'/gtaomanage/getMainChartDetail',
                 method:'POST',
                 reader:{type:'json'}
             }
-        }).load({params:{type:3}});
+        }).load(
+            {params:{type:0,chart_info:chartInfo}}
+        );
+
+        var detail_info = Ext.create('Ext.grid.Panel',{
+            title : '详细信息',
+            width:window.screen.width-220,
+            height:window.screen.height-500,
+            colspan:3,
+            frame:false,
+            viewConfig: {
+                forceFit : true,
+                stripeRows: true//在表格中显示斑马线
+            },
+            autoDestroy:true,
+            store: tblStore,
+            columns: [//配置表格列
+                {header: "产品名",align:'center', width: (window.screen.width-220)/4, dataIndex: 'class', sortable: true},
+                {header: "本月",align:'center', width: (window.screen.width-220)/4, dataIndex: 'thisMonth', sortable: true},
+                {header: "上月",align:'center', width: (window.screen.width-220)/4, dataIndex: 'lastMonth', sortable: true},
+                {header: "增长",align:'center', width: (window.screen.width-220)/4, dataIndex: 'plus', sortable: true,
+                    renderer : function(val) {
+                        if (val >= 0) {
+                            return '<b><font color="green">' + val + '</font></b>';
+                        } else if (val < 0) {
+                            return '<b><font color="red">' + val + '</font></b>';
+                        }
+                        return val;
+                    }
+                }
+            ]
+        });
 
         var bandwitch_pie = Ext.create('Ext.chart.Chart', {
-            title:'带宽比例',
-            width:290,
-            height:290,
+            title:'带宽比例（分解）',
+            width:(window.screen.width-200)/3,
+            height:(window.screen.height-420),
             animate: true,
             store: store1,
             theme: 'Base:gradients',
+            legend: {
+                position: 'right'
+            },
             series: [{
                 type: 'pie',
                 field: 'data',
@@ -71,7 +120,7 @@
                         store1.each(function(rec) {
                             total += parseInt(rec.get('data'));
                         });
-                        this.setTitle(storeItem.get('name') + ': ' + Math.round(storeItem.get('data') / total * 100) + '%      '+storeItem.get('data')+'个');
+                        this.setTitle(storeItem.get('name') + ': '+storeItem.get('data')+'个');
                     }
                 },
                 highlight: {
@@ -89,12 +138,15 @@
         });
 
         var package_pie = Ext.create('Ext.chart.Chart', {
-            title:'餐型比例',
-            width:290,
-            height:290,
+            title:'餐型比例（分解）',
+            width:(window.screen.width-200)/3,
+            height:(window.screen.height-420),
             animate: true,
             store: store2,
             theme: 'Base:gradients',
+            legend: {
+                position: 'right'
+            },
             series: [{
                 type: 'pie',
                 field: 'data',
@@ -105,10 +157,10 @@
                     height: 28,
                     renderer: function(storeItem, item) {
                         var total = 0;
-                        store.each(function(rec) {
+                        store2.each(function(rec) {
                             total += rec.get('data');
                         });
-                        this.setTitle(storeItem.get('name') + ': ' + Math.round(storeItem.get('data') / total * 100) + '%      '+storeItem.get('data')+'个');
+                        this.setTitle(storeItem.get('name') + ': '+storeItem.get('data')+'个');
                     }
                 },
                 highlight: {
@@ -125,13 +177,16 @@
             }]
         });
 
-        var type_pie = Ext.create('Ext.chart.Chart', {
-            title:'光纤比例',
-            width:290,
-            height:290,
+        var all_pie = Ext.create('Ext.chart.Chart', {
+            title:'餐型比例',
+            width:(window.screen.width-150)/3,
+            height:(window.screen.height-400),
             animate: true,
             store: store3,
             theme: 'Base:gradients',
+            legend: {
+                position: 'right'
+            },
             series: [{
                 type: 'pie',
                 field: 'data',
@@ -141,12 +196,11 @@
                     width: 140,
                     height: 28,
                     renderer: function(storeItem, item) {
-                        // calculate and display percentage on hover
                         var total = 0;
-                        store.each(function(rec) {
+                        store2.each(function(rec) {
                             total += rec.get('data');
                         });
-                        this.setTitle(storeItem.get('name') + ': ' + Math.round(storeItem.get('data') / total * 100) + '%      '+storeItem.get('data')+'个');
+                        this.setTitle(storeItem.get('name') + ': '+storeItem.get('data')+'个');
                     }
                 },
                 highlight: {
@@ -168,8 +222,8 @@
             name: 'data_detail',
             title: '信息窗口',
         	layout:'fit',
-        	width: 950,
-        	height: 400,
+        	width: window.screen.width-150,
+        	height: window.screen.height-200,
         	modal:true,
         	resizable:false,
         	autoShow:true,
@@ -184,7 +238,7 @@
             bodyStyle:'background-color:transparent',
             tbar: Ext.create('Ext.toolbar.Toolbar',{
             	height: 25,
-            	html:'<p>预留</p>'
+            	html:'<p>打印此页面</p>'
             }),
         items: [{
             xtype: 'panel',
@@ -196,11 +250,12 @@
 		            	columns: 3
 		            },
 		            items:[
+                        all_pie,
                         bandwitch_pie,
                         package_pie,
-                        type_pie
+                        detail_info
                     ]
-    		}]
+    		    }]
     		}],            
             buttons: [
             	{
@@ -211,9 +266,7 @@
             	}
             ]
         });
-        
         this.callParent(arguments);
-        
     }
 });
 
@@ -222,13 +275,4 @@ function MergerSimilarItems(store){
     for(var i=0;i<arr.length;i++){
         alert(arr[i].name);
     }
-    /*
-    for(var i=0;i<store.length;i++){
-        if(arr[store[i].name]!==undefined){
-            arr[store[i].name].data = parseInt(arr[store[i].name].data)+parseInt(store[i].data);
-        }else{
-            arr[store[i].name] = store[i];
-        }
-    }
-    console.log(arr);   */
 }

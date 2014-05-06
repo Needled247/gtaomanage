@@ -20,10 +20,20 @@
 	String addr=request.getParameter("addr");
 	String save_admin=request.getParameter("save_admin");
 	String tel=request.getParameter("tel");
+    String fapiao = request.getParameter("fapiao");
+    String payee = request.getParameter("payee");
+    String admit = request.getParameter("admit");
+    String bankcard = request.getParameter("bankcard");
 	//System.out.println(qc_bs_name+","+charge_date+","+receipt_id+","+username+","+charge_type+","+note+","+realname+","+addr);
 	
-	String get_data_sql="select pt.pay_type_name,fc.charge_id,bi.name,fc.charge_date,fc.realname,fc.tel,fc.addr,fc.receipt_id,ct.charge_type_name,fc.note,fc.charge_amount,fc.save_admin,fc.save_time,gc.contract_name from gtm_pay_type pt,gtm_contract gc,gtm_business_info bi,GTM_CHARGE_TYPE ct,GTM_nonuser_CHARGE fc where fc.pay_type_id=pt.pay_type_id and fc.bs_id=bi.id and fc.contract_id=gc.contract_id and fc.charge_type_id=ct.charge_type_id";
-	String get_count_sql="select count(*) from gtm_pay_type pt,gtm_contract gc,gtm_business_info bi,GTM_CHARGE_TYPE ct,GTM_nonuser_CHARGE fc where fc.pay_type_id=pt.pay_type_id and fc.bs_id=bi.id and fc.contract_id=gc.contract_id and fc.charge_type_id=ct.charge_type_id";
+	String get_data_sql=
+    "select pt.pay_type_name,fc.charge_id,bi.name,fc.charge_date,fc.realname,fc.tel,fc.addr,fc.receipt_id,ct.charge_type_name," +
+    "fc.note,fc.charge_amount,fc.save_admin,fc.save_time,gc.contract_name,fc.fapiao,fc.payee,fc.admit,fc.bankcard " +
+    "from gtm_pay_type pt,gtm_contract gc,gtm_business_info bi,GTM_CHARGE_TYPE ct,GTM_nonuser_CHARGE fc " +
+    "where fc.pay_type_id=pt.pay_type_id and fc.bs_id=bi.id and fc.contract_id=gc.contract_id and fc.charge_type_id=ct.charge_type_id";
+	String get_count_sql=
+    "select count(*) from gtm_pay_type pt,gtm_contract gc,gtm_business_info bi,GTM_CHARGE_TYPE ct,GTM_nonuser_CHARGE fc " +
+    "where fc.pay_type_id=pt.pay_type_id and fc.bs_id=bi.id and fc.contract_id=gc.contract_id and fc.charge_type_id=ct.charge_type_id";
 	String gridStr="";
 	int count=0;
 	Connection conn=null;
@@ -74,7 +84,23 @@
 			if(!tel.equals("")){
 				get_data_sql+=" and fc.tel like '%"+new String(tel.getBytes("gbk"),"iso-8859-1")+"%'";
 				get_count_sql+=" and fc.tel like '%"+new String(tel.getBytes("gbk"),"iso-8859-1")+"%'";
-			}	
+			}
+            if(!fapiao.equals("")){
+                get_data_sql+=" and fc.fapiao like '%"+new String(fapiao.getBytes("gbk"),"iso-8859-1")+"%'";
+                get_count_sql+=" and fc.fapiao like '%"+new String(fapiao.getBytes("gbk"),"iso-8859-1")+"%'";
+            }
+            if(!payee.equals("")){
+                get_data_sql+=" and fc.payee like '%"+new String(payee.getBytes("gbk"),"iso-8859-1")+"%'";
+                get_count_sql+=" and fc.payee like '%"+new String(payee.getBytes("gbk"),"iso-8859-1")+"%'";
+            }
+            if(!admit.equals("")){
+                get_data_sql+=" and fc.admit like '%"+new String(admit.getBytes("gbk"),"iso-8859-1")+"%'";
+                get_count_sql+=" and fc.admit like '%"+new String(admit.getBytes("gbk"),"iso-8859-1")+"%'";
+            }
+            if(!bankcard.equals("")){
+                get_data_sql+=" and fc.bankcard like '%"+new String(bankcard.getBytes("gbk"),"iso-8859-1")+"%'";
+                get_count_sql+=" and fc.bankcard like '%"+new String(bankcard.getBytes("gbk"),"iso-8859-1")+"%'";
+            }
 				
 		int endPage=Integer.parseInt(startPage)+Integer.parseInt(countPage);
 		get_data_sql+=" and rownum<="+endPage+" minus "+get_data_sql+" and rownum<="+startPage;
@@ -127,6 +153,26 @@
 					}else{
 						gridStr+="addr:'',";
 					}
+                    if(rs.getString("fapiao")!=null){
+                        gridStr+="fapiao:'"+new String(rs.getString("fapiao").getBytes("iso-8859-1"),"gbk")+"',";
+                    }else{
+                        gridStr+="fapiao:'',";
+                    }
+                    if(rs.getString("payee")!=null){
+                        gridStr+="payee:'"+new String(rs.getString("payee").getBytes("iso-8859-1"),"gbk")+"',";
+                    }else{
+                        gridStr+="payee:'',";
+                    }
+                    if(rs.getString("admit")!=null){
+                        gridStr+="admit:'"+new String(rs.getString("admit").getBytes("iso-8859-1"),"gbk")+"',";
+                    }else{
+                        gridStr+="admit:'',";
+                    }
+                    if(rs.getString("bankcard")!=null){
+                        gridStr+="bankcard:'"+new String(rs.getString("bankcard").getBytes("iso-8859-1"),"gbk")+"',";
+                    }else{
+                        gridStr+="bankcard:'',";
+                    }
 					gridStr+="contract_name:'"+new String(rs.getString("contract_name").getBytes("iso-8859-1"),"gbk")+"'";								
 					gridStr+="},";
 				}

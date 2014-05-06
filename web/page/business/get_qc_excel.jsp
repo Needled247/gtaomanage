@@ -14,17 +14,38 @@
 	String username=request.getParameter("username").toLowerCase();
 	String pay_type=request.getParameter("pay_type");
 	String act_id=request.getParameter("act_id");
-	String actsub_id=request.getParameter("actsub_id");
 	String charge_type=request.getParameter("charge_type");
 	String note=java.net.URLDecoder.decode(request.getParameter("note"), "UTF-8");
 	String realname=java.net.URLDecoder.decode(request.getParameter("realname"), "UTF-8");
 	String addr=java.net.URLDecoder.decode(request.getParameter("addr"), "UTF-8");
 	String save_admin=java.net.URLDecoder.decode(request.getParameter("save_admin"), "UTF-8");
 	String tel=java.net.URLDecoder.decode(request.getParameter("tel"), "UTF-8");
+    //收据，收款人，接待人，餐型，带宽，银行卡号，网银订单号
+    String shouju=java.net.URLDecoder.decode(request.getParameter("shouju"), "UTF-8");
+    String payee=java.net.URLDecoder.decode(request.getParameter("payee"), "UTF-8");
+    String admit=java.net.URLDecoder.decode(request.getParameter("admit"), "UTF-8");
+    String quota=java.net.URLDecoder.decode(request.getParameter("quota"), "UTF-8");
+    String bandwidth=java.net.URLDecoder.decode(request.getParameter("bandwidth"), "UTF-8");
+    String bankcard=java.net.URLDecoder.decode(request.getParameter("bankcard"), "UTF-8");
+    String netpay_id=java.net.URLDecoder.decode(request.getParameter("netpay_id"), "UTF-8");
 	//System.out.println(qc_bs_name+","+charge_date+","+receipt_id+","+username+","+charge_type+","+note+","+realname+","+addr);
 	
-	String get_data_sql="select ga.act_name,gas.actsub_name,pt.pay_type_name,bi.name,fc.charge_date,fc.username,fc.receipt_id,fc.is_new,ct.charge_type_name,fc.note,fc.charge_amount,fc.save_admin,fc.save_time,mi.group_id,ui.srealname,ui.stele,tu.sfeephone,gc.contract_name,gc.is_gg,gc.is_xk,gc.contract_type from gtm_act ga,gtm_act_sub gas,gtm_pay_type pt,gtm_contract gc,gtm_business_info bi,GTM_MAINFORM_INFO mi,GTM_CHARGE_TYPE ct,GTM_FRONT_CHARGE fc,TBL_USERSINFO ui,tbl_users tu where fc.act_sub_id=gas.actsub_id and gas.act_id=ga.act_id and fc.pay_type_id=pt.pay_type_id and fc.username=mi.username and fc.username=ui.susername and fc.username=tu.susername and fc.bs_id=bi.id and mi.contract_id=gc.contract_id and fc.charge_type_id=ct.charge_type_id";
-	String get_total_sql="select sum(fc.charge_amount) from gtm_act ga,gtm_act_sub gas,gtm_pay_type pt,gtm_contract gc,gtm_business_info bi,GTM_MAINFORM_INFO mi,GTM_CHARGE_TYPE ct,GTM_FRONT_CHARGE fc,TBL_USERSINFO ui,tbl_users tu where fc.act_sub_id=gas.actsub_id and gas.act_id=ga.act_id and fc.pay_type_id=pt.pay_type_id and fc.username=mi.username and fc.username=ui.susername and fc.username=tu.susername and fc.bs_id=bi.id and mi.contract_id=gc.contract_id and fc.charge_type_id=ct.charge_type_id";
+	String get_data_sql=
+    "select ga.act_name,pt.pay_type_name,bi.name,fc.charge_date,fc.username,fc.receipt_id," +
+    "fc.is_new,ct.charge_type_name,fc.note,fc.charge_amount,fc.save_admin,fc.save_time,mi.group_id,ui.srealname,ui.stele," +
+    "tu.sfeephone,gc.contract_name,gc.is_gg,gc.is_xk,gc.contract_type,fc.shouju,fc.payee,fc.admit,fc.quota,fc.bandwidth," +
+    "fc.bankcard,fc.netpay_id  " +
+    "from gtm_act ga,gtm_pay_type pt,gtm_contract gc,gtm_business_info bi,GTM_MAINFORM_INFO mi," +
+    "GTM_CHARGE_TYPE ct,GTM_FRONT_CHARGE_NEW fc,TBL_USERSINFO ui,tbl_users tu " +
+    "where fc.act_sub_id=ga.act_id and fc.pay_type_id=pt.pay_type_id and fc.username=mi.username " +
+    "and fc.username=ui.susername and fc.username=tu.susername and fc.bs_id=bi.id and mi.contract_id=gc.contract_id " +
+    "and fc.charge_type_id=ct.charge_type_id";
+	String get_total_sql=
+    "select sum(fc.charge_amount) from gtm_act ga,gtm_pay_type pt,gtm_contract gc,gtm_business_info bi," +
+    "GTM_MAINFORM_INFO mi,GTM_CHARGE_TYPE ct,GTM_FRONT_CHARGE_NEW fc,TBL_USERSINFO ui,tbl_users tu " +
+    "where fc.act_sub_id=ga.act_id and fc.pay_type_id=pt.pay_type_id and fc.username=mi.username " +
+    "and fc.username=ui.susername and fc.username=tu.susername and fc.bs_id=bi.id and mi.contract_id=gc.contract_id " +
+    "and fc.charge_type_id=ct.charge_type_id";
 	String gridStr="";
 	Connection conn=null;
 	Statement st=null;
@@ -59,10 +80,6 @@
 				get_data_sql+=" and fc.charge_type_id="+charge_type;
 				get_total_sql+=" and fc.charge_type_id="+charge_type;
 			}
-			if(!actsub_id.equals("")){
-				get_data_sql+=" and fc.act_sub_id="+actsub_id;
-				get_total_sql+=" and fc.act_sub_id="+actsub_id;
-			}
 			if(!act_id.equals("")){
 				get_data_sql+=" and ga.act_id="+act_id;
 				get_total_sql+=" and ga.act_id="+act_id;
@@ -86,12 +103,40 @@
 			if(!tel.equals("")){
 				get_data_sql+=" and ui.stele like '%"+new String(tel.getBytes("gbk"),"iso-8859-1")+"%'";
 				get_total_sql+=" and ui.stele like '%"+new String(tel.getBytes("gbk"),"iso-8859-1")+"%'";
-			}	
+			}
+            if(!shouju.equals("")){
+                get_data_sql+=" and fc.shouju like '%"+new String(shouju.getBytes("gbk"),"iso-8859-1")+"%'";
+                get_total_sql+=" and fc.shouju like '%"+new String(shouju.getBytes("gbk"),"iso-8859-1")+"%'";
+            }
+            if(!payee.equals("")){
+                get_data_sql+=" and fc.payee like '%"+new String(payee.getBytes("gbk"),"iso-8859-1")+"%'";
+                get_total_sql+=" and fc.payee like '%"+new String(payee.getBytes("gbk"),"iso-8859-1")+"%'";
+            }
+            if(!admit.equals("")){
+                get_data_sql+=" and fc.admit like '%"+new String(admit.getBytes("gbk"),"iso-8859-1")+"%'";
+                get_total_sql+=" and fc.admit like '%"+new String(admit.getBytes("gbk"),"iso-8859-1")+"%'";
+            }
+            if(!quota.equals("")){
+                get_data_sql+=" and fc.quota like '%"+new String(quota.getBytes("gbk"),"iso-8859-1")+"%'";
+                get_total_sql+=" and fc.quota like '%"+new String(quota.getBytes("gbk"),"iso-8859-1")+"%'";
+            }
+            if(!bandwidth.equals("")){
+                get_data_sql+=" and fc.bandwidth like '%"+new String(bandwidth.getBytes("gbk"),"iso-8859-1")+"%'";
+                get_total_sql+=" and fc.bandwidth like '%"+new String(bandwidth.getBytes("gbk"),"iso-8859-1")+"%'";
+            }
+            if(!bankcard.equals("")){
+                get_data_sql+=" and fc.bankcard like '%"+new String(bankcard.getBytes("gbk"),"iso-8859-1")+"%'";
+                get_total_sql+=" and fc.bankcard like '%"+new String(bankcard.getBytes("gbk"),"iso-8859-1")+"%'";
+            }
+            if(!netpay_id.equals("")){
+                get_data_sql+=" and fc.netpay_id like '%"+new String(netpay_id.getBytes("gbk"),"iso-8859-1")+"%'";
+                get_total_sql+=" and fc.netpay_id like '%"+new String(netpay_id.getBytes("gbk"),"iso-8859-1")+"%'";
+            }
 		
 			get_data_sql+=" order by bi.name";
 			
-		gridStr+="所属营业厅,收费日期,所属片区,用户姓名,用户账号,联系电话,用户住址,收据号码,支付方式,收费类别,收费金额,活动名称,套餐名称,备注信息,是否新装用户,是否光改小区,是否写字楼,是否新开小区,所属合同,录入人,录入时间, \r\n";
-		
+		gridStr+="所属营业厅,收费日期,所属片区,用户姓名,用户账号,联系电话,用户住址,发票号码,收据号码,支付方式,银行卡号,网银订单,收费类别,收费金额,活动名称,餐型类别,带宽,备注信息,是否新装用户,是否光改小区,是否写字楼,是否新开小区,所属合同,录入人,收款人,接待人,录入时间, \r\n";
+    System.out.println(get_data_sql);
 		rs=st.executeQuery(get_data_sql);
 		while(rs.next()){
 			gridStr+=new String(rs.getString("name").getBytes("iso-8859-1"),"gbk")+", ";
@@ -118,11 +163,38 @@
 			}else{
 				gridStr+=" , ";
 			}
+            //收据
+            if(rs.getString("shouju")!=null){
+                gridStr+=new String(rs.getString("shouju").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+", ";
+            }else{
+                gridStr+=" , ";
+            }
 			gridStr+=new String(rs.getString("pay_type_name").getBytes("iso-8859-1"),"gbk")+", ";
+            //银行卡号、网银订单
+            if(rs.getString("bankcard")!=null){
+                gridStr+=new String(rs.getString("bankcard").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+", ";
+            }else{
+                gridStr+=" , ";
+            }
+            if(rs.getString("netpay_id")!=null){
+                gridStr+=new String(rs.getString("netpay_id").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+", ";
+            }else{
+                gridStr+=" , ";
+            }
 			gridStr+=new String(rs.getString("charge_type_name").getBytes("iso-8859-1"),"gbk")+", ";
 			gridStr+=rs.getString("charge_amount")+", ";
 			gridStr+=new String(rs.getString("act_name").getBytes("iso-8859-1"),"gbk")+", ";
-			gridStr+=new String(rs.getString("actsub_name").getBytes("iso-8859-1"),"gbk")+", ";			
+            //餐型类别、带宽
+            if(rs.getString("quota")!=null){
+                gridStr+=new String(rs.getString("quota").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+", ";
+            }else{
+                gridStr+=" , ";
+            }
+            if(rs.getString("bandwidth")!=null){
+                gridStr+=new String(rs.getString("bandwidth").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+", ";
+            }else{
+                gridStr+=" , ";
+            }
 			if(rs.getString("note")!=null){
 				gridStr+=new String(rs.getString("note").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+", ";
 			}else{
@@ -149,7 +221,18 @@
 				gridStr+="否, ";
 			}
 			gridStr+=new String(rs.getString("contract_name").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+", ";
-			gridStr+=new String(rs.getString("save_admin").getBytes("iso-8859-1"),"gbk")+", ";	
+			gridStr+=new String(rs.getString("save_admin").getBytes("iso-8859-1"),"gbk")+", ";
+            //收款人、接待人
+            if(rs.getString("payee")!=null){
+                gridStr+=new String(rs.getString("payee").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+", ";
+            }else{
+                gridStr+=" , ";
+            }
+            if(rs.getString("admit")!=null){
+                gridStr+=new String(rs.getString("admit").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+", ";
+            }else{
+                gridStr+=" , ";
+            }
 			gridStr+=rs.getString("save_time")+", ";
 			gridStr+="\r\n";
 		}
@@ -165,6 +248,5 @@
 	response.setContentType("application/vnd.ms-excel;charset=GBK");
 	response.setHeader("Content-Disposition", "attachment;filename=\"excel.csv\"");
 	response.getWriter().print(gridStr);
-    out.clear();
-    out = pageContext.pushBody();
+    response.getWriter().close();
 %>

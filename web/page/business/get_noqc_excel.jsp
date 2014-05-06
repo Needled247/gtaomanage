@@ -18,6 +18,10 @@
 	String addr=java.net.URLDecoder.decode(request.getParameter("addr"), "UTF-8");
 	String save_admin=java.net.URLDecoder.decode(request.getParameter("save_admin"), "UTF-8");
 	String tel=java.net.URLDecoder.decode(request.getParameter("tel"), "UTF-8");
+    String fapiao=java.net.URLDecoder.decode(request.getParameter("fapiao"), "UTF-8");
+    String payee=java.net.URLDecoder.decode(request.getParameter("payee"), "UTF-8");
+    String admit=java.net.URLDecoder.decode(request.getParameter("admit"), "UTF-8");
+    String bankcard=java.net.URLDecoder.decode(request.getParameter("bankcard"), "UTF-8");
 	//System.out.println(qc_bs_name+","+charge_date+","+receipt_id+","+username+","+charge_type+","+note+","+realname+","+addr);
 	
 	String data_Str="";
@@ -65,9 +69,31 @@
 				data_Str+=" and fc.tel like '%"+new String(tel.getBytes("gbk"),"iso-8859-1")+"%'";
 				count_Str+=" and fc.tel like '%"+new String(tel.getBytes("gbk"),"iso-8859-1")+"%'";
 			}
+            if(!fapiao.equals("")){
+                data_Str+=" and fc.fapiao like '%"+new String(fapiao.getBytes("gbk"),"iso-8859-1")+"%'";
+                count_Str+=" and fc.fapiao like '%"+new String(fapiao.getBytes("gbk"),"iso-8859-1")+"%'";
+            }
+            if(!payee.equals("")){
+                data_Str+=" and fc.payee like '%"+new String(payee.getBytes("gbk"),"iso-8859-1")+"%'";
+                count_Str+=" and fc.payee like '%"+new String(payee.getBytes("gbk"),"iso-8859-1")+"%'";
+            }
+            if(!admit.equals("")){
+                data_Str+=" and fc.admit like '%"+new String(admit.getBytes("gbk"),"iso-8859-1")+"%'";
+                count_Str+=" and fc.admit like '%"+new String(admit.getBytes("gbk"),"iso-8859-1")+"%'";
+            }
+            if(!bankcard.equals("")){
+                data_Str+=" and fc.bankcard like '%"+new String(bankcard.getBytes("gbk"),"iso-8859-1")+"%'";
+                count_Str+=" and fc.bankcard like '%"+new String(bankcard.getBytes("gbk"),"iso-8859-1")+"%'";
+          }
 	
-	String get_data_sql="select pt.pay_type_name,fc.charge_id,bi.name,fc.charge_date,fc.realname,fc.tel,fc.addr,fc.receipt_id,ct.charge_type_name,fc.note,fc.charge_amount,fc.save_admin,fc.save_time,gc.contract_name from gtm_pay_type pt,gtm_contract gc,gtm_business_info bi,GTM_CHARGE_TYPE ct,GTM_nonuser_CHARGE fc where fc.pay_type_id=pt.pay_type_id and fc.bs_id=bi.id and fc.contract_id=gc.contract_id and fc.charge_type_id=ct.charge_type_id"+data_Str+" order by bi.name";
-	String get_total_sql="select sum(fc.charge_amount) from gtm_pay_type pt,GTM_nonuser_CHARGE fc where fc.pay_type_id=pt.pay_type_id"+count_Str;
+	String get_data_sql=
+    "select pt.pay_type_name,fc.charge_id,bi.name,fc.charge_date,fc.realname,fc.tel,fc.addr,fc.receipt_id," +
+    "ct.charge_type_name,fc.note,fc.charge_amount,fc.save_admin,fc.save_time,gc.contract_name,fc.fapiao,fc.payee,fc.admit,fc.bankcard " +
+    "from gtm_pay_type pt,gtm_contract gc,gtm_business_info bi,GTM_CHARGE_TYPE ct,GTM_nonuser_CHARGE fc " +
+    "where fc.pay_type_id=pt.pay_type_id and fc.bs_id=bi.id and fc.contract_id=gc.contract_id " +
+    "and fc.charge_type_id=ct.charge_type_id"+data_Str+" order by bi.name";
+	String get_total_sql=
+    "select sum(fc.charge_amount) from gtm_pay_type pt,GTM_nonuser_CHARGE fc where fc.pay_type_id=pt.pay_type_id"+count_Str;
 	String gridStr="";
 	Connection conn=null;
 	Statement st=null;
@@ -76,7 +102,7 @@
 	conn=ConnPoolBean.getRadiusConn();
 	st=conn.createStatement();					
 		
-		gridStr+="所属营业厅,收费日期,用户姓名,联系电话,用户住址,收据号码,支付方式,收费类别,收费金额,备注信息,所属合同,录入人,录入时间, \r\n";
+		gridStr+="所属营业厅,收费日期,用户姓名,联系电话,用户住址,收据号码,发票号码,支付方式,收费类别,收费金额,银行卡号,备注信息,所属合同,录入人,录入时间,收款人,接待人, \r\n";
 		
 		rs=st.executeQuery(get_data_sql);
 		while(rs.next()){
@@ -102,9 +128,19 @@
 			}else{
 				gridStr+=" , ";
 			}
+            if(rs.getString("fapiao")!=null){
+                gridStr+=new String(rs.getString("fapiao").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+", ";
+            }else{
+                gridStr+=" , ";
+            }
 			gridStr+=new String(rs.getString("pay_type_name").getBytes("iso-8859-1"),"gbk")+", ";
 			gridStr+=new String(rs.getString("charge_type_name").getBytes("iso-8859-1"),"gbk")+", ";
 			gridStr+=rs.getFloat("charge_amount")+", ";
+            if(rs.getString("bankcard")!=null){
+                gridStr+=new String(rs.getString("bankcard").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+", ";
+            }else{
+                gridStr+=" , ";
+            }
 			if(rs.getString("note")!=null){
 				gridStr+=new String(rs.getString("note").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+", ";
 			}else{
@@ -113,6 +149,16 @@
 			gridStr+=new String(rs.getString("contract_name").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+", ";
 			gridStr+=new String(rs.getString("save_admin").getBytes("iso-8859-1"),"gbk")+", ";	
 			gridStr+=rs.getString("save_time")+", ";
+            if(rs.getString("payee")!=null){
+                gridStr+=new String(rs.getString("payee").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+", ";
+            }else{
+                gridStr+=" , ";
+            }
+            if(rs.getString("admit")!=null){
+                gridStr+=new String(rs.getString("admit").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+", ";
+            }else{
+                gridStr+=" , ";
+            }
 			gridStr+="\r\n";
 		}
 	
@@ -127,6 +173,5 @@
 	response.setContentType("application/vnd.ms-excel;charset=GBK");
 	response.setHeader("Content-Disposition", "attachment;filename=\"excel.csv\"");
 	response.getWriter().print(gridStr);
-    out.clear();
-    out = pageContext.pushBody();
+    response.getWriter().close();
 %>

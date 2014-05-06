@@ -169,6 +169,5 @@
 	response.setContentType("application/vnd.ms-excel;charset=GBK");
 	response.setHeader("Content-Disposition", "attachment;filename=\"excel.csv\"");
 	response.getWriter().print(gridStr);
-    out.clear();
-    out = pageContext.pushBody();
+    response.getWriter().close();
 %>

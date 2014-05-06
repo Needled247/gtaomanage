@@ -57,82 +57,104 @@
 //					allowBlank: false,
 //					blankText: '请选择营业厅'
 		        },{
-		            	xtype:'textfield',
-		                fieldLabel: '用户姓名',
-		                id: 'nofc_rname',
-		                name: 'nofc_rname',
-		                margin: '10 30 10 30',
-		                labelWidth: 90,
-		                width: 420,
-		                value:'',
-		                enforceMaxLength: true,
-	                	maxLength: 25,
-		                allowBlank: false,
-						blankText: '请输入用户姓名',
-						regex: /(?!.*')^.*$/,
-		            	regexText: '字符串中不能包含单引号'
+                    xtype:'textfield',
+                    fieldLabel: '用户姓名',
+                    id: 'nofc_rname',
+                    name: 'nofc_rname',
+                    margin: '10 30 10 30',
+                    labelWidth: 90,
+                    width: 420,
+                    value:'',
+                    enforceMaxLength: true,
+                    maxLength: 25,
+                    allowBlank: false,
+                    blankText: '请输入用户姓名',
+                    regex: /(?!.*')^.*$/,
+                    regexText: '字符串中不能包含单引号'
 			    },{
-	            		xtype:'textfield',
-		                fieldLabel: '联系电话',
-		                id: 'nofc_tel',
-		                name: 'nofc_tel',
-		                margin: '10 30 10 30',
-		                labelWidth: 90,
-		                width: 420,
-		                value:'',
-		                enforceMaxLength: true,
-	                	maxLength: 50,
-		                allowBlank: false,
-						blankText: '请输入联系电话',
-						regex: /(?!.*')^.*$/,
-		            	regexText: '字符串中不能包含单引号'
+                    xtype:'textfield',
+                    fieldLabel: '联系电话',
+                    id: 'nofc_tel',
+                    name: 'nofc_tel',
+                    margin: '10 30 10 30',
+                    labelWidth: 90,
+                    width: 420,
+                    value:'',
+                    enforceMaxLength: true,
+                    maxLength: 50,
+                    allowBlank: false,
+                    blankText: '请输入联系电话',
+                    regex: /(?!.*')^.*$/,
+                    regexText: '字符串中不能包含单引号'
             	},{
-	            		xtype:'textfield',
-		                fieldLabel: '联系地址',
-		                id: 'nofc_addr',
-		                name: 'nofc_addr',
-		                margin: '10 30 10 30',
-		                labelWidth: 90,
-		                width: 420,
-		                value:'',
-		                enforceMaxLength: true,
-	                	maxLength: 100,
-		                allowBlank: false,
-						blankText: '请输入联系地址',
-						regex: /(?!.*')^.*$/,
-		            	regexText: '字符串中不能包含单引号'
+                    xtype:'textfield',
+                    fieldLabel: '联系地址',
+                    id: 'nofc_addr',
+                    name: 'nofc_addr',
+                    margin: '10 30 10 30',
+                    labelWidth: 90,
+                    width: 420,
+                    value:'',
+                    enforceMaxLength: true,
+                    maxLength: 100,
+                    allowBlank: false,
+                    blankText: '请输入联系地址',
+                    regex: /(?!.*')^.*$/,
+                    regexText: '字符串中不能包含单引号'
             	},{
-            		id: 'nofc_hetong',
-					name: 'nofc_hetong',
-					xtype:'combobox',
-					fieldLabel: '合同名称',
-					margin: '10 30 10 30',
-	                labelWidth: 90,
-	                width: 420,
-					store: Ext.data.StoreManager.lookup('hetong'),
-					valueField:'id',
-					displayField:'name',
-					colspan:2,
-					minChars:1,
-					queryMode:'local',
-					editable: true,
-					value:'',
-					allowBlank: false,
-					blankText: '请选择合同名称',
-					listeners:{
-						beforequery : function(e){
-							var combo = e.combo;
-							if(!e.forceAll){
-								var value = e.query;
-								combo.store.filterBy(function(record,id){
-									var text = record.get(combo.displayField);
-									return (text.indexOf(value)!=-1);
-								});
-								combo.expand();
-								return false;
-							}
-						}
-	            	}
+                    xtype:'textfield',
+                    fieldLabel: '收款人',
+                    id: 'qc_payee',
+                    name: 'qc_payee',
+                    margin: '10 30 10 30',
+                    labelWidth: 90,
+                    enforceMaxLength: true,
+                    maxLength: 30,
+                    width: 420,
+                    editable:true
+                },{
+                    xtype:'textfield',
+                    fieldLabel: '接待人',
+                    id: 'qc_admit',
+                    name: 'qc_admit',
+                    margin: '10 30 10 30',
+                    labelWidth: 90,
+                    enforceMaxLength: true,
+                    maxLength: 30,
+                    width: 420,
+                    editable:true
+                },{
+                    id: 'nofc_hetong',
+                    name: 'nofc_hetong',
+                    xtype:'combobox',
+                    fieldLabel: '合同名称',
+                    margin: '10 30 10 30',
+                    labelWidth: 90,
+                    width: 420,
+                    store: Ext.data.StoreManager.lookup('hetong'),
+                    valueField:'id',
+                    displayField:'name',
+                    colspan:2,
+                    minChars:1,
+                    queryMode:'local',
+                    editable: true,
+                    value:'',
+                    allowBlank: false,
+                    blankText: '请选择合同名称',
+                    listeners:{
+                        beforequery : function(e){
+                            var combo = e.combo;
+                            if(!e.forceAll){
+                                var value = e.query;
+                                combo.store.filterBy(function(record,id){
+                                    var text = record.get(combo.displayField);
+                                    return (text.indexOf(value)!=-1);
+                                });
+                                combo.expand();
+                                return false;
+                            }
+                        }
+                    }
             	},{
 	            	xtype:'textfield',
 	                fieldLabel: '收据号码',
@@ -149,6 +171,23 @@
 					regex: /(?!.*')^.*$/,
 		            regexText: '字符串中不能包含单引号'
             	},{
+                    id: 'qc_rid',
+                    name: 'qc_rid',
+                    xtype:'combobox',
+                    fieldLabel: '发票号',
+                    store: Ext.data.StoreManager.lookup('invoice_store'),
+                    margin: '10 30 10 30',
+                    labelWidth: 90,
+                    width: 420,
+                    valueField:'id',
+                    displayField:'name',
+                    allowBlank: true,
+                    blankText: '请输入发票号',
+                    minChars:1,
+                    queryMode:'local',
+                    editable: true,
+                    value:''
+                },{
             		id: 'nofc_pt',
 					name: 'nofc_pt',
 					xtype:'combobox',
@@ -163,7 +202,18 @@
 					blankText: '请选择支付方式',
 					minChars:1,
 					queryMode:'local',
-					editable: false
+					editable: false,listeners:{
+                            select:function(r){
+                                var temp = Ext.getCmp('nofc_pt').getRawValue();
+                                if(temp=='固定POS支付'||temp=='移动POS支付'||temp=='代扣'){
+                                    Ext.getCmp('qc_bank_card').setDisabled(false);
+                                }
+                                else{
+                                    Ext.getCmp('qc_bank_card').setDisabled(true);
+                                    Ext.getCmp('qc_bank_card').setValue('');
+                                }
+                            }
+                        }
             	},{
             		id: 'nofc_ct',
 					name: 'nofc_ct',
@@ -195,6 +245,15 @@
 	                regex: /(^-?\d{1,8}$)|(^-?\d{1,8}\.\d{1,2}$)/,
 		            regexText: '请输入正确的收费金额'
             	},{
+                        xtype:'textfield',
+                        fieldLabel: '银行卡号',
+                        id: 'qc_bank_card',
+                        name: 'qc_bank_card',
+                        margin: '10 30 10 30',
+                        labelWidth: 90,
+                        width: 420,
+                        disabled:true
+                    },{
 	            	xtype:'textarea',
 	                fieldLabel: '备注信息',
 	                id: 'nofc_note',
@@ -235,17 +294,6 @@
     				handler: function(){
     					var form = Ext.getCmp('nofc_form').getForm();
         				if (form.isValid()) {
-//        						if(Ext.getCmp('fc_ct').getRawValue().search(/^退/)==-1){
-//        							if(Ext.getCmp('fc_amount').getValue().search(/^-/)!=-1){
-//        								alert('您输入的收费金额为负数,请在收费类别中选择退费选项');
-//        								return;
-//        							}
-//        						}else{
-//        							if(Ext.getCmp('fc_amount').getValue().search(/^-/)==-1){
-//        								alert('您选择退费选项时,请在收费金额前面加上"-"号');
-//        								return;
-//        							}	
-//        						}        						
         						var did=Ext.data.StoreManager.lookup('bs_name').findRecord('name',Ext.getCmp('nofc_bs').getRawValue());        						
         						Ext.getCmp('nofc_bs').setValue(did.get('id'));
         						var ct=Ext.data.StoreManager.lookup('charge_type').findRecord('name',Ext.getCmp('nofc_ct').getRawValue());        						

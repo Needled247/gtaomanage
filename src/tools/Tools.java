@@ -5,12 +5,14 @@ import ds.ConnPoolBean;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Properties;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class Tools
 {
@@ -166,5 +168,140 @@ public class Tools
             }
         }
         return bandWidth;
+    }
+
+    public static String areaCode2BusinessHall(int areaCode){
+        switch (areaCode){
+            case 1:
+                return "长辛店营业厅";
+            case 3:
+                return "正阳营业厅";
+            case 4:
+                return "开阳营业厅";
+            case 5:
+                return "青塔营业厅";
+            case 6:
+                return "三环营业厅";
+            case 7:
+                return "良乡营业厅";
+            case 41:
+                return "晓月苑营业厅";
+            default:
+                return "未知";
+        }
+    }
+
+    public static String invoiceCode2Status(int invoiceCode){
+        switch (invoiceCode){
+            case 0:
+                return "未使用";
+            case 1:
+                return "已使用";
+            case -1:
+                return "废票";
+            default:
+                return "未知";
+        }
+    }
+
+    public static String Date2Str(Date date,String pattern){
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+        return sdf.format(date);
+    }
+
+    /**
+     * 数组相加
+     * @param first
+     * @param second
+     * @param <T>
+     * @return  new Array
+     */
+    public static <T> T[] concat(T[] first, T[] second) {
+        T[] result = Arrays.copyOf(first, first.length + second.length);
+        System.arraycopy(second, 0, result, first.length, second.length);
+        return result;
+    }
+
+    /**
+     * 日期-1操作，年为1、月为2
+     * @param date
+     * @param yearOrMonth
+     * @return
+     */
+    public static String datePlus(String date, int yearOrMonth){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
+        Date d = null;
+        try{
+            d = sdf.parse(date);
+        }
+        catch (ParseException e){
+            e.printStackTrace();
+        }
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(d);
+        Date result = null;
+        switch (yearOrMonth){
+            case 1 :
+                calendar.add(Calendar.YEAR,-1);
+                result = calendar.getTime();
+                break;
+            case 2 :
+                calendar.add(Calendar.MONTH,-1);
+                result = calendar.getTime();
+                break;
+            default:
+                result = null;
+                break;
+        }
+        return sdf.format(result);
+    }
+
+    /**
+     * 计算两个日期间隔--》数组（yyyyMM）
+     * @param startDate
+     * @param endDate
+     * @return  Array
+     */
+    public static String[] getDateInterval(String startDate,String endDate){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+        String dateTemp = "";
+        try{
+            Date start = sdf.parse(startDate);
+            Date end = sdf.parse(endDate);
+            Calendar c1 = Calendar.getInstance();
+            c1.setTime(start);
+            Calendar c2 = Calendar.getInstance();
+            c2.setTime(end);
+            dateTemp += sdf.format(c1.getTime())+",";
+            while (c1.before(c2)){
+                c1.add(Calendar.MONTH,1);
+                dateTemp += sdf.format(c1.getTime())+",";
+            }
+        }
+        catch (ParseException e){
+            e.printStackTrace();
+        }
+        return dateTemp.split(",");
+    }
+
+    /**
+     * 字符型数组转字符串
+     * @param array
+     * @return  String
+     */
+    public static String array2String(String[] array, boolean isEncode) throws UnsupportedEncodingException {
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<array.length;i++){
+            sb.append(array[i]+",");
+        }
+        if(sb.length()>0){
+            sb.deleteCharAt(sb.lastIndexOf(","));
+        }
+        if(!isEncode){
+            return sb.toString();
+        }
+        else {
+            return new String(sb.toString().getBytes("GBK"),"ISO-8859-1");
+        }
     }
 }

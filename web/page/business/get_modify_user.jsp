@@ -8,21 +8,22 @@
     Connection conn = ConnPoolBean.getRadiusConn();
     PreparedStatement pstmt = null;
     ResultSet rs = null;
-    String userid = request.getParameter("userid");
+    String userid = request.getParameter("userid").toLowerCase();
     String bs_name = request.getParameter("bs_name");
     String gridStr = "";
     response.setContentType("text/json;charset=UTF-8");
-    String sql = "select gg.gg_name,gmf.redate,cat.cat_name,gmf.cxnote,gmf.hdnote,gmf.sbnote,gmf.zhnote,gmf.tsnote," +
-            "gmf.isit,gmf.opt_usetime,bi.name,tu.susername,tui.srealname,ti.sispname,gmf.dfirstdate,tu.doverdate," +
-            "tu.sfeephone,gmf.group_id,gmf.leaflet_no,tui.stele,tui.semail,gmf.house_type_id,gmf.line_type_id," +
-            "gmf.save_admin,gmf.save_time,gc.contract_name,gmf.oldnet_prop_id,gmf.user_prop_id,gmf.net_prop," +
-            "gmf.payee,gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end," +
-            "gmf.letv_mac,gmf.it_end,tui.spostcode " +
-            "from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td," +
-            "GTM_MAINFORM_INFO gmf,GTM_BUSINESS_INFO bi,gtm_contract gc " +
-            "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername " +
-            "and tu.susername=gmf.username and tu.iispid=ti.iispid and tu.idistid=td.idistid " +
-            "and gmf.contract_id=gc.contract_id and gmf.department_id=bi.id";
+    String sql =
+    "select ga.act_name,gmf.admit,gg.gg_name,gmf.redate,cat.cat_name,gmf.cxnote,gmf.hdnote,gmf.sbnote,gmf.zhnote,gmf.tsnote," +
+    "gmf.isit,gmf.opt_usetime,bi.name,tu.susername,tui.srealname,ti.sispname,gmf.dfirstdate,tu.doverdate," +
+    "tu.sfeephone,gmf.group_id,gmf.leaflet_no,tui.stele,tui.semail,gmf.house_type_id,gmf.line_type_id," +
+    "gmf.save_admin,gmf.save_time,gc.contract_name,gmf.oldnet_prop_id,gmf.user_prop_id,gmf.net_prop," +
+    "gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end," +
+    "gmf.letv_mac,gmf.it_end,tui.spostcode " +
+    "from gtm_act ga,gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td," +
+    "GTM_MAINFORM_INFO gmf,GTM_BUSINESS_INFO bi,gtm_contract gc " +
+    "where gmf.payee=ga.act_id and gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername " +
+    "and tu.susername=gmf.username and tu.iispid=ti.iispid and tu.idistid=td.idistid " +
+    "and gmf.contract_id=gc.contract_id and gmf.department_id=bi.id";
     if(!bs_name.equals("")){
         sql+=" and gmf.department_id="+bs_name;
     }
@@ -145,9 +146,18 @@
             gridStr+="mf_gm:'"+new String(rs.getString("cat_name").getBytes("iso-8859-1"),"gbk")+"',";
             gridStr+="mf_gg:'"+new String(rs.getString("gg_name").getBytes("iso-8859-1"),"gbk")+"',";
             if(rs.getString("cxnote")!=null){
-                gridStr+="mf_cxnote:'"+new String(rs.getString("cxnote").getBytes("iso-8859-1"),"gbk")+"',";
+                String temp = new String(rs.getString("cxnote").getBytes("iso-8859-1"),"gbk");
+                try{
+                    String[] tempArr = temp.split(",");
+                    gridStr+="mf_real_quota:'"+tempArr[0]+"',";
+                    gridStr+="mf_real_bandwidth:'"+tempArr[1]+"',";
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
             }else{
-                gridStr+="mf_cxnote:'',";
+                gridStr+="mf_real_quota:'',";
+                gridStr+="mf_real_bandwidth:'',";
             }
             if(rs.getString("hdnote")!=null){
                 gridStr+="mf_hdnote:'"+new String(rs.getString("hdnote").getBytes("iso-8859-1"),"gbk")+"',";
@@ -215,15 +225,15 @@
             }else{
                 gridStr+="net_prop_value:'',";
             }
-            if(rs.getString("payee")!=null){
-                gridStr+="payee:'"+new String(rs.getString("payee").getBytes("iso-8859-1"),"gbk")+"',";
+            if(rs.getString("act_name")!=null){
+                gridStr+="action:'"+new String(rs.getString("act_name").getBytes("iso-8859-1"),"gbk")+"',";
             }else{
-                gridStr+="payee:'',";
+                gridStr+="action:'',";
             }
             if(rs.getString("admit")!=null){
-                gridStr+="admit:'"+new String(rs.getString("admit").getBytes("iso-8859-1"),"gbk")+"',";
+                gridStr+="presentation:'"+new String(rs.getString("admit").getBytes("iso-8859-1"),"gbk")+"',";
             }else{
-                gridStr+="admit:'',";
+                gridStr+="presentation:'',";
             }
             if(rs.getString("user_mobile")!=null){
                 gridStr+="user_mobile:'"+rs.getString("user_mobile")+"',";

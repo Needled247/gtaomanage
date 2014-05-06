@@ -1,0 +1,129 @@
+package servlet;
+
+import bean.ChargeTypeBean;
+import service.GTM_Service;
+import service.GTM_ServiceImpl;
+import tools.Tools;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.*;
+
+/**
+ * Created by HP on 14-4-17.
+ */
+public class getMainChartDetail extends HttpServlet {
+    private GTM_Service service = new GTM_ServiceImpl();
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        this.doPost(req,resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int type = Integer.parseInt(req.getParameter("type"));
+        String chart_info = req.getParameter("chart_info");
+        String date = Tools.Date2Str(new Date(),"yyyy-MM");
+        StringBuilder sb = new StringBuilder();
+        resp.setContentType("text/json;charset=GBK");
+        PrintWriter out = resp.getWriter();
+        //取得交易类型编码
+        ChargeTypeBean chargeType = new ChargeTypeBean();
+        Object[] params = chargeType.str2CodeArray(chart_info);
+        switch (type){
+            /*
+            生成餐型+带宽饼图JSON
+             */
+            case 0 :
+                //拼接参数
+                params = Tools.concat(params,new Object[]{date});
+                //取得带宽数据
+                List<Map<String,Object>> bw = service.getBandWidth(params);
+                //取得餐型数据
+                List<Map<String,Object>> pack = service.getPackageType(params);
+                //定义参数集合
+                List<Object[]> transList = new ArrayList<Object[]>();
+                sb.append("[");
+                //拼接参数，将餐型和带宽和在一起
+                for(int x=0;x<bw.size();x++){
+                    String tempBw = bw.get(x).get("BANDWIDTH").toString();
+                    for(int y =0;y<pack.size();y++){
+                        //餐型、带宽组合查询的参数数组
+                        Object[] tempArr = Tools.concat(params,new Object[]{tempBw,pack.get(y).get("QUOTA")});
+                        //存到集合中
+                        transList.add(tempArr);
+                        long tempCount = service.getAllCount(tempArr);
+                        if(tempCount!=0){
+                            //图表JSON
+                            sb.append("{\"name\":\"" + tempBw+new String(pack.get(y).get("QUOTA").toString().getBytes("ISO-8859-1"),"GBK")
+                                    + "\",\"data\":" + tempCount + "},");
+                        }
+                    }
+                }
+                req.setAttribute("transList",transList);
+                if (sb.length()>2){
+                    sb.deleteCharAt(sb.lastIndexOf(","));
+                }
+                sb.append("]");
+                out.print(sb);
+                out.flush();
+                out.close();
+                break;
+            /*
+            生成带宽饼图JSON
+             */
+            case 1 :
+                //拼接参数
+                params = Tools.concat(params,new Object[]{date});
+                //取得带宽数据
+                List<Map<String,Object>> bwList = service.getBandWidth(params);
+                Map<String,Integer> bwMap = new HashMap<String, Integer>();
+                sb.append("[");
+                for(int i=0; i<bwList.size(); i ++){
+                    Object[] tempParams = Tools.concat(params, new Object[]{bwList.get(i).get("BANDWIDTH")});
+                    long temp = service.getBandWidthCount(tempParams);
+                    sb.append("{\"name\":\"" + bwList.get(i).get("BANDWIDTH") + "\",\"data\":" + temp + "},");
+                    bwMap.put(bwList.get(i).get("BANDWIDTH").toString(),(int)temp);
+                }
+                req.setAttribute("bwMap",bwMap);
+                if(sb.length()>2){
+                    sb.deleteCharAt(sb.lastIndexOf(","));
+                }
+                sb.append("]");
+                out.print(sb);
+                out.flush();
+                out.close();
+                break;
+            /*
+            生成餐型饼图JSON
+             */
+            case 2 :
+                params = Tools.concat(params, new Object[]{date});
+                List<Map<String,Object>> result = service.getPackageType(params);
+                Map<String,Integer> packMap = new HashMap<String, Integer>();
+                sb.append("[");
+                for(int i=0;i<result.size();i++){
+                    Object[] tempParams = Tools.concat(params, new Object[]{result.get(i).get("QUOTA")});
+                    long temp = service.getPackageCount(tempParams);
+                    sb.append("{\"name\":\"" + new String(result.get(i).get("QUOTA").toString().getBytes("ISO-8859-1"),"GBK") + "\",\"data\":" + temp + "},");
+                    packMap.put(new String(result.get(i).get("QUOTA").toString().getBytes("ISO-8859-1"),"GBK"),(int)temp);
+                }
+                req.setAttribute("packMap",packMap);
+                if(sb.length()>2){
+                    sb.deleteCharAt(sb.lastIndexOf(","));
+                }
+                sb.append("]");
+                out.print(sb);
+                out.flush();
+                out.close();
+                break;
+            default:
+                out.close();
+                break;
+        }
+    }
+}

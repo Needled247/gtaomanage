@@ -4,7 +4,4 @@
 	String str=image.getCertPic(0,0,response.getOutputStream());
 	// 将认证码存入SESSION
 	session.setAttribute("certCode", str);
-	
-	out.clear();
-	out = pageContext.pushBody();
 %>

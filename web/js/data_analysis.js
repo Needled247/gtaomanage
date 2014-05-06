@@ -34,6 +34,29 @@
             id:'data_class',
             name:'data_class',
             items: [{
+                text: '综合类',
+                menu:new Ext.menu.Menu({
+                    ignoreParentClicks: true,
+                    items: [
+                        {
+                            text: '本月综合分析',
+                            listeners:{
+                                'click':function(){
+                                    Ext.getCmp('data_start').hide();
+                                    Ext.getCmp('data_end').hide();
+                                    Ext.getCmp('data_bs').hide();
+                                    Ext.getCmp('data_month').hide();
+                                }
+                            }
+                        }
+                    ],
+                    listeners:{
+                        'click':function(menu,item){
+                            Ext.getCmp('chart_type').setValue(item.text);
+                        }
+                    }
+                })
+            },{
                     text: '新装类',
                     menu:new Ext.menu.Menu({
                         ignoreParentClicks: true,
@@ -77,7 +100,8 @@
                             }
                         }
                     })
-                },{
+                },
+                {
                     text: '停机注销类',
                     menu: new Ext.menu.Menu({
                         ignoreParentClicks: true,
@@ -115,6 +139,41 @@
                             }
                         }
                     })
+                },
+                {
+                    text: '用户类',
+                    menu: new Ext.menu.Menu({
+                        ignoreParentClicks: true,
+                        items: [
+                            {
+                                text: '在网用户数量统计',
+                                listeners:{
+                                    'click':function(){
+                                        Ext.getCmp('data_start').hide();
+                                        Ext.getCmp('data_end').hide();
+                                        Ext.getCmp('data_bs').hide();
+                                        Ext.getCmp('data_month').show();
+                                    }
+                                }
+                            },
+                            {
+                                text: '在网用户数量曲线',
+                                listeners:{
+                                    'click':function(){
+                                        Ext.getCmp('data_start').show();
+                                        Ext.getCmp('data_end').show();
+                                        Ext.getCmp('data_bs').hide();
+                                        Ext.getCmp('data_month').hide();
+                                    }
+                                }
+                            }
+                        ],
+                        listeners:{
+                            'click':function(menu,item){
+                                Ext.getCmp('chart_type').setValue(item.text);
+                            }
+                        }
+                    })
                 }
             ]
         });
@@ -131,7 +190,6 @@
             layout: 'border',
             frame: true,
             items: [
-            	Ext.create('My.data_north'),
             	Ext.create('My.data_panel')
             ],
             tbar: Ext.create('Ext.toolbar.Toolbar',{
@@ -140,7 +198,12 @@
             	border: false,
             	height: 40,
             	items: [
-            	'-',{
+            	'-',
+                {
+                    text:'分析类别',
+                    menu:infoMenu
+                },
+                {
                     id: 'data_bs',
                     name: 'data_bs',
                     xtype:'combobox',
@@ -155,8 +218,66 @@
                     queryMode:'local'
                 },
                 {
-                    text:'分析类别',
-                    menu:infoMenu
+                    xtype:'datefield',
+                    fieldLabel: '月份',
+                    id: 'data_month',
+                    name: 'data_month',
+                    margin: '0 5 5 0',
+                    value: Ext.Date.format(new Date(), 'Ym'),
+                    format: 'Ym',
+                    submitFormat : String,
+                    maxValue: new Date(),
+                    labelWidth: 40,
+                    width: 150,
+                    allowBlank: true,
+                    blankText: '请选择月份',
+                    editable: false,
+                    hidden:true
+                },
+                {
+                    //通用
+                    xtype:'datefield',
+                    fieldLabel: '起始月份',
+                    id: 'data_start',
+                    name: 'data_start',
+                    margin: '0 5 5 0',
+                    value: Ext.Date.format(new Date(), 'Ym'),
+                    format: 'Ym',
+                    maxValue: new Date(),
+                    labelWidth: 60,
+                    width: 190,
+                    submitFormat : String,
+                    allowBlank: true,
+                    blankText: '请输入起始月',
+                    editable: false,
+                    hidden:true,
+                    listeners: {
+                        change: function(obj){
+                            Ext.getCmp('data_end').setMinValue(obj.getRawValue());
+                        }
+                    }
+                },{
+                    //通用
+                    xtype:'datefield',
+                    fieldLabel: '截止月份',
+                    id: 'data_end',
+                    name: 'data_end',
+                    margin: '0 5 5 0',
+                    value: Ext.Date.format(new Date(), 'Ym'),
+                    format: 'Ym',
+                    maxValue: new Date(),
+                    submitFormat : String,
+                    labelWidth: 60,
+                    width: 190,
+                    allowBlank: false,
+                    blankText: '请输入截止月',
+                    editable: false,
+                    hidden:true,
+                    listeners: {
+                        change: function(obj){
+                            Ext.getCmp('data_start').setMaxValue(obj.getRawValue());
+                        }
+                    }
                 },
                 {
                     xtype:'hiddenfield',
@@ -171,25 +292,45 @@
 	        		icon: '../../image/statistics.png',
 	        		scale: 'medium',
 	        		handler: function(){
-	        			/*
-	        			if(!Ext.getCmp('startDate').isValid()){
-	        				return;
-	        			}
-	        			
-	        			if(!Ext.getCmp('endDate').isValid()){
-	        				return;
-	        			}
-	        			*/
-	        			/*
-	        			var params = Ext.getCmp('main_chart').getStore().getProxy().extraParams;
-	        			params['zc_bs_name']=Ext.getCmp('bs_name').getValue();
-	        			params['startDate']=Ext.getCmp('startDate').getRawValue();
-	        			params['endDate']=Ext.getCmp('endDate').getRawValue();
-	        			params['zc_type']=Ext.getCmp('zct').getValue();
-	        			Ext.getCmp('main_chart').getStore().loadPage(1);
-	        			*/
-                        alert(Ext.getCmp('chart_type').getValue());
-	        		}        		
+                        var charge_type = Ext.getCmp('chart_type').getValue();
+                        var mainPanel = Ext.getCmp('data_analysis');
+                        if(charge_type=='在网用户数量统计'){
+                            try{
+                                mainPanel.remove(Ext.getCmp('data_panel'),true);
+                                mainPanel.remove(Ext.getCmp('user_total_panel'),true);
+                                mainPanel.doLayout();
+                                mainPanel.update();
+                            }
+                            catch(e){console.log(e);}
+                            mainPanel.add(Ext.create('My.user_panel'));
+                            mainPanel.doLayout();
+                            mainPanel.update();
+                        }
+                        else if(charge_type=='在网用户数量曲线'){
+                            try{
+                                mainPanel.remove(Ext.getCmp('data_panel'),true);
+                                mainPanel.remove(Ext.getCmp('user_panel'),true);
+                                mainPanel.doLayout();
+                                mainPanel.update();
+                            }
+                            catch (e){console.log(e);}
+                            mainPanel.add(Ext.create('My.user_total_panel'));
+                            mainPanel.doLayout();
+                            mainPanel.update();
+                        }
+                        else if(charge_type=='本月综合分析'){
+                            try{
+                                mainPanel.remove(Ext.getCmp('user_total_panel'),true);
+                                mainPanel.remove(Ext.getCmp('user_panel'),true);
+                                mainPanel.doLayout();
+                                mainPanel.update();
+                            }
+                            catch (e){console.log(e);}
+                            mainPanel.add(Ext.create('My.data_panel'));
+                            mainPanel.doLayout();
+                            mainPanel.update();
+                        }
+	        		}
         		},
         		{
         			xtype:'button',
@@ -210,7 +351,6 @@
         	]})
         });
         this.callParent(arguments);
-        
     }
 });
 

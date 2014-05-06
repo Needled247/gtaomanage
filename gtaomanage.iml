@@ -23,10 +23,12 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 7.0" level="application_server_libraries" />
-    <orderEntry type="library" name="jsf-api" level="project" />
     <orderEntry type="library" name="ojdbc14" level="project" />
     <orderEntry type="library" name="sqljdbc4" level="project" />
     <orderEntry type="library" name="c3p0-0.9.1.1" level="project" />
+    <orderEntry type="library" name="poi-3.10-FINAL-20140208" level="project" />
+    <orderEntry type="library" name="commons-dbutils-1.5-javadoc" level="project" />
+    <orderEntry type="library" name="druid-1.0.2" level="project" />
   </component>
 </module>
 

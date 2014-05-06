@@ -5,7 +5,7 @@
 <%@page import="java.sql.Statement"%>
 
 <%
-	String get_data_sql="select act_id,act_name from gtm_act order by act_id";
+	String get_data_sql="select act_id,act_name from gtm_act where display=1 order by act_id";
 	Connection conn=null;
 	Statement st=null;
 	ResultSet rs=null;	

@@ -8,7 +8,7 @@
     Connection conn = ConnPoolBean.getRadiusConn();
     PreparedStatement pstmt = null;
     ResultSet rs = null;
-    String userid = request.getParameter("userid");
+    String userid = request.getParameter("userid").toLowerCase();
     String bs_name = request.getParameter("bs_name");
     String gridStr = "";
     response.setContentType("text/json;charset=UTF-8");

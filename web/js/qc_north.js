@@ -140,110 +140,37 @@
 					value:'',
 					minChars:1,
 					queryMode:'local',
-					editable: false					
-		        },{
-                        id: 'charge_type',
-                        name: 'charge_type',
-                        xtype:'combobox',
-                        margin: '5 0 10 30',
-                        fieldLabel:'收费类别',
-                        store: Ext.data.StoreManager.lookup('charge_type'),
-                        labelWidth: 60,
-                        width: 190,
-                        valueField:'id',
-                        displayField:'name',
-                        value:'',
-                        minChars:1,
-                        queryMode:'local',
-                        editable: false
-                    }/*{
-		            id: 'charge_type1',
-			        name: 'charge_type1',
-			        xtype:'combobox',
-			        margin: '5 0 10 30',
-			        fieldLabel:'收费类1',
-			        store: Ext.data.StoreManager.lookup('charge_type1'),
-			        labelWidth: 60,
-					width: 190,
-					valueField:'id',
-			      	displayField:'name',
-					value:'',
-					minChars:1,
-					queryMode:'local',
-					editable: false,
+					editable: false	,
                     listeners:{
-                        select:function(){
-                            var cid = Ext.getCmp('charge_type1').getValue();
-                            Ext.getCmp('charge_type2').clearValue();
-                            Ext.getCmp('charge_type3').clearValue();
-                            Ext.getCmp('charge_type4').clearValue();
-                            Ext.getCmp('charge_type2').store.proxy.url = 'get_charge_type_son.jsp?cid='+cid+'&level=2';
-                            Ext.getCmp('charge_type2').store.load();
+                        specialkey:function(f,e){
+                            if (e.getKey() == e.ENTER) {
+                                document.getElementById('qbtn').click();
+                            }
                         }
                     }
 		        },{
-                        id: 'charge_type2',
-                        name: 'charge_type2',
-                        xtype:'combobox',
-                        margin: '5 0 10 30',
-                        fieldLabel:'收费类2',
-                        store: Ext.data.StoreManager.lookup('charge_type2'),
-                        labelWidth: 60,
-                        width: 190,
-                        valueField:'id',
-                        displayField:'name',
-                        value:'',
-                        minChars:1,
-                        queryMode:'local',
-                        editable: false,
-                        listeners:{
-                            select:function(){
-                                var cid = Ext.getCmp('charge_type2').getValue();
-                                Ext.getCmp('charge_type3').clearValue();
-                                Ext.getCmp('charge_type4').clearValue();
-                                Ext.getCmp('charge_type3').store.proxy.url = 'get_charge_type_son.jsp?cid='+cid+'&level=3';
-                                Ext.getCmp('charge_type3').store.load();
+                    id: 'charge_type',
+                    name: 'charge_type',
+                    xtype:'combobox',
+                    margin: '5 0 10 30',
+                    fieldLabel:'收费类别',
+                    store: Ext.data.StoreManager.lookup('charge_type'),
+                    labelWidth: 60,
+                    width: 190,
+                    valueField:'id',
+                    displayField:'name',
+                    value:'',
+                    minChars:1,
+                    queryMode:'local',
+                    editable: false,
+                    listeners:{
+                        specialkey:function(f,e){
+                            if (e.getKey() == e.ENTER) {
+                                document.getElementById('qbtn').click();
                             }
                         }
-                    },{
-                        id: 'charge_type3',
-                        name: 'charge_type3',
-                        xtype:'combobox',
-                        margin: '5 0 10 30',
-                        fieldLabel:'收费类3',
-                        store: Ext.data.StoreManager.lookup('charge_type3'),
-                        labelWidth: 60,
-                        width: 190,
-                        valueField:'id',
-                        displayField:'name',
-                        value:'',
-                        minChars:1,
-                        queryMode:'local',
-                        editable: false,
-                        listeners:{
-                            select:function(){
-                                var cid = Ext.getCmp('charge_type3').getValue();
-                                Ext.getCmp('charge_type4').clearValue();
-                                Ext.getCmp('charge_type4').store.proxy.url = 'get_charge_type_son.jsp?cid='+cid+'&level=4';
-                                Ext.getCmp('charge_type4').store.load();
-                            }
-                        }
-                    },{
-                        id: 'charge_type4',
-                        name: 'charge_type4',
-                        xtype:'combobox',
-                        margin: '5 0 10 30',
-                        fieldLabel:'收费类4',
-                        store: Ext.data.StoreManager.lookup('charge_type4'),
-                        labelWidth: 60,
-                        width: 190,
-                        valueField:'id',
-                        displayField:'name',
-                        value:'',
-                        minChars:1,
-                        queryMode:'local',
-                        editable: false
-                    }*/,{
+                    }
+                },{
             		xtype:'textfield',
             		id: 'tel',
             		name: 'tel',
@@ -254,8 +181,6 @@
 			      	value:'',
 					maxLength: 11,
 		            enforceMaxLength: true,
-//		            regex: /^\d{1,11}$/,
-//		            regexText: '请输入数字',
 	            	listeners:{
 	            		specialkey:function(f,e){
 	            			if(this.isValid()){
@@ -266,35 +191,154 @@
 	            		}
 	            	}
         		},{
-		            id: 'act_id',
-			        name: 'act_id',
-			        xtype:'combobox',
-			        margin: '5 0 10 30',
-			        fieldLabel:'活动名称',
-			        store: Ext.data.StoreManager.lookup('huodong'),
-			        labelWidth: 60,
-			        colspan: 2,
-					width: 410,
-					valueField:'id',
-			      	displayField:'name',
-					value:'',
-					minChars:1,
-					queryMode:'local',
-					editable: false,
-					listeners:{
-						select : function(c,rec){
-							Ext.getCmp('actsub_id').setValue('');
-							Ext.data.StoreManager.lookup('huodong_sub').filterBy(function(record,id){
-									var text = record.get('huodong_id');
-									return (text==rec[0].get('id'));
-							});							
-						}
-	            	}
-		        },{
+                    xtype:'textfield',
+                    fieldLabel: '发票号码',
+                    id: 'receipt_id',
+                    name: 'receipt_id',
+                    margin: '5 0 10 30',
+                    value: '',
+                    labelWidth: 60,
+                    width: 190,
+                    enforceMaxLength: true,
+                    maxLength: 20,
+                    listeners:{
+                        specialkey:function(f,e){
+                            if (e.getKey() == e.ENTER) {
+                                document.getElementById('qbtn').click();
+                            }
+                        }
+                    }
+                },{
+                    xtype:'textfield',
+                    fieldLabel: '收款人',
+                    id: 'qc_payee',
+                    name: 'qc_payee',
+                    margin: '5 0 10 30',
+                    value: '',
+                    labelWidth: 60,
+                    width: 190,
+                    enforceMaxLength: true,
+                    maxLength: 20,
+                    listeners:{
+                        specialkey:function(f,e){
+                            if (e.getKey() == e.ENTER) {
+                                document.getElementById('qbtn').click();
+                            }
+                        }
+                    }
+                },{
+                    xtype:'textfield',
+                    fieldLabel: '接待人',
+                    id: 'qc_admit',
+                    name: 'qc_admit',
+                    margin: '5 0 10 30',
+                    value: '',
+                    labelWidth: 60,
+                    width: 190,
+                    enforceMaxLength: true,
+                    maxLength: 20,
+                    listeners:{
+                        specialkey:function(f,e){
+                            if (e.getKey() == e.ENTER) {
+                                document.getElementById('qbtn').click();
+                            }
+                        }
+                    }
+                },{
+                    xtype:'textfield',
+                    fieldLabel: '银行卡号',
+                    id: 'qc_bank_card',
+                    name: 'qc_bank_card',
+                    margin: '5 0 10 30',
+                    labelWidth: 60,
+                    width: 190,
+                    enforceMaxLength: true,
+                    maxLength: 15,
+                        listeners:{
+                            specialkey:function(f,e){
+                                if (e.getKey() == e.ENTER) {
+                                    document.getElementById('qbtn').click();
+                                }
+                            }
+                        }
+                },{
+                    xtype:'textfield',
+                    fieldLabel: '网银订单',
+                    id: 'qc_netpay_id',
+                    name: 'qc_netpay_id',
+                    labelWidth: 60,
+                    width: 190,
+                    margin: '5 0 10 30',
+                    enforceMaxLength: true,
+                    maxLength: 15,
+                        listeners:{
+                            specialkey:function(f,e){
+                                if (e.getKey() == e.ENTER) {
+                                    document.getElementById('qbtn').click();
+                                }
+                            }
+                        }
+                },{
+                    id: 'qc_quota',
+                    name: 'qc_quota',
+                    xtype:'combobox',
+                    fieldLabel: '餐型类别',
+                    margin: '5 0 10 30',
+                    labelWidth: 60,
+                    width: 190,
+                    store:new Ext.data.SimpleStore(
+                        {
+                            fields:['id','name'],
+                            data:[['包年','包年'],['包月','包月'],['计时','计时']]
+                        }),
+                    valueField:'id',
+                    displayField:'name',
+                    allowBlank: false,
+                    blankText: '请选择餐型',
+                    minChars:1,
+                    queryMode:'local',
+                    editable: false,
+                    value:'',
+                        listeners:{
+                            specialkey:function(f,e){
+                                if (e.getKey() == e.ENTER) {
+                                    document.getElementById('qbtn').click();
+                                }
+                            }
+                        }
+                },{
+                    id: 'qc_bw',
+                    name: 'qc_bw',
+                    xtype:'combobox',
+                    fieldLabel: '带宽',
+                    margin: '5 0 10 30',
+                    labelWidth: 60,
+                    width: 190,
+                    store:new Ext.data.SimpleStore(
+                        {
+                            fields:['id','name'],
+                            data:[['2M','2M'],['4M','4M'],['10M','10M'],['20M','20M'],['50M','50M'],['100M','100M']]
+                        }),
+                    valueField:'id',
+                    displayField:'name',
+                    allowBlank: false,
+                    blankText: '请选择带宽',
+                    minChars:1,
+                    queryMode:'local',
+                    editable: false,
+                    value:'',
+                        listeners:{
+                            specialkey:function(f,e){
+                                if (e.getKey() == e.ENTER) {
+                                    document.getElementById('qbtn').click();
+                                }
+                            }
+                        }
+                },{
 	            	xtype:'textfield',
 	                fieldLabel: '收据号码',
-	                id: 'receipt_id',
-	                name: 'receipt_id',
+	                id: 'qc_shouju',
+	                name: 'qc_shouju',
 	                margin: '5 0 10 30',
 	              	value: '',
 	                labelWidth: 60,
@@ -313,17 +357,23 @@
 			        name: 'actsub_id',
 			        xtype:'combobox',
 			        margin: '5 0 10 30',
-			        fieldLabel:'套餐名称',
-			        store: Ext.data.StoreManager.lookup('huodong_sub'),
-			        labelWidth: 60,
-			        colspan: 2,
-					width: 410,
+			        fieldLabel:'活动名称',
+                    labelWidth: 60,
+                    width: 190,
+			        store: Ext.data.StoreManager.lookup('huodong'),
 					valueField:'id',
 			      	displayField:'name',
 					value:'',
 					minChars:1,
 					queryMode:'local',
-					editable: false
+					editable: false,
+                        listeners:{
+                            specialkey:function(f,e){
+                                if (e.getKey() == e.ENTER) {
+                                    document.getElementById('qbtn').click();
+                                }
+                            }
+                        }
 		        },{
 	            	xtype:'textfield',
 	                fieldLabel: '备注信息',
@@ -375,19 +425,30 @@
                                             if(cur_month==charge_date[1]){
                                                 Ext.create('My.fc_save');
                                                 Ext.getCmp('fc_save').setTitle('修改收费信息');
+                                                Ext.getCmp('fc_save_userId').setDisabled(false);
+                                                Ext.getCmp('fc_search_btn').setDisabled(false);
+                                                Ext.getCmp('gm_cost').setDisabled(true);
+                                                Ext.getCmp('setup_cost').setDisabled(true);
+                                                Ext.getCmp('bank_card').setDisabled(false);
+                                                Ext.getCmp('netpay_id').setDisabled(false);
+                                                Ext.getCmp('fc_quota').setDisabled(false);
+                                                Ext.getCmp('fc_bw').setDisabled(false);
                                                 Ext.getCmp('fc_rname').setRawValue(r.get('realname'));
+                                                Ext.getCmp('fc_date').setRawValue(r.get('charge_date'));
                                                 Ext.getCmp('fc_bs').setRawValue(r.get('bs_name'));
                                                 Ext.getCmp('fc_user').setValue(r.get('username'));
                                                 Ext.getCmp('fc_id').setValue(r.get('charge_id'));
                                                 Ext.getCmp('fc_rid').setValue(r.get('receipt_id'));
                                                 Ext.getCmp('fc_amount').setValue(r.get('charge_amount'));
                                                 Ext.getCmp('fc_isnew').setRawValue(r.get('is_new'));
-                                                Ext.getCmp('fc_act').setRawValue(r.get('fc_act'));
-                                                Ext.getCmp('fc_actsub').setRawValue(r.get('fc_actsub'));
-                                                Ext.data.StoreManager.lookup('huodong_sub').filterBy(function(record,id){
-                                                    var text = record.get('huodong_id');
-                                                    return (text==Ext.data.StoreManager.lookup('huodong').findRecord('name',r.get('fc_act')).get('id'));
-                                                });
+                                                Ext.getCmp('fc_actsub').setRawValue(r.get('act_name'));
+                                                Ext.getCmp('fc_payee').setValue(r.get('payee'));
+                                                Ext.getCmp('fc_admit').setValue(r.get('admit'));
+                                                Ext.getCmp('fc_shouju').setValue(r.get('shouju'));
+                                                Ext.getCmp('bank_card').setValue(r.get('bankcard'));
+                                                Ext.getCmp('netpay_id').setValue(r.get('netpay_id'));
+                                                Ext.getCmp('fc_quota').setValue(r.get('quota'));
+                                                Ext.getCmp('fc_bw').setValue(r.get('bandwidth'));
                                                 Ext.getCmp('fc_pt').setValue(r.get('pay_type'));
                                                 Ext.getCmp('fc_ct').setValue(r.get('charge_type'));
                                                 Ext.getCmp('fc_note').setValue(r.get('note'));
@@ -447,13 +508,19 @@
                             params['username']=Ext.getCmp('username').getValue();
                             params['pay_type']=Ext.getCmp('pay_type').getValue();
                             params['charge_type']=Ext.getCmp('charge_type').getValue();
-                            params['act_id']=Ext.getCmp('act_id').getValue();
                             params['actsub_id']=Ext.getCmp('actsub_id').getValue();
                             params['note']=Ext.getCmp('note').getValue();
                             params['realname']=Ext.getCmp('realname').getValue();
                             params['addr']=Ext.getCmp('addr').getValue();
                             params['save_admin']=Ext.getCmp('save_admin').getValue();
                             params['tel']=Ext.getCmp('tel').getValue();
+                            params['shouju']=Ext.getCmp('qc_shouju').getValue();
+                            params['payee']=Ext.getCmp('qc_payee').getValue();
+                            params['admit']=Ext.getCmp('qc_admit').getValue();
+                            params['quota']=Ext.getCmp('qc_quota').getValue();
+                            params['bandwidth']=Ext.getCmp('qc_bw').getValue();
+                            params['bankcard']=Ext.getCmp('qc_bank_card').getValue();
+                            params['netpay_id']=Ext.getCmp('qc_netpay_id').getValue();
 
                             Ext.getCmp('qc_grid').getStore().loadPage(1);
                         }
@@ -475,13 +542,19 @@
                             Ext.getCmp('username').reset();
                             Ext.getCmp('pay_type').reset();
                             Ext.getCmp('charge_type').reset();
-                            Ext.getCmp('act_id').reset();
                             Ext.getCmp('actsub_id').reset();
                             Ext.getCmp('note').reset();
                             Ext.getCmp('realname').reset();
                             Ext.getCmp('addr').reset();
                             Ext.getCmp('save_admin').reset();
                             Ext.getCmp('tel').reset();
+                            Ext.getCmp('qc_shouju').reset();
+                            Ext.getCmp('qc_payee').reset();
+                            Ext.getCmp('qc_admit').reset();
+                            Ext.getCmp('qc_quota').reset();
+                            Ext.getCmp('qc_bw').reset();
+                            Ext.getCmp('qc_bank_card').reset();
+                            Ext.getCmp('qc_netpay_id').reset();
                             Ext.data.StoreManager.lookup('huodong_sub').filterBy(function(record,id){
                                 var text = record.get('id');
                                 return text;
@@ -513,13 +586,20 @@
                             }else{
                                 reqStr+='&charge_type='+params['charge_type'];
                             }
-                            reqStr+='&act_id='+params['act_id'];
-                            reqStr+='&actsub_id='+params['actsub_id'];
+                            reqStr+='&act_id='+params['actsub_id'];
                             reqStr+='&note='+encodeURI(encodeURI(params['note']));
                             reqStr+='&realname='+encodeURI(encodeURI(params['realname']));
                             reqStr+='&addr='+encodeURI(encodeURI(params['addr']));
                             reqStr+='&save_admin='+encodeURI(encodeURI(params['save_admin']));
                             reqStr+='&tel='+encodeURI(encodeURI(params['tel']));
+                            //收据，收款人，接待人，餐型，带宽，银行卡号，网银订单号
+                            reqStr+='&shouju='+encodeURI(encodeURI(params['shouju']));
+                            reqStr+='&payee='+encodeURI(encodeURI(params['payee']));
+                            reqStr+='&admit='+encodeURI(encodeURI(params['admit']));
+                            reqStr+='&quota='+encodeURI(encodeURI(params['quota']));
+                            reqStr+='&bandwidth='+encodeURI(encodeURI(params['bandwidth']));
+                            reqStr+='&bankcard='+encodeURI(encodeURI(params['bankcard']));
+                            reqStr+='&netpay_id='+encodeURI(encodeURI(params['netpay_id']));
 //	        			window.location.href="get_qc_excel.jsp?"+reqStr;
                             window.open("get_qc_excel.jsp?"+reqStr);
                         }
@@ -549,6 +629,12 @@
                                                     params: {
                                                         charge_id : r.get('charge_id'),
                                                         list_name : Ext.getCmp('yh_qc').text
+                                                    },
+                                                    success : function(response, options) {
+                                                        Ext.Msg.alert('成功', response.responseText);
+                                                    },
+                                                    failure : function(response, options) {
+                                                        Ext.Msg.alert('失败', response.status);
                                                     }
                                                 });
                                                 Ext.data.StoreManager.lookup('qc_grid_store').remove(r);

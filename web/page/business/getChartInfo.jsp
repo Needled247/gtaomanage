@@ -9,7 +9,7 @@
 <%
     /**
      * 页面初始化的JSON生成“类”
-     * Author：JH
+     * Author：蒋浩
      */
     String bs_name = request.getParameter("bs_name");
     Date d = new Date();
@@ -24,30 +24,28 @@
     if(Integer.parseInt(bs_name)>600){
         quota_Sql = "SELECT SUM(NEW_QUOTA),SUM(CHARGE_QUOTA),SUM(CHARGE_YEAR_QUOTA)," +
                 "SUM(CANCEL_QUOTA) FROM GTM_QUOTA";   //定额查询SQL
-        newSetup_sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_BAK WHERE (CHARGE_TYPE_ID=39 " +
-                "OR CHARGE_TYPE_ID=40) AND TO_CHAR(CHARGE_DATE,'yyyy-MM')='"+date+"'";    //新装SQL
-        yearCharge_sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_BAK WHERE CHARGE_TYPE_ID=41 " +
-                "AND TO_CHAR(CHARGE_DATE,'yyyy-MM')='"+date+"'";  //包年续费SQL
-        otherCharge_sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_BAK WHERE (CHARGE_TYPE_ID=42" +
-                " OR CHARGE_TYPE_ID=43) AND TO_CHAR(CHARGE_DATE,'yyyy-MM')='"+date+"'";   //其他续费SQL
-        //TODO:需要修改，这里只是测试。
-        cancel_Sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_BAK WHERE (CHARGE_TYPE_ID=36" +
-                " OR CHARGE_TYPE_ID=37) AND TO_CHAR(CHARGE_DATE,'yyyy-MM')='"+date+"'";
+        newSetup_sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_NEW WHERE (CHARGE_TYPE_ID=2 " +
+                "OR CHARGE_TYPE_ID=3) AND TO_CHAR(CHARGE_DATE,'yyyy-MM')='"+date+"'";    //新装SQL
+        yearCharge_sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_NEW WHERE (CHARGE_TYPE_ID=4 " +
+                "OR CHARGE_TYPE_ID=6) AND TO_CHAR(CHARGE_DATE,'yyyy-MM')='"+date+"'";  //包年续费SQL
+        otherCharge_sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_NEW WHERE (CHARGE_TYPE_ID=5" +
+                " OR CHARGE_TYPE_ID=7) AND TO_CHAR(CHARGE_DATE,'yyyy-MM')='"+date+"'";   //其他续费SQL
+        cancel_Sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_NEW WHERE (CHARGE_TYPE_ID=8" +
+                " OR CHARGE_TYPE_ID=9) AND TO_CHAR(CHARGE_DATE,'yyyy-MM')='"+date+"'";
     }
     else {
         quota_Sql = "SELECT NEW_QUOTA,CHARGE_QUOTA,CHARGE_YEAR_QUOTA,CANCEL_QUOTA FROM GTM_QUOTA " +
                 "WHERE PARENT_ID="+bs_name;
-        newSetup_sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_BAK WHERE (CHARGE_TYPE_ID=39 " +
-                "OR CHARGE_TYPE_ID=40) AND TO_CHAR(CHARGE_DATE,'yyyy-MM')='"+date+"' AND " +
+        newSetup_sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_NEW WHERE (CHARGE_TYPE_ID=2 " +
+                "OR CHARGE_TYPE_ID=3) AND TO_CHAR(CHARGE_DATE,'yyyy-MM')='"+date+"' AND " +
                 "BS_ID="+bs_name;    //新装SQL
-        yearCharge_sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_BAK WHERE CHARGE_TYPE_ID=41 " +
-                "AND TO_CHAR(CHARGE_DATE,'yyyy-MM')='"+date+"' AND BS_ID="+bs_name;  //包年续费SQL
-        otherCharge_sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_BAK WHERE (CHARGE_TYPE_ID=42" +
-                " OR CHARGE_TYPE_ID=43) AND TO_CHAR(CHARGE_DATE,'yyyy-MM')='"+date+"' AND " +
+        yearCharge_sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_NEW WHERE (CHARGE_TYPE_ID=4 " +
+                "OR CHARGE_TYPE_ID=6) AND TO_CHAR(CHARGE_DATE,'yyyy-MM')='"+date+"' AND BS_ID="+bs_name;  //包年续费SQL
+        otherCharge_sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_NEW WHERE (CHARGE_TYPE_ID=5" +
+                " OR CHARGE_TYPE_ID=6) AND TO_CHAR(CHARGE_DATE,'yyyy-MM')='"+date+"' AND " +
                 "BS_ID="+bs_name;   //其他续费SQL
-        //TODO：需要修改
-        cancel_Sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_BAK WHERE (CHARGE_TYPE_ID=36" +
-                " OR CHARGE_TYPE_ID=37) AND TO_CHAR(CHARGE_DATE,'yyyy-MM')='"+date+"' AND " +
+        cancel_Sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_NEW WHERE (CHARGE_TYPE_ID=8" +
+                " OR CHARGE_TYPE_ID=9) AND TO_CHAR(CHARGE_DATE,'yyyy-MM')='"+date+"' AND " +
                 "BS_ID="+bs_name;
     }
     PreparedStatement pstmt = null;
@@ -115,10 +113,10 @@
         //开始拼接JSON字符串，num为实际数量，num2为定额，name是类别。
         StringBuilder sb = new StringBuilder();
         sb.append("[")
-                .append("{\"num\":"+newSetup+",\"num2\":"+(new_quota-newSetup)+",\"name\":\"新装\"},")
-                .append("{\"num\":"+year_charge+",\"num2\":"+(charge_year_quota-year_charge)+",\"name\":\"包年续费\"},")
-                .append("{\"num\":"+other_charge+",\"num2\":"+(charge_quota-other_charge)+",\"name\":\"其他续费\"},")
-                .append("{\"num\":"+cancel+",\"num2\":"+(cancel_quota-cancel)+",\"name\":\"停机注销\"}")
+                .append("{\"num\":"+newSetup+",\"num2\":"+(new_quota-newSetup<0?0:new_quota-newSetup)+",\"name\":\"新装\"},")
+                .append("{\"num\":"+year_charge+",\"num2\":"+(charge_year_quota-year_charge<0?0:charge_year_quota-year_charge)+",\"name\":\"包年续费\"},")
+                .append("{\"num\":"+other_charge+",\"num2\":"+(charge_quota-other_charge<0?0:charge_quota-other_charge)+",\"name\":\"其他续费\"},")
+                .append("{\"num\":"+cancel+",\"num2\":"+(cancel_quota-cancel<0?0:cancel_quota-cancel)+",\"name\":\"停机注销\"}")
                 .append("]");
         response.setContentType("text/json;charset=UTF-8");
         out.print(sb);

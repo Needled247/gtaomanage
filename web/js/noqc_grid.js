@@ -23,7 +23,11 @@
             			'contract_name',            			
             			'save_admin',
             			'save_time',
-            			'charge_id'
+            			'charge_id',
+                        'fapiao',
+                        'payee',
+                        'admit',
+                        'bankcard'
             		]
         	});
         	
@@ -80,6 +84,22 @@
                 dataIndex: 'realname',
                 width: 100
             },{
+                header: '收费类别',
+                dataIndex: 'charge_type',
+                width: 140
+            },{
+                header: '收费金额',
+                dataIndex: 'charge_amount',
+                width: 160,
+                renderer : function(val) {
+                    if (val >= 0) {
+                        return '<b>￥<font color="green">' + val + '</font></b>';
+                    } else if (val < 0) {
+                        return '<b>￥<font color="red">' + val + '</font></b>';
+                    }
+                    return val;
+                }
+            },{
                 header: '联系电话',
                 dataIndex: 'tel',
                 width: 200
@@ -92,25 +112,17 @@
                 dataIndex: 'receipt_id',
                 width: 150
             },{
+                header: '发票号码',
+                dataIndex: 'fapiao',
+                width: 150
+            },{
                 header: '支付方式',
                 dataIndex: 'pay_type',
                 width: 140
             },{
-                header: '收费类别',
-                dataIndex: 'charge_type',
+                header: '银行卡号',
+                dataIndex: 'bankcard',
                 width: 140
-            },{
-                header: '收费金额',
-                dataIndex: 'charge_amount',
-                width: 160,
-                renderer : function(val) {
-			        if (val >= 0) {
-			            return '<b>￥<font color="green">' + val + '</font></b>';
-			        } else if (val < 0) {
-			            return '<b>￥<font color="red">' + val + '</font></b>';
-			        }
-	        		return val;
-    			}
             }],
             
             plugins: [{
@@ -119,7 +131,9 @@
 	                '<p><b>备注信息&nbsp;:&nbsp;<font color="#8B0000">{note}</font></b></p>',	                
 	                '<p><b>所属合同&nbsp;:&nbsp;<font color="#8B0000">{contract_name}</font></b></p>',
 	                '<p><b>录入人&nbsp;:&nbsp;<font color="#8B0000">{save_admin}</font></b>',
-	                '<b style="margin-left:40px;">录入时间&nbsp;:&nbsp;<font color="#8B0000">{save_time}</font></b></p>'
+	                '<b style="margin-left:40px;">录入时间&nbsp;:&nbsp;<font color="#8B0000">{save_time}</font></b></p>',
+                    '<p><b>收款人&nbsp;:&nbsp;<font color="#8B0000">{payee}</font></b>',
+                    '<b style="margin-left:40px;">接待人&nbsp;:&nbsp;<font color="#8B0000">{admit}</font></b></p>'
 	            ]
         	}],
             

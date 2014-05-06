@@ -1,0 +1,132 @@
+分南北厂思路：
+增：收款时判断是否长辛店--》选择南厂还是北厂--》记录
+删改查：都是基于查询，怎么查询是个问题。
+
+添加收费信息，发票只能开一张，但是一次可以添加三笔交易
+光猫、安装费和网费。需要考虑。
+现在是发票表和收款表左连接，
+
+调整查询界面，结果界面 位置
+身份证号上
+mf_cxnote  fh102325
+
+2014年1月24日
+======================================
+续费的定额是本月到期用户的数量
+还有一部分提前缴费的，属于预付款，单独显示，没有定额。
+================================================
+流程优化：已完成
+1、续费：两种方式  一种选择记录添加收费，一种直接选择收费查询账号，直接续费。
+2、修改用户信息：同上
+3、用户信息表：查询条件位置调整，高级条件自动隐藏。主要字段：用户账号、电话、地址、*身份证号*。
+1、续费优化：fc_save.js  done...
+2、修改用户信息优化：mf_modify.js  done...
+2、用户收费：一个用户开户，需要进行2-3次录入，很麻烦，在进行收费录入时，让用户选择这笔费用是否包含光猫款、新装费用等等
+
+SELECT
+	gi.INVOICE_ID,
+	gi.USED,
+	gi.CHARGE_ID,
+	bi.NAME,
+	fc.CHARGE_AMOUNT
+FROM
+	GTM_INVOICE gi,
+	GTM_FRONT_CHARGE fc,
+	GTM_BUSINESS_INFO bi
+WHERE
+	gi.BS_ID = bi.ID
+AND gi.CHARGE_ID = fc.CHARGE_ID
+
+2013-01-28 讨论  流程优化
+1、取消是否新装，替换成“是否活动用户”，如果“是”--》活动名称激活，选择对应活动（0元购、免费升速、账号增值）。如果“否”或者不选择--》不激活。
+当选择用户参加活动后，后台进行查询，查询此用户有哪些活动的权限，显示在软件中。
+3、身份证号查询。done
+4、带宽查询。
+5、包年包月包季即时查询。
+6、定额部分，需要研究。
+
+步骤：
+前端添加：
+1、在添加用户信息中，餐型备注上方添加“餐型类别”，“带宽”，提交时将这两个字段和餐型备注合并保存到CX_NOTE字段。
+2、添加收费信息，“套餐名称”改为“餐型类别”，添加“带宽”，这两个字段拼接成套餐名称存在GTM_FRONT_CHARGE表中ACT_SUB_ID。
+然后修改用户信息表中CX_NOTE字段。先查询--》分割CXNOTE--》拼接新字符串--》保存。
+查询使用SQL LIKE查询。
+3、支付方式：支票支付。
+查询部分：
+1、按带宽查询：读取DIWAY带宽类型。
+2、按包年包月包季...查询，SQL  LIKE.
+3、身份证号查询。
+加字段：
+1、参加活动内容：替换活动备注。
+2、发票录入。
+调整：
+1、用户信息表：位置调整。账号姓名地址手机号到期时间。 done
+2、添加收费信息：收费类别，模糊查询，用编号前缀。
+
+
+
+
+表功能：
+gtm_gg_state:光改情况表
+gtm_cat_type:光猫类型
+tbl_users:diway用户表1
+tbl_usersinfo：diway用户表2
+tbl_isplist:餐型
+tbl_distlist:地域
+GTM_MAINFORM_INFO:系统主表
+GTM_BUSINESS_INFO:营业厅
+GTM_CONTRACT:合同信息
+
+新建表：
+原网络性质:GTM_OLDNET_PROP
+用户性质:GTM_USER_PROP
+网络性质:GTM_NET_PROP
+
+GTM_MAINFORM_INFO主表添加字段：
+原网络性质：OLDNETPROP
+用户性质：USERPROP
+网络性质：NETPROP
+收款人：PAYEE
+接待人：ADMIT
+报装人电话：diway提取
+使用人电话：USERMOBILE
+固话：USERPHONE
+邮箱：USEREMAIL
+是否微信用户：WEIXIN
+========================
+mf_payee
+mf_admit
+mf_user_mobile
+mf_user_phone
+
+onp.onet_prop_value,up.user_prop_value,np.net_prop_value,
+gmf.oldnet_prop_id,gmf.user_prop_id,gmf.net_prop,
+
+mf_onet_prop
+mf_user_prop
+mf_net_prop
+mf_weixin
+----------------------------
+select gg.gg_name,gmf.redate,cat.cat_name,gmf.cxnote,gmf.hdnote,gmf.sbnote,gmf.zhnote,gmf.tsnote,gmf.isit,gmf.opt_usetime,bi.name,tu.susername,tui.srealname,ti.sispname,gmf.dfirstdate,tu.doverdate,tu.sfeephone,gmf.group_id,gmf.leaflet_no,tui.stele,tui.semail,gmf.house_type_id,gmf.line_type_id,gmf.save_admin,gmf.save_time,gc.contract_name
+select gg.gg_name,gmf.redate,cat.cat_name,gmf.cxnote,gmf.hdnote,gmf.sbnote,gmf.zhnote,gmf.tsnote,gmf.isit,gmf.opt_usetime,bi.name,gi.susername,tui.srealname,ti.sispname,gmf.dfirstdate,gi.doverdate,gi.sfeephone,gmf.group_id,gmf.leaflet_no,tui.stele,tui.semail,gmf.house_type_id,gmf.line_type_id,gmf.save_admin,gmf.save_time,gc.contract_name
+select gg.gg_name,gmf.redate,cat.cat_name,gmf.cxnote,gmf.hdnote,g
+
+mf.sbnote,gmf.zhnote,gmf.tsnote,gmf.isit,gmf.opt_usetime,bi.name,tu.susername,tui.srealname,ti.sispname,gmf.dfirstdate,tu.doverdate,tu.sfeephone,gmf.group_id,gmf.leaflet_no,tui.stele,tui.semail,gmf.house_type_id,gmf.line_type_id,gmf.save_admin,gmf.save_time,gc.contract_name,gmf.oldnet_prop_id,gmf.user_prop_id,gmf.net_prop,gmf.payee,gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin from gtm_net_prop np,gtm_oldnet_prop onp,gtm_user_prop up,gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td,GTM_MAINFORM_INFO gmf,GTM_BUSINESS_INFO bi,gtm_contract gc where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername and tu.susername=gmf.username and tu.iispid=ti.iispid and tu.idistid=td.idistid and gmf.contract_id=gc.contract_id and gmf.department_id=bi.id
+
+                               
+SELECT
+	a.ucCallerNumber,
+	a.dwConversationTime,
+	b.callAttribute
+FROM
+	tbl_billInfo201301 a,
+	tbl_callattribute b
+WHERE
+	a.fCallFee > 0 and a.ucBillAttribute=b.number and b.[language]='zh_CN';
+
+
+AP经纬度  名字  地址  说明
+
+选择最近维修人员：参数：用户账号，  返回 片区负责人信息。
+营业厅具体信息  地址  电话  经纬度  
+技术具体信息  姓名 电话  工号  所属

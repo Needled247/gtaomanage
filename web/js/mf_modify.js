@@ -30,7 +30,7 @@
                         id: 'mf_modify_user',
                         name: 'mf_modify_user',
                         width: 200,
-                        allowBlank: false,
+                        allowBlank: true,
                         blankText: '请输入用户账号',
                         fieldLabel: '用户账号',
                         labelWidth: 60,
@@ -88,13 +88,12 @@
                                         Ext.getCmp('mf_retime').setValue(result.mf_retime);
                                         Ext.getCmp('mf_gm').setRawValue(result.mf_gm);
                                         Ext.getCmp('mf_gg').setRawValue(result.mf_gg);
-                                        Ext.getCmp('mf_cxnote').setValue(result.mf_cxnote);
+                                        Ext.getCmp('mf_real_quota').setValue(result.mf_real_quota);
+                                        Ext.getCmp('mf_real_bandwidth').setValue(result.mf_real_bandwidth);
                                         Ext.getCmp('mf_hdnote').setValue(result.mf_hdnote);
                                         Ext.getCmp('mf_sbnote').setValue(result.mf_sbnote);
                                         Ext.getCmp('mf_zhnote').setValue(result.mf_zhnote);
                                         Ext.getCmp('mf_tsnote').setValue(result.mf_tsnote);
-                                        Ext.getCmp('mf_payee').setValue(result.payee);
-                                        Ext.getCmp('mf_admit').setValue(result.admit);
                                         Ext.getCmp('mf_user_mobile').setValue(result.user_mobile);
                                         Ext.getCmp('mf_user_phone').setValue(result.user_phone);
                                         Ext.getCmp('mf_onet_prop').setRawValue(result.onet_prop_value);
@@ -105,6 +104,8 @@
                                         Ext.getCmp('mdf_letv_end').setValue(result.letv_end);
                                         Ext.getCmp('mdf_letv_mac').setValue(result.letv_mac);
                                         Ext.getCmp('mdf_it_end').setValue(result.it_end);
+                                        Ext.getCmp('mdf_act').setValue(result.action);
+                                        Ext.getCmp('mdf_presentation').setValue(result.presentation);
                                     }else{
                                         alert("您搜索的用户账号不存在");
                                         Ext.getCmp('mf_form').getForm().reset();
@@ -190,29 +191,92 @@
 	    				editable: false,
 	    				readOnly: true
 	            	},{
-                            xtype:'textfield',
-                            fieldLabel: '收款人',
-                            id: 'mf_payee',
-                            name: 'mf_payee',
+                            id: 'mf_real_quota',
+                            name: 'mf_real_quota',
                             margin: '10 30 10 30',
+                            xtype:'combobox',
+                            fieldLabel: '实际餐型',
                             labelWidth: 90,
+                            store:new Ext.data.SimpleStore(
+                                {
+                                    fields:['id','name'],
+                                    data:[['包年','包年'],['包月','包月'],['计时','计时']]
+                                }),
+                            queryMode:'local',
                             width: 210,
-                            value: '',
+                            valueField:'id',
+                            displayField:'name',
                             allowBlank: false,
-                            blankText: '请填写收款人',
-                            editable: true
+                            blankText: '实际餐型',
+                            editable: false
                         },{
-                            xtype:'textfield',
-                            fieldLabel: '接待人',
-                            id: 'mf_admit',
-                            name: 'mf_admit',
+                            id: 'mf_real_bandwidth',
+                            name: 'mf_real_bandwidth',
                             margin: '10 30 10 30',
+                            xtype:'combobox',
+                            fieldLabel: '实际带宽',
+                            labelWidth: 90,
+                            store:new Ext.data.SimpleStore(
+                                {
+                                    fields:['id','name'],
+                                    data:[['2M','2M'],['4M','4M'],['10M','10M'],['20M','20M'],['50M','50M'],['100M','100M']]
+                                }),
+                            queryMode:'local',
+                            width: 210,
+                            valueField:'id',
+                            displayField:'name',
+                            allowBlank: false,
+                            blankText: '实际带宽',
+                            editable: false
+                        },{
+                            id: 'mdf_act',
+                            name: 'mdf_act',
+                            xtype:'combobox',
+                            fieldLabel: '活动名称',
+                            margin: '10 30 10 30',
+                            store: Ext.data.StoreManager.lookup('huodong'),
                             labelWidth: 90,
                             width: 210,
-                            value: '',
+                            valueField:'id',
+                            displayField:'name',
                             allowBlank: false,
-                            blankText: '请填写接待人',
-                            editable: true
+                            blankText: '请选择活动名称',
+                            minChars:1,
+                            editable: false,
+                            value:''
+                        },{
+                            id: 'mdf_presentation',
+                            name: 'mdf_presentation',
+                            xtype:'combobox',
+                            fieldLabel: '赠送月份',
+                            margin: '10 30 10 30',
+                            store:new Ext.data.SimpleStore(
+                                {
+                                    fields:['id','name'],
+                                    data:
+                                        [
+                                            [0,'无'],
+                                            [1,'1'],
+                                            [2,'2'],
+                                            [3,'3'],
+                                            [4,'4'],
+                                            [5,'5'],
+                                            [6,'6'],
+                                            [7,'7'],
+                                            [8,'8'],
+                                            [9,'9'],
+                                            [10,'10']
+                                        ]
+                                }),
+                            labelWidth: 90,
+                            width: 210,
+                            valueField:'id',
+                            displayField:'name',
+                            allowBlank: false,
+                            blankText: '请选择赠送月份',
+                            minChars:1,
+                            editable: false,
+                            value:''
                         },{
                             xtype:'textfield',
                             fieldLabel: '使用人电话',
@@ -234,7 +298,7 @@
                             labelWidth: 90,
                             width: 210,
                             value: '',
-                            allowBlank: false,
+                            allowBlank: true,
                             blankText: '请填写固定电话',
                             editable: true
                         },{
@@ -292,8 +356,7 @@
                             width: 210,
                             value: '',
                             format: 'Y-m-d',
-                            allowBlank: false,
-                            blankText: '请选择乐视起始时间',
+                            allowBlank: true,
                             editable: true
                         },{
                             xtype:'datefield',
@@ -305,8 +368,7 @@
                             width: 210,
                             value: '',
                             format: 'Y-m-d',
-                            allowBlank: false,
-                            blankText: '请选择乐视到期时间',
+                            allowBlank: true,
                             editable: true
                         },{
                             xtype:'textfield',
@@ -317,8 +379,7 @@
                             labelWidth: 90,
                             width: 210,
                             value: '',
-                            allowBlank: false,
-                            blankText: '请填写乐视MAC地址',
+                            allowBlank: true,
                             editable: true
                         },{
 		            	xtype:'datefield',
@@ -386,8 +447,7 @@
                             width: 210,
                             value: '',
                             format: 'Y-m-d',
-                            allowBlank: false,
-                            blankText: '请选择IT卡到期时间',
+                            allowBlank: true,
                             editable: true
                         },{
                             id: 'mf_weixin',
@@ -541,23 +601,6 @@
     				editable: false
             	},{
 	                xtype:'textarea',
-	                fieldLabel: '餐型备注',
-	                id: 'mf_cxnote',
-	                name: 'mf_cxnote',
-	                colspan:2,
-	                rows: 3,
-	                margin: '10 30 10 30',
-	                labelWidth: 90,
-	                width: 480,
-	                value:'',
-	                maxLength: 150,
-		            enforceMaxLength: true
-					//,
-	                //regex: /(?![^.]*')^[^.]*$/,
-		            //regexText: '字符串中不能包含单引号'
-		            
-            	},{
-	                xtype:'textarea',
 	                fieldLabel: '活动备注',
 	                id: 'mf_hdnote',
 	                name: 'mf_hdnote',
@@ -664,12 +707,15 @@
                                 Ext.getCmp('mf_user_prop').setValue(up.get('id'));
                                 var wx=Ext.getCmp('mf_weixin').getStore().findRecord('name',Ext.getCmp('mf_weixin').getRawValue());
                                 Ext.getCmp('mf_weixin').setValue(wx.get('id'));
+                                var as=Ext.data.StoreManager.lookup('huodong').findRecord('name',Ext.getCmp('mdf_act').getRawValue());
+                                Ext.getCmp('mdf_act').setValue(as.get('id'));
                                 var mf_hetong=Ext.data.StoreManager.lookup('hetong').findRecord('name',Ext.getCmp('mf_hetong').getRawValue(),0,false,true,true);
         						if(mf_hetong==null){
         							alert('您输入的合同名称不正确');
         						}else{
         							Ext.getCmp('mf_hetong').setValue(mf_hetong.get('id'));
-        							var changedStr='';
+        							var changedStr='\"修改\":\"'+Ext.getCmp('mf_user').getValue()+"\"";
+                                    /*
 		        						var r=Ext.getCmp('cg_A').getSelectionModel().getLastSelected();
 		        						if(Ext.getCmp('mf_futime').getRawValue()!=r.get('starttime')){
 		        							changedStr=changedStr+'<font color="royalblue">'+Ext.getCmp('mf_futime').fieldLabel+' : </font>'+Ext.getCmp('mf_futime').getRawValue()+'; ';
@@ -714,10 +760,6 @@
 		        						if(Ext.getCmp('mf_gg').getRawValue()!=r.get('mf_gg')){
 		        							r.set('mf_gg',Ext.getCmp('mf_gg').getRawValue());
 		        						}
-		        						if(Ext.getCmp('mf_cxnote').getValue().replace(/\r|\n/g,' ').replace(/'/g,'')!=r.get('mf_cxnote')){
-		        							changedStr=changedStr+'<font color="royalblue">'+Ext.getCmp('mf_cxnote').fieldLabel+' : </font>'+Ext.getCmp('mf_cxnote').getValue().replace(/\r|\n/g,' ').replace(/'/g,'')+'; ';
-		        							r.set('mf_cxnote',Ext.getCmp('mf_cxnote').getValue().replace(/\r|\n/g,' ').replace(/'/g,''));
-		        						}
 		        						if(Ext.getCmp('mf_hdnote').getValue().replace(/\r|\n/g,' ').replace(/'/g,'')!=r.get('mf_hdnote')){
 		        							changedStr=changedStr+'<font color="royalblue">'+Ext.getCmp('mf_hdnote').fieldLabel+' : </font>'+Ext.getCmp('mf_hdnote').getValue().replace(/\r|\n/g,' ').replace(/'/g,'')+'; ';
 		        							r.set('mf_hdnote',Ext.getCmp('mf_hdnote').getValue().replace(/\r|\n/g,' ').replace(/'/g,''));
@@ -738,11 +780,23 @@
 //		        							alert('您没有修改任何数据');
 //		        							return;
 //		        						}else{
+                                     */
 		        							Ext.getCmp('changedStr').setValue(Ext.getCmp('mf_modify').title+' [ '+changedStr+']');
 	        								Ext.getCmp('cg_A').getView().refresh();	        								
 //		        						}
         							form.submit({
-					                	url: 'save_mainform.jsp'				                    	
+					                	url: 'save_mainform.jsp',
+                                        method : 'POST',
+                                        waitTitle : "提示",
+                                        waitMsg : '正在提交数据，请稍后 ……',
+                                        success : function(form, action) {
+                                            Ext.Msg.alert('操作结果',action.result.msg);
+                                            this.close();
+                                        },
+                                        failure : function(form, action) {
+                                            Ext.Msg.alert('操作结果', action.result.msg);
+                                            this.close();
+                                        }
 					                });
 	        						Ext.getCmp('mf_modify').close();
         						}

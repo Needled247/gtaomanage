@@ -10,6 +10,77 @@
       <servlet-name>QuartzInit</servlet-name>
       <url-pattern>/QuartzInit</url-pattern>
   </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getChartInfo</servlet-name>
+        <servlet-class>servlet.getChartInfo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getChartInfo</servlet-name>
+        <url-pattern>/getChartInfo</url-pattern>
+        <url-pattern>/gtaomanage/getChartInfo</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getMainChartDetail</servlet-name>
+        <servlet-class>servlet.getMainChartDetail</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getMainChartDetail</servlet-name>
+        <url-pattern>/getMainChartDetail</url-pattern>
+        <url-pattern>/gtaomanage/getMainChartDetail</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getDetailTableInfo</servlet-name>
+        <servlet-class>servlet.getDetailTableInfo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getDetailTableInfo</servlet-name>
+        <url-pattern>/getDetailTableInfo</url-pattern>
+        <url-pattern>/gtaomanage/getDetailTableInfo</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getUserMonthChart</servlet-name>
+        <servlet-class>servlet.getUserMonthChart</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getUserMonthChart</servlet-name>
+        <url-pattern>/getUserMonthChart</url-pattern>
+        <url-pattern>/gtaomanage/getUserMonthChart</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getMonthTotalUserChart</servlet-name>
+        <servlet-class>servlet.getMonthTotalUserChart</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getMonthTotalUserChart</servlet-name>
+        <url-pattern>/getMonthTotalUserChart</url-pattern>
+        <url-pattern>/gtaomanage/getMonthTotalUserChart</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>BusinessStationQuotaServlet</servlet-name>
+        <servlet-class>servlet.BusinessStationQuotaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BusinessStationQuotaServlet</servlet-name>
+        <url-pattern>/BusinessStationQuotaServlet</url-pattern>
+        <url-pattern>/gtaomanage/BusinessStationQuotaServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AreaQuotaServlet</servlet-name>
+        <servlet-class>servlet.AreaQuotaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AreaQuotaServlet</servlet-name>
+        <url-pattern>/AreaQuotaServlet</url-pattern>
+        <url-pattern>/gtaomanage/AreaQuotaServlet</url-pattern>
+    </servlet-mapping>
+
   <welcome-file-list>
     <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>

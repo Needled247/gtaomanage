@@ -70,13 +70,13 @@
 	        							Ext.getCmp('mf_retime').setValue(r.get('mf_retime'));
 	        							Ext.getCmp('mf_gm').setRawValue(r.get('mf_gm'));
 	        							Ext.getCmp('mf_gg').setRawValue(r.get('mf_gg'));
-	        							Ext.getCmp('mf_cxnote').setValue(r.get('mf_cxnote'));
+                                        var arr = r.get('mf_cxnote').split(',');
+	        							Ext.getCmp('mf_real_quota').setValue(arr[0]);
+                                        Ext.getCmp('mf_real_bandwidth').setValue(arr[1]);
 	        							Ext.getCmp('mf_hdnote').setValue(r.get('mf_hdnote'));
 	        							Ext.getCmp('mf_sbnote').setValue(r.get('mf_sbnote'));
 	        							Ext.getCmp('mf_zhnote').setValue(r.get('mf_zhnote'));
 	        							Ext.getCmp('mf_tsnote').setValue(r.get('mf_tsnote'));
-                                        Ext.getCmp('mf_payee').setValue(r.get('payee'));
-                                        Ext.getCmp('mf_admit').setValue(r.get('admit'));
                                         Ext.getCmp('mf_user_mobile').setValue(r.get('user_mobile'));
                                         Ext.getCmp('mf_user_phone').setValue(r.get('user_phone'));
                                         Ext.getCmp('mf_onet_prop').setRawValue(r.get('onet_prop_value'));
@@ -87,6 +87,8 @@
                                         Ext.getCmp('mdf_letv_end').setValue(r.get('letv_end'));
                                         Ext.getCmp('mdf_letv_mac').setValue(r.get('letv_mac'));
                                         Ext.getCmp('mdf_it_end').setValue(r.get('it_end'));
+                                        Ext.getCmp('mdf_act').setRawValue(r.get('act_name'));
+                                        Ext.getCmp('mdf_presentation').setValue(r.get('presentation'));
 	        						}else{
                                         Ext.create('My.mf_modify');
                                         Ext.getCmp('mf_modify').setTitle('修改用户信息');
@@ -157,7 +159,7 @@
 											Ext.getCmp('base_query_mfA').add(Ext.create('My.mfA_north'));
 										}
 				                    }
-				            	  },{
+				            	  }/*,{
 				            		text: '其他餐型续费',
 				            		icon: '../../image/sq1.png',
 				            		handler: function() {
@@ -209,7 +211,7 @@
                                         Ext.getCmp('tt_end').hide();
                                         Ext.getCmp('tt_type').hide();
 				                    }
-				            	  },{
+				            	  }*/,{
                                 text: '铁通业务查询',
                                 icon: '../../image/sq1.png',
                                 handler: function() {
@@ -402,7 +404,8 @@
 	        						params['retime']=Ext.getCmp('re_time').getRawValue();
 	        						params['gm']=Ext.getCmp('mf_cat').getValue();
 	        						params['gg']=Ext.getCmp('mf_gg_state').getValue();
-	        						params['cxnote']=Ext.getCmp('cxnote').getValue();
+	        						params['real_quota']=Ext.getCmp('real_quota').getValue();
+                                    params['real_bandwidth']=Ext.getCmp('real_bandwidth').getValue();
 	        						params['hdnote']=Ext.getCmp('hdnote').getValue();
 	        						params['sbnote']=Ext.getCmp('sbnote').getValue();
 	        						params['zhnote']=Ext.getCmp('zhnote').getValue();
@@ -413,6 +416,7 @@
 									params['opt_time']=Ext.getCmp('opt_time').getRawValue();
                                     params['letv_start']=Ext.getCmp('letv_start').getRawValue();
                                     params['letv_end']=Ext.getCmp('letv_end').getRawValue();
+                                    params['scertno']=Ext.getCmp('scertno').getValue();
                                     params['letv_mac']=Ext.getCmp('letv_mac').getValue();
                                     params['it_end']=Ext.getCmp('mf_it_end').getRawValue();
                                     params['user_prop']=Ext.getCmp('user_prop').getValue();
@@ -422,9 +426,9 @@
                                     params['user_phone']=Ext.getCmp('user_phone').getValue();
                                     params['user_email']=Ext.getCmp('user_email').getValue();
                                     params['weixin']=Ext.getCmp('weixin').getValue();
-                                    params['payee']=Ext.getCmp('payee').getValue();
-                                    params['admit']=Ext.getCmp('admit').getValue();
                                     params['gm_mac']=Ext.getCmp('gm_mac').getValue();
+                                    params['action']=Ext.getCmp('mf_act').getValue();
+                                    params['presentation']=Ext.getCmp('mf_presentation').getValue();
 	        					}else if(Ext.getCmp('select_btn').getText()=='其他餐型续费'){	        						
 	        						if(!Ext.getCmp('de_type').isValid()){
 	        							return;
@@ -504,7 +508,8 @@
 	        					Ext.getCmp('re_time').reset();
 	        					Ext.getCmp('mf_cat').reset();
 	        					Ext.getCmp('mf_gg_state').reset();
-	        					Ext.getCmp('cxnote').reset();
+	        					Ext.getCmp('real_quota').reset();
+                                Ext.getCmp('real_bandwidth').reset();
 	        					Ext.getCmp('hdnote').reset();
 	        					Ext.getCmp('sbnote').reset();
 	        					Ext.getCmp('zhnote').reset();
@@ -521,6 +526,7 @@
                                 Ext.getCmp('letv_start').reset();
                                 Ext.getCmp('letv_end').reset();
                                 Ext.getCmp('letv_mac').reset();
+                                Ext.getCmp('scertno').reset();
                                 Ext.getCmp('gm_mac').reset();
                                 Ext.getCmp('user_prop').reset();
                                 Ext.getCmp('net_prop').reset();
@@ -529,6 +535,8 @@
                                 Ext.getCmp('user_phone').reset();
                                 Ext.getCmp('user_email').reset();
                                 Ext.getCmp('weixin').reset();
+                                Ext.getCmp('mf_act').reset();
+                                Ext.getCmp('mf_presentation').reset();
 	        				}
         				},
         				{
@@ -579,7 +587,16 @@
 	        						reqStr+='&retime='+params['retime'];
 	        						reqStr+='&gm='+params['gm'];
 	        						reqStr+='&gg='+params['gg'];
-	        						reqStr+='&cxnote='+encodeURI(encodeURI(params['cxnote']));
+                                    if(params['real_quota']==null){
+                                        reqStr+='&cxnote=';
+                                    }else{
+                                        reqStr+='&cxnote='+params['real_quota'];
+                                    }
+                                    if(params['real_bandwidth']==null){
+                                        reqStr+='&cxnote2=';
+                                    }else{
+                                        reqStr+='&cxnote2='+params['real_bandwidth'];
+                                    }
 	        						reqStr+='&hdnote='+encodeURI(encodeURI(params['hdnote']));
 	        						reqStr+='&sbnote='+encodeURI(encodeURI(params['sbnote']));
 	        						reqStr+='&zhnote='+encodeURI(encodeURI(params['zhnote']));
@@ -597,11 +614,15 @@
                                     reqStr+='&old_net_prop='+params['old_net_prop'];
                                     reqStr+='&user_mobile='+params['user_mobile'];
                                     reqStr+='&user_phone='+params['user_phone'];
-                                    reqStr+='&user_email='+encodeURI(encodeURI(params['user_email']));
+                                    if(params['user_email']==null){
+                                        reqStr+='&user_email=';
+                                    }else{
+                                        reqStr+='&user_email='+params['user_email'];
+                                    }
                                     reqStr+='&weixin='+params['weixin'];
-                                    reqStr+='&payee='+encodeURI(encodeURI(params['payee']));
-                                    reqStr+='&admit='+encodeURI(encodeURI(params['admit']));
                                     reqStr+='&gm_mac='+encodeURI(encodeURI(params['gm_mac']));
+                                    reqStr+='&action='+params['action'];
+                                    reqStr+='&presentation='+params['presentation'];
                                 }else if(Ext.getCmp('select_btn').getText()=='其他餐型续费'){
 	        						if(!Ext.getCmp('de_type').isValid()){
 	        							return;
@@ -631,8 +652,6 @@
 	        							reqStr+='&ml_type='+params['ml_type'];
 	        						}
 	        					}
-                                //TODO:铁通导出
-//	        					window.location.href="get_excel.jsp?"+reqStr;
 	        					window.open("get_excel.jsp?"+reqStr);
 	        				}
         				}

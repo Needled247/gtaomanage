@@ -22,7 +22,7 @@
 	String addr=request.getParameter("nofc_addr");
 	addr=new String(addr.getBytes("gbk"),"iso-8859-1");
 	String hetong_id=request.getParameter("nofc_hetong");
-	String receipt_id=request.getParameter("nofc_rid");
+	String receipt_id=request.getParameter("nofc_rid").trim();
 	receipt_id=new String(receipt_id.getBytes("gbk"),"iso-8859-1");
 	String pay_type_id=request.getParameter("nofc_pt");
 	String charge_type_id=request.getParameter("nofc_ct");
@@ -37,12 +37,27 @@
 	save_time="to_date('"+save_time+"','yyyy-mm-dd hh24:mi:ss')";
 	String charge_date=request.getParameter("nofc_date");
 	charge_date="to_date('"+charge_date+"','yyyy-mm-dd')";
+    String fapiao = request.getParameter("qc_rid");
+    String payee = new String(request.getParameter("qc_payee").getBytes("GBK"),"ISO-8859-1");
+    String admit = new String(request.getParameter("qc_admit").getBytes("GBK"),"ISO-8859-1");
+    String bankcard = "";
+    if(request.getParameter("qc_bank_card")!=null){
+        bankcard = request.getParameter("qc_bank_card").trim();
+    }
 	
 	String get_max_sql="select charge_id from gtm_nonuser_charge where rownum=1 order by charge_id desc";
 	int cid=1;
-	String sql_first="insert into gtm_nonuser_charge values("+bs_name+","+charge_date+",'"+rname+"','"+tel+"','"+addr+"','"+receipt_id+"',"+charge_type_id+","+charge_amount+",'"+note+"','"+true_name+"',"+save_time+",";
-	String sql_end=","+hetong_id+","+pay_type_id+")";
-	String update_sql="update gtm_nonuser_charge set bs_id="+bs_name+",realname='"+rname+"',tel='"+tel+"',addr='"+addr+"',receipt_id='"+receipt_id+"',charge_type_id="+charge_type_id+",charge_amount="+charge_amount+",note='"+note+"',contract_id="+hetong_id+",pay_type_id="+pay_type_id+" where charge_id="+charge_id;
+	String sql_first=
+    "insert into gtm_nonuser_charge (BS_ID,CHARGE_DATE,REALNAME,TEL,ADDR,RECEIPT_ID,CHARGE_TYPE_ID,CHARGE_AMOUNT," +
+    "NOTE,SAVE_ADMIN,SAVE_TIME,CHARGE_ID,CONTRACT_ID,PAY_TYPE_ID,FAPIAO,PAYEE,ADMIT,BANKCARD)VALUES" +
+    "("+bs_name+","+charge_date+",'"+rname+"','"+tel+"','"+addr+"','"+receipt_id+"',"+charge_type_id+","+charge_amount+
+    ",'"+note+"','"+true_name+"',"+save_time+",";
+	String sql_end=","+hetong_id+","+pay_type_id+",'"+fapiao+"','"+payee+"','"+admit+"','"+bankcard+"')";
+	String update_sql=
+    "update gtm_nonuser_charge set bs_id="+bs_name+",realname='"+rname+"',tel='"+tel+"',addr='"+addr+"'," +
+    "receipt_id='"+receipt_id+"',charge_type_id="+charge_type_id+",charge_amount="+charge_amount+",note='"+note+"'," +
+    "contract_id="+hetong_id+",pay_type_id="+pay_type_id+",fapiao='"+fapiao+"',payee='"+payee+"',admit='"+admit+"',bankcard='"+bankcard+"'" +
+    " where charge_id="+charge_id;
 	
 	String get_logmax_sql="select log_id from gtm_log where rownum=1 order by log_id desc";
 	int logId=1;
@@ -65,8 +80,9 @@
 		rs=st.executeQuery(get_max_sql);
 		if(rs.next()){
 			cid=rs.getInt("charge_id")+1;
-		}	
-		st.executeUpdate(sql_first+cid+sql_end);
+		}
+        System.out.println(sql_first+cid+sql_end);
+		st.executeUpdate(sql_first + cid + sql_end);
 		st.executeUpdate(sql_logadd_first+logId+sql_logadd_end+cid+"')");
 	}else{
 		st.executeUpdate(update_sql);

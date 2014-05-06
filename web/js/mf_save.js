@@ -189,29 +189,43 @@
 	    				editable: false,
 	    				readOnly: true
 	            	},{
-                        xtype:'textfield',
-                        fieldLabel: '收款人',
-                        id: 'mf_payee',
-                        name: 'mf_payee',
+                        id: 'mf_real_quota',
+                        name: 'mf_real_quota',
                         margin: '10 30 10 30',
+                        xtype:'combobox',
+                        fieldLabel: '实际餐型',
                         labelWidth: 90,
+                        store:new Ext.data.SimpleStore(
+                            {
+                                fields:['id','name'],
+                                data:[['包年','包年'],['包月','包月'],['计时','计时']]
+                            }),
+                        queryMode:'local',
                         width: 210,
-                        value: '',
+                        valueField:'id',
+                        displayField:'name',
                         allowBlank: false,
-                        blankText: '请填写收款人',
-                        editable: true
+                        blankText: '实际餐型',
+                        editable: false
                     },{
-                        xtype:'textfield',
-                        fieldLabel: '接待人',
-                        id: 'mf_admit',
-                        name: 'mf_admit',
+                        id: 'mf_real_bandwidth',
+                        name: 'mf_real_bandwidth',
                         margin: '10 30 10 30',
+                        xtype:'combobox',
+                        fieldLabel: '实际带宽',
                         labelWidth: 90,
+                        store:new Ext.data.SimpleStore(
+                            {
+                                fields:['id','name'],
+                                data:[['2M','2M'],['4M','4M'],['10M','10M'],['20M','20M'],['50M','50M'],['100M','100M']]
+                            }),
+                        queryMode:'local',
                         width: 210,
-                        value: '',
+                        valueField:'id',
+                        displayField:'name',
                         allowBlank: false,
-                        blankText: '请填写接待人',
-                        editable: true
+                        blankText: '实际带宽',
+                        editable: false
                     },{
                         xtype:'textfield',
                         fieldLabel: '使用人电话',
@@ -233,7 +247,6 @@
                         labelWidth: 90,
                         width: 210,
                         value: '',
-                        allowBlank: false,
                         blankText: '请填写固定电话',
                         editable: true
                     },{
@@ -553,22 +566,6 @@
     				editable: false
             	},{
 	                xtype:'textarea',
-	                fieldLabel: '餐型备注',
-	                id: 'mf_cxnote',
-	                name: 'mf_cxnote',
-	                colspan:2,
-	                rows: 3,
-	                margin: '10 30 10 30',
-	                labelWidth: 90,
-	                width: 480,
-	                value:'',
-	                maxLength: 150,
-		            enforceMaxLength: true
-					//,
-	                //regex: /(?![^.]*')^[^.]*$/,
-		            //regexText: '字符串中不能包含单引号'
-            	},{
-	                xtype:'textarea',
 	                fieldLabel: '活动备注',
 	                id: 'mf_hdnote',
 	                name: 'mf_hdnote',
@@ -687,14 +684,25 @@
 	        							changedStr=changedStr+'<font color="royalblue">'+Ext.getCmp('mf_hetong').fieldLabel+' : </font>'+Ext.getCmp('mf_hetong').getRawValue()+'; ';
 	        							changedStr=changedStr+'<font color="royalblue">'+Ext.getCmp('mf_retime').fieldLabel+' : </font>'+Ext.getCmp('mf_retime').getRawValue()+'; ';
 	        							changedStr=changedStr+'<font color="royalblue">'+Ext.getCmp('mf_gm').fieldLabel+' : </font>'+Ext.getCmp('mf_gm').getRawValue()+'; ';
-	        							changedStr=changedStr+'<font color="royalblue">'+Ext.getCmp('mf_cxnote').fieldLabel+' : </font>'+Ext.getCmp('mf_cxnote').getValue().replace(/\r|\n/g,' ').replace(/'/g,'')+'; ';
+	        							changedStr=changedStr+'<font color="royalblue">餐型备注 : </font>'+Ext.getCmp('mf_real_quota').getValue().replace(/\r|\n/g,' ').replace(/'/g,'')+Ext.getCmp('mf_real_bandwidth').getValue().replace(/\r|\n/g,' ').replace(/'/g,'')+'; ';
 	        							changedStr=changedStr+'<font color="royalblue">'+Ext.getCmp('mf_hdnote').fieldLabel+' : </font>'+Ext.getCmp('mf_hdnote').getValue().replace(/\r|\n/g,' ').replace(/'/g,'')+'; ';
 	        							changedStr=changedStr+'<font color="royalblue">'+Ext.getCmp('mf_sbnote').fieldLabel+' : </font>'+Ext.getCmp('mf_sbnote').getValue().replace(/\r|\n/g,' ').replace(/'/g,'')+'; ';
 	        							changedStr=changedStr+'<font color="royalblue">'+Ext.getCmp('mf_zhnote').fieldLabel+' : </font>'+Ext.getCmp('mf_zhnote').getValue().replace(/\r|\n/g,' ').replace(/'/g,'')+'; ';
 	        							changedStr=changedStr+'<font color="royalblue">'+Ext.getCmp('mf_tsnote').fieldLabel+' : </font>'+Ext.getCmp('mf_tsnote').getValue().replace(/\r|\n/g,' ').replace(/'/g,'')+'; ';
 	        							Ext.getCmp('changedStr').setValue(Ext.getCmp('mf_save').title+' [ '+changedStr+']');        								
         							form.submit({
-					                	url: 'save_mainform.jsp'				                    	
+					                	url: 'save_mainform.jsp'	,
+                                        method : 'POST',
+                                        waitTitle : "提示",
+                                        waitMsg : '正在提交数据，请稍后 ……',
+                                        success : function(form, action) {
+                                            Ext.Msg.alert('操作结果',action.result.msg);
+                                            this.close();
+                                        },
+                                        failure : function(form, action) {
+                                            Ext.Msg.alert('操作结果', action.result.msg);
+                                            this.close();
+                                        }
 					                });
         							Ext.getCmp('un').setValue(Ext.getCmp('mf_id').value);
 	        						Ext.getCmp('mf_save').close();	        						

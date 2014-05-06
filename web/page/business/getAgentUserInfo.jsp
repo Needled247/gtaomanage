@@ -10,7 +10,10 @@
 	String bsn=request.getParameter("bs_name");
 	String dwIsExist_sql="select count(*) from TBL_USERS u,TBL_DISTLIST dl,TBL_STATIONLIST sl where u.idistid=dl.idistid and dl.istationid=sl.istationid and u.SUSERNAME='"+username+"' and u.ISTATUS<>-9";
 	String mfIsExist_sql="select count(*) from GTM_MAINFORM_INFO where username='"+username+"'";
-	String getUserinfo_sql="SELECT u.SUSERNAME,ui.SREALNAME,i.SISPNAME,u.SFEEPHONE,sl.istationid FROM TBL_USERS u,TBL_USERSINFO ui,TBL_ISPLIST i,TBL_DISTLIST dl,TBL_STATIONLIST sl WHERE u.SUSERNAME=ui.SUSERNAME and u.IISPID=i.IISPID and u.idistid=dl.idistid and dl.istationid=sl.istationid and u.SUSERNAME='"+username+"'";
+	String getUserinfo_sql=
+    "SELECT u.SUSERNAME,ui.SREALNAME,i.SISPNAME,u.SFEEPHONE,sl.istationid " +
+    "FROM TBL_USERS u,TBL_USERSINFO ui,TBL_ISPLIST i,TBL_DISTLIST dl,TBL_STATIONLIST sl " +
+    "WHERE u.SUSERNAME=ui.SUSERNAME and u.IISPID=i.IISPID and u.idistid=dl.idistid and dl.istationid=sl.istationid and u.SUSERNAME='"+username+"'";
 	String getBI_sql="select name from GTM_BUSINESS_INFO where id=";
 	String getGluser_sql="select * from GTM_MAINFORM_INFO gmf,gtm_cat_type ct,gtm_contract gc where gmf.contract_id=gc.contract_id and gmf.cat_type_id=ct.cat_id and username='"+gluser+"'";
 

@@ -16,9 +16,9 @@
 	sdf.setTimeZone(timeZoneChina);
 	String save_time=sdf.format(new Date());
 	save_time="to_date('"+save_time+"','yyyy-mm-dd hh24:mi:ss')";
-	String update_del="update gtm_front_charge set save_time="+save_time+",save_admin='"+true_name+"' where charge_id="+charge_id;
-	String to_del="insert into gtm_front_charge_del select * from gtm_front_charge where charge_id="+charge_id;
-	String sql="delete from gtm_front_charge where charge_id="+charge_id;
+	String update_del="update gtm_front_charge_new set save_time="+save_time+",save_admin='"+true_name+"' where charge_id="+charge_id;
+	String to_del="insert into gtm_front_charge_del select * from gtm_front_charge_new where charge_id="+charge_id;
+	String sql="delete from gtm_front_charge_new where charge_id="+charge_id;
 	String del_log="delete from gtm_log where list_name='"+list_name+"' and op_id='"+charge_id+"'";
 	
 	Connection conn=null;
@@ -32,7 +32,14 @@
 	st.executeUpdate(to_del);	
 	int rs_count=st.executeUpdate(sql);
 	st.executeUpdate(del_log);
-	
+	if(rs_count>0){
+        out.print("操作成功！");
+    }
+    else {
+        out.print("操作失败，请联系系统管理员...");
+    }
+    out.flush();
+    out.close();
 	st.close();
 	conn.close();
 	

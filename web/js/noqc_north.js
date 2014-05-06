@@ -227,7 +227,78 @@
 			            	}
 			            }
 			        }
-             }],
+             },{
+                        xtype:'textfield',
+                        fieldLabel: '发票号码',
+                        id: 'nq_fapiao',
+                        name: 'nq_fapiao',
+                        margin: '5 0 10 30',
+                        value: '',
+                        labelWidth: 60,
+                        width: 190,
+                        enforceMaxLength: true,
+                        maxLength: 20,
+                        listeners:{
+                            specialkey:function(f,e){
+                                if (e.getKey() == e.ENTER) {
+                                    document.getElementById('qbtn').click();
+                                }
+                            }
+                        }
+                    },{
+                        xtype:'textfield',
+                        fieldLabel: '收款人',
+                        id: 'nq_payee',
+                        name: 'nq_payee',
+                        margin: '5 0 10 30',
+                        value: '',
+                        labelWidth: 60,
+                        width: 190,
+                        enforceMaxLength: true,
+                        maxLength: 20,
+                        listeners:{
+                            specialkey:function(f,e){
+                                if (e.getKey() == e.ENTER) {
+                                    document.getElementById('qbtn').click();
+                                }
+                            }
+                        }
+                    },{
+                        xtype:'textfield',
+                        fieldLabel: '接待人',
+                        id: 'nq_admit',
+                        name: 'nq_admit',
+                        margin: '5 0 10 30',
+                        value: '',
+                        labelWidth: 60,
+                        width: 190,
+                        enforceMaxLength: true,
+                        maxLength: 20,
+                        listeners:{
+                            specialkey:function(f,e){
+                                if (e.getKey() == e.ENTER) {
+                                    document.getElementById('qbtn').click();
+                                }
+                            }
+                        }
+                    },{
+                        xtype:'textfield',
+                        fieldLabel: '银行卡号',
+                        id: 'nq_bank_card',
+                        name: 'nq_bank_card',
+                        margin: '5 0 10 30',
+                        labelWidth: 60,
+                        width: 190,
+                        enforceMaxLength: true,
+                        maxLength: 16,
+                        listeners:{
+                            specialkey:function(f,e){
+                                if (e.getKey() == e.ENTER) {
+                                    document.getElementById('qbtn').click();
+                                }
+                            }
+                    }
+            }],
 
             tbar: Ext.create('Ext.toolbar.Toolbar',{
                 id:'qc_tb',
@@ -288,6 +359,11 @@
                                                 Ext.getCmp('nofc_tel').setValue(r.get('tel'));
                                                 Ext.getCmp('nofc_addr').setValue(r.get('addr'));
                                                 Ext.getCmp('nofc_hetong').setValue(r.get('contract_name'));
+                                                Ext.getCmp('qc_rid').setValue(r.get('fapiao'));
+                                                Ext.getCmp('qc_payee').setValue(r.get('payee'));
+                                                Ext.getCmp('qc_admit').setValue(r.get('admit'));
+                                                Ext.getCmp('qc_bank_card').setValue(r.get('bankcard'));
+                                                Ext.getCmp('qc_bank_card').setDisabled(false);
                                             }else{
                                                 alert('很抱歉，您只能修改当月收费信息');
                                             }
@@ -348,6 +424,10 @@
                             params['addr']=Ext.getCmp('addr').getValue();
                             params['save_admin']=Ext.getCmp('save_admin').getValue();
                             params['tel']=Ext.getCmp('tel').getValue();
+                            params['fapiao'] = Ext.getCmp('nq_fapiao').getValue();
+                            params['payee'] = Ext.getCmp('nq_payee').getValue();
+                            params['admit'] = Ext.getCmp('nq_admit').getValue();
+                            params['bankcard'] = Ext.getCmp('nq_bank_card').getValue();
                             Ext.getCmp('noqc_grid').getStore().loadPage(1);
                         }
                     },
@@ -372,6 +452,10 @@
                             Ext.getCmp('addr').reset();
                             Ext.getCmp('save_admin').reset();
                             Ext.getCmp('tel').reset();
+                            Ext.getCmp('nq_fapiao').reset();
+                            Ext.getCmp('nq_payee').reset();
+                            Ext.getCmp('nq_admit').reset();
+                            Ext.getCmp('nq_bank_card').reset();
                         }
                     },
                     {
@@ -403,6 +487,10 @@
                             reqStr+='&addr='+encodeURI(encodeURI(params['addr']));
                             reqStr+='&save_admin='+encodeURI(encodeURI(params['save_admin']));
                             reqStr+='&tel='+encodeURI(encodeURI(params['tel']));
+                            reqStr+='&fapiao='+encodeURI(encodeURI(params['fapiao']));
+                            reqStr+='&payee='+encodeURI(encodeURI(params['payee']));
+                            reqStr+='&admit='+encodeURI(encodeURI(params['admit']));
+                            reqStr+='&bankcard='+encodeURI(encodeURI(params['bankcard']));
 //	        			window.location.href="get_qc_excel.jsp?"+reqStr;
                             window.open("get_noqc_excel.jsp?"+reqStr);
                         }

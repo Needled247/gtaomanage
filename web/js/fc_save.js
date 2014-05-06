@@ -31,7 +31,7 @@
                         id: 'fc_save_userId',
                         name: 'fc_save_userId',
                         width: 200,
-                        allowBlank: false,
+                        allowBlank: true,
                         blankText: '请输入用户账号',
                         fieldLabel: '用户账号',
                         labelWidth: 60,
@@ -95,6 +95,7 @@
                                 }
                                 else{
                                     gm.setDisabled(true);
+                                    gm.setValue('');
                                 }
                             }
                         }
@@ -114,6 +115,7 @@
                                 }
                                 else{
                                     setup.setDisabled(true);
+                                    setup.setValue('');
                                 }
                             }
                         }
@@ -141,61 +143,98 @@
 		                readOnly:true,
 		                submitValue: false
 			        },{
-		            	xtype:'textfield',
-		                fieldLabel: '收费日期',
-		                id: 'fc_date',
-		                name: 'fc_date',
-		                margin: '10 30 10 30',
-		              	value: Ext.Date.format(new Date(), 'Y-m-d'),
-		                labelWidth: 90,
-		                width: 420,
-		                readOnly: true
-	            	},{
-		            id: 'fc_bs',
-			        name: 'fc_bs',
-			        xtype:'combobox',
-			        margin: '10 30 10 30',
-			        fieldLabel:'选择营业厅',
-			        store: Ext.data.StoreManager.lookup('bs_name'),
-			        labelWidth: 90,
-					width: 420,
-					valueField:'id',
-			      	displayField:'name',
-					editable: false,
-					readOnly: true,
-					queryMode:'local',
-					allowBlank: false,
-					blankText: '请选择营业厅'
-		        },{
-	            	xtype:'textfield',
-	                fieldLabel: '用户账号',
-	                id: 'fc_user',
-	                name: 'fc_user',
-	                margin: '10 30 10 30',
-//	              	value: '',
-	                labelWidth: 90,
-//					allowBlank: false,
-//					blankText: '请输入用户账号',
-					enforceMaxLength: true,
-	                maxLength: 30,
-	                width: 420,
-	                readOnly: true
-            	},{
-	            	xtype:'textfield',
-	                fieldLabel: '收据号码',
-	                id: 'fc_rid',
-	                name: 'fc_rid',
-	                margin: '10 30 10 30',
-//	              	value: '',
-	                labelWidth: 90,
-					allowBlank: false,
-					blankText: '请输入收据号码',
-					enforceMaxLength: true,
-	                maxLength: 40,
-	                width: 420,
-	                regex: /(?!.*')^.*$/,
-		            regexText: '字符串中不能包含单引号'
-            	},{
+                        xtype:'textfield',
+                        fieldLabel: '收费日期',
+                        id: 'fc_date',
+                        name: 'fc_date',
+                        margin: '10 30 10 30',
+                        value: Ext.Date.format(new Date(), 'Y-m-d'),
+                        labelWidth: 90,
+                        width: 420,
+                        readOnly: true
+                    },{
+                        id: 'fc_bs',
+                        name: 'fc_bs',
+                        xtype:'combobox',
+                        margin: '10 30 10 30',
+                        fieldLabel:'选择营业厅',
+                        store: Ext.data.StoreManager.lookup('bs_name'),
+                        labelWidth: 90,
+                        width: 420,
+                        valueField:'id',
+                        displayField:'name',
+                        editable: false,
+                        readOnly: true,
+                        queryMode:'local',
+                        allowBlank: false,
+                        blankText: '请选择营业厅'
+		           },{
+                        xtype:'textfield',
+                        fieldLabel: '用户账号',
+                        id: 'fc_user',
+                        name: 'fc_user',
+                        margin: '10 30 10 30',
+                        labelWidth: 90,
+                        enforceMaxLength: true,
+                        maxLength: 30,
+                        width: 420,
+                        readOnly: true
+                    },{
+                        xtype:'textfield',
+                        fieldLabel: '收款人',
+                        id: 'fc_payee',
+                        name: 'fc_payee',
+                        margin: '10 30 10 30',
+                        labelWidth: 90,
+                        enforceMaxLength: true,
+                        maxLength: 30,
+                        width: 420,
+                        editable:true
+                    },{
+                        xtype:'textfield',
+                        fieldLabel: '接待人',
+                        id: 'fc_admit',
+                        name: 'fc_admit',
+                        margin: '10 30 10 30',
+                        labelWidth: 90,
+                        enforceMaxLength: true,
+                        maxLength: 30,
+                        width: 420,
+                        editable:true
+                    },
+                    //收据，收款人，接待人，餐型，带宽，银行卡号，网银订单号，支付方式+代扣
+                    {
+                        id: 'fc_rid',
+                        name: 'fc_rid',
+                        xtype:'combobox',
+                        fieldLabel: '发票号',
+                        store: Ext.data.StoreManager.lookup('invoice_store'),
+                        margin: '10 30 10 30',
+                        labelWidth: 90,
+                        width: 420,
+                        valueField:'id',
+                        displayField:'name',
+                        allowBlank: true,
+                        blankText: '请输入发票号',
+                        minChars:1,
+                        queryMode:'local',
+                        editable: true,
+                        value:''
+                    },{
+                        id: 'fc_shouju',
+                        name: 'fc_shouju',
+                        xtype:'textfield',
+                        fieldLabel: '收据号',
+                        margin: '10 30 10 30',
+                        labelWidth: 90,
+                        width: 420,
+                        valueField:'id',
+                        allowBlank: true,
+                        minChars:1,
+                        queryMode:'local',
+                        editable: true,
+                        value:''
+                    },{
             		id: 'fc_pt',
 					name: 'fc_pt',
 					xtype:'combobox',
@@ -210,7 +249,28 @@
 					blankText: '请选择支付方式',
 					minChars:1,
 					queryMode:'local',
-					editable: false
+					editable: false,
+                    listeners:{
+                        select:function(r){
+                            var temp = Ext.getCmp('fc_pt').getRawValue();
+                            if(temp=='固定POS支付'||temp=='移动POS支付'||temp=='代扣'){
+                                Ext.getCmp('bank_card').setDisabled(false);
+                                Ext.getCmp('netpay_id').setDisabled(true);
+                                Ext.getCmp('netpay_id').setValue('');
+                            }
+                            else if(temp=='银联网上支付'||temp=='快钱网上支付'){
+                                Ext.getCmp('netpay_id').setDisabled(false);
+                                Ext.getCmp('bank_card').setDisabled(true);
+                                Ext.getCmp('bank_card').setValue('');
+                            }
+                            else{
+                                Ext.getCmp('netpay_id').setDisabled(true);
+                                Ext.getCmp('bank_card').setDisabled(true);
+                                Ext.getCmp('bank_card').setValue('');
+                                Ext.getCmp('netpay_id').setValue('');
+                            }
+                        }
+                    }
             	},{
             		id: 'fc_ct',
 					name: 'fc_ct',
@@ -226,7 +286,18 @@
 					blankText: '请选择收费类别',
 					minChars:1,
 					queryMode:'local',
-					editable: false
+					editable: false,
+                    listeners:{
+                        select:function(r){
+                            var temp=parseInt(Ext.data.StoreManager.lookup('charge_type').findRecord('name',Ext.getCmp('fc_ct').getRawValue()).get('id'));
+                            if(temp>=2&&temp<=9){
+                                Ext.getCmp('fc_quota').setDisabled(false);
+                                Ext.getCmp('fc_quota').allowBlank=false;
+                                Ext.getCmp('fc_bw').setDisabled(false);
+                                Ext.getCmp('fc_bw').allowBlank=false;
+                            }
+                        }
+                    }
             	},{
 	            	xtype:'textfield',
 	                fieldLabel: '收费金额',
@@ -241,8 +312,27 @@
 	                maxLength: 12,
 	                regex: /(^-?\d{1,8}$)|(^-?\d{1,8}\.\d{1,2}$)/,
 		            regexText: '请输入正确的收费金额'
-            	},
-                {
+            	},{
+                    xtype:'textfield',
+                    fieldLabel: '银行卡号',
+                    id: 'bank_card',
+                    name: 'bank_card',
+                    margin: '10 30 10 30',
+                    labelWidth: 90,
+                    width: 420,
+                    disabled:true,
+                    enforceMaxLength: true
+                },{
+                    xtype:'textfield',
+                    fieldLabel: '网银订单号',
+                    id: 'netpay_id',
+                    name: 'netpay_id',
+                    margin: '10 30 10 30',
+                    labelWidth: 90,
+                    width: 420,
+                    disabled:true,
+                    enforceMaxLength: true
+                },{
                     xtype:'textfield',
                     fieldLabel: '光猫款',
                     id: 'gm_cash',
@@ -292,52 +382,98 @@
 					blankText: '请选择是否新装用户',
 					editable: false
             	},{
-            		id: 'fc_act',
-					name: 'fc_act',
-					xtype:'combobox',
-	                fieldLabel: '活动名称',
-	                store: Ext.data.StoreManager.lookup('huodong'),
-	                margin: '10 30 10 30',
-	                labelWidth: 90,
-	                width: 420,	                
-	                valueField:'id',
-					displayField:'name',
-					allowBlank: false,
-					blankText: '请选择活动名称',
-					minChars:1,
-					queryMode:'local',
-					editable: false,
-					//value:'不选择',
-					value:'',
-					submitValue: false,
-					listeners:{
-						select : function(c,rec){
-							Ext.getCmp('fc_actsub').setValue('');
-							Ext.data.StoreManager.lookup('huodong_sub').filterBy(function(record,id){
-									var text = record.get('huodong_id');
-									return (text==rec[0].get('id'));
-							});							
-						}
-	            	}
-            	},{
             		id: 'fc_actsub',
 					name: 'fc_actsub',
 					xtype:'combobox',
-	                fieldLabel: '套餐名称',
-	                store: Ext.data.StoreManager.lookup('huodong_sub'),
+	                fieldLabel: '活动名称',
 	                margin: '10 30 10 30',
+                    store: Ext.data.StoreManager.lookup('huodong'),
 	                labelWidth: 90,
 	                width: 420,
 	                valueField:'id',
 					displayField:'name',
 					allowBlank: false,
-					blankText: '请选择套餐名称',
+					blankText: '请选择活动名称',
 					minChars:1,
-					queryMode:'local',
 					editable: false,
-					//value:'不选择',
 					value:''
             	},{
+                    id: 'fc_presentation',
+                    name: 'fc_presentation',
+                    xtype:'combobox',
+                    fieldLabel: '赠送月份',
+                    margin: '10 30 10 30',
+                    store:new Ext.data.SimpleStore(
+                        {
+                            fields:['id','name'],
+                            data:
+                                [
+                                    [0,'0'],
+                                    [1,'1'],
+                                    [2,'2'],
+                                    [3,'3'],
+                                    [4,'4'],
+                                    [5,'5'],
+                                    [6,'6'],
+                                    [7,'7'],
+                                    [8,'8'],
+                                    [9,'9'],
+                                    [10,'10']
+                                ]
+                        }),
+                    labelWidth: 90,
+                    width: 420,
+                    valueField:'id',
+                    displayField:'name',
+                    allowBlank: false,
+                    blankText: '请选择赠送月份',
+                    minChars:1,
+                    editable: false,
+                    value:'0'
+                },{
+                    id: 'fc_quota',
+                    name: 'fc_quota',
+                    xtype:'combobox',
+                    fieldLabel: '餐型类别',
+                    margin: '10 30 10 30',
+                    store:new Ext.data.SimpleStore(
+                        {
+                            fields:['id','name'],
+                            data:[['包年','包年'],['包月','包月'],['计时','计时']]
+                        }),
+                    labelWidth: 90,
+                    width: 420,
+                    valueField:'id',
+                    displayField:'name',
+                    disabled:true,
+                    allowBlank: true,
+                    blankText: '请选择餐型',
+                    minChars:1,
+                    editable: false,
+                    value:''
+                },{
+                    id: 'fc_bw',
+                    name: 'fc_bw',
+                    xtype:'combobox',
+                    fieldLabel: '带宽',
+                    margin: '10 30 10 30',
+                    store:new Ext.data.SimpleStore(
+                    {
+                        fields:['id','name'],
+                        data:[['2M','2M'],['4M','4M'],['10M','10M'],['20M','20M'],['50M','50M'],['100M','100M']]
+                    }),
+                    labelWidth: 90,
+                    width: 420,
+                    disabled:true,
+                    valueField:'id',
+                    displayField:'name',
+                    allowBlank: true,
+                    blankText: '请选择带宽',
+                    minChars:1,
+                    queryMode:'local',
+                    editable: false,
+                    value:''
+                },{
 	            	xtype:'textarea',
 	                fieldLabel: '备注信息',
 	                id: 'fc_note',
@@ -351,9 +487,6 @@
 	                maxLength: 290,
 //					emptyText: '',
 	                width: 420
-					//,
-		            //regex: /(?![^.]*')^[^.]*$/,
-			        //regexText: '字符串中不能包含单引号'
             	},{
 			        xtype: 'hiddenfield',
 			        id: 'fc_id',
@@ -387,7 +520,7 @@
         						Ext.getCmp('fc_pt').setValue(pt.get('id'));
         						var fi=Ext.getCmp('fc_isnew').getStore().findRecord('name',Ext.getCmp('fc_isnew').getRawValue());        						
         						Ext.getCmp('fc_isnew').setValue(fi.get('id'));
-        						var as=Ext.data.StoreManager.lookup('huodong_sub').findRecord('name',Ext.getCmp('fc_actsub').getRawValue());        						
+        						var as=Ext.data.StoreManager.lookup('huodong').findRecord('name',Ext.getCmp('fc_actsub').getRawValue());
         						Ext.getCmp('fc_actsub').setValue(as.get('id'));
         						var changedStr='';
         						if(Ext.getCmp('fc_id').getValue()==''){
@@ -396,7 +529,6 @@
         							changedStr=changedStr+'<font color="royalblue">'+Ext.getCmp('fc_ct').fieldLabel+' : </font>'+Ext.getCmp('fc_ct').getRawValue()+'; ';
         							changedStr=changedStr+'<font color="royalblue">'+Ext.getCmp('fc_amount').fieldLabel+' : </font>'+Ext.getCmp('fc_amount').getValue()+'; ';
         							changedStr=changedStr+'<font color="royalblue">'+Ext.getCmp('fc_isnew').fieldLabel+' : </font>'+Ext.getCmp('fc_isnew').getRawValue()+'; ';
-        							changedStr=changedStr+'<font color="royalblue">'+Ext.getCmp('fc_act').fieldLabel+' : </font>'+Ext.getCmp('fc_act').getRawValue()+'; ';        							
         							changedStr=changedStr+'<font color="royalblue">'+Ext.getCmp('fc_actsub').fieldLabel+' : </font>'+Ext.getCmp('fc_actsub').getRawValue()+'; ';
         							changedStr=changedStr+'<font color="royalblue">'+Ext.getCmp('fc_note').fieldLabel+' : </font>'+Ext.getCmp('fc_note').getValue().replace(/\r|\n/g,' ').replace(/'/g,'')+'; ';
         							Ext.getCmp('changedStr').setValue(Ext.getCmp('fc_save').title+' [ '+changedStr+']');
@@ -422,13 +554,9 @@
 	        							changedStr=changedStr+'<font color="royalblue">'+Ext.getCmp('fc_isnew').fieldLabel+' : </font>'+Ext.getCmp('fc_isnew').getRawValue()+'; ';
 	        							r.set('is_new',Ext.getCmp('fc_isnew').getRawValue());
 	        						}
-	        						if(Ext.getCmp('fc_act').getRawValue()!=r.get('fc_act')){
-	        							changedStr=changedStr+'<font color="royalblue">'+Ext.getCmp('fc_act').fieldLabel+' : </font>'+Ext.getCmp('fc_act').getRawValue()+'; ';
-	        							r.set('fc_act',Ext.getCmp('fc_act').getRawValue());
-	        						}
-	        						if(Ext.getCmp('fc_actsub').getRawValue()!=r.get('fc_actsub')){
+	        						if(Ext.getCmp('fc_actsub').getRawValue()!=r.get('act_name')){
 	        							changedStr=changedStr+'<font color="royalblue">'+Ext.getCmp('fc_actsub').fieldLabel+' : </font>'+Ext.getCmp('fc_actsub').getRawValue()+'; ';
-	        							r.set('fc_actsub',Ext.getCmp('fc_actsub').getRawValue());
+	        							r.set('act_name',Ext.getCmp('fc_actsub').getRawValue());
 	        						}
 	        						if(Ext.getCmp('fc_note').getValue().replace(/\r|\n/g,' ').replace(/'/g,'')!=r.get('note')){
 	        							changedStr=changedStr+'<font color="royalblue">'+Ext.getCmp('fc_note').fieldLabel+' : </font>'+Ext.getCmp('fc_note').getValue().replace(/\r|\n/g,' ').replace(/'/g,'')+'; ';
@@ -443,8 +571,19 @@
 //	        						}
 		        				}
         						form.submit({
-				                	url: 'save_charge.jsp'
-				                });
+				                	url: 'save_charge.jsp',
+                                    method : 'POST',
+                                    waitTitle : "提示",
+                                    waitMsg : '正在提交数据，请稍后 ……',
+                                    success : function(form, action) {
+                                        Ext.Msg.alert('操作结果',action.result.msg);
+                                        this.close();
+                                    },
+                                    failure : function(form, action) {
+                                        Ext.Msg.alert('操作结果', action.result.msg);
+                                        this.close();
+                                    }
+                                });
         						Ext.getCmp('fc_save').close();
 			            	}
         				}        			      				

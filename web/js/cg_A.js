@@ -41,8 +41,6 @@
                         'onet_prop_value',
                         'user_prop_value',
                         'net_prop_value',
-                        'payee',
-                        'admit',
                         'user_mobile',
                         'user_phone',
                         'weixin',
@@ -56,7 +54,9 @@
                         'letv_mac',
                         'it_end',
                         'gm_mac',
-                        'scertno'
+                        'scertno',
+                        'act_name',
+                        'presentation'
             		]
         	});
         	
@@ -105,6 +105,22 @@
                 dataIndex: 'bs_name',
                 width: 110
             },{
+                header: '用户账号',
+                dataIndex: 'username',
+                width: 100
+            },{
+                header: '用户姓名',
+                dataIndex: 'realname',
+                width: 90
+            },{
+                header: '联系电话',
+                dataIndex: 'tel',
+                width: 200
+            },{
+                header: '截止时间',
+                dataIndex: 'endtime',
+                width: 100
+            },{
                 header: '启用时间',
                 dataIndex: 'starttime',
                 width: 90
@@ -112,58 +128,43 @@
                 header: '重新启用时间',
                 dataIndex: 'mf_retime',
                 width: 100
+            },
+            {
+                header: '身份证号',
+                dataIndex: 'scertno',
+                width: 180
             },{
-                header: '社区分组',
-                dataIndex: 'group_id',
+                header: '网络性质',
+                dataIndex: 'net_prop_value',
                 width: 90
-            },{
-                header: '宣传单号',
-                dataIndex: 'leaflet_no',
-                width: 90
-            },{
-                header: '用户账号',
-                dataIndex: 'username',
-                width: 100
             },{
                 header: '帐号变更备注',
                 dataIndex: 'mf_zhnote',
                 width: 130
             },{
-                header: '用户姓名',
-                dataIndex: 'realname',
-                width: 90
-            },{
                 header: '使用餐型',
                 dataIndex: 'mealtype',
                 width: 180
             },{
-                header: '截止时间',
-                dataIndex: 'endtime',
-                width: 100
-            },{
                 header: '详细地址',
                 dataIndex: 'address',
                 width: 190
-            },{
-                header: '联系电话',
-                dataIndex: 'tel',
-                width: 200
             }],
             
             plugins: [{
 	            ptype: 'rowexpander',
                 rowBodyTpl : [
+                    '<p><b>参加活动&nbsp;:&nbsp;<font color="#8B0000">{act_name}</font></b>',
+                    '<b style="margin-left:40px;">赠送月份&nbsp;:&nbsp;<font color="#8B0000">{presentation}</font></b></p>',
 	            	'<p><b>邮箱地址&nbsp;:&nbsp;<font color="#8B0000">{email}</font></b>',
-                    '<b style="margin-left:40px;">身份证号&nbsp;:&nbsp;<font color="#8B0000">{scertno}</font></b>',
+                    '<b style="margin-left:40px;">社区分组&nbsp;:&nbsp;<font color="#8B0000">{group_id}</font></b>',
+                    '<b style="margin-left:40px;">宣传单号&nbsp;:&nbsp;<font color="#8B0000">{leaflet_no}</font></b>',
 	                '<b style="margin-left:40px;">房屋性质&nbsp;:&nbsp;<font color="#8B0000">{house_type}</font></b>',
 	                '<b style="margin-left:40px;">走线方式&nbsp;:&nbsp;<font color="#8B0000">{line_type}</font></b>',	                
 	                '<b style="margin-left:40px;">录入人&nbsp;:&nbsp;<font color="#8B0000">{save_admin}</font></b>',
 	                '<b style="margin-left:40px;">录入时间&nbsp;:&nbsp;<font color="#8B0000">{save_time}</font></b></p>',
                     '<p><b>原网络性质&nbsp;:&nbsp;<font color="#8B0000">{onet_prop_value}</font></b>',
                     '<b style="margin-left:40px;">用户性质&nbsp;:&nbsp;<font color="#8B0000">{user_prop_value}</font></b>',
-                    '<b style="margin-left:40px;">网络性质&nbsp;:&nbsp;<font color="#8B0000">{net_prop_value}</font></b>',
-                    '<b style="margin-left:40px;">收款人&nbsp;:&nbsp;<font color="#8B0000">{payee}</font></b>',
-                    '<b style="margin-left:40px;">接待人&nbsp;:&nbsp;<font color="#8B0000">{admit}</font></b></p>',
                     '<p><b>使用人电话&nbsp;:&nbsp;<font color="#8B0000">{user_mobile}</font></b>',
                     '<b style="margin-left:40px;">固定电话&nbsp;:&nbsp;<font color="#8B0000">{user_phone}</font></b>',
                     '<b style="margin-left:40px;">是否关注微信&nbsp;:&nbsp;<font color="#8B0000">{weixin}</font></b></p>',
@@ -174,7 +175,7 @@
                     '<b style="margin-left:40px;">IT卡到期时间&nbsp;:&nbsp;<font color="#8B0000">{it_end}</font></b>',
 	                '<b style="margin-left:40px;">光纤开通时间&nbsp;:&nbsp;<font color="#8B0000">{opt_time}</font></b></p>',	                
 	                '<p><b>所属合同&nbsp;:&nbsp;<font color="#8B0000">{contract_name}</font></b></p>',	      
-	                '<p><b>餐型备注&nbsp;:&nbsp;<font color="#8B0000">{mf_cxnote}</font></b></p>',
+	                '<p><b>餐型/带宽&nbsp;:&nbsp;<font color="#8B0000">{mf_cxnote}</font></b></p>',
 	                '<p><b>活动备注&nbsp;:&nbsp;<font color="#8B0000">{mf_hdnote}</font></b></p>',
 	                '<p><b>设备备注&nbsp;:&nbsp;<font color="#8B0000">{mf_sbnote}</font></b></p>',
 	                '<p><b>特殊备注&nbsp;:&nbsp;<font color="#8B0000">{mf_tsnote}</font></b></p>',

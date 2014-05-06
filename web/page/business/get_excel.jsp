@@ -10,7 +10,6 @@
 	String menu_txt=request.getParameter("menu_txt");
 	String bs_name=request.getParameter("bs_name");
 	String get_data_sql="";
-	String gridStr="";
 	
 	Connection conn=ConnPoolBean.getRadiusConn();
 	Statement st=conn.createStatement();
@@ -35,8 +34,12 @@
 			String retime=request.getParameter("retime");
 			String gm=request.getParameter("gm");
 			String gg=request.getParameter("gg");
+            //QUOTA
 			String cxnote=request.getParameter("cxnote");
 			cxnote=java.net.URLDecoder.decode(cxnote, "UTF-8");
+            //BANDWIDTH
+            String bw = request.getParameter("cxnote2");
+            bw = java.net.URLDecoder.decode(bw,"UTF-8");
 			String hdnote=request.getParameter("hdnote");
 			hdnote=java.net.URLDecoder.decode(hdnote, "UTF-8");
 			String sbnote=request.getParameter("sbnote");
@@ -63,24 +66,23 @@
             String user_email = request.getParameter("user_email");
             user_email=java.net.URLDecoder.decode(user_email, "UTF-8");
             String weixin = request.getParameter("weixin");
-            String payee = request.getParameter("payee");
-            payee=java.net.URLDecoder.decode(payee, "UTF-8");
-            String admit = request.getParameter("admit");
-            admit=java.net.URLDecoder.decode(admit, "UTF-8");
             String gm_mac = request.getParameter("gm_mac");
             gm_mac=java.net.URLDecoder.decode(gm_mac, "UTF-8");
-			get_data_sql="select gmf.opt_usetime,gg.gg_name,gmf.redate,cat.cat_name,gmf.cxnote,gmf.hdnote,gmf.sbnote," +
-                    "gmf.zhnote,gmf.tsnote,gmf.isit,bi.name,tu.susername,tui.srealname,ti.sispname,gmf.dfirstdate,tu.doverdate," +
-                    "tu.sfeephone,gmf.group_id,gmf.leaflet_no,tui.stele,tui.semail,gmf.house_type_id,gmf.line_type_id,gmf.save_admin," +
-                    "gmf.save_time,gc.contract_name,gmf.oldnet_prop_id,gmf.user_prop_id,gmf.net_prop," +
-                    "gmf.payee,gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end," +
-                    "gmf.letv_mac,gmf.it_end,tui.spostcode "+
-                    "from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td,GTM_MAINFORM_INFO gmf," +
-                    "GTM_BUSINESS_INFO bi,gtm_contract gc " +
-                    "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id" +
-                    " and tu.susername=tui.susername and tu.susername=gmf.username and tu.iispid=ti.iispid " +
-                    "and tu.idistid=td.idistid " +
-                    "and gmf.contract_id=gc.contract_id and gmf.department_id=bi.id";
+            String action = request.getParameter("action");
+            String presentation = request.getParameter("presentation");
+			get_data_sql=
+            "select ga.act_name,gmf.admit,gmf.opt_usetime,gg.gg_name,gmf.redate,cat.cat_name,gmf.cxnote,gmf.hdnote,gmf.sbnote," +
+            "gmf.zhnote,gmf.tsnote,gmf.isit,bi.name,tu.susername,tui.srealname,ti.sispname,gmf.dfirstdate,tu.doverdate," +
+            "tu.sfeephone,gmf.group_id,gmf.leaflet_no,tui.stele,tui.semail,gmf.house_type_id,gmf.line_type_id,gmf.save_admin," +
+            "gmf.save_time,gc.contract_name,gmf.oldnet_prop_id,gmf.user_prop_id,gmf.net_prop," +
+            "gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end," +
+            "gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno "+
+            "from gtm_act ga,gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td,GTM_MAINFORM_INFO gmf," +
+            "GTM_BUSINESS_INFO bi,gtm_contract gc " +
+            "where gmf.payee=ga.act_id and gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id" +
+            " and tu.susername=tui.susername and tu.susername=gmf.username and tu.iispid=ti.iispid " +
+            "and tu.idistid=td.idistid " +
+            "and gmf.contract_id=gc.contract_id and gmf.department_id=bi.id";
 			if(!startDate.equals("")){
 				get_data_sql+=" and gmf.save_time>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss')";
 			}
@@ -134,9 +136,14 @@
 			if(!gg.equals("")){
 				get_data_sql+=" and gmf.gg_id="+gg;
 			}
+            //quota
 			if(!cxnote.equals("")){
 				get_data_sql+=" and gmf.cxnote like '%"+new String(cxnote.getBytes("gbk"),"iso-8859-1")+"%'";
 			}
+            //bandwidth
+            if(!bw.equals("")){
+                get_data_sql+=" and gmf.cxnote like '%"+new String(bw.getBytes("gbk"),"iso-8859-1")+"%'";
+            }
 			if(!hdnote.equals("")){
 				get_data_sql+=" and gmf.hdnote like '%"+new String(hdnote.getBytes("gbk"),"iso-8859-1")+"%'";
 			}
@@ -176,12 +183,6 @@
             if(!old_net_prop.equals("")){
                 get_data_sql+=" and gmf.oldnet_prop_id="+old_net_prop;
             }
-            if(!payee.equals("")){
-                get_data_sql+=" and gmf.payee like '%"+new String(payee.getBytes("gbk"),"iso-8859-1")+"%'";
-            }
-            if(!admit.equals("")){
-                get_data_sql+=" and gmf.admit like '%"+new String(admit.getBytes("gbk"),"iso-8859-1")+"%'";
-            }
             if(!user_mobile.equals("")){
                 get_data_sql+=" and gmf.user_mobile like '%"+new String(user_mobile.getBytes("gbk"),"iso-8859-1")+"%'";
             }
@@ -194,8 +195,18 @@
             if(!gm_mac.equals("")){
                 get_data_sql+=" and tui.spostcode like '%"+new String(gm_mac.getBytes("gbk"),"iso-8859-1")+"%'";
             }
-						
-		}else if(menu_txt.equals("4")){
+            if(!user_email.equals("")){
+                get_data_sql +=" and tui.semail like '%"+new String(user_email.getBytes("GBK"),"ISO-8859-1")+"%'";
+            }
+            if(!action.equals("")){
+                get_data_sql+=" and gmf.payee='"+action+"'";
+            }
+            if(!presentation.equals("")){
+                get_data_sql+=" and gmf.admit='"+presentation+"'";
+            }
+
+
+    }else if(menu_txt.equals("4")){
 			
 			String ml_type=request.getParameter("ml_type");
 			Calendar c = Calendar.getInstance();
@@ -207,8 +218,8 @@
                     "gmf.dfirstdate,gi.doverdate,gi.sfeephone,gmf.group_id,gmf.leaflet_no,gmf.house_type_id,tui.stele," +
                     "tui.semail,gmf.house_type_id,gmf.line_type_id,gmf.save_admin,gmf.save_time,gc.contract_name," +
                     "gmf.oldnet_prop_id,gmf.user_prop_id,gmf.net_prop," +
-                    "gmf.payee,gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end," +
-                    "gmf.letv_mac,gmf.it_end,tui.spostcode " +
+                    "gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end," +
+                    "gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
                     "from gtm_gg_state gg,gtm_cat_type cat,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td,GTM_MAINFORM_INFO gmf," +
                     "GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
                     "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and gi.susername=tui.susername " +
@@ -234,8 +245,8 @@
                     "tu.doverdate,tu.sfeephone,gmf.group_id,gmf.leaflet_no,gmf.house_type_id,tui.stele,tui.semail," +
                     "gmf.house_type_id,gmf.line_type_id,gmf.save_admin,gmf.save_time,gc.contract_name,gmf.oldnet_prop_id," +
                     "gmf.user_prop_id,gmf.net_prop," +
-                    "gmf.payee,gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end," +
-                    "gmf.letv_mac,gmf.it_end,tui.spostcode " +
+                    "gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end," +
+                    "gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
                     "from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td," +
                     "GTM_MAINFORM_INFO gmf,GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
                     "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername " +
@@ -262,8 +273,8 @@
                     "gmf.dfirstdate,tu.doverdate,tu.sfeephone,gmf.group_id,gmf.leaflet_no,gmf.house_type_id,tui.stele," +
                     "tui.semail,gmf.house_type_id,gmf.line_type_id,gmf.save_admin,gmf.save_time,gc.contract_name," +
                     "gmf.oldnet_prop_id,gmf.user_prop_id,gmf.net_prop," +
-                    "gmf.payee,gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end," +
-                    "gmf.letv_mac,gmf.it_end,tui.spostcode " +
+                    "gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end," +
+                    "gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
                     "from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td," +
                     "GTM_MAINFORM_INFO gmf,GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
                     "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername " +
@@ -290,8 +301,8 @@
                     "gi.doverdate,gi.sfeephone,gmf.group_id,gmf.leaflet_no,gmf.house_type_id,tui.stele,tui.semail," +
                     "gmf.house_type_id,gmf.line_type_id,gmf.save_admin,gmf.save_time,gc.contract_name,gmf.oldnet_prop_id," +
                     "gmf.user_prop_id,gmf.net_prop," +
-                    "gmf.payee,gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end," +
-                    "gmf.letv_mac,gmf.it_end,tui.spostcode " +
+                    "gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end," +
+                    "gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
                     "from gtm_gg_state gg,gtm_cat_type cat,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td,GTM_MAINFORM_INFO gmf," +
                     "GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
                     "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and gi.susername=tui.susername " +
@@ -318,8 +329,8 @@
                     "gmf.sbnote,gmf.zhnote,gmf.tsnote,gmf.isit,bi.name,tu.susername,tui.srealname,ti.sispname,gmf.dfirstdate," +
                     "tu.doverdate,tu.sfeephone,gmf.group_id,gmf.leaflet_no,gmf.house_type_id,tui.stele,tui.semail,gmf.house_type_id," +
                     "gmf.line_type_id,gmf.save_admin,gmf.save_time,gc.contract_name,gmf.oldnet_prop_id,gmf.user_prop_id,gmf.net_prop," +
-                    "gmf.payee,gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end," +
-                    "gmf.letv_mac,gmf.it_end,tui.spostcode " +
+                    "gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end," +
+                    "gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
                     "from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td,GTM_MAINFORM_INFO gmf," +
                     "GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
                     "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername and tu.susername=gmf.username " +
@@ -347,8 +358,8 @@
                     "gmf.sbnote,gmf.zhnote,gmf.tsnote,gmf.isit,bi.name,tu.susername,tui.srealname,ti.sispname,gmf.dfirstdate," +
                     "tu.doverdate,tu.sfeephone,gmf.group_id,gmf.leaflet_no,gmf.house_type_id,tui.stele,tui.semail,gmf.house_type_id," +
                     "gmf.line_type_id,gmf.save_admin,gmf.save_time,gc.contract_name,gmf.oldnet_prop_id,gmf.user_prop_id,gmf.net_prop," +
-                    "gmf.payee,gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end," +
-                    "gmf.letv_mac,gmf.it_end,tui.spostcode " +
+                    "gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end," +
+                    "gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
                     "from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td,GTM_MAINFORM_INFO gmf," +
                     "GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
                     "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername " +
@@ -368,259 +379,275 @@
 		}
 		
 		get_data_sql+=" order by bi.id";
-		
-		gridStr+="所属营业厅,营业厅分组,宣传单号,用户账号,更换帐号备注,用户姓名,使用餐型,启用时间,重新启用时间,截止时间,详细地址,是否IT卡用户,光猫类型,光改情况,光纤开通时间,房屋性质,走线方式,报装人电话,邮箱地址,所属合同,餐型备注,活动备注,设备备注,特殊备注,原网络类型,用户性质,网络性质,收款人,接待人,使用人电话,固话,微信用户,IT卡到期时间,乐视起始时间,乐视到期时间,乐视MAC地址,光猫MAC地址,录入人,录入时间, \r\n";
-		//System.out.println(get_data_sql);
+
+        StringBuilder gridStr = new StringBuilder();
+		gridStr.append("所属营业厅,营业厅分组,宣传单号,用户账号,更换帐号备注,用户姓名,身份证号,使用餐型,参加活动,赠送月份,启用时间,重新启用时间,截止时间,详细地址,是否IT卡用户,光猫类型,光改情况,光纤开通时间,房屋性质,走线方式,报装人电话,邮箱地址,所属合同,餐型类别/带宽,活动备注,设备备注,特殊备注,原网络类型,用户性质,网络性质,使用人电话,固话,微信用户,IT卡到期时间,乐视起始时间,乐视到期时间,乐视MAC地址,光猫MAC地址,录入人,录入时间, \r\n");
+
 		rs=st.executeQuery(get_data_sql);
 		while(rs.next()){
+
 			if(rs.getString("name")!=null){
-				gridStr+=new String(rs.getString("name").getBytes("iso-8859-1"),"gbk")+",";
+				gridStr.append(new String(rs.getString("name").getBytes("iso-8859-1"),"gbk")+",");
 			}else{
-				gridStr+=" ,";
+				gridStr.append(" ,");
 			}
 			if(rs.getString("group_id")!=null){
-				gridStr+=rs.getString("group_id")+",";
+				gridStr.append(rs.getString("group_id")+",");
 			}else{
-				gridStr+=" ,";
+				gridStr.append(" ,");
 			}
 			if(rs.getString("leaflet_no")!=null){
-				gridStr+=rs.getString("leaflet_no")+",";
+				gridStr.append(rs.getString("leaflet_no")+",");
 			}else{
-				gridStr+=" ,";
+				gridStr.append(" ,");
 			}
 			if(rs.getString("susername")!=null){
-				gridStr+=new String(rs.getString("susername").getBytes("iso-8859-1"),"gbk")+",";
+				gridStr.append(new String(rs.getString("susername").getBytes("iso-8859-1"),"gbk")+",");
 			}else{
-				gridStr+=" ,";
+				gridStr.append(" ,");
 			}
 			if(rs.getString("zhnote")!=null){
-				gridStr+=new String(rs.getString("zhnote").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+",";
+				gridStr.append(new String(rs.getString("zhnote").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+",");
 			}else{
-				gridStr+=" ,";
+				gridStr.append(" ,");
 			}
 			if(rs.getString("srealname")!=null){
-				gridStr+=new String(rs.getString("srealname").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+",";
+				gridStr.append(new String(rs.getString("srealname").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+",");
 			}else{
-				gridStr+=" ,";
+				gridStr.append(" ,");
 			}
+            if(rs.getString("scertno")!=null){
+                gridStr.append("`"+new String(rs.getString("scertno").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+",");
+            }else{
+                gridStr.append(" ,");
+            }
 			if(rs.getString("sispname")!=null){
-				gridStr+=new String(rs.getString("sispname").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+",";
+				gridStr.append(new String(rs.getString("sispname").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+",");
 			}else{
-				gridStr+=" ,";
+				gridStr.append(" ,");
 			}
+            //活动名称
+            if(rs.getString("act_name")!=null){
+                    gridStr.append(new String(rs.getString("act_name").getBytes("ISO-8859-1"),"GBK")+",");
+            }else{
+                gridStr.append(" ,");
+            }
+            //赠送月份
+            if(rs.getString("admit")!=null){
+                gridStr.append(new String(rs.getString("admit").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+",");
+            }else{
+                gridStr.append(" ,");
+            }
 			if(rs.getString("dfirstdate")!=null){
-				gridStr+=rs.getString("dfirstdate")+"-01,";
+				gridStr.append(rs.getString("dfirstdate")+"-01,");
 			}else{
-				gridStr+=" ,";
+				gridStr.append(" ,");
 			}
 			if(rs.getString("redate")!=null){
-				gridStr+=rs.getString("redate")+"-01,";
+				gridStr.append(rs.getString("redate")+"-01,");
 			}else{
-				gridStr+=" ,";
+				gridStr.append(" ,");
 			}
 			if(rs.getString("doverdate")!=null){
-				gridStr+=rs.getDate("doverdate")+",";
+				gridStr.append(rs.getDate("doverdate")+",");
 			}else{
-				gridStr+=" ,";
+				gridStr.append(" ,");
 			}
 			if(rs.getString("sfeephone")!=null){
-				gridStr+=new String(rs.getString("sfeephone").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+", ";
+				gridStr.append(new String(rs.getString("sfeephone").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+", ");
 			}else{
-				gridStr+=" ,";
+				gridStr.append(" ,");
 			}
 			if(rs.getString("isit")!=null){
 				if(rs.getInt("isit")==1){
-					gridStr+="是, ";
+					gridStr.append("是, ");
 				}else{
-					gridStr+="否, ";
+					gridStr.append("否, ");
 				}
 			}else{
-				gridStr+=" ,";
+				gridStr.append(" ,");
 			}
 			if(rs.getString("cat_name")!=null){
-				gridStr+=new String(rs.getString("cat_name").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+",";
+				gridStr.append(new String(rs.getString("cat_name").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+",");
 			}else{
-				gridStr+=" ,";
+				gridStr.append(" ,");
 			}
 			if(rs.getString("gg_name")!=null){
-				gridStr+=new String(rs.getString("gg_name").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+",";
+				gridStr.append(new String(rs.getString("gg_name").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+",");
 			}else{
-				gridStr+=" ,";
+				gridStr.append(" ,");
 			}
 			if(rs.getString("opt_usetime")!=null){
-				gridStr+=rs.getDate("opt_usetime")+",";
+				gridStr.append(rs.getDate("opt_usetime")+",");
 			}else{
-				gridStr+=" ,";
+				gridStr.append(" ,");
 			}
 			if(rs.getString("house_type_id")!=null){
 				if(rs.getInt("house_type_id")==1){
-					gridStr+="租用, ";
+					gridStr.append("租用, ");
 				}else if(rs.getInt("house_type_id")==2){
-					gridStr+="私有, ";
+					gridStr.append("私有, ");
 				}
 			}else{
-				gridStr+=" ,";
+				gridStr.append(" ,");
 			}
 			if(rs.getString("line_type_id")!=null){
 				if(rs.getInt("line_type_id")==1){
-					gridStr+="明线, ";
+					gridStr.append("明线, ");
 				}else if(rs.getInt("line_type_id")==2){
-					gridStr+="暗线, ";
+					gridStr.append("暗线, ");
 				}
 			}else{
-				gridStr+=" ,";
+				gridStr.append(" ,");
 			}
 			if(rs.getString("stele")!=null){
-				gridStr+=new String(rs.getString("stele").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";").replaceFirst("(^;)+", "").replaceFirst("(,$)+", "")+", ";				
+				gridStr.append(new String(rs.getString("stele").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";").replaceFirst("(^;)+", "").replaceFirst("(,$)+", "")+", ");
 			}else{
-				gridStr+=" ,";
+				gridStr.append(" ,");
 			}
 			if(rs.getString("semail")!=null){
-				gridStr+=new String(rs.getString("semail").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+", ";				
+				gridStr.append(new String(rs.getString("semail").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+", ");
 			}else{
-				gridStr+=" ,";
+				gridStr.append(" ,");
 			}
 			if(rs.getString("contract_name")!=null){
-				gridStr+=new String(rs.getString("contract_name").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+", ";				
+				gridStr.append(new String(rs.getString("contract_name").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+", ");
 			}else{
-				gridStr+=" ,";
+				gridStr.append(" ,");
 			}
+            if(rs.getString("cxnote")!=null){
+                gridStr.append(new String(rs.getString("cxnote").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+", ");
+            }
+            else{
+                gridStr.append(" ,");
+            }
+            /*
 			if(rs.getString("cxnote")!=null){
 				gridStr+=new String(rs.getString("cxnote").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+", ";				
 			}else{
 				gridStr+=" ,";
-			}
+			}  */
 			if(rs.getString("hdnote")!=null){
-				gridStr+=new String(rs.getString("hdnote").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+",";
+				gridStr.append(new String(rs.getString("hdnote").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+",");
 			}else{
-				gridStr+=" ,";
+				gridStr.append(" ,");
 			}
 			if(rs.getString("sbnote")!=null){
-				gridStr+=new String(rs.getString("sbnote").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+",";
+				gridStr.append(new String(rs.getString("sbnote").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+",");
 			}else{
-				gridStr+=" ,";
+				gridStr.append(" ,");
 			}
 			if(rs.getString("tsnote")!=null){
-				gridStr+=new String(rs.getString("tsnote").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+",";
+				gridStr.append(new String(rs.getString("tsnote").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+",");
 			}else{
-				gridStr+=" ,";
+				gridStr.append(" ,");
 			}
             if(rs.getString("oldnet_prop_id")!=null){
                 if(rs.getInt("oldnet_prop_id")==0){
-                    gridStr+="无, ";
+                    gridStr.append("无, ");
                 }else if(rs.getInt("oldnet_prop_id")==1){
-                    gridStr+="铁通, ";
+                    gridStr.append("铁通, ");
                 }else if(rs.getInt("oldnet_prop_id")==2){
-                    gridStr+="联通, ";
+                    gridStr.append("联通, ");
                 }else if(rs.getInt("oldnet_prop_id")==3){
-                    gridStr+="中宽, ";
+                    gridStr.append("中宽, ");
                 }else if(rs.getInt("oldnet_prop_id")==4){
-                    gridStr+="宽带通, ";
+                    gridStr.append("宽带通, ");
                 }else if(rs.getInt("oldnet_prop_id")==5){
-                    gridStr+="长城宽带, ";
+                    gridStr.append("长城宽带, ");
                 }else if(rs.getInt("oldnet_prop_id")==6){
-                    gridStr+="方正宽带, ";
+                    gridStr.append("方正宽带, ");
                 }else if(rs.getInt("oldnet_prop_id")==7){
-                    gridStr+="其他, ";
+                    gridStr.append("其他, ");
                 }
             }else{
-                gridStr+=" ,";
+                gridStr.append(" ,");
             }
             if(rs.getString("user_prop_id")!=null){
                 if(rs.getInt("user_prop_id")==0){
-                    gridStr+="无, ";
+                    gridStr.append("无, ");
                 }else if(rs.getInt("user_prop_id")==1){
-                    gridStr+="普通用户, ";
+                    gridStr.append("普通用户, ");
                 }else if(rs.getInt("user_prop_id")==2){
-                    gridStr+="平房用户, ";
+                    gridStr.append("平房用户, ");
                 }else if(rs.getInt("user_prop_id")==3){
-                    gridStr+="底商用户, ";
+                    gridStr.append("底商用户, ");
                 }else if(rs.getInt("user_prop_id")==4){
-                    gridStr+="企业用户, ";
+                    gridStr.append("企业用户, ");
                 }else if(rs.getInt("user_prop_id")==5){
-                    gridStr+="优惠用户, ";
+                    gridStr.append("优惠用户, ");
                 }else if(rs.getInt("user_prop_id")==6){
-                    gridStr+="免费用户, ";
+                    gridStr.append("免费用户, ");
                 }
             }else{
-                gridStr+=" ,";
+                gridStr.append(" ,");
             }
             if(rs.getString("net_prop")!=null){
                 if(rs.getInt("net_prop")==0){
-                    gridStr+="无, ";
+                    gridStr.append("无, ");
                 }else if(rs.getInt("net_prop")==1){
-                    gridStr+="光纤用户, ";
-                }else if(rs.getInt("net_prop")==1){
-                    gridStr+="非光纤用户, ";
+                    gridStr.append("光纤用户, ");
+                }else if(rs.getInt("net_prop")==2){
+                    gridStr.append("非光纤用户, ");
                 }
             }else{
-                gridStr+=" ,";
-            }
-            if(rs.getString("payee")!=null){
-                gridStr+=new String(rs.getString("payee").getBytes("iso-8859-1"),"gbk")+", ";
-            }else{
-                gridStr+=" ,";
-            }
-            if(rs.getString("admit")!=null){
-                gridStr+=new String(rs.getString("admit").getBytes("iso-8859-1"),"gbk")+", ";
-            }else{
-                gridStr+=" ,";
+                gridStr.append(" ,");
             }
             if(rs.getString("user_mobile")!=null){
-                gridStr+=rs.getString("user_mobile")+", ";
+                gridStr.append(rs.getString("user_mobile")+", ");
             }else{
-                gridStr+=" ,";
+                gridStr.append(" ,");
             }
             if(rs.getString("user_phone")!=null){
-                gridStr+=rs.getString("user_phone")+", ";
+                gridStr.append(rs.getString("user_phone")+", ");
             }else{
-                gridStr+=" ,";
+                gridStr.append(" ,");
             }
             if(rs.getString("weixin")!=null){
                 if(rs.getInt("weixin")==0){
-                    gridStr+="否, ";
+                    gridStr.append("否, ");
                 }else if(rs.getInt("weixin")==1){
-                    gridStr+="是, ";
+                    gridStr.append("是, ");
                 }
             }else{
-                gridStr+=" ,";
+                gridStr.append(" ,");
             }
             if(rs.getString("it_end")!=null){
-                gridStr+=rs.getDate("it_end")+", ";
+                gridStr.append(rs.getDate("it_end")+", ");
             }else{
-                gridStr+=" ,";
+                gridStr.append(" ,");
             }
             if(rs.getString("letv_start")!=null){
-                gridStr+=rs.getDate("letv_start")+", ";
+                gridStr.append(rs.getDate("letv_start")+", ");
             }else{
-                gridStr+=" ,";
+                gridStr.append(" ,");
             }
             if(rs.getString("letv_end")!=null){
-                gridStr+=rs.getDate("letv_end")+", ";
+                gridStr.append(rs.getDate("letv_end")+", ");
             }else{
-                gridStr+=" ,";
+                gridStr.append(" ,");
             }
             if(rs.getString("letv_mac")!=null){
-                gridStr+=rs.getString("letv_mac")+", ";
+                gridStr.append(rs.getString("letv_mac")+", ");
             }else{
-                gridStr+=" ,";
+                gridStr.append(" ,");
             }
             if(rs.getString("spostcode")!=null){
-                gridStr+=rs.getString("spostcode")+", ";
+                gridStr.append(rs.getString("spostcode").replaceAll("[\\r\\n]","")+", ");
             }else{
-                gridStr+=" ,";
+                gridStr.append(" ,");
             }
 			if(rs.getString("save_admin")!=null){
-				gridStr+=new String(rs.getString("save_admin").getBytes("iso-8859-1"),"gbk")+", ";
+				gridStr.append(new String(rs.getString("save_admin").getBytes("iso-8859-1"),"gbk")+", ");
 			}else{
-				gridStr+=" ,";
+				gridStr.append(" ,");
 			}
 			if(rs.getString("save_time")!=null){
-				gridStr+=rs.getString("save_time")+", ";
+				gridStr.append(rs.getString("save_time")+", ");
 			}else{
-				gridStr+=" , ";
+				gridStr.append(" , ");
 			}		
-			gridStr+="\r\n";
+			gridStr.append("\r\n");
 		}
 		
 	rs.close();
@@ -630,6 +657,5 @@
 	response.setContentType("application/vnd.ms-excel;charset=GBK");
 	response.setHeader("Content-Disposition", "attachment;filename=\"excel.csv\"");
 	response.getWriter().print(gridStr);
-    out.clear();
-    out = pageContext.pushBody();
+    response.getWriter().close();
 %>

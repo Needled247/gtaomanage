@@ -2,6 +2,9 @@
     extend: 'Ext.panel.Panel',
     
     constructor: function() {
+
+        Ext.override(Ext.view.Table, { enableTextSelection: true }); // Treepanels
+        Ext.override(Ext.grid.View,  { enableTextSelection: true }); // Grids
     	
     	Ext.define('bs_name', {
 		     extend: 'Ext.data.Model',
@@ -10,6 +13,17 @@
 		         {name: 'name', type: 'string'}
 		     ]
 		 });
+
+        //var colors = ['#6E548D','#94AE0A','#FF7348','#3D96AE'];
+        var colors = ['#66CCFF','#FFFF66','#FF9966','#FF6666'];
+        Ext.define('Ext.chart.theme.MyFancy', {
+            extend: 'Ext.chart.theme.Base',
+            constructor: function(config) {
+                this.callParent([Ext.apply({
+                    colors: colors
+                }, config)]);
+            }
+        });
 
 		 Ext.create('Ext.data.Store', {
 			 model: 'bs_name',
@@ -44,70 +58,6 @@
 		     },
 		     autoLoad: true
 		 });
-        /*
-        Ext.define('charge_type2', {
-            extend: 'Ext.data.Model',
-            fields: [
-                {name: 'id', type: 'string'},
-                {name: 'name', type: 'string'}
-            ]
-        });
-
-        Ext.create('Ext.data.Store', {
-            model: 'charge_type2',
-            storeId: 'charge_type2',
-            proxy: {
-                type: 'ajax',
-                url: '',
-                reader: {
-                    type: 'json'
-                }
-            },
-            autoLoad: false
-        });
-
-        Ext.define('charge_type3', {
-            extend: 'Ext.data.Model',
-            fields: [
-                {name: 'id', type: 'string'},
-                {name: 'name', type: 'string'}
-            ]
-        });
-
-        Ext.create('Ext.data.Store', {
-            model: 'charge_type3',
-            storeId: 'charge_type3',
-            proxy: {
-                type: 'ajax',
-                url: '',
-                reader: {
-                    type: 'json'
-                }
-            },
-            autoLoad: false
-        });
-
-        Ext.define('charge_type4', {
-            extend: 'Ext.data.Model',
-            fields: [
-                {name: 'id', type: 'string'},
-                {name: 'name', type: 'string'}
-            ]
-        });
-
-        Ext.create('Ext.data.Store', {
-            model: 'charge_type4',
-            storeId: 'charge_type4',
-            proxy: {
-                type: 'ajax',
-                url: '',
-                reader: {
-                    type: 'json'
-                }
-            },
-            autoLoad: false
-        });
-        */
 		 
 		 Ext.define('ml_type', {
 		     extend: 'Ext.data.Model',
@@ -346,6 +296,31 @@
 		     },
 		     autoLoad: true
 		 });
+
+        //发票
+        Ext.define('invoice_store', {
+            extend: 'Ext.data.Model',
+            fields: [
+                {name: 'id', type: 'string'},
+                {name: 'name', type: 'string'}
+            ]
+        });
+
+        Ext.create('Ext.data.Store', {
+            model: 'invoice_store',
+            storeId: 'invoice_store',
+            proxy: {
+                type: 'ajax',
+                url: 'invoice_store.jsp',
+                extraParams:{
+                    bs_name:Ext.bs_did
+                },
+                reader: {
+                    type: 'json'
+                }
+            },
+            autoLoad: true
+        });
     	
         Ext.apply(this, {
             
@@ -365,13 +340,6 @@
             animCollapse: false,
             autoScroll: true,
             margins: '0 0 5 5',
-//            layout: {
-//            	type:'accordion',
-//            	hideCollapseTool:true
-//            },          
-//            items: [{
-//                title: '功能管理列表',
-//                icon: '../../image/mf_icon.png', 
                 items:[{
                 	id:'B1',
                 	hidden:true,
@@ -392,6 +360,10 @@
 							Ext.getCmp('viewport').remove('home_service');
 							Ext.getCmp('viewport').remove('zc_charge');
                             Ext.getCmp('viewport').remove('data_analysis');
+                            Ext.getCmp('viewport').remove('NetPay');
+                            Ext.getCmp('viewport').remove('Settings');
+                            Ext.getCmp('viewport').remove('invoice');
+                            Ext.getCmp('viewport').remove('AreaSettings');
 							Ext.getCmp('viewport').add(Ext.create('My.base_query_mfA'));
 							setSubBtns(['addmf','bs_name','ex_fn','admin_fn']);
 							if(Ext.getCmp('bs_name').isHidden()){
@@ -419,6 +391,10 @@
 							Ext.getCmp('viewport').remove('home_service');
 							Ext.getCmp('viewport').remove('zc_charge');
                             Ext.getCmp('viewport').remove('data_analysis');
+                            Ext.getCmp('viewport').remove('NetPay');
+                            Ext.getCmp('viewport').remove('Settings');
+                            Ext.getCmp('viewport').remove('invoice');
+                            Ext.getCmp('viewport').remove('AreaSettings');
 							Ext.getCmp('viewport').add(Ext.create('My.query_charge'));
 							setSubBtns(['addmf','bs_name','admin_fn','ex_fn']);
 							if(Ext.getCmp('bs_name').isHidden()){								
@@ -446,6 +422,10 @@
 							Ext.getCmp('viewport').remove('setup_debug');
 							Ext.getCmp('viewport').remove('home_service');
                             Ext.getCmp('viewport').remove('data_analysis');
+                            Ext.getCmp('viewport').remove('NetPay');
+                            Ext.getCmp('viewport').remove('Settings');
+                            Ext.getCmp('viewport').remove('invoice');
+                            Ext.getCmp('viewport').remove('AreaSettings');
 							Ext.getCmp('viewport').add(Ext.create('My.zc_charge'));
 							setSubBtns(['addmf','bs_name','admin_fn','ex_fn']);
 							if(Ext.getCmp('bs_name').isHidden()){								
@@ -473,6 +453,10 @@
 							Ext.getCmp('viewport').remove('home_service');
 							Ext.getCmp('viewport').remove('zc_charge');
                             Ext.getCmp('viewport').remove('data_analysis');
+                            Ext.getCmp('viewport').remove('NetPay');
+                            Ext.getCmp('viewport').remove('Settings');
+                            Ext.getCmp('viewport').remove('invoice');
+                            Ext.getCmp('viewport').remove('AreaSettings');
 							Ext.getCmp('viewport').add(Ext.create('My.query_buildinfo'));
 							setSubBtns(['addmf','bs_name','admin_fn','ex_fn']);
 							if(Ext.getCmp('bs_name').isHidden()){
@@ -500,6 +484,10 @@
 							Ext.getCmp('viewport').remove('home_service');
 							Ext.getCmp('viewport').remove('zc_charge');
                             Ext.getCmp('viewport').remove('data_analysis');
+                            Ext.getCmp('viewport').remove('NetPay');
+                            Ext.getCmp('viewport').remove('Settings');
+                            Ext.getCmp('viewport').remove('invoice');
+                            Ext.getCmp('viewport').remove('AreaSettings');
 							Ext.getCmp('viewport').add(Ext.create('My.income_count'));
 							setSubBtns(['bs_name','ex_fn']);
 							if(Ext.getCmp('bs_name').isHidden()){
@@ -509,6 +497,35 @@
 						}
 					}
 				},{
+                    id:'P1',
+                    hidden:true,
+                    xtype:'button',
+                    width:150,
+                    text: '&nbsp;&nbsp;发票信息管理',
+                    textAlign: 'left',
+                    icon: '../../image/invoice.png',
+                    scale: 'medium',
+                    handler: function(){
+                        if(Ext.getCmp('invoice')==undefined){
+                            Ext.getCmp('viewport').remove('setup_ask');
+                            Ext.getCmp('viewport').remove('query_charge');
+                            Ext.getCmp('viewport').remove('base_query_mfA');
+                            Ext.getCmp('viewport').remove('query_buildinfo');
+                            Ext.getCmp('viewport').remove('query_zzsale');
+                            Ext.getCmp('viewport').remove('setup_debug');
+                            Ext.getCmp('viewport').remove('home_service');
+                            Ext.getCmp('viewport').remove('zc_charge');
+                            Ext.getCmp('viewport').remove('income_count');
+                            Ext.getCmp('viewport').remove('data_analysis');
+                            Ext.getCmp('viewport').remove('NetPay');
+                            Ext.getCmp('viewport').remove('Settings');
+                            Ext.getCmp('viewport').remove('invoice');
+                            Ext.getCmp('viewport').remove('AreaSettings');
+                            Ext.getCmp('viewport').add(Ext.create('My.invoice'));
+                            setSubBtns(['bs_name','admin_fn']);
+                        }
+                    }
+                },{
                     id:'H1',
                     hidden:true,
                     xtype:'button',
@@ -528,11 +545,16 @@
                             Ext.getCmp('viewport').remove('home_service');
                             Ext.getCmp('viewport').remove('zc_charge');
                             Ext.getCmp('viewport').remove('income_count');
+                            Ext.getCmp('viewport').remove('NetPay');
+                            Ext.getCmp('viewport').remove('Settings');
+                            Ext.getCmp('viewport').remove('invoice');
+                            Ext.getCmp('viewport').remove('AreaSettings');
                             Ext.getCmp('viewport').add(Ext.create('My.data_analysis'));
                             setSubBtns(['data_class']);
                         }
                     }
-                },{
+                },
+                {
 					id:'F1',
 					hidden:true,
 						xtype:'button',
@@ -542,17 +564,83 @@
 						icon: '../../image/pay.png',
 						scale: 'medium',
 						handler: function(){
-							window.open('http://10.1.0.131:8080/Search/index.html');
+                            if(Ext.getCmp('NetPay')==undefined){
+                                Ext.getCmp('viewport').remove('setup_ask');
+                                Ext.getCmp('viewport').remove('query_charge');
+                                Ext.getCmp('viewport').remove('base_query_mfA');
+                                Ext.getCmp('viewport').remove('query_buildinfo');
+                                Ext.getCmp('viewport').remove('query_zzsale');
+                                Ext.getCmp('viewport').remove('setup_debug');
+                                Ext.getCmp('viewport').remove('home_service');
+                                Ext.getCmp('viewport').remove('zc_charge');
+                                Ext.getCmp('viewport').remove('income_count');
+                                Ext.getCmp('viewport').remove('data_analysis');
+                                Ext.getCmp('viewport').remove('Settings');
+                                Ext.getCmp('viewport').remove('invoice');
+                                Ext.getCmp('viewport').remove('AreaSettings');
+                                Ext.getCmp('viewport').add(Ext.create('My.NetPay'));
 						}
-				}]
-//            }
-//            
-//            ]
-        
+                    }
+                 },
+                {
+                    id:'S1',
+                    hidden:true,
+                    xtype:'button',
+                    width:150,
+                    text: '&nbsp;&nbsp;设置',
+                    textAlign: 'left',
+                    icon: '../../image/settings.png',
+                    scale: 'medium',
+                    handler: function(){
+                        if(Ext.getCmp('Settings')==undefined){
+                            Ext.getCmp('viewport').remove('setup_ask');
+                            Ext.getCmp('viewport').remove('query_charge');
+                            Ext.getCmp('viewport').remove('base_query_mfA');
+                            Ext.getCmp('viewport').remove('query_buildinfo');
+                            Ext.getCmp('viewport').remove('query_zzsale');
+                            Ext.getCmp('viewport').remove('setup_debug');
+                            Ext.getCmp('viewport').remove('home_service');
+                            Ext.getCmp('viewport').remove('zc_charge');
+                            Ext.getCmp('viewport').remove('income_count');
+                            Ext.getCmp('viewport').remove('data_analysis');
+                            Ext.getCmp('viewport').remove('NetPay');
+                            Ext.getCmp('viewport').remove('invoice');
+                            Ext.getCmp('viewport').remove('AreaSettings');
+                            Ext.getCmp('viewport').add(Ext.create('My.Settings'));
+                        }
+                    }
+                },
+                {
+                    id:'S2',
+                    hidden:true,
+                    xtype:'button',
+                    width:150,
+                    text: '&nbsp;&nbsp;设置',
+                    textAlign: 'left',
+                    icon: '../../image/settings.png',
+                    scale: 'medium',
+                    handler: function(){
+                        if(Ext.getCmp('AreaSettings')==undefined){
+                            Ext.getCmp('viewport').remove('setup_ask');
+                            Ext.getCmp('viewport').remove('query_charge');
+                            Ext.getCmp('viewport').remove('base_query_mfA');
+                            Ext.getCmp('viewport').remove('query_buildinfo');
+                            Ext.getCmp('viewport').remove('query_zzsale');
+                            Ext.getCmp('viewport').remove('setup_debug');
+                            Ext.getCmp('viewport').remove('home_service');
+                            Ext.getCmp('viewport').remove('zc_charge');
+                            Ext.getCmp('viewport').remove('income_count');
+                            Ext.getCmp('viewport').remove('data_analysis');
+                            Ext.getCmp('viewport').remove('NetPay');
+                            Ext.getCmp('viewport').remove('invoice');
+                            Ext.getCmp('viewport').remove('Settings');
+                            Ext.getCmp('viewport').add(Ext.create('My.AreaSettings'));
+                        }
+                    }
+                }
+            ]
 		});
-        
         this.callParent(arguments);
-        
     }
 });
 

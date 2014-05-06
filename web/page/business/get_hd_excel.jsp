@@ -18,12 +18,12 @@
 	}else{
 		bs_name="所有营业厅";
 	}
-	//String get_chdate_sql="select sr.charge_date from (select fc.charge_date from gtm_front_charge fc where fc.charge_date>=to_date('"+startDate+"','yyyy-mm-dd') and fc.charge_date<=to_date('"+endDate+"','yyyy-mm-dd')"+temp+" union all select nc.charge_date from gtm_nonuser_charge nc where nc.charge_date>=to_date('"+startDate+"','yyyy-mm-dd') and nc.charge_date<=to_date('"+endDate+"','yyyy-mm-dd')"+temp2+") sr group by sr.charge_date order by sr.charge_date";
-	String get_tcdate_sql="select distinct fc.charge_date from gtm_front_charge fc where fc.charge_date>=to_date('"+startDate+"','yyyy-mm-dd') and fc.charge_date<=to_date('"+endDate+"','yyyy-mm-dd')"+temp+" and fc.act_sub_id!=0 order by fc.charge_date";
-	String get_tcstart_sql="select count(fc.bs_id) from gtm_front_charge fc right join gtm_act_sub gas on fc.act_sub_id=gas.actsub_id and fc.charge_date=TO_DATE('";
+	//String get_chdate_sql="select sr.charge_date from (select fc.charge_date from gtm_front_charge_new fc where fc.charge_date>=to_date('"+startDate+"','yyyy-mm-dd') and fc.charge_date<=to_date('"+endDate+"','yyyy-mm-dd')"+temp+" union all select nc.charge_date from gtm_nonuser_charge nc where nc.charge_date>=to_date('"+startDate+"','yyyy-mm-dd') and nc.charge_date<=to_date('"+endDate+"','yyyy-mm-dd')"+temp2+") sr group by sr.charge_date order by sr.charge_date";
+	String get_tcdate_sql="select distinct fc.charge_date from gtm_front_charge_new fc where fc.charge_date>=to_date('"+startDate+"','yyyy-mm-dd') and fc.charge_date<=to_date('"+endDate+"','yyyy-mm-dd')"+temp+" and fc.act_sub_id!=0 order by fc.charge_date";
+	String get_tcstart_sql="select count(fc.bs_id) from gtm_front_charge_new fc right join gtm_act_sub gas on fc.act_sub_id=gas.actsub_id and fc.charge_date=TO_DATE('";
 	String get_tcend_sql="', 'yyyy-mm-dd')"+temp+" and fc.act_sub_id!=0 group by gas.actsub_id order by gas.actsub_id";
-	String get_tctotal_sql="select count(fc.bs_id) from gtm_front_charge fc right join gtm_act_sub gas on fc.act_sub_id=gas.actsub_id and fc.charge_date>=to_date('"+startDate+"','yyyy-mm-dd') and fc.charge_date<=to_date('"+endDate+"','yyyy-mm-dd')"+temp+" and fc.act_sub_id!=0 group by gas.actsub_id order by gas.actsub_id";
-	String get_hdtotal_sql="select count(fc.bs_id) from gtm_front_charge fc join gtm_act_sub gas on fc.act_sub_id=gas.actsub_id and fc.charge_date>=to_date('"+startDate+"','yyyy-mm-dd') and fc.charge_date<=to_date('"+endDate+"','yyyy-mm-dd')"+temp+" and fc.act_sub_id!=0 right join gtm_act ga on ga.act_id=gas.act_id group by ga.act_id order by ga.act_id";
+	String get_tctotal_sql="select count(fc.bs_id) from gtm_front_charge_new fc right join gtm_act_sub gas on fc.act_sub_id=gas.actsub_id and fc.charge_date>=to_date('"+startDate+"','yyyy-mm-dd') and fc.charge_date<=to_date('"+endDate+"','yyyy-mm-dd')"+temp+" and fc.act_sub_id!=0 group by gas.actsub_id order by gas.actsub_id";
+	String get_hdtotal_sql="select count(fc.bs_id) from gtm_front_charge_new fc join gtm_act_sub gas on fc.act_sub_id=gas.actsub_id and fc.charge_date>=to_date('"+startDate+"','yyyy-mm-dd') and fc.charge_date<=to_date('"+endDate+"','yyyy-mm-dd')"+temp+" and fc.act_sub_id!=0 right join gtm_act ga on ga.act_id=gas.act_id group by ga.act_id order by ga.act_id";
 	
 	String gridStr="";
 	
@@ -101,6 +101,5 @@
 	response.setContentType("application/vnd.ms-excel;charset=GBK");
 	response.setHeader("Content-Disposition", "attachment;filename=\"excel.csv\"");
 	response.getWriter().print(gridStr);
-    out.clear();
-    out = pageContext.pushBody();
+    response.getWriter().close();
 %>

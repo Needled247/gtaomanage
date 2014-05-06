@@ -37,8 +37,6 @@
 						labelWidth: 60,
 						maxLength: 20,
 			            enforceMaxLength: true,
-//			            regex: /[a-zA-Z]{2}\d+/,
-//		            	regexText: '请输入正确的用户账号(以两位字母开头)',
 		            	submitValue: false,
 		            	listeners:{
 		            		specialkey:function(f,e){
@@ -83,7 +81,47 @@
 								    }
 							});
         				}        				
-	            	}
+	            	},
+                    {
+                        boxLabel:'光猫款',
+                        xtype:'checkboxfield',
+                        name:'ag_gm_cost',
+                        id:'ag_gm_cost',
+                        inputValue: '1',
+                        uncheckedValues: '0',
+                        listeners:{
+                            change:function(obj,checked){
+                                var gm = Ext.getCmp('ag_gm_cash');
+                                if(checked==true){
+                                    gm.setDisabled(false);
+                                }
+                                else{
+                                    gm.setDisabled(true);
+                                    gm.setValue('');
+                                }
+                            }
+                        }
+                    },
+                    {
+                        boxLabel:'安装费',
+                        name:'ag_setup_cost',
+                        id:'ag_setup_cost',
+                        inputValue: '1',
+                        uncheckedValues: '0',
+                        xtype:'checkboxfield',
+                        listeners:{
+                            change:function(obj,checked){
+                                var setup = Ext.getCmp('ag_setup_cash');
+                                if(checked==true){
+                                    setup.setDisabled(false);
+                                }
+                                else{
+                                    setup.setDisabled(true);
+                                    setup.setValue('');
+                                }
+                            }
+                        }
+                    }
             	]
             }),
         items: [{
@@ -140,29 +178,66 @@
                             id: 'mf_agent_user',
                             name: 'mf_agent_user',
                             margin: '10 30 10 30',
-//	              	value: '',
                             labelWidth: 90,
-//					allowBlank: false,
-//					blankText: '请输入用户账号',
                             enforceMaxLength: true,
                             maxLength: 30,
                             width: 420,
                             readOnly: true
                         },{
                             xtype:'textfield',
-                            fieldLabel: '收据号码',
+                            fieldLabel: '收款人',
+                            id: 'ag_payee',
+                            name: 'ag_payee',
+                            margin: '10 30 10 30',
+                            labelWidth: 90,
+                            enforceMaxLength: true,
+                            maxLength: 30,
+                            width: 420,
+                            editable:true
+                        },{
+                            xtype:'textfield',
+                            fieldLabel: '接待人',
+                            id: 'ag_admit',
+                            name: 'ag_admit',
+                            margin: '10 30 10 30',
+                            labelWidth: 90,
+                            enforceMaxLength: true,
+                            maxLength: 30,
+                            width: 420,
+                            editable:true
+                        },
+
+                        {
                             id: 'mf_agent_rid',
                             name: 'mf_agent_rid',
+                            xtype:'combobox',
+                            fieldLabel: '发票号',
+                            store: Ext.data.StoreManager.lookup('invoice_store'),
                             margin: '10 30 10 30',
-//	              	value: '',
                             labelWidth: 90,
-                            allowBlank: false,
-                            blankText: '请输入收据号码',
-                            enforceMaxLength: true,
-                            maxLength: 40,
                             width: 420,
-                            regex: /(?!.*')^.*$/,
-                            regexText: '字符串中不能包含单引号'
+                            valueField:'id',
+                            displayField:'name',
+                            allowBlank: true,
+                            blankText: '请输入发票号',
+                            minChars:1,
+                            queryMode:'local',
+                            editable: true,
+                            value:''
+                        },{
+                            id: 'ag_shouju',
+                            name: 'ag_shouju',
+                            xtype:'textfield',
+                            fieldLabel: '收据号',
+                            margin: '10 30 10 30',
+                            labelWidth: 90,
+                            width: 420,
+                            valueField:'id',
+                            allowBlank: true,
+                            minChars:1,
+                            queryMode:'local',
+                            editable: true,
+                            value:''
                         },{
                             id: 'mf_agent_pt',
                             name: 'mf_agent_pt',
@@ -178,7 +253,28 @@
                             blankText: '请选择支付方式',
                             minChars:1,
                             queryMode:'local',
-                            editable: false
+                            editable: false,
+                            listeners:{
+                                select:function(r){
+                                    var temp = Ext.getCmp('mf_agent_pt').getRawValue();
+                                    if(temp=='固定POS支付'||temp=='移动POS支付'||temp=='代扣'){
+                                        Ext.getCmp('ag_bank_card').setDisabled(false);
+                                        Ext.getCmp('ag_netpay_id').setDisabled(true);
+                                        Ext.getCmp('ag_netpay_id').setValue('');
+                                    }
+                                    else if(temp=='银联网上支付'||temp=='快钱网上支付'){
+                                        Ext.getCmp('ag_netpay_id').setDisabled(false);
+                                        Ext.getCmp('ag_bank_card').setDisabled(true);
+                                        Ext.getCmp('ag_bank_card').setValue('');
+                                    }
+                                    else{
+                                        Ext.getCmp('ag_netpay_id').setDisabled(true);
+                                        Ext.getCmp('ag_bank_card').setDisabled(true);
+                                        Ext.getCmp('ag_bank_card').setValue('');
+                                        Ext.getCmp('ag_netpay_id').setValue('');
+                                    }
+                                }
+                            }
                         },{
                             id: 'mf_agent_ct',
                             name: 'mf_agent_ct',
@@ -195,23 +291,14 @@
                             minChars:1,
                             queryMode:'local',
                             editable: false,
-                            typeAhead:true,
                             listeners:{
-                                specialkey:function(f,e){
-                                    if (e.getKey() == e.ENTER) {
-                                        document.getElementById('qbtn').click();
-                                    }
-                                },
-                                beforequery : function(e){
-                                    var combo = e.combo;
-                                    if(!e.forceAll){
-                                        var value = e.query;
-                                        combo.store.filterBy(function(record,id){
-                                            var text = record.get(combo.displayField);
-                                            return (text.indexOf(value)!=-1);
-                                        });
-                                        combo.expand();
-                                        return false;
+                                select:function(r){
+                                    var temp=parseInt(Ext.data.StoreManager.lookup('charge_type').findRecord('name',Ext.getCmp('mf_agent_ct').getRawValue()).get('id'));
+                                    if(temp>=2&&temp<=9){
+                                        Ext.getCmp('ag_quota').setDisabled(false);
+                                        Ext.getCmp('ag_quota').allowBlank=false;
+                                        Ext.getCmp('ag_bw').setDisabled(false);
+                                        Ext.getCmp('ag_bw').allowBlank=false;
                                     }
                                 }
                             }
@@ -230,6 +317,55 @@
                             regex: /(^-?\d{1,8}$)|(^-?\d{1,8}\.\d{1,2}$)/,
                             regexText: '请输入正确的收费金额'
                         },{
+                            xtype:'textfield',
+                            fieldLabel: '银行卡号',
+                            id: 'ag_bank_card',
+                            name: 'ag_bank_card',
+                            margin: '10 30 10 30',
+                            labelWidth: 90,
+                            width: 420,
+                            disabled:true,
+                            enforceMaxLength: true
+                        },{
+                            xtype:'textfield',
+                            fieldLabel: '网银订单号',
+                            id: 'ag_netpay_id',
+                            name: 'ag_netpay_id',
+                            margin: '10 30 10 30',
+                            labelWidth: 90,
+                            width: 420,
+                            disabled:true,
+                            enforceMaxLength: true
+                        },{
+                            xtype:'textfield',
+                            fieldLabel: '光猫款',
+                            id: 'ag_gm_cash',
+                            name: 'ag_gm_cash',
+                            margin: '10 30 10 30',
+                            labelWidth: 90,
+                            blankText: '请输入金额',
+                            width: 420,
+                            disabled:true,
+                            enforceMaxLength: true,
+                            maxLength: 12,
+                            regex: /(^-?\d{1,8}$)|(^-?\d{1,8}\.\d{1,2}$)/,
+                            regexText: '请输入正确的金额'
+                        },
+                        {
+                            xtype:'textfield',
+                            fieldLabel: '安装费用',
+                            id: 'ag_setup_cash',
+                            name: 'ag_setup_cash',
+                            margin: '10 30 10 30',
+                            labelWidth: 90,
+                            blankText: '请输入金额',
+                            width: 420,
+                            disabled:true,
+                            enforceMaxLength: true,
+                            maxLength: 12,
+                            regex: /(^-?\d{1,8}$)|(^-?\d{1,8}\.\d{1,2}$)/,
+                            regexText: '请输入正确的金额'
+                        },{
                             id: 'mf_agent_isnew',
                             name: 'mf_agent_isnew',
                             margin: '10 30 10 30',
@@ -241,7 +377,6 @@
                                     fields:['id','name'],
                                     data:[['1','是'],['0','否']]
                                 }),
-                            queryMode:'local',
                             width: 420,
                             valueField:'id',
                             displayField:'name',
@@ -253,8 +388,8 @@
                             name: 'mf_agent_act',
                             xtype:'combobox',
                             fieldLabel: '活动名称',
-                            store: Ext.data.StoreManager.lookup('huodong'),
                             margin: '10 30 10 30',
+                            store: Ext.data.StoreManager.lookup('huodong'),
                             labelWidth: 90,
                             width: 420,
                             valueField:'id',
@@ -262,37 +397,82 @@
                             allowBlank: false,
                             blankText: '请选择活动名称',
                             minChars:1,
-                            queryMode:'local',
                             editable: false,
-                            //value:'不选择',
-                            value:'',
-                            submitValue: false,
-                            listeners:{
-                                select : function(c,rec){
-                                    Ext.getCmp('mf_agent_actsub').setValue('');
-                                    Ext.data.StoreManager.lookup('huodong_sub').filterBy(function(record,id){
-                                        var text = record.get('huodong_id');
-                                        return (text==rec[0].get('id'));
-                                    });
-                                }
-                            }
+                            value:''
                         },{
-                            id: 'mf_agent_actsub',
-                            name: 'mf_agent_actsub',
+                            id: 'ag_presentation',
+                            name: 'ag_presentation',
                             xtype:'combobox',
-                            fieldLabel: '套餐名称',
-                            store: Ext.data.StoreManager.lookup('huodong_sub'),
+                            fieldLabel: '赠送月份',
                             margin: '10 30 10 30',
+                            store:new Ext.data.SimpleStore(
+                            {
+                                fields:['id','name'],
+                                data:
+                                    [
+                                        [0,'无'],
+                                        [1,'1'],
+                                        [2,'2'],
+                                        [3,'3'],
+                                        [4,'4'],
+                                        [5,'5'],
+                                        [6,'6'],
+                                        [7,'7'],
+                                        [8,'8'],
+                                        [9,'9'],
+                                        [10,'10']
+                                    ]
+                            }),
                             labelWidth: 90,
                             width: 420,
                             valueField:'id',
                             displayField:'name',
                             allowBlank: false,
-                            blankText: '请选择套餐名称',
+                            blankText: '请选择赠送月份',
                             minChars:1,
-                            queryMode:'local',
                             editable: false,
-                            //value:'不选择',
+                            value:''
+                        },{
+                            id: 'ag_quota',
+                            name: 'ag_quota',
+                            xtype:'combobox',
+                            fieldLabel: '餐型类别',
+                            margin: '10 30 10 30',
+                            store:new Ext.data.SimpleStore(
+                                {
+                                    fields:['id','name'],
+                                    data:[['包年','包年'],['包月','包月'],['计时','计时']]
+                                }),
+                            labelWidth: 90,
+                            width: 420,
+                            valueField:'id',
+                            displayField:'name',
+                            disabled:true,
+                            allowBlank: true,
+                            blankText: '请选择餐型',
+                            minChars:1,
+                            editable: false,
+                            value:''
+                        },{
+                            id: 'ag_bw',
+                            name: 'ag_bw',
+                            xtype:'combobox',
+                            fieldLabel: '带宽',
+                            margin: '10 30 10 30',
+                            store:new Ext.data.SimpleStore(
+                                {
+                                    fields:['id','name'],
+                                    data:[['2M','2M'],['4M','4M'],['10M','10M'],['20M','20M'],['50M','50M'],['100M','100M']]
+                                }),
+                            labelWidth: 90,
+                            width: 420,
+                            disabled:true,
+                            valueField:'id',
+                            displayField:'name',
+                            allowBlank: true,
+                            blankText: '请选择带宽',
+                            minChars:1,
+                            editable: false,
                             value:''
                         },{
                             xtype:'textarea',
@@ -308,9 +488,6 @@
                             maxLength: 290,
 //					emptyText: '',
                             width: 420
-                            //,
-                            //regex: /(?![^.]*')^[^.]*$/,
-                            //regexText: '字符串中不能包含单引号'
                         },{
                             xtype: 'hiddenfield',
                             id: 'mf_agent_id',
@@ -344,11 +521,22 @@
                             Ext.getCmp('mf_agent_pt').setValue(pt.get('id'));
                             var fi=Ext.getCmp('mf_agent_isnew').getStore().findRecord('name',Ext.getCmp('mf_agent_isnew').getRawValue());
                             Ext.getCmp('mf_agent_isnew').setValue(fi.get('id'));
-                            var as=Ext.data.StoreManager.lookup('huodong_sub').findRecord('name',Ext.getCmp('mf_agent_actsub').getRawValue());
-                            Ext.getCmp('mf_agent_actsub').setValue(as.get('id'));
+                            var as=Ext.data.StoreManager.lookup('huodong').findRecord('name',Ext.getCmp('mf_agent_act').getRawValue());
+                            Ext.getCmp('mf_agent_act').setValue(as.get('id'));
                             var changedStr='';
                             form.submit({
-                                url: 'save_agent_charge.jsp'
+                                url: 'save_agent_charge.jsp',
+                                method : 'POST',
+                                waitTitle : "提示",
+                                waitMsg : '正在提交数据，请稍后 ……',
+                                success : function(form, action) {
+                                    Ext.Msg.alert('操作结果',action.result.msg);
+                                    this.close();
+                                },
+                                failure : function(form, action) {
+                                    Ext.Msg.alert('操作结果', action.result.msg);
+                                    this.close();
+                                }
                             });
                             Ext.getCmp('mf_agent_save').close();
                         }

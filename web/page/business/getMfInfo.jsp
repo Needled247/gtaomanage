@@ -46,7 +46,8 @@
 			String retime=request.getParameter("retime");
 			String gm=request.getParameter("gm");
 			String gg=request.getParameter("gg");
-			String cxnote=request.getParameter("cxnote");
+			String quota=request.getParameter("real_quota");
+            String bandwidth=request.getParameter("real_bandwidth");
 			String hdnote=request.getParameter("hdnote");
 			String sbnote=request.getParameter("sbnote");
 			String zhnote=request.getParameter("zhnote");
@@ -59,42 +60,43 @@
             String letv_start = request.getParameter("letv_start");
             String letv_end = request.getParameter("letv_end");
             String letv_mac = request.getParameter("letv_mac");
+            String scertno = request.getParameter("scertno");
             String it_end = request.getParameter("it_end");
             String user_prop = request.getParameter("user_prop");
             String net_prop = request.getParameter("net_prop");
             String old_net_prop = request.getParameter("old_net_prop");
-            String payee = request.getParameter("payee");
-            String admit = request.getParameter("admit");
             String user_mobile = request.getParameter("user_mobile");
             String user_phone = request.getParameter("user_phone");
             String weixin = request.getParameter("weixin");
             String gm_mac = request.getParameter("gm_mac");
+            String action = request.getParameter("action");
+            String presentation = request.getParameter("presentation");
 
 			//System.out.println(leaflet_no+","+start_time+","+group_id+","+house_type+","+user_ads);
 			get_data_sql=
-                    "select gg.gg_name,gmf.redate,cat.cat_name,gmf.cxnote,gmf.hdnote,gmf.sbnote,gmf.zhnote,gmf.tsnote," +
-                    "gmf.isit,gmf.opt_usetime,bi.name,tu.susername,tui.srealname,ti.sispname,gmf.dfirstdate,tu.doverdate," +
-                            "tu.sfeephone,gmf.group_id,gmf.leaflet_no,tui.stele,tui.semail,gmf.house_type_id,gmf.line_type_id," +
-                            "gmf.save_admin,gmf.save_time,gc.contract_name,gmf.oldnet_prop_id,gmf.user_prop_id,gmf.net_prop," +
-                            "gmf.payee,gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end," +
-                            "gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
-                            "from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td," +
-                            "GTM_MAINFORM_INFO gmf,GTM_BUSINESS_INFO bi,gtm_contract gc " +
-                            "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername " +
-                            "and tu.susername=gmf.username and tu.iispid=ti.iispid and tu.idistid=td.idistid " +
-                            "and gmf.contract_id=gc.contract_id and gmf.department_id=bi.id";
+            "select ga.act_name,gmf.admit,gg.gg_name,gmf.redate,cat.cat_name,gmf.cxnote,gmf.hdnote,gmf.sbnote,gmf.zhnote,gmf.tsnote," +
+            "gmf.isit,gmf.opt_usetime,bi.name,tu.susername,tui.srealname,ti.sispname,gmf.dfirstdate,tu.doverdate," +
+            "tu.sfeephone,gmf.group_id,gmf.leaflet_no,tui.stele,tui.semail,gmf.house_type_id,gmf.line_type_id," +
+            "gmf.save_admin,gmf.save_time,gc.contract_name,gmf.oldnet_prop_id,gmf.user_prop_id,gmf.net_prop," +
+            "gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end," +
+            "gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
+            "from gtm_act ga,gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td," +
+            "gtm_mainform_info gmf,GTM_BUSINESS_INFO bi,gtm_contract gc " +
+            "where gmf.payee=ga.act_id and gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername " +
+            "and tu.susername=gmf.username and tu.iispid=ti.iispid and tu.idistid=td.idistid " +
+            "and gmf.contract_id=gc.contract_id and gmf.department_id=bi.id";
 			get_count_sql=
-                    "select count(*) from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti," +
-                            "tbl_distlist td,GTM_MAINFORM_INFO gmf,GTM_BUSINESS_INFO bi,gtm_contract gc " +
-                            "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername " +
-                            "and tu.susername=gmf.username and tu.iispid=ti.iispid and tu.idistid=td.idistid " +
-                            "and gmf.contract_id=gc.contract_id and gmf.department_id=bi.id";
+            "select count(*) from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti," +
+            "tbl_distlist td,gtm_mainform_info gmf,GTM_BUSINESS_INFO bi,gtm_contract gc " +
+            "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername " +
+            "and tu.susername=gmf.username and tu.iispid=ti.iispid and tu.idistid=td.idistid " +
+            "and gmf.contract_id=gc.contract_id and gmf.department_id=bi.id";
 			if(!startDate.equals("")){
 				get_data_sql+=" and gmf.save_time>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss')";
-				get_count_sql+=" and gmf.save_time>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss')";			
+				get_count_sql+=" and gmf.save_time>=to_date('"+startDate+" 00:00:00','yyyy-mm-dd hh24:mi:ss')";
 			}
 			get_data_sql+=" and gmf.save_time<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss')";
-			get_count_sql+=" and gmf.save_time<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss')";			
+			get_count_sql+=" and gmf.save_time<=to_date('"+endDate+" 23:59:59','yyyy-mm-dd hh24:mi:ss')";
 			if(!bs_name.equals("")){
 				get_data_sql+=" and gmf.department_id="+bs_name;
 				get_count_sql+=" and gmf.department_id="+bs_name;
@@ -136,7 +138,7 @@
 			if(!rname.equals("")){
 				get_data_sql+=" and tui.srealname like '%"+new String(rname.getBytes("gbk"),"iso-8859-1")+"%'";
 				get_count_sql+=" and tui.srealname like '%"+new String(rname.getBytes("gbk"),"iso-8859-1")+"%'";
-			}			
+			}
 			if(!tel.equals("")){
 				get_data_sql+=" and tui.stele like '%"+new String(tel.getBytes("gbk"),"iso-8859-1")+"%'";
 				get_count_sql+=" and tui.stele like '%"+new String(tel.getBytes("gbk"),"iso-8859-1")+"%'";
@@ -161,10 +163,14 @@
 				get_data_sql+=" and gmf.gg_id="+gg;
 				get_count_sql+=" and gmf.gg_id="+gg;
 			}
-			if(!cxnote.equals("")){
-				get_data_sql+=" and gmf.cxnote like '%"+new String(cxnote.getBytes("gbk"),"iso-8859-1")+"%'";
-				get_count_sql+=" and gmf.cxnote like '%"+new String(cxnote.getBytes("gbk"),"iso-8859-1")+"%'";
+			if(!quota.equals("")){
+				get_data_sql+=" and gmf.cxnote like '%"+new String(quota.getBytes("gbk"),"iso-8859-1")+"%'";
+				get_count_sql+=" and gmf.cxnote like '%"+new String(quota.getBytes("gbk"),"iso-8859-1")+"%'";
 			}
+            if(!bandwidth.equals("")){
+                get_data_sql+=" and gmf.cxnote like '%"+bandwidth+"%'";
+                get_count_sql+=" and gmf.cxnote like '%"+bandwidth+"%'";
+            }
 			if(!hdnote.equals("")){
 				get_data_sql+=" and gmf.hdnote like '%"+new String(hdnote.getBytes("gbk"),"iso-8859-1")+"%'";
 				get_count_sql+=" and gmf.hdnote like '%"+new String(hdnote.getBytes("gbk"),"iso-8859-1")+"%'";
@@ -202,6 +208,10 @@
                 get_data_sql+=" and gmf.letv_mac like '%"+new String(letv_mac.getBytes("gbk"),"iso-8859-1")+"%'";
                 get_count_sql+=" and gmf.letv_mac like '%"+new String(letv_mac.getBytes("gbk"),"iso-8859-1")+"%'";
             }
+            if(!scertno.equals("")){
+                get_data_sql+=" and tui.scertno like '%"+scertno+"%'";
+                get_count_sql+=" and tui.scertno like '%"+scertno+"%'";
+            }
             if(!it_end.equals("")){
                 get_data_sql+=" and to_char(gmf.it_end,'yyyy-mm-dd')='"+it_end+"'";
                 get_count_sql+=" and to_char(gmf.it_end,'yyyy-mm-dd')='"+it_end+"'";
@@ -217,14 +227,6 @@
             if(!old_net_prop.equals("")){
                 get_data_sql+=" and gmf.oldnet_prop_id="+old_net_prop;
                 get_count_sql+=" and gmf.oldnet_prop_id="+old_net_prop;
-            }
-            if(!payee.equals("")){
-                get_data_sql+=" and gmf.payee like '%"+new String(payee.getBytes("gbk"),"iso-8859-1")+"%'";
-                get_count_sql+=" and gmf.payee like '%"+new String(payee.getBytes("gbk"),"iso-8859-1")+"%'";
-            }
-            if(!admit.equals("")){
-                get_data_sql+=" and gmf.admit like '%"+new String(admit.getBytes("gbk"),"iso-8859-1")+"%'";
-                get_count_sql+=" and gmf.admit like '%"+new String(admit.getBytes("gbk"),"iso-8859-1")+"%'";
             }
             if(!user_mobile.equals("")){
                 get_data_sql+=" and gmf.user_mobile like '%"+new String(user_mobile.getBytes("gbk"),"iso-8859-1")+"%'";
@@ -242,30 +244,38 @@
                 get_data_sql+=" and tui.spostcode like '%"+new String(gm_mac.getBytes("gbk"),"iso-8859-1")+"%'";
                 get_count_sql+=" and tui.spostcode like '%"+new String(gm_mac.getBytes("gbk"),"iso-8859-1")+"%'";
             }
+            if(!action.equals("")){
+                get_data_sql+=" and gmf.payee='"+action+"'";
+                get_count_sql+=" and gmf.payee='"+action+"'";
+            }
+            if(!presentation.equals("")){
+                get_data_sql+=" and gmf.admit='"+presentation+"'";
+                get_count_sql+=" and gmf.admit='"+presentation+"'";
+            }
 
-			
+
 		}else if(menu_txt.equals("4")){
-			
+
 			String ml_type=request.getParameter("ml_type");
 			Calendar c = Calendar.getInstance();
 			c.add(Calendar.MONTH, 0);
 			String old_table="GTAO_INFO_"+new SimpleDateFormat("yyyyMM").format(c.getTime());
-						
+
 			get_data_sql="select gg.gg_name,gmf.redate,cat.cat_name,gmf.cxnote,gmf.hdnote,gmf.sbnote,gmf.zhnote," +
                     "gmf.tsnote,gmf.isit,gmf.opt_usetime,bi.name,gi.susername,tui.srealname,ti.sispname,gmf.dfirstdate," +
                     "gi.doverdate,gi.sfeephone,gmf.group_id,gmf.leaflet_no,tui.stele,tui.semail,gmf.house_type_id,gmf.line_type_id," +
                     "gmf.save_admin,gmf.save_time,gc.contract_name,gmf.oldnet_prop_id,gmf.user_prop_id,gmf.net_prop," +
-                    "gmf.payee,gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
-                    "from gtm_gg_state gg,gtm_cat_type cat,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td,GTM_MAINFORM_INFO gmf," +
+                    "gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
+                    "from gtm_gg_state gg,gtm_cat_type cat,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td,gtm_mainform_info gmf," +
                     "GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
                     "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and gi.susername=tui.susername " +
                     "and gi.susername=gmf.username and gi.iispid=ti.iispid and gi.idistid=td.idistid and gmf.contract_id=gc.contract_id " +
                     "and gmf.department_id=bi.id";
 			get_count_sql="select count(*) from gtm_gg_state gg,gtm_cat_type cat,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td," +
-                    "GTM_MAINFORM_INFO gmf,GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
+                    "gtm_mainform_info gmf,GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
                     "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and gi.susername=tui.susername and gi.susername=gmf.username " +
                     "and gi.iispid=ti.iispid and gi.idistid=td.idistid and gmf.contract_id=gc.contract_id and gmf.department_id=bi.id";
-			
+
 			if(!bs_name.equals("")){
 				get_data_sql+=" and gmf.department_id="+bs_name;
 				get_count_sql+=" and gmf.department_id="+bs_name;
@@ -277,29 +287,29 @@
 			get_data_sql+=" and to_char(GI.DOVERDATE,'yyyy-mm')='"+new SimpleDateFormat("yyyy-MM").format(c.getTime())+"'";
 			get_count_sql+=" and to_char(GI.DOVERDATE,'yyyy-mm')='"+new SimpleDateFormat("yyyy-MM").format(c.getTime())+"'";
 		}else if(menu_txt.equals("5")){
-			
+
 			String ml_type=request.getParameter("ml_type");
 			Calendar c = Calendar.getInstance();
 			c.add(Calendar.MONTH, -1);
 			String old_table="GTAO_INFO_"+new SimpleDateFormat("yyyyMM").format(c.getTime());
-			
+
 			get_data_sql="select gg.gg_name,gmf.redate,cat.cat_name,gmf.cxnote,gmf.hdnote,gmf.sbnote,gmf.zhnote," +
                     "gmf.tsnote,gmf.isit,gmf.opt_usetime,bi.name,tu.susername,tui.srealname,ti.sispname,gmf.dfirstdate," +
                     "tu.doverdate,tu.sfeephone,gmf.group_id,gmf.leaflet_no,tui.stele,tui.semail,gmf.house_type_id,gmf.line_type_id," +
-                    "gmf.save_admin,gmf.save_time,gc.contract_name,gmf.oldnet_prop_id,gmf.user_prop_id,gmf.net_prop,gmf.payee," +
-                    "gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
+                    "gmf.save_admin,gmf.save_time,gc.contract_name,gmf.oldnet_prop_id,gmf.user_prop_id,gmf.net_prop," +
+                    "gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
                     "from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td," +
-                    "GTM_MAINFORM_INFO gmf,GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
+                    "gtm_mainform_info gmf,GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
                     "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername " +
                     "and tu.susername=gmf.username and tu.susername=gi.susername and tu.iispid=ti.iispid and tu.idistid=td.idistid " +
                     "and gmf.contract_id=gc.contract_id and gmf.department_id=bi.id and gmf.oldnet_prop_id=onp.onet_prop_id " +
                     "and gmf.net_prop=np.net_prop_id and gmf.user_prop_id=up.user_prop_id";
 			get_count_sql="select count(*) from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti," +
-                    "tbl_distlist td,GTM_MAINFORM_INFO gmf,GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
+                    "tbl_distlist td,gtm_mainform_info gmf,GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
                     "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername " +
                     "and tu.susername=gmf.username and tu.susername=gi.susername and tu.iispid=ti.iispid and tu.idistid=td.idistid " +
                     "and gmf.contract_id=gc.contract_id and gmf.department_id=bi.id";
-			
+
 			if(!bs_name.equals("")){
 				get_data_sql+=" and gmf.department_id="+bs_name;
 				get_count_sql+=" and gmf.department_id="+bs_name;
@@ -313,28 +323,28 @@
 			get_data_sql+=" and GI.DOVERDATE<TU.DOVERDATE";
 			get_count_sql+=" and GI.DOVERDATE<TU.DOVERDATE";
 		}else if(menu_txt.equals("6")){
-			
+
 			String ml_type=request.getParameter("ml_type");
 			Calendar c = Calendar.getInstance();
 			c.add(Calendar.MONTH, -1);
 			String old_table="GTAO_INFO_"+new SimpleDateFormat("yyyyMM").format(c.getTime());
-			
+
 			get_data_sql="select gg.gg_name,gmf.redate,cat.cat_name,gmf.cxnote,gmf.hdnote,gmf.sbnote,gmf.zhnote," +
                     "gmf.tsnote,gmf.isit,gmf.opt_usetime,bi.name,tu.susername,tui.srealname,ti.sispname,gmf.dfirstdate," +
                     "tu.doverdate,tu.sfeephone,gmf.group_id,gmf.leaflet_no,tui.stele,tui.semail,gmf.house_type_id,gmf.line_type_id," +
-                    "gmf.save_admin,gmf.save_time,gc.contract_name,gmf.oldnet_prop_id,gmf.user_prop_id,gmf.net_prop,gmf.payee," +
-                    "gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
-                    "from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td,GTM_MAINFORM_INFO gmf," +
+                    "gmf.save_admin,gmf.save_time,gc.contract_name,gmf.oldnet_prop_id,gmf.user_prop_id,gmf.net_prop," +
+                    "gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
+                    "from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td,gtm_mainform_info gmf," +
                     "GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
                     "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername and tu.susername=gmf.username " +
                     "and tu.susername=gi.susername and tu.iispid=ti.iispid and tu.idistid=td.idistid and gmf.contract_id=gc.contract_id " +
                     "and gmf.department_id=bi.id";
 			get_count_sql="select count(*) from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti," +
-                    "tbl_distlist td,GTM_MAINFORM_INFO gmf,GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
+                    "tbl_distlist td,gtm_mainform_info gmf,GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
                     "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername " +
                     "and tu.susername=gmf.username and tu.susername=gi.susername and tu.iispid=ti.iispid and tu.idistid=td.idistid " +
                     "and gmf.contract_id=gc.contract_id and gmf.department_id=bi.id";
-			
+
 			if(!bs_name.equals("")){
 				get_data_sql+=" and gmf.department_id="+bs_name;
 				get_count_sql+=" and gmf.department_id="+bs_name;
@@ -348,24 +358,24 @@
 			get_data_sql+=" and GI.DOVERDATE=TU.DOVERDATE";
 			get_count_sql+=" and GI.DOVERDATE=TU.DOVERDATE";
 		}else if(menu_txt.equals("7")){
-			
+
 			String ml_type=request.getParameter("ml_type");
 			Calendar c = Calendar.getInstance();
 			c.add(Calendar.MONTH, 0);
 			String old_table="GTAO_INFO_"+new SimpleDateFormat("yyyyMM").format(c.getTime());
-			
+
 			get_data_sql="select gg.gg_name,gmf.redate,cat.cat_name,gmf.cxnote,gmf.hdnote,gmf.sbnote,gmf.zhnote," +
                     "gmf.tsnote,gmf.isit,gmf.opt_usetime,bi.name,gi.susername,tui.srealname,ti.sispname,gmf.dfirstdate," +
                     "gi.doverdate,gi.sfeephone,gmf.group_id,gmf.leaflet_no,tui.stele,tui.semail,gmf.house_type_id,gmf.line_type_id," +
                     "gmf.save_admin,gmf.save_time,gc.contract_name,gmf.oldnet_prop_id,gmf.user_prop_id,gmf.net_prop," +
-                    "gmf.payee,gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
-                    "from gtm_gg_state gg,gtm_cat_type cat,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td,GTM_MAINFORM_INFO gmf," +
+                    "gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
+                    "from gtm_gg_state gg,gtm_cat_type cat,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td,gtm_mainform_info gmf," +
                     "GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
                     "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and gi.susername=tui.susername " +
                     "and gi.susername=gmf.username and gi.iispid=ti.iispid and gi.idistid=td.idistid and gmf.contract_id=gc.contract_id " +
                     "and gmf.department_id=bi.id";
 			get_count_sql="select count(*) from gtm_gg_state gg,gtm_cat_type cat,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td," +
-                    "GTM_MAINFORM_INFO gmf,GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
+                    "gtm_mainform_info gmf,GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
                     "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and gi.susername=tui.susername " +
                     "and gi.susername=gmf.username and gi.iispid=ti.iispid and gi.idistid=td.idistid and gmf.contract_id=gc.contract_id " +
                     "and gmf.department_id=bi.id";
@@ -382,28 +392,28 @@
 			get_data_sql+=" and to_char(GI.DOVERDATE,'yyyy-mm')='"+new SimpleDateFormat("yyyy-MM").format(c1.getTime())+"'";
 			get_count_sql+=" and to_char(GI.DOVERDATE,'yyyy-mm')='"+new SimpleDateFormat("yyyy-MM").format(c1.getTime())+"'";
 		}else if(menu_txt.equals("8")){
-			
+
 			String ml_type=request.getParameter("ml_type");
 			Calendar c = Calendar.getInstance();
 			c.add(Calendar.MONTH, -1);
 			String old_table="GTAO_INFO_"+new SimpleDateFormat("yyyyMM").format(c.getTime());
-			
+
 			get_data_sql="select gg.gg_name,gmf.redate,cat.cat_name,gmf.cxnote,gmf.hdnote,gmf.sbnote,gmf.zhnote," +
                     "gmf.tsnote,gmf.isit,gmf.opt_usetime,bi.name,tu.susername,tui.srealname,ti.sispname,gmf.dfirstdate," +
                     "tu.doverdate,tu.sfeephone,gmf.group_id,gmf.leaflet_no,tui.stele,tui.semail,gmf.house_type_id,gmf.line_type_id," +
                     "gmf.save_admin,gmf.save_time,gc.contract_name,gmf.oldnet_prop_id,gmf.user_prop_id,gmf.net_prop," +
-                    "gmf.payee,gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
-                    "from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td,GTM_MAINFORM_INFO gmf," +
+                    "gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
+                    "from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td,gtm_mainform_info gmf," +
                     "GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
                     "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername " +
                     "and tu.susername=gmf.username and tu.susername=gi.susername and tu.iispid=ti.iispid and tu.idistid=td.idistid " +
                     "and gmf.contract_id=gc.contract_id and gmf.department_id=bi.id";
 			get_count_sql="select count(*) from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti," +
-                    "tbl_distlist td,GTM_MAINFORM_INFO gmf,GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
+                    "tbl_distlist td,gtm_mainform_info gmf,GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
                     "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername " +
                     "and tu.susername=gmf.username and tu.susername=gi.susername and tu.iispid=ti.iispid and tu.idistid=td.idistid " +
                     "and gmf.contract_id=gc.contract_id and gmf.department_id=bi.id";
-			
+
 			if(!bs_name.equals("")){
 				get_data_sql+=" and gmf.department_id="+bs_name;
 				get_count_sql+=" and gmf.department_id="+bs_name;
@@ -419,28 +429,28 @@
 			get_data_sql+=" and GI.DOVERDATE<TU.DOVERDATE";
 			get_count_sql+=" and GI.DOVERDATE<TU.DOVERDATE";
 		}else if(menu_txt.equals("9")){
-			
+
 			String ml_type=request.getParameter("ml_type");
 			Calendar c = Calendar.getInstance();
 			c.add(Calendar.MONTH, -1);
 			String old_table="GTAO_INFO_"+new SimpleDateFormat("yyyyMM").format(c.getTime());
-			
+
 			get_data_sql="select gg.gg_name,gmf.redate,cat.cat_name,gmf.cxnote,gmf.hdnote,gmf.sbnote,gmf.zhnote," +
                     "gmf.tsnote,gmf.isit,gmf.opt_usetime,bi.name,tu.susername,tui.srealname,ti.sispname,gmf.dfirstdate," +
                     "tu.doverdate,tu.sfeephone,gmf.group_id,gmf.leaflet_no,tui.stele,tui.semail,gmf.house_type_id,gmf.line_type_id," +
                     "gmf.save_admin,gmf.save_time,gc.contract_name,gmf.oldnet_prop_id,gmf.user_prop_id,gmf.net_prop," +
-                    "gmf.payee,gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
-                    "from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td,GTM_MAINFORM_INFO gmf," +
+                    "gmf.user_mobile,gmf.user_phone,gmf.weixin,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
+                    "from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td,gtm_mainform_info gmf," +
                     "GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
                     "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername " +
                     "and tu.susername=gmf.username and tu.susername=gi.susername and tu.iispid=ti.iispid and tu.idistid=td.idistid " +
                     "and gmf.contract_id=gc.contract_id and gmf.department_id=bi.id";
 			get_count_sql="select count(*) from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti," +
-                    "tbl_distlist td,GTM_MAINFORM_INFO gmf,GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
+                    "tbl_distlist td,gtm_mainform_info gmf,GTM_BUSINESS_INFO bi,"+old_table+" gi,gtm_contract gc " +
                     "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername " +
                     "and tu.susername=gmf.username and tu.susername=gi.susername and tu.iispid=ti.iispid and tu.idistid=td.idistid " +
                     "and gmf.contract_id=gc.contract_id and gmf.department_id=bi.id";
-			
+
 			if(!bs_name.equals("")){
 				get_data_sql+=" and gmf.department_id="+bs_name;
 				get_count_sql+=" and gmf.department_id="+bs_name;
@@ -463,21 +473,21 @@
             String tt_end=request.getParameter("tt_end");
             String tt_type = request.getParameter("tt_type");
             get_data_sql =
-                    "select gg.gg_name,gmf.redate,cat.cat_name,gmf.cxnote,gmf.hdnote,gmf.sbnote,gmf.zhnote,gmf.tsnote,gmf.isit,gmf.opt_usetime," +
-                    "bi.name,tu.susername,tui.srealname,ti.sispname,gmf.dfirstdate,tu.doverdate,tu.sfeephone,gmf.group_id,gmf.leaflet_no,tui.stele," +
-                    "tui.semail,gmf.house_type_id,gmf.line_type_id,gmf.save_admin,gmf.save_time,gc.contract_name,gmf.oldnet_prop_id,gmf.user_prop_id," +
-                    "gmf.net_prop,gmf.payee,gmf.admit,gmf.user_mobile,gmf.user_phone,gmf.weixin,gpu.longNum,gpu.shortNum,gpu.email,gpu.balance," +
-                    "gpu.maturitytime,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
-                    "from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td,GTM_MAINFORM_INFO gmf," +
-                    "GTM_BUSINESS_INFO bi,gtm_contract gc,gtm_phone_user gpu " +
-                    "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername and tu.susername=gmf.username " +
-                    "and tu.iispid=ti.iispid and tu.idistid=td.idistid and gmf.contract_id=gc.contract_id and gmf.department_id=bi.id and gmf.username=gpu.userid ";
+            "select ga.act_name,gmf.admit,gg.gg_name,gmf.redate,cat.cat_name,gmf.cxnote,gmf.hdnote,gmf.sbnote,gmf.zhnote,gmf.tsnote,gmf.isit,gmf.opt_usetime," +
+            "bi.name,tu.susername,tui.srealname,ti.sispname,gmf.dfirstdate,tu.doverdate,tu.sfeephone,gmf.group_id,gmf.leaflet_no,tui.stele," +
+            "tui.semail,gmf.house_type_id,gmf.line_type_id,gmf.save_admin,gmf.save_time,gc.contract_name,gmf.oldnet_prop_id,gmf.user_prop_id," +
+            "gmf.net_prop,gmf.user_mobile,gmf.user_phone,gmf.weixin,gpu.longNum,gpu.shortNum,gpu.email,gpu.balance," +
+            "gpu.maturitytime,gmf.letv_start,gmf.letv_end,gmf.letv_mac,gmf.it_end,tui.spostcode,tui.scertno " +
+            "from gtm_act ga,gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td,gtm_mainform_info gmf," +
+            "GTM_BUSINESS_INFO bi,gtm_contract gc,gtm_phone_user gpu " +
+            "where gmf.payee=ga.act_id and gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername and tu.susername=gmf.username " +
+            "and tu.iispid=ti.iispid and tu.idistid=td.idistid and gmf.contract_id=gc.contract_id and gmf.department_id=bi.id and gmf.username=gpu.userid ";
             get_count_sql =
-                    "select count(*) " +
-                    "from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td,GTM_MAINFORM_INFO gmf," +
-                    "GTM_BUSINESS_INFO bi,gtm_contract gc,gtm_phone_user gpu " +
-                    "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername and tu.susername=gmf.username " +
-                    "and tu.iispid=ti.iispid and tu.idistid=td.idistid and gmf.contract_id=gc.contract_id and gmf.department_id=bi.id and gmf.username=gpu.userid ";
+            "select count(*) " +
+            "from gtm_gg_state gg,gtm_cat_type cat,tbl_users tu,tbl_usersinfo tui,tbl_isplist ti,tbl_distlist td,gtm_mainform_info gmf," +
+            "GTM_BUSINESS_INFO bi,gtm_contract gc,gtm_phone_user gpu " +
+            "where gmf.gg_id=gg.gg_id and gmf.cat_type_id=cat.cat_id and tu.susername=tui.susername and tu.susername=gmf.username " +
+            "and tu.iispid=ti.iispid and tu.idistid=td.idistid and gmf.contract_id=gc.contract_id and gmf.department_id=bi.id and gmf.username=gpu.userid ";
 
             if(!tt_num.equals("")){
                 get_data_sql+=" and (gpu.longNum='"+tt_num+"' or gpu.shortNum='"+tt_num+"')";
@@ -513,7 +523,6 @@
 				
 		int endPage=Integer.parseInt(startPage)+Integer.parseInt(countPage);
 		get_data_sql+=" and rownum<="+endPage+" minus "+get_data_sql+" and rownum<="+startPage;
-    System.out.println(get_count_sql);
 		rs=st.executeQuery(get_count_sql);
 			rs.next();
 			count=rs.getInt(1);
@@ -701,21 +710,11 @@
                             gridStr+="net_prop_value:'无',";
                         }else if(rs.getInt("net_prop")==1){
                             gridStr+="net_prop_value:'光纤用户',";
-                        }else if(rs.getInt("net_prop")==1){
+                        }else if(rs.getInt("net_prop")==2){
                             gridStr+="net_prop_value:'非光纤用户',";
                         }
                     }else{
                         gridStr+="net_prop_value:'',";
-                    }
-                    if(rs.getString("payee")!=null){
-                        gridStr+="payee:'"+new String(rs.getString("payee").getBytes("iso-8859-1"),"gbk")+"',";
-                    }else{
-                        gridStr+="payee:'',";
-                    }
-                    if(rs.getString("admit")!=null){
-                        gridStr+="admit:'"+new String(rs.getString("admit").getBytes("iso-8859-1"),"gbk")+"',";
-                    }else{
-                        gridStr+="admit:'',";
                     }
                     if(rs.getString("user_mobile")!=null){
                         gridStr+="user_mobile:'"+rs.getString("user_mobile")+"',";
@@ -757,9 +756,19 @@
                         gridStr+="letv_mac:'',";
                     }
                     if(rs.getString("spostcode")!=null){
-                        gridStr+="gm_mac:'"+rs.getString("spostcode")+"',";
+                        gridStr+="gm_mac:'"+rs.getString("spostcode").replaceAll("[\\r\\n]","")+"',";
                     }else{
                         gridStr+="gm_mac:'',";
+                    }
+                    if(rs.getString("act_name")!=null){
+                            gridStr+="act_name:'"+new String(rs.getString("act_name").getBytes("ISO-8859-1"),"GBK")+"',";
+                    }else{
+                        gridStr+="act_name:'',";
+                    }
+                    if(rs.getString("admit")!=null){
+                        gridStr+="presentation:'"+new String(rs.getString("admit").getBytes("ISO-8859-1"),"GBK").replaceAll("[\\r\\n]","")+"',";
+                    }else{
+                        gridStr+="presentation:'',";
                     }
                     //铁通  开始
                     if(menu_txt.equals("10")){
@@ -805,8 +814,7 @@
 		
 		gridStr=gridStr.replaceFirst(",$", "");
 	
-	
-	//System.out.println(gridStr);
+
 	response.setContentType("text/json;charset=UTF-8");
 	response.getWriter().print("{totalCount:"+count+",data:["+gridStr+"]}");
 

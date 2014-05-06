@@ -24,8 +24,6 @@
 	String mf_gg=request.getParameter("mf_gg");
 	String hetong=request.getParameter("mf_hetong");
 	String isit=request.getParameter("mf_isit");
-    String mf_payee = new String(request.getParameter("mf_payee").getBytes("gbk"),"ISO-8859-1");
-    String mf_admit = new String(request.getParameter("mf_admit").getBytes("gbk"),"ISO-8859-1");
     String mf_user_mobile = request.getParameter("mf_user_mobile");
     String mf_user_phone = request.getParameter("mf_user_phone");
     String mf_onet_prop = request.getParameter("mf_onet_prop");
@@ -36,7 +34,9 @@
     String le_end = request.getParameter("le_end");
     String le_mac = request.getParameter("le_mac");
     String it_end = request.getParameter("it_end");
-	String mf_cxnote=request.getParameter("mf_cxnote").replaceAll("\r|\n"," ").replaceAll("'", "");
+    String action = request.getParameter("mdf_act");
+    String presentation = request.getParameter("mdf_presentation");
+	String mf_cxnote=request.getParameter("mf_real_quota")+","+request.getParameter("mf_real_bandwidth");
 	mf_cxnote=new String(mf_cxnote.getBytes("gbk"),"iso-8859-1");
 	String mf_hdnote=request.getParameter("mf_hdnote").replaceAll("\r|\n"," ").replaceAll("'", "");
 	mf_hdnote=new String(mf_hdnote.getBytes("gbk"),"iso-8859-1");
@@ -60,51 +60,64 @@
 	sdf.setTimeZone(timeZoneChina);
 	String save_time=sdf.format(new Date());
     //LETV开通时间
-    if(le_start.equals("")){
-        le_start=null;
-    }else{
+    if(request.getParameter("le_start")!=null){
         le_start="to_date('"+le_start+"','yyyy-mm-dd')";
     }
+    else{
+        le_start = null;
+    }
     //LETV到期
-    if(le_end.equals("")){
-        le_end=null;
-    }else{
+    if(request.getParameter("le_end")!=null){
         le_end="to_date('"+le_end+"','yyyy-mm-dd')";
     }
+    else {
+        le_end = null;
+    }
     //IT到期
-    if(it_end.equals("")){
-        it_end=null;
-    }else{
+    if(request.getParameter("it_end")!=null){
         it_end="to_date('"+it_end+"','yyyy-mm-dd')";
+    }
+    else{
+        it_end = null;
+    }
+    //MAC
+    if(request.getParameter("le_mac")==null){
+        le_mac = "";
     }
 	save_time="to_date('"+save_time+"','yyyy-mm-dd hh24:mi:ss')";
 	String isExist_sql="select count(*) from gtm_mainform_info where username='"+uname+"'";
-	String sql="insert into gtm_mainform_info " +
+	String sql="insert into gtm_mainform_info" +
+            "(USERNAME,LEAFLET_NO,GROUP_ID,OPT_USETIME,HOUSE_TYPE_ID,LINE_TYPE_ID,DEPARTMENT_ID," +
+            "SAVE_TIME,SAVE_ADMIN,DFIRSTDATE,CONTRACT_ID,ISIT,REDATE,CAT_TYPE_ID,CXNOTE,HDNOTE," +
+            "SBNOTE,ZHNOTE,TSNOTE,GG_ID,OLDNET_PROP_ID,USER_PROP_ID,NET_PROP,USER_MOBILE,USER_PHONE," +
+            "WEIXIN,LETV_START,LETV_END,LETV_MAC,IT_END,PAYEE,ADMIT)" +
             "values('"+uname+"',"+leaflet_no+","+group_id+","+opt_usetime+","+house_type+","
             +line_type+","+did+","+save_time+",'"+true_name+"','"+futime+"',"+hetong+","
             +isit+",'"+mf_retime+"',"+mf_gm+",'"+mf_cxnote+"','"+mf_hdnote+"','"+mf_sbnote+"','"
             +mf_zhnote+"','"+mf_tsnote+"',"+mf_gg+","+mf_onet_prop+","+mf_user_prop+","
-            +mf_net_prop+",'"+mf_payee+"','"+mf_admit+"','"+mf_user_mobile+"','"+mf_user_phone+"',"
-            +mf_weixin+","+le_start+","+le_end+",'"+le_mac+"',"+it_end+")";
+            +mf_net_prop+",'"+mf_user_mobile+"','"+mf_user_phone+"',"
+            +mf_weixin+","+le_start+","+le_end+",'"+le_mac+"',"+it_end+",0,0)";
 
-	String update_sql="update gtm_mainform_info set " +
-            "leaflet_no="+leaflet_no+",group_id="+group_id+",opt_usetime="+opt_usetime+",house_type_id="+house_type+
-            ",line_type_id="+line_type+",department_id="+did+",dfirstdate='"+futime+"',contract_id="+hetong+",isit="+isit+
-            ",redate='"+mf_retime+"',cat_type_id="+mf_gm+",cxnote='"+mf_cxnote+"',hdnote='"+mf_hdnote+
-            "',sbnote='"+mf_sbnote+"',zhnote='"+mf_zhnote+"',tsnote='"+mf_tsnote+"',gg_id="+mf_gg+",oldnet_prop_id="+mf_onet_prop+
-            ",user_prop_id="+mf_user_prop+",net_prop="+mf_net_prop+",payee='"+mf_payee+"',admit='"+mf_admit+
-            "',user_mobile='"+mf_user_mobile+"',user_phone='"+mf_user_phone+"',weixin="+mf_weixin+",letv_start="+le_start+
-            ",letv_end="+le_end+",letv_mac='"+le_mac+"',it_end="+it_end+" where username='"+uname+"'";
+	String update_sql=
+    "update gtm_mainform_info set " +
+    "leaflet_no="+leaflet_no+",group_id="+group_id+",opt_usetime="+opt_usetime+",house_type_id="+house_type+
+    ",line_type_id="+line_type+",department_id="+did+",dfirstdate='"+futime+"',contract_id="+hetong+",isit="+isit+
+    ",redate='"+mf_retime+"',cat_type_id="+mf_gm+",cxnote='"+mf_cxnote+"',hdnote='"+mf_hdnote+
+    "',sbnote='"+mf_sbnote+"',zhnote='"+mf_zhnote+"',tsnote='"+mf_tsnote+"',gg_id="+mf_gg+",oldnet_prop_id="+mf_onet_prop+
+    ",user_prop_id="+mf_user_prop+",net_prop='"+mf_net_prop+
+    "',user_mobile='"+mf_user_mobile+"',user_phone='"+mf_user_phone+"',weixin="+mf_weixin+",letv_start="+le_start+
+    ",letv_end="+le_end+",letv_mac='"+le_mac+"',it_end="+it_end+",payee="+action+",admit="+presentation+
+    " where username='"+uname+"'";
 	
 	String get_logmax_sql="select log_id from gtm_log where rownum=1 order by log_id desc";
 	int logId=1;
 	String sql_logadd_first="insert into gtm_log values(";
 	String sql_logadd_end=",'"+list_name+"','"+admin_name+"','"+true_name+"',"+save_time+",'"+changedStr+"',"+did_log+",'";
-    System.out.println(update_sql);
 	
 	Connection conn=null;
 	Statement st=null;
 	ResultSet rs=null;
+    int count = 0;
 	
 	conn=ConnPoolBean.getRadiusConn();
 	st=conn.createStatement();
@@ -117,13 +130,20 @@
 	rs=st.executeQuery(isExist_sql);
 	rs.next();
 	if(rs.getInt(1)==1){
-		st.executeUpdate(update_sql);
+		count = st.executeUpdate(update_sql);
 		st.executeUpdate(sql_logadd_first+logId+sql_logadd_end+uname+"')");
 	}else{
-		st.executeUpdate(sql);
+		count = st.executeUpdate(sql);
 		st.executeUpdate(sql_logadd_first+logId+sql_logadd_end+uname+"')");
 	}
-	
+    if(count >0 ){
+        out.print("{success:true,msg:'操作成功!'}");
+    }
+    else{
+        out.print("{success:false,msg:'操作失败，请联系系统管理员...'}");
+    }
+    out.flush();
+    out.close();
 	rs.close();
 	st.close();
 	conn.close();

@@ -17,7 +17,7 @@
     PreparedStatement pstmt = null;
     PreparedStatement innerPstmt = null;
     ResultSet rs = null;
-    ResultSet innerRs = null;
+    ResultSet innerRs  = null;
     StringBuilder sb = new StringBuilder();
     Date d = new Date();
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");

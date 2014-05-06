@@ -11,7 +11,7 @@
             storeId:'main_chart',
             proxy: {
                 type: 'ajax',
-                url: 'getChartInfo.jsp',
+                url: '/gtaomanage/getChartInfo',
                 method: 'POST',
                 actionMethods: { read: 'POST' },
                 reader: {
@@ -25,6 +25,7 @@
         var chart = Ext.create('Ext.chart.Chart', {
             id:'main_chart',
             name:'main_chart',
+            theme:'MyFancy',
             animate: true,
             store: store,
             axes: [
@@ -35,7 +36,7 @@
                     label: {
                         renderer: Ext.util.Format.numberRenderer('0,0')
                     },
-                    title: '数量',
+                    title: '数量（本月）',
                     grid: true,
                     minimum: 0
                 },
@@ -58,6 +59,7 @@
                     stacked: true,
                     listeners:{
                         itemmousedown:function(obj){
+                            Ext.chart_id = obj.storeItem.data['name'];
                             Ext.create('My.data_detail');
                             Ext.getCmp('data_detail').setTitle(obj.storeItem.data['name']);
                         }
