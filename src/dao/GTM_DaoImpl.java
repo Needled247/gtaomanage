@@ -56,6 +56,25 @@ public class GTM_DaoImpl implements GTM_Dao  {
     }
 
     /**
+     * 查询有表名后缀的数据
+     * @param clazz
+     * @param <T>
+     * @return
+     */
+    @Override
+    public <T> List<T> findAllBySuffix(Class<T> clazz, String suffix) {
+        ResultSetHandler<List<T>> rsh = new BeanListHandler<T>(clazz);
+        List<T> result = null;
+        try {
+            result = queryRunner.query("SELECT * FROM " + clazz.getSimpleName()+suffix, rsh);
+            logger.debug("SQL: SELECT * FROM " + clazz.getSimpleName()+suffix);
+        } catch (SQLException e) {
+            logger.error("Query table" + clazz.getSimpleName()+suffix+" failed.", e);
+        }
+        return result;
+    }
+
+    /**
      * 单条件查询
      * @param clazz
      * @param <T>

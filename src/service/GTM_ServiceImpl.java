@@ -4,6 +4,7 @@ import bean.GTM_BUSINESS_QUOTA;
 import bean.GTM_QUOTA_AREA;
 import dao.GTM_Dao;
 import dao.GTM_DaoImpl;
+import tools.Tools;
 
 import java.util.List;
 import java.util.Map;
@@ -187,12 +188,32 @@ public class GTM_ServiceImpl implements GTM_Service {
     }
 
     /**
-     * 获取营业厅定额数据
+     * 获取所有营业厅定额数据
      * @return List
      */
     @Override
     public List<GTM_BUSINESS_QUOTA> getBusinessQuota() {
         return dao.findAll(GTM_BUSINESS_QUOTA.class);
+    }
+
+    /**
+     * 按营业厅查询定额数据
+     * @param bs_id
+     * @return
+     */
+    @Override
+    public List<GTM_BUSINESS_QUOTA> getBusinessQuotaByBsid(String bs_id) {
+        return dao.findByKey(GTM_BUSINESS_QUOTA.class, "DEPARTMENT_ID", Integer.parseInt(bs_id));
+    }
+
+    /**
+     * 按月份、营业厅获取定额
+     * @param month
+     * @return
+     */
+    @Override
+    public List<GTM_BUSINESS_QUOTA> getBusinessQuotaByMonth(String month) {
+        return dao.findAllBySuffix(GTM_BUSINESS_QUOTA.class, month);
     }
 
     /**
@@ -290,5 +311,19 @@ public class GTM_ServiceImpl implements GTM_Service {
             flag = true;
         }
         return flag;
+    }
+
+    /**
+     * 按月份、营业厅查询某交易类型数量
+     * @param bsid
+     * @param month
+     * @return long
+     */
+    @Override
+    public long getNewSetupCountByBsid(int bsid, String month, Object[] chargeCode) {
+        String sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_NEW WHERE BS_ID=? " +
+                "AND TO_CHAR(CHARGE_DATE,'yyyymm')=? " +
+                "AND (CHARGE_TYPE_ID=? OR CHARGE_TYPE_ID=?)";
+        return getCount(sql, Tools.concat(new Object[]{bsid,month},chargeCode));
     }
 }

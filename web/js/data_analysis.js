@@ -62,7 +62,15 @@
                         ignoreParentClicks: true,
                         items: [
                             {
-                                text: '新装指标分析'
+                                text: '新装指标分析',
+                                listeners:{
+                                    'click':function(){
+                                        Ext.getCmp('data_start').hide();
+                                        Ext.getCmp('data_end').hide();
+                                        Ext.getCmp('data_bs').hide();
+                                        Ext.getCmp('data_month').show();
+                                    }
+                                }
                             },{
                                 text: '新装餐型分析'
                             },{
@@ -303,6 +311,17 @@
                             }
                             catch(e){console.log(e);}
                             mainPanel.add(Ext.create('My.user_panel'));
+                            mainPanel.doLayout();
+                            mainPanel.update();
+                        }
+                        else if(charge_type=='新装指标分析'){
+                            try{
+                                mainPanel.removeAll();
+                                mainPanel.doLayout();
+                                mainPanel.update();
+                            }
+                            catch (e){console.log(e);}
+                            mainPanel.add(Ext.create('My.new_quota_panel'));
                             mainPanel.doLayout();
                             mainPanel.update();
                         }

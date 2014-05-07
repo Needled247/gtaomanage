@@ -10,12 +10,12 @@
             			'department_id',
                         'area_name',
                         {name:'area_id',type:'auto'},
-            			'new_quota',
-                        'charge_quota',
-                        'charge_year_quota',
-                        'cancel_quota',
-                        'money_quota',
-                        'other_quota',
+                        {name:'new_quota',type:'int'},
+                        {name:'charge_quota',type:'int'},
+                        {name:'charge_year_quota',type:'int'},
+                        {name:'cancel_quota',type:'int'},
+                        {name:'money_quota',type:'int'},
+                        {name:'other_quota',type:'int'},
                         'charge_person'
             		]
         	});
@@ -77,6 +77,27 @@
                                 store.load();
                             }
                         })
+                    },
+                    load:function(){
+                        //得到总部分配的定额
+                        var total_new = area_quota_store.proxy.reader.jsonData.total_new;
+                        var total_charge = area_quota_store.proxy.reader.jsonData.total_charge;
+                        var total_charge_year = area_quota_store.proxy.reader.jsonData.total_charge_year;
+                        var total_cancel = area_quota_store.proxy.reader.jsonData.total_cancel;
+                        var total_money = area_quota_store.proxy.reader.jsonData.total_money;
+                        var total_other = area_quota_store.proxy.reader.jsonData.total_other;
+                        //得到已分配数量
+                        var temp_new = area_quota_store.sum('new_quota');
+                        var temp_charge = area_quota_store.sum('charge_quota');
+                        var temp_charge_year = area_quota_store.sum('charge_year_quota');
+                        var temp_cancel = area_quota_store.sum('cancel_quota');
+                        var temp_money = area_quota_store.sum('money_quota');
+                        var temp_other = area_quota_store.sum('other_quota');
+                        Ext.getCmp('totalLabel').setText(
+                            "(已分配/定额)：新装"+temp_new+"/"+total_new+"|  续费"+temp_charge+"/"+total_charge+
+                                "|  包年续费"+temp_charge_year+"/"+total_charge_year+"|  停机注销"+temp_cancel+"/"+total_cancel+
+                                "|  收费"+temp_money+"/"+total_money+"|  其他"+temp_other+"/"+total_other
+                        );
                     }
                 },
     		    autoLoad: true
@@ -236,17 +257,15 @@
                 }
             }],
             plugins: [rowEditing],
-        	bbar: new Ext.PagingToolbar({
-                store: area_quota_store,
-                displayInfo: true,
-                displayMsg: '本页显示{0}-{1}行 共<b><font color="red">{2}</font></b>行',
-                emptyMsg: '没有可用数据',
-                listeners: {
-    	            beforechange: function(){
-
-    	            }
-                }
-            })            
+        	bbar:
+                ["-",
+                    {
+                        xtype: "label",
+                        id:'totalLabel',
+                        name:'totalLabel',
+                        text: ''
+                    }
+                ]
         });
         this.callParent(arguments);
     }

@@ -9,6 +9,7 @@ import java.util.Map;
 public interface GTM_Dao {
     //Connection作为参数。
     public  <T> List<T> findAll(Class<T> c);
+    public <T> List<T> findAllBySuffix(Class<T> c, String suffix);
     public  <T> List<T> findByKey(Class<T> clazz,String primary_key, int id);
     public <T> T findById(Class<T> c,String primary_key, int id);
     public long insert(String sql, Object... args);

@@ -72,6 +72,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>NewQuotaChartServlet</servlet-name>
+        <servlet-class>servlet.NewQuotaChartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NewQuotaChartServlet</servlet-name>
+        <url-pattern>/NewQuotaChartServlet</url-pattern>
+        <url-pattern>/gtaomanage/NewQuotaChartServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>AreaQuotaServlet</servlet-name>
         <servlet-class>servlet.AreaQuotaServlet</servlet-class>
     </servlet>

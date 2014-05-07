@@ -25,10 +25,13 @@ public interface GTM_Service {
     public long getMonthTotalCount(String tbl);
     public long getMonthTotalNormalCount(String tbl);
     public List<GTM_BUSINESS_QUOTA> getBusinessQuota();
+    public List<GTM_BUSINESS_QUOTA> getBusinessQuotaByBsid(String bs_id);
+    public List<GTM_BUSINESS_QUOTA> getBusinessQuotaByMonth(String month);
     public List<GTM_QUOTA_AREA> getAreaQuota(int departmentid);
     public boolean updateBusinessQuota(String column, Object[] params);
     public boolean updateAreaQuota(Object[] params);
     public boolean insertAreaQuota(GTM_QUOTA_AREA bean);
     public long getMaxIdFromQuotaArea(String departmentId);
     public boolean removeAreaQuota(String id, String department_id);
+    public long getNewSetupCountByBsid(int bsid, String month, Object[] chargeCode);
 }

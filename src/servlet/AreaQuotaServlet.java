@@ -1,5 +1,6 @@
 package servlet;
 
+import bean.GTM_BUSINESS_QUOTA;
 import bean.GTM_QUOTA_AREA;
 import com.alibaba.druid.support.logging.Log;
 import com.alibaba.druid.support.logging.LogFactory;
@@ -39,7 +40,7 @@ public class AreaQuotaServlet extends HttpServlet {
             StringBuilder sb = new StringBuilder();
             int departmentid = Integer.parseInt(req.getParameter("department_id"));
             List<GTM_QUOTA_AREA> quota = service.getAreaQuota(departmentid);
-            sb.append("[");
+            sb.append("data:[");
             for(int i=0;i<quota.size();i++){
                 GTM_QUOTA_AREA bean = quota.get(i);
                 sb.append("{\"id\":\""+bean.getID()+"\",")
@@ -58,8 +59,17 @@ public class AreaQuotaServlet extends HttpServlet {
                 sb.deleteCharAt(sb.lastIndexOf(","));
             }
             sb.append("]");
+            //获取营业厅各项定额 合并json
+            String prefix = "";
+            List<GTM_BUSINESS_QUOTA> bsQuotaList = service.getBusinessQuotaByBsid(departmentid+"");
+            for(int i=0;i<bsQuotaList.size();i++){
+                GTM_BUSINESS_QUOTA bean = bsQuotaList.get(i);
+                prefix = "{\"total_new\":"+bean.getNEW_QUOTA()+",\"total_charge\":"+bean.getCHARGE_QUOTA()+",\"total_charge_year\":"+
+                        bean.getCHARGE_YEAR_QUOTA()+",\"total_cancel\":"+bean.getCANCEL_QUOTA()+",\"total_money\":"+
+                        bean.getMONEY_QUOTA()+",\"total_other\":"+bean.getOTHER_QUOTA()+",";
+            }
             //输出并回收资源
-            out.print(sb);
+            out.print(prefix+sb+"}");
             out.flush();
             out.close();
         }
