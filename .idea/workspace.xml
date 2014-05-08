@@ -14,15 +14,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/servlet/NewQuotaChartServlet.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/new_quota_panel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/servlet/AreaQuotaServlet.java" afterPath="$PROJECT_DIR$/src/servlet/AreaQuotaServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/AreaSettingGrid.js" afterPath="$PROJECT_DIR$/web/js/AreaSettingGrid.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dao/GTM_Dao.java" afterPath="$PROJECT_DIR$/src/dao/GTM_Dao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dao/GTM_DaoImpl.java" afterPath="$PROJECT_DIR$/src/dao/GTM_DaoImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/servlet/CancelQuotaChartServlet.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/servlet/ChargeQuotaChartServlet.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/cancel_quota_panel.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/charge_quota_panel.js" />
+      <change type="MOVED" beforePath="C:\Users\HP\Desktop\gtaomanage\src\service\daoTest.java" afterPath="$PROJECT_DIR$/src/Test/daoTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/GTM_Service.java" afterPath="$PROJECT_DIR$/src/service/GTM_Service.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/GTM_ServiceImpl.java" afterPath="$PROJECT_DIR$/src/service/GTM_ServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/servlet/NewQuotaChartServlet.java" afterPath="$PROJECT_DIR$/src/servlet/NewQuotaChartServlet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tools/Tools.java" afterPath="$PROJECT_DIR$/src/tools/Tools.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/data_analysis.js" afterPath="$PROJECT_DIR$/web/js/data_analysis.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/new_quota_panel.js" afterPath="$PROJECT_DIR$/web/js/new_quota_panel.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -94,57 +96,70 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="data_analysis.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="data_analysis.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/js/data_analysis.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="312" column="67" selection-start="11981" selection-end="11991" vertical-scroll-proportion="0.0" vertical-offset="8096" max-vertical-offset="9525">
+            <state line="95" column="189" selection-start="4019" selection-end="4019" vertical-scroll-proportion="2.0674741" vertical-offset="1180" max-vertical-offset="10725">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user_total_panel.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/js/user_total_panel.js">
+      <file leaf-file-name="cancel_quota_panel.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/js/cancel_quota_panel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="97" column="29" selection-start="3225" selection-end="3231" vertical-scroll-proportion="0.0" vertical-offset="1575" max-vertical-offset="3150">
+            <state line="17" column="57" selection-start="561" selection-end="584" vertical-scroll-proportion="0.0" vertical-offset="1422" max-vertical-offset="2000">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="new_quota_panel.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/js/new_quota_panel.js">
+      <file leaf-file-name="web.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="57" selection-start="1309" selection-end="1309" vertical-scroll-proportion="0.30276817" vertical-offset="825" max-vertical-offset="2000">
+            <state line="110" column="56" selection-start="4440" selection-end="4440" vertical-scroll-proportion="0.0" vertical-offset="2288" max-vertical-offset="3425">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GTM_Dao.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dao/GTM_Dao.java">
+      <file leaf-file-name="CancelQuotaChartServlet.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/servlet/CancelQuotaChartServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="64" selection-start="255" selection-end="255" vertical-scroll-proportion="0.0" vertical-offset="23" max-vertical-offset="675">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GTM_DaoImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dao/GTM_DaoImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="71" column="69" selection-start="2266" selection-end="2266" vertical-scroll-proportion="0.0" vertical-offset="987" max-vertical-offset="5425">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NewQuotaChartServlet.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/servlet/NewQuotaChartServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="30" selection-start="1276" selection-end="1276" vertical-scroll-proportion="0.0" vertical-offset="1475" max-vertical-offset="2050">
+            <state line="27" column="24" selection-start="752" selection-end="752" vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="1775">
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="charge_quota_panel.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/js/charge_quota_panel.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="67" column="25" selection-start="2152" selection-end="2152" vertical-scroll-proportion="0.0" vertical-offset="1472" max-vertical-offset="2050">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChargeQuotaChartServlet.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/servlet/ChargeQuotaChartServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="24" selection-start="752" selection-end="752" vertical-scroll-proportion="0.0" vertical-offset="385" max-vertical-offset="1975">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Tools.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/tools/Tools.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="329" column="28" selection-start="10464" selection-end="10464" vertical-scroll-proportion="0.0" vertical-offset="7560" max-vertical-offset="8400">
+              <folding>
+                <marker date="1399532802084" expanded="true" signature="5129:5180" placeholder="SELECT SPOLI..GTM_POLICY..." />
               </folding>
             </state>
           </provider>
@@ -153,7 +168,18 @@
       <file leaf-file-name="GTM_ServiceImpl.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/service/GTM_ServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="209" column="18" selection-start="5774" selection-end="5774" vertical-scroll-proportion="0.0" vertical-offset="4810" max-vertical-offset="8200">
+            <state line="322" column="36" selection-start="9037" selection-end="9057" vertical-scroll-proportion="0.0" vertical-offset="7635" max-vertical-offset="8200">
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NewQuotaChartServlet.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/servlet/NewQuotaChartServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="30" column="24" selection-start="839" selection-end="839" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1850">
               <folding />
             </state>
           </provider>
@@ -162,7 +188,7 @@
       <file leaf-file-name="GTM_Service.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/service/GTM_Service.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="60" selection-start="1162" selection-end="1162" vertical-scroll-proportion="0.0" vertical-offset="258" max-vertical-offset="975">
+            <state line="35" column="36" selection-start="1588" selection-end="1588" vertical-scroll-proportion="0.0" vertical-offset="397" max-vertical-offset="975">
               <folding />
             </state>
           </provider>
@@ -186,10 +212,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/bean/GTM_FRONT_CHARGE.java" />
-        <option value="$PROJECT_DIR$/src/bean/GTM_FRONT_CHARGE_NEW.java" />
-        <option value="$PROJECT_DIR$/GTM项目笔记.txt" />
-        <option value="$PROJECT_DIR$/web/page/business/getMainChartDetail.jsp" />
         <option value="$PROJECT_DIR$/src/servlet/getChartInfo.java" />
         <option value="$PROJECT_DIR$/src/bean/ChargeTypeBean.java" />
         <option value="$PROJECT_DIR$/src/ds/DBHelper.java" />
@@ -225,18 +247,22 @@
         <option value="$PROJECT_DIR$/src/servlet/BusinessStationQuotaServlet.java" />
         <option value="$PROJECT_DIR$/web/js/AreaSettings.js" />
         <option value="$PROJECT_DIR$/web/js/tree_westB.js" />
-        <option value="$PROJECT_DIR$/src/tools/Tools.java" />
         <option value="$PROJECT_DIR$/src/bean/GTM_QUOTA_AREA.java" />
         <option value="$PROJECT_DIR$/src/servlet/AreaQuotaServlet.java" />
         <option value="$PROJECT_DIR$/web/js/AreaSettingGrid.js" />
         <option value="$PROJECT_DIR$/src/dao/GTM_Dao.java" />
         <option value="$PROJECT_DIR$/src/dao/GTM_DaoImpl.java" />
+        <option value="$PROJECT_DIR$/web/js/new_quota_panel.js" />
         <option value="$PROJECT_DIR$/src/service/GTM_ServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/service/GTM_Service.java" />
+        <option value="$PROJECT_DIR$/src/tools/Tools.java" />
+        <option value="$PROJECT_DIR$/web/js/cancel_quota_panel.js" />
+        <option value="$PROJECT_DIR$/src/servlet/CancelQuotaChartServlet.java" />
+        <option value="$PROJECT_DIR$/src/servlet/ChargeQuotaChartServlet.java" />
         <option value="$PROJECT_DIR$/src/servlet/NewQuotaChartServlet.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/web/js/charge_quota_panel.js" />
         <option value="$PROJECT_DIR$/web/js/data_analysis.js" />
-        <option value="$PROJECT_DIR$/web/js/new_quota_panel.js" />
       </list>
     </option>
   </component>
@@ -285,7 +311,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -382,6 +407,42 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="tools" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gtaomanage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gtaomanage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gtaomanage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gtaomanage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="servlet" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -424,6 +485,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -538,8 +600,8 @@
       <module name="gtaomanage" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="service" />
-      <option name="MAIN_CLASS_NAME" value="service.daoTest" />
+      <option name="PACKAGE_NAME" value="Test" />
+      <option name="MAIN_CLASS_NAME" value="Test.daoTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -766,6 +828,12 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="com.intellij.persistence.run.ConsoleRunConfigurationType" factoryName="Query Language Console">
+      <option name="VM_PARAMETERS" value="" />
+      <option name="USER_CFG_CLASS" />
+      <option name="CONTEXT_PROVIDER" />
+      <method />
+    </configuration>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -783,12 +851,6 @@
       <option name="NETWORK_LATENCY" value="none" />
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
-      <method />
-    </configuration>
-    <configuration default="true" type="com.intellij.persistence.run.ConsoleRunConfigurationType" factoryName="Query Language Console">
-      <option name="VM_PARAMETERS" value="" />
-      <option name="USER_CFG_CLASS" />
-      <option name="CONTEXT_PROVIDER" />
       <method />
     </configuration>
     <configuration default="false" name="Resin 4.0" type="ResinConfigurationType" factoryName="Local" APPLICATION_SERVER_NAME="Resin 4.0.39" ALTERNATIVE_JRE_ENABLED="false" ALTERNATIVE_JRE_PATH="">
@@ -1045,7 +1107,8 @@
       <workItem from="1399347062080" duration="19657000" />
       <workItem from="1399382425487" duration="5507000" />
       <workItem from="1399391470098" duration="395000" />
-      <workItem from="1399430570752" duration="17517000" />
+      <workItem from="1399430570752" duration="17696000" />
+      <workItem from="1399516993740" duration="15915000" />
     </task>
     <task id="LOCAL-00001" summary="2013-11-11(2)">
       <created>1384161602394</created>
@@ -1075,11 +1138,15 @@
       <created>1399391710557</created>
       <updated>1399391710557</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="2014-05-07&#10;">
+      <created>1399457062572</created>
+      <updated>1399457062572</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="556184000" />
+    <option name="totallyTimeSpent" value="572278000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1151,7 +1218,7 @@
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32736155" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286385" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23923445" sideWeight="0.53094465" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23923445" sideWeight="0.53094465" order="0" side_tool="false" content_ui="combo" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
@@ -1205,36 +1272,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web/js/noqc_north.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="33" selection-start="364" selection-end="425" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="14700" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/invoice_north.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.2376238" vertical-offset="750" max-vertical-offset="2150" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/invoice_grid.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="56" selection-start="144" selection-end="144" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="2425" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/invoice.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="3300" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/examples.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="825" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/SettingIndex.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="44" selection-start="458" selection-end="458" vertical-scroll-proportion="0.0" vertical-offset="44" max-vertical-offset="650" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/bean/GTM_BUSINESS_QUOTA.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="24" selection-start="345" selection-end="345" vertical-scroll-proportion="0.60553634" vertical-offset="25" max-vertical-offset="2125" />
@@ -1324,9 +1361,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/base_query_mfA.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="379" column="73" selection-start="16735" selection-end="16743" vertical-scroll-proportion="-0.1" vertical-offset="9502" max-vertical-offset="18725">
-          <folding />
-        </state>
+        <state line="379" column="73" selection-start="16735" selection-end="16743" vertical-scroll-proportion="-0.1" vertical-offset="9502" max-vertical-offset="18725" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/tools/SessionFilter.java">
@@ -1366,21 +1401,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/qc_grid.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="22" selection-start="1793" selection-end="2004" vertical-scroll-proportion="0.0" vertical-offset="1200" max-vertical-offset="4550">
-          <folding>
-            <marker date="1392700773821" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1392700773821" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1392700773821" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1392700773821" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1392700773821" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1392700773821" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1392700773821" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1392700773821" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1392700773821" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1392700773821" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1392700773821" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
+        <state line="60" column="22" selection-start="1793" selection-end="2004" vertical-scroll-proportion="0.0" vertical-offset="1200" max-vertical-offset="4550" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/servlet/AreaQuotaServlet.java">
@@ -1392,18 +1413,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/AreaSettingGrid.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="34" selection-start="4076" selection-end="4076" vertical-scroll-proportion="-0.30128205" vertical-offset="2319" max-vertical-offset="6975">
-          <folding />
-        </state>
+        <state line="89" column="34" selection-start="4076" selection-end="4076" vertical-scroll-proportion="-0.30128205" vertical-offset="2319" max-vertical-offset="6975" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/pop-div.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="593">
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="593" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/servlet/getUserMonthChart.java">
@@ -1420,59 +1435,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tools/Tools.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="218" column="26" selection-start="7315" selection-end="7315" vertical-scroll-proportion="0.33274338" vertical-offset="4962" max-vertical-offset="7500">
-          <folding>
-            <marker date="1398845896843" expanded="true" signature="-1:-1" placeholder="SELECT SPOLI..GTM_POLICY..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dao/GTM_Dao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="64" selection-start="255" selection-end="255" vertical-scroll-proportion="0.0" vertical-offset="23" max-vertical-offset="675">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dao/GTM_DaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="69" selection-start="2266" selection-end="2266" vertical-scroll-proportion="0.0" vertical-offset="987" max-vertical-offset="5425">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/GTM_Service.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="60" selection-start="1162" selection-end="1162" vertical-scroll-proportion="0.0" vertical-offset="258" max-vertical-offset="975">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/GTM_ServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="209" column="18" selection-start="5774" selection-end="5774" vertical-scroll-proportion="0.0" vertical-offset="4810" max-vertical-offset="8200">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="53" selection-start="3278" selection-end="3278" vertical-scroll-proportion="0.7910864" vertical-offset="1716" max-vertical-offset="2925">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/servlet/NewQuotaChartServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="30" selection-start="1276" selection-end="1276" vertical-scroll-proportion="0.0" vertical-offset="1475" max-vertical-offset="2050">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/js/user_panel.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="37" column="33" selection-start="1157" selection-end="1160" vertical-scroll-proportion="1.600346" vertical-offset="0" max-vertical-offset="2500">
@@ -1482,30 +1444,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/data_detail.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="70" selection-start="1847" selection-end="1847" vertical-scroll-proportion="-0.7522124" vertical-offset="1875" max-vertical-offset="7075">
-          <folding />
-        </state>
+        <state line="58" column="70" selection-start="1847" selection-end="1847" vertical-scroll-proportion="-0.7522124" vertical-offset="1875" max-vertical-offset="7075" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/data_panel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2600">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2600" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/user_count.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2350">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/data_analysis.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="312" column="67" selection-start="11981" selection-end="11991" vertical-scroll-proportion="0.0" vertical-offset="8096" max-vertical-offset="9525">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2350" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/user_total_panel.js">
@@ -1517,7 +1466,113 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/new_quota_panel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="57" selection-start="1309" selection-end="1309" vertical-scroll-proportion="0.30276817" vertical-offset="825" max-vertical-offset="2000">
+        <state line="65" column="25" selection-start="2000" selection-end="2000" vertical-scroll-proportion="0.0" vertical-offset="1350" max-vertical-offset="2000">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bean/ChargeTypeBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="50" selection-start="357" selection-end="357" vertical-scroll-proportion="0.57755774" vertical-offset="0" max-vertical-offset="1400">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Test/daoTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="13" selection-start="137" selection-end="137" vertical-scroll-proportion="0.28877887" vertical-offset="0" max-vertical-offset="875">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dao/GTM_DaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="64" column="23" selection-start="1823" selection-end="1823" vertical-scroll-proportion="0.33274338" vertical-offset="1012" max-vertical-offset="5425">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dao/GTM_Dao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="23" selection-start="214" selection-end="214" vertical-scroll-proportion="0.33217993" vertical-offset="58" max-vertical-offset="675">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/GTM_ServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="322" column="36" selection-start="9037" selection-end="9057" vertical-scroll-proportion="0.0" vertical-offset="7635" max-vertical-offset="8200">
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/GTM_Service.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="36" selection-start="1588" selection-end="1588" vertical-scroll-proportion="0.0" vertical-offset="397" max-vertical-offset="975">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tools/Tools.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="329" column="28" selection-start="10464" selection-end="10464" vertical-scroll-proportion="0.0" vertical-offset="7560" max-vertical-offset="8400">
+          <folding>
+            <marker date="1399532802084" expanded="true" signature="5129:5180" placeholder="SELECT SPOLI..GTM_POLICY..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/servlet/CancelQuotaChartServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="24" selection-start="752" selection-end="752" vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="1775">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/servlet/ChargeQuotaChartServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="24" selection-start="752" selection-end="752" vertical-scroll-proportion="0.0" vertical-offset="385" max-vertical-offset="1975">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/servlet/NewQuotaChartServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="24" selection-start="839" selection-end="839" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1850">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="110" column="56" selection-start="4440" selection-end="4440" vertical-scroll-proportion="0.0" vertical-offset="2288" max-vertical-offset="3425">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/charge_quota_panel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="67" column="25" selection-start="2152" selection-end="2152" vertical-scroll-proportion="0.0" vertical-offset="1472" max-vertical-offset="2050">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/cancel_quota_panel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="57" selection-start="561" selection-end="584" vertical-scroll-proportion="0.0" vertical-offset="1422" max-vertical-offset="2000">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/data_analysis.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="95" column="189" selection-start="4019" selection-end="4019" vertical-scroll-proportion="2.0674741" vertical-offset="1180" max-vertical-offset="10725">
           <folding />
         </state>
       </provider>

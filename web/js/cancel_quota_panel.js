@@ -1,8 +1,8 @@
-﻿Ext.define('My.new_quota_panel', {
+﻿Ext.define('My.cancel_quota_panel', {
     extend: 'Ext.panel.Panel',
     
     constructor: function() {
-        Ext.define('new_quota_store', {
+        Ext.define('cancel_quota_store', {
             extend: 'Ext.data.Model',
             fields: [
                 'name',
@@ -11,11 +11,11 @@
             ]
         });
         var store = Ext.create('Ext.data.Store', {
-            model: 'new_quota_store',
-            storeId:'new_quota_chart',
+            model: 'cancel_quota_store',
+            storeId:'cancel_quota_chart',
             proxy: {
                 type: 'ajax',
-                url: '/gtaomanage/NewQuotaChartServlet',
+                url: '/gtaomanage/CancelQuotaChartServlet',
                 method: 'POST',
                 actionMethods: { read: 'POST' },
                 reader: {
@@ -27,7 +27,7 @@
         store.load({params:{month:Ext.util.Format.date(Ext.getCmp('data_month').getValue(), 'Ym')}});
 
         var chart = Ext.create('Ext.chart.Chart', {
-            id:'new_quota_chart',
+            id:'cancel_quota_chart',
             style: 'background:#fff',
             animate: true,
             shadow: true,
@@ -61,9 +61,9 @@
 
         Ext.apply(this, {
             region: 'center',
-            id: 'user_panel',
-            name: 'user_panel',
-            title:'新装指标分析',
+            id: 'cancel_panel',
+            name: 'cancel_panel',
+            title:'停机指标分析',
             layout:'fit',
             border: false,
             frame:true,

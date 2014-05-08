@@ -91,6 +91,26 @@
         <url-pattern>/gtaomanage/AreaQuotaServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ChargeQuotaChartServlet</servlet-name>
+        <servlet-class>servlet.ChargeQuotaChartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChargeQuotaChartServlet</servlet-name>
+        <url-pattern>/ChargeQuotaChartServlet</url-pattern>
+        <url-pattern>/gtaomanage/ChargeQuotaChartServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CancelQuotaChartServlet</servlet-name>
+        <servlet-class>servlet.CancelQuotaChartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CancelQuotaChartServlet</servlet-name>
+        <url-pattern>/CancelQuotaChartServlet</url-pattern>
+        <url-pattern>/gtaomanage/CancelQuotaChartServlet</url-pattern>
+    </servlet-mapping>
+
   <welcome-file-list>
     <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>

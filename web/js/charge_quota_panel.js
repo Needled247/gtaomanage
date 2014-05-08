@@ -1,21 +1,23 @@
-﻿Ext.define('My.new_quota_panel', {
+﻿Ext.define('My.charge_quota_panel', {
     extend: 'Ext.panel.Panel',
     
     constructor: function() {
-        Ext.define('new_quota_store', {
+        Ext.define('charge_quota_store', {
             extend: 'Ext.data.Model',
             fields: [
                 'name',
                 {name:'data1',type:'int'},
-                {name:'data2',type:'int'}
+                {name:'data2',type:'int'},
+                {name:'data3',type:'int'},
+                {name:'data4',type:'int'}
             ]
         });
         var store = Ext.create('Ext.data.Store', {
-            model: 'new_quota_store',
-            storeId:'new_quota_chart',
+            model: 'charge_quota_store',
+            storeId:'charge_quota_chart',
             proxy: {
                 type: 'ajax',
-                url: '/gtaomanage/NewQuotaChartServlet',
+                url: '/gtaomanage/ChargeQuotaChartServlet',
                 method: 'POST',
                 actionMethods: { read: 'POST' },
                 reader: {
@@ -27,7 +29,7 @@
         store.load({params:{month:Ext.util.Format.date(Ext.getCmp('data_month').getValue(), 'Ym')}});
 
         var chart = Ext.create('Ext.chart.Chart', {
-            id:'new_quota_chart',
+            id:'charge_quota_chart',
             style: 'background:#fff',
             animate: true,
             shadow: true,
@@ -38,7 +40,7 @@
             axes: [{
                 type: 'Numeric',
                 position: 'bottom',
-                fields: ['data1','data2'],         //TODO
+                fields: ['data1','data2','data3','data4'],         //TODO
                 minimum: 0,
                 label: {
                     renderer: Ext.util.Format.numberRenderer('0,0')
@@ -55,15 +57,15 @@
                 type: 'bar',
                 axis: 'bottom',
                 xField: 'name',
-                yField: ['data1', 'data2']
+                yField: ['data1', 'data2','data3','data4']
             }]
         });
 
         Ext.apply(this, {
             region: 'center',
-            id: 'user_panel',
-            name: 'user_panel',
-            title:'新装指标分析',
+            id: 'charge_quota_panel',
+            name: 'charge_quota_panel',
+            title:'续费指标分析',
             layout:'fit',
             border: false,
             frame:true,

@@ -72,11 +72,35 @@
                                     }
                                 }
                             },{
-                                text: '新装餐型分析'
+                                text: '新装餐型分析',
+                                listeners:{
+                                    'click':function(){
+                                        Ext.getCmp('data_start').hide();
+                                        Ext.getCmp('data_end').hide();
+                                        Ext.getCmp('data_bs').hide();
+                                        Ext.getCmp('data_month').show();
+                                    }
+                                }
                             },{
-                                text: '新装带宽分析'
+                                text: '新装带宽分析',
+                                listeners:{
+                                    'click':function(){
+                                        Ext.getCmp('data_start').hide();
+                                        Ext.getCmp('data_end').hide();
+                                        Ext.getCmp('data_bs').hide();
+                                        Ext.getCmp('data_month').show();
+                                    }
+                                }
                             },{
-                                text: '新装网络性质分析'
+                                text: '新装走势',
+                                listeners:{
+                                    'click':function(){
+                                        Ext.getCmp('data_start').show();
+                                        Ext.getCmp('data_end').show();
+                                        Ext.getCmp('data_bs').show();
+                                        Ext.getCmp('data_month').hide();
+                                    }
+                                }
                             }
                         ],
                         listeners:{
@@ -91,7 +115,15 @@
                         ignoreParentClicks: true,
                         items: [
                             {
-                                text: '续费统计'
+                                text: '续费指标分析',
+                                listeners:{
+                                    'click':function(){
+                                        Ext.getCmp('data_start').hide();
+                                        Ext.getCmp('data_end').hide();
+                                        Ext.getCmp('data_bs').hide();
+                                        Ext.getCmp('data_month').show();
+                                    }
+                                }
                             },{
                                 text: '续费带宽分析'
                             },{
@@ -100,6 +132,8 @@
                                 text: '业务变更统计'
                             },{
                                 text: '赠送时长统计'
+                            },{
+                                text: '续费走势'
                             }
                         ],
                         listeners:{
@@ -115,7 +149,15 @@
                         ignoreParentClicks: true,
                         items: [
                             {
-                                text: '停机用户统计'
+                                text: '停机指标分析',
+                                listeners:{
+                                    'click':function(){
+                                        Ext.getCmp('data_start').hide();
+                                        Ext.getCmp('data_end').hide();
+                                        Ext.getCmp('data_bs').hide();
+                                        Ext.getCmp('data_month').show();
+                                    }
+                                }
                             },{
                                 text: '停机注销用户统计'
                             },{
@@ -124,21 +166,8 @@
                                 text: '停机注销带宽分析'
                             },{
                                 text: '在网时间分析'
-                            }
-                        ],
-                        listeners:{
-                            'click':function(menu,item){
-                                Ext.getCmp('chart_type').setValue(item.text);
-                            }
-                        }
-                    })
-                },{
-                    text: 'IT卡服务类',
-                    menu: new Ext.menu.Menu({
-                        ignoreParentClicks: true,
-                        items: [
-                            {
-                                text: '时间统计'
+                            },{
+                                text: '停机注销走势'
                             }
                         ],
                         listeners:{
@@ -304,8 +333,7 @@
                         var mainPanel = Ext.getCmp('data_analysis');
                         if(charge_type=='在网用户数量统计'){
                             try{
-                                mainPanel.remove(Ext.getCmp('data_panel'),true);
-                                mainPanel.remove(Ext.getCmp('user_total_panel'),true);
+                                mainPanel.removeAll();
                                 mainPanel.doLayout();
                                 mainPanel.update();
                             }
@@ -327,8 +355,7 @@
                         }
                         else if(charge_type=='在网用户数量曲线'){
                             try{
-                                mainPanel.remove(Ext.getCmp('data_panel'),true);
-                                mainPanel.remove(Ext.getCmp('user_panel'),true);
+                                mainPanel.removeAll();
                                 mainPanel.doLayout();
                                 mainPanel.update();
                             }
@@ -339,13 +366,34 @@
                         }
                         else if(charge_type=='本月综合分析'){
                             try{
-                                mainPanel.remove(Ext.getCmp('user_total_panel'),true);
-                                mainPanel.remove(Ext.getCmp('user_panel'),true);
+                                mainPanel.removeAll();
                                 mainPanel.doLayout();
                                 mainPanel.update();
                             }
                             catch (e){console.log(e);}
                             mainPanel.add(Ext.create('My.data_panel'));
+                            mainPanel.doLayout();
+                            mainPanel.update();
+                        }
+                        else if(charge_type=='续费指标分析'){
+                            try{
+                                mainPanel.removeAll();
+                                mainPanel.doLayout();
+                                mainPanel.update();
+                            }
+                            catch(e){console.log(e);}
+                            mainPanel.add(Ext.create('My.charge_quota_panel'));
+                            mainPanel.doLayout();
+                            mainPanel.update();
+                        }
+                        else if(charge_type=='停机指标分析'){
+                            try{
+                                mainPanel.removeAll();
+                                mainPanel.doLayout();
+                                mainPanel.update();
+                            }
+                            catch(e){console.log(e);}
+                            mainPanel.add(Ext.create('My.cancel_quota_panel'));
                             mainPanel.doLayout();
                             mainPanel.update();
                         }

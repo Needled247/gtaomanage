@@ -304,4 +304,40 @@ public class Tools
             return new String(sb.toString().getBytes("GBK"),"ISO-8859-1");
         }
     }
+
+    /**
+     * 比对时间，返回表名后缀
+     * @param month
+     * @return  suffix
+     */
+    public static String validateTime(String month){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+        String suffix = "";
+        try {
+            if(!sdf.format(sdf.parse(month)).equals(sdf.format(new Date()))){
+                suffix = month;
+            }
+        }
+        catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return suffix;
+    }
+
+    /**
+     * 格式化EXTJS时间参数
+     * @param month
+     * @return format yyyyMM
+     */
+    public static String formatExtTime(String month){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+        String fmtTime = "";
+        try {
+            fmtTime = sdf.format(sdf.parse(month));
+        }
+        catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return fmtTime;
+    }
 }

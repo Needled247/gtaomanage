@@ -33,5 +33,5 @@ public interface GTM_Service {
     public boolean insertAreaQuota(GTM_QUOTA_AREA bean);
     public long getMaxIdFromQuotaArea(String departmentId);
     public boolean removeAreaQuota(String id, String department_id);
-    public long getNewSetupCountByBsid(int bsid, String month, Object[] chargeCode);
+    public long getChargeCountByBsid(int bsid, String month, Object[] chargeCode);
 }

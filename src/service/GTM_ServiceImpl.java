@@ -207,7 +207,7 @@ public class GTM_ServiceImpl implements GTM_Service {
     }
 
     /**
-     * 按月份、营业厅获取定额
+     * 按月份获取定额
      * @param month
      * @return
      */
@@ -320,7 +320,7 @@ public class GTM_ServiceImpl implements GTM_Service {
      * @return long
      */
     @Override
-    public long getNewSetupCountByBsid(int bsid, String month, Object[] chargeCode) {
+    public long getChargeCountByBsid(int bsid, String month, Object[] chargeCode) {
         String sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_NEW WHERE BS_ID=? " +
                 "AND TO_CHAR(CHARGE_DATE,'yyyymm')=? " +
                 "AND (CHARGE_TYPE_ID=? OR CHARGE_TYPE_ID=?)";
