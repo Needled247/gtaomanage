@@ -3,6 +3,7 @@
 <%@page import="ds.ConnPoolBean"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
+<%@ page import="java.text.SimpleDateFormat" %>
 
 <%	
 	String startPage=request.getParameter("start");
@@ -27,12 +28,14 @@
     String bandwidth = request.getParameter("bandwidth");
     String bankcard = request.getParameter("bankcard");
     String netpay_id = request.getParameter("netpay_id");
+    String pre_month = request.getParameter("pre_month");
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
     //收据，收款人，接待人，餐型，带宽，银行卡号，网银订单号
 	String get_data_sql=
     "select ga.act_name,pt.pay_type_name,fc.charge_id,bi.name,fc.charge_date," +
     "fc.username,fc.receipt_id,fc.is_new,ct.charge_type_name,fc.note,fc.charge_amount,fc.save_admin," +
     "fc.save_time,mi.group_id,ui.srealname,ui.stele,tu.sfeephone,gc.contract_name,gc.is_gg,gc.is_xk," +
-    "gc.contract_type,fc.shouju,fc.payee,fc.admit,fc.quota,fc.bandwidth,fc.bankcard,fc.netpay_id " +
+    "gc.contract_type,fc.shouju,fc.payee,fc.admit,fc.quota,fc.bandwidth,fc.bankcard,fc.netpay_id,fc.pre_month " +
     "from gtm_act ga,gtm_pay_type pt,gtm_contract gc,gtm_business_info bi," +
     "GTM_MAINFORM_INFO mi,GTM_CHARGE_TYPE ct,GTM_FRONT_CHARGE_NEW fc,TBL_USERSINFO ui," +
     "tbl_users tu " +
@@ -159,11 +162,15 @@
                 get_count_sql+=" and fc.netpay_id like '%"+new String(netpay_id.getBytes("gbk"),"iso-8859-1")+"%'";
                 get_total_sql+=" and fc.netpay_id like '%"+new String(netpay_id.getBytes("gbk"),"iso-8859-1")+"%'";
             }
+            if(!pre_month.equals("")){
+                get_data_sql+=" and fc.pre_month=to_date('"+pre_month+"','yyyy-mm')";
+                get_count_sql+=" and fc.pre_month=to_date('"+pre_month+"','yyyy-mm')";
+                get_total_sql +=" and fc.pre_month=to_date('"+pre_month+"','yyyy-mm')";
+            }
 				
 		int endPage=Integer.parseInt(startPage)+Integer.parseInt(countPage);
 		get_data_sql+=" and rownum<="+endPage+" minus "+get_data_sql+" and rownum<="+startPage;
 
-		
 		rs=st.executeQuery(get_count_sql);
 			rs.next();
 			count=rs.getInt(1);
@@ -263,6 +270,11 @@
                         gridStr+="netpay_id:'"+new String(rs.getString("netpay_id").getBytes("iso-8859-1"),"gbk")+"',";
                     }else{
                         gridStr+="netpay_id:'',";
+                    }
+                    if(rs.getString("pre_month")!=null){
+                        gridStr+="pre_month:'"+sdf.format(sdf.parse(rs.getString("pre_month")))+"',";
+                    }else{
+                        gridStr+="pre_month:'',";
                     }
 
 					gridStr+="contract_name:'"+new String(rs.getString("contract_name").getBytes("iso-8859-1"),"gbk")+"',";			

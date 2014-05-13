@@ -9,12 +9,27 @@ public class ChargeTypeBean {
     private Object[] bnArray;
     private Object[] qtArray;
     private Object[] tjArray;
+    private Object[] ycArray;
+    private final int yearPreCharge = 4;
+    private final int otherPreCharge = 5;
 
     public ChargeTypeBean() {
         xzArray = new Object[]{2, 3}; //新装ID
         bnArray = new Object[]{4, 6};   //包年ID
         qtArray = new Object[]{5, 7};  //其他ID
         tjArray = new Object[]{8, 9};    //停机ID
+    }
+
+    public Object[] getYcArray() {
+        return ycArray;
+    }
+
+    public int getYearPreCharge() {
+        return yearPreCharge;
+    }
+
+    public int getOtherPreCharge() {
+        return otherPreCharge;
     }
 
     public Object[] getXzArray() {

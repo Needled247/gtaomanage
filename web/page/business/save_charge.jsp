@@ -22,6 +22,8 @@
 	String charge_type_id=request.getParameter("fc_ct");
 	String pay_type_id=request.getParameter("fc_pt");
 	String charge_amount=request.getParameter("fc_amount");
+    String pre_month = request.getParameter("fc_pre_month");
+    pre_month = "to_date('"+pre_month+"','yyyy-mm')";
 	String note=request.getParameter("fc_note").replaceAll("\r|\n", " ").replaceAll("'", "");
 	note=new String(note.getBytes("gbk"),"iso-8859-1");
 	String true_name=new String(String.valueOf(session.getAttribute("true_name")).getBytes("gbk"),"iso-8859-1");
@@ -67,15 +69,15 @@
 
 	String sql_end=
     ","+pay_type_id+","+fc_actsub+",'"+shouju+"','"+payee+"','"+admit+"','"+quota+"','"
-    +bandwidth+"','"+bank_card+"','"+netpay_id+"')";
+    +bandwidth+"','"+bank_card+"','"+netpay_id+"',"+pre_month+")";
 
 	String update_sql=
     "update gtm_front_charge_new set " +
     "bs_id="+bs_name+",is_new="+is_new+",receipt_id='"+receipt_id+"',charge_type_id="+charge_type_id+"," +
     "charge_amount="+charge_amount+",note='"+note+"',pay_type_id="+pay_type_id+"," +
     "act_sub_id="+fc_actsub+",shouju='"+shouju+"',payee='"+payee+"',admit='"+admit+"',quota='"+quota+"'," +
-    "bandwidth='"+bandwidth+"',bankcard='"+bank_card+"',netpay_id='"+netpay_id +
-    "' where charge_id="+charge_id;
+    "bandwidth='"+bandwidth+"',bankcard='"+bank_card+"',netpay_id='"+netpay_id +"',pre_month="+pre_month+
+    " where charge_id="+charge_id;
 	
 	String get_logmax_sql="select log_id from gtm_log where rownum=1 order by log_id desc";
 	int logId=1;
@@ -124,7 +126,7 @@
         String first="insert into gtm_front_charge_new " +
                 "values("+bs_name+","+charge_date+",'"+username+"',"+is_new+",'"+receipt_id+"',13,"+request.getParameter("gm_cash")+",'"
                 +note+"','"+true_name+"',"+save_time+",";
-        String end=","+pay_type_id+","+fc_actsub+",'"+shouju+"','"+payee+"','"+admit+"','','','"+bank_card+"','"+netpay_id+"')";
+        String end=","+pay_type_id+","+fc_actsub+",'"+shouju+"','"+payee+"','"+admit+"','','','"+bank_card+"','"+netpay_id+"','')";
         st.executeUpdate(first+chargeId+end);
     }
 
@@ -141,7 +143,7 @@
         "insert into gtm_front_charge_new " +
         "values("+bs_name+","+charge_date+",'"+username+"',"+is_new+",'"+receipt_id+"',1,"+request.getParameter("setup_cash")+",'"
         +note+"','"+true_name+"',"+save_time+",";
-        String end=","+pay_type_id+","+fc_actsub+",'"+shouju+"','"+payee+"','"+admit+"','','','"+bank_card+"','"+netpay_id+"')";
+        String end=","+pay_type_id+","+fc_actsub+",'"+shouju+"','"+payee+"','"+admit+"','','','"+bank_card+"','"+netpay_id+"','')";
         st.executeUpdate(first+chargeId+end);
     }
 

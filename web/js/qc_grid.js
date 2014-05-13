@@ -37,7 +37,8 @@
                         'quota',
                         'bandwidth',
                         'bankcard',
-                        'netpay_id'
+                        'netpay_id',
+                        'pre_month'
             		]
         	});
         	

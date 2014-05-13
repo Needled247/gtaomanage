@@ -34,4 +34,5 @@ public interface GTM_Service {
     public long getMaxIdFromQuotaArea(String departmentId);
     public boolean removeAreaQuota(String id, String department_id);
     public long getChargeCountByBsid(int bsid, String month, Object[] chargeCode);
+    public long getChargeCountByCode(int bsid, String month, int charge_code);
 }

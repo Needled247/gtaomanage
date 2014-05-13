@@ -321,9 +321,42 @@ public class GTM_ServiceImpl implements GTM_Service {
      */
     @Override
     public long getChargeCountByBsid(int bsid, String month, Object[] chargeCode) {
-        String sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_NEW WHERE BS_ID=? " +
-                "AND TO_CHAR(CHARGE_DATE,'yyyymm')=? " +
-                "AND (CHARGE_TYPE_ID=? OR CHARGE_TYPE_ID=?)";
-        return getCount(sql, Tools.concat(new Object[]{bsid,month},chargeCode));
+        String sql = "";
+        if(bsid==0){
+            sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_NEW WHERE " +
+                    "TO_CHAR(CHARGE_DATE,'yyyymm')=? " +
+                    "AND (CHARGE_TYPE_ID=? OR CHARGE_TYPE_ID=?)";
+            return getCount(sql, Tools.concat(new Object[]{month},chargeCode));
+        }
+        else {
+            sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_NEW WHERE BS_ID=? " +
+                    "AND TO_CHAR(CHARGE_DATE,'yyyymm')=? " +
+                    "AND (CHARGE_TYPE_ID=? OR CHARGE_TYPE_ID=?)";
+            return getCount(sql, Tools.concat(new Object[]{bsid,month},chargeCode));
+        }
+    }
+
+    /**
+     * 按营业厅、交易代码（single）、月份查询交易数量
+     * @param bsid
+     * @param month
+     * @param charge_code
+     * @return  count
+     */
+    @Override
+    public long getChargeCountByCode(int bsid, String month, int charge_code) {
+        String sql = "";
+        if(bsid != 0){
+            sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_NEW WHERE BS_ID=? " +
+                    "AND TO_CHAR(CHARGE_DATE,'yyyymm')=? "+
+                    "AND CHARGE_TYPE_ID=?";
+            return getCount(sql, new Object[]{bsid, month, charge_code});
+        }
+        else{
+            sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_NEW WHERE" +
+                    " TO_CHAR(CHARGE_DATE,'yyyymm')=? "+
+                    "AND CHARGE_TYPE_ID=?";
+            return getCount(sql, new Object[]{month, charge_code});
+        }
     }
 }

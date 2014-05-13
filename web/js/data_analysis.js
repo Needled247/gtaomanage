@@ -48,6 +48,17 @@
                                     Ext.getCmp('data_month').hide();
                                 }
                             }
+                        },
+                        {
+                            text:'业务走势图',
+                            listeners:{
+                                'click':function(){
+                                    Ext.getCmp('data_start').show();
+                                    Ext.getCmp('data_end').show();
+                                    Ext.getCmp('data_bs').show();
+                                    Ext.getCmp('data_month').hide();
+                                }
+                            }
                         }
                     ],
                     listeners:{
@@ -91,16 +102,6 @@
                                         Ext.getCmp('data_month').show();
                                     }
                                 }
-                            },{
-                                text: '新装走势',
-                                listeners:{
-                                    'click':function(){
-                                        Ext.getCmp('data_start').show();
-                                        Ext.getCmp('data_end').show();
-                                        Ext.getCmp('data_bs').show();
-                                        Ext.getCmp('data_month').hide();
-                                    }
-                                }
                             }
                         ],
                         listeners:{
@@ -127,13 +128,19 @@
                             },{
                                 text: '续费带宽分析'
                             },{
-                                text: '预存网费统计'
+                                text: '预存网费统计',
+                                listeners:{
+                                    'click':function(){
+                                        Ext.getCmp('data_start').hide();
+                                        Ext.getCmp('data_end').hide();
+                                        Ext.getCmp('data_bs').show();
+                                        Ext.getCmp('data_month').show();
+                                    }
+                                }
                             },{
                                 text: '业务变更统计'
                             },{
                                 text: '赠送时长统计'
-                            },{
-                                text: '续费走势'
                             }
                         ],
                         listeners:{
@@ -166,8 +173,6 @@
                                 text: '停机注销带宽分析'
                             },{
                                 text: '在网时间分析'
-                            },{
-                                text: '停机注销走势'
                             }
                         ],
                         listeners:{
@@ -252,7 +257,8 @@
                     displayField:'name',
                     value:'',
                     editable: false,
-                    queryMode:'local'
+                    queryMode:'local',
+                    hidden:true
                 },
                 {
                     xtype:'datefield',
@@ -397,6 +403,50 @@
                             mainPanel.doLayout();
                             mainPanel.update();
                         }
+                        else if(charge_type=='业务走势图'){
+                            try{
+                                mainPanel.removeAll();
+                                mainPanel.doLayout();
+                                mainPanel.update();
+                            }
+                            catch(e){console.log(e);}
+                            mainPanel.add(Ext.create('My.trend_panel'));
+                            mainPanel.doLayout();
+                            mainPanel.update();
+                        }
+                        else if(charge_type=='新装餐型分析'){
+                            try{
+                                mainPanel.removeAll();
+                                mainPanel.doLayout();
+                                mainPanel.update();
+                            }
+                            catch(e){console.log(e);}
+                            mainPanel.add(Ext.create('My.new_package_panel'));
+                            mainPanel.doLayout();
+                            mainPanel.update();
+                        }
+                        else if(charge_type=='新装带宽分析'){
+                            try{
+                                mainPanel.removeAll();
+                                mainPanel.doLayout();
+                                mainPanel.update();
+                            }
+                            catch(e){console.log(e);}
+                            mainPanel.add(Ext.create('My.new_bw_panel'));
+                            mainPanel.doLayout();
+                            mainPanel.update();
+                        }
+                        else if(charge_type=='预存网费统计'){
+                            try{
+                                mainPanel.removeAll();
+                                mainPanel.doLayout();
+                                mainPanel.update();
+                            }
+                            catch(e){console.log(e);}
+                            mainPanel.add(Ext.create('My.pre_charge_panel'));
+                            mainPanel.doLayout();
+                            mainPanel.update();
+                        }
 	        		}
         		},
         		{
@@ -407,12 +457,10 @@
 	        		icon: '../../image/reset_btn.png',
 	        		scale: 'medium',
 	        		handler: function(){
-	        			if(!Ext.getCmp('bs_name').isHidden()){
-							Ext.getCmp('bs_name').reset();
-						}
-	        			Ext.getCmp('startDate').reset();
-	        			Ext.getCmp('endDate').reset();
-	        			Ext.getCmp('zct').reset();
+	        			Ext.getCmp('data_start').reset();
+	        			Ext.getCmp('data_end').reset();
+	        			Ext.getCmp('data_bs').reset();
+                        Ext.getCmp('data_month').reset();
 	        		}
         		}
         	]})

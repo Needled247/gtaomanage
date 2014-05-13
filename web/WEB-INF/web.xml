@@ -111,6 +111,36 @@
         <url-pattern>/gtaomanage/CancelQuotaChartServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>TrendChartServlet</servlet-name>
+        <servlet-class>servlet.TrendChartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TrendChartServlet</servlet-name>
+        <url-pattern>/TrendChartServlet</url-pattern>
+        <url-pattern>/gtaomanage/TrendChartServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>NewPackageChartServlet</servlet-name>
+        <servlet-class>servlet.NewPackageChartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NewPackageChartServlet</servlet-name>
+        <url-pattern>/NewPackageChartServlet</url-pattern>
+        <url-pattern>/gtaomanage/NewPackageChartServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>NewBandWidthChartServlet</servlet-name>
+        <servlet-class>servlet.NewBandWidthChartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NewBandWidthChartServlet</servlet-name>
+        <url-pattern>/NewBandWidthChartServlet</url-pattern>
+        <url-pattern>/gtaomanage/NewBandWidthChartServlet</url-pattern>
+    </servlet-mapping>
+
   <welcome-file-list>
     <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>

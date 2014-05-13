@@ -296,6 +296,10 @@
                                 Ext.getCmp('fc_bw').setDisabled(false);
                                 Ext.getCmp('fc_bw').allowBlank=false;
                             }
+                            if(temp==4||temp==5){
+                                Ext.getCmp('fc_pre_month').setDisabled(false);
+                                Ext.getCmp('fc_pre_month').allowBlank=false;
+                            }
                         }
                     }
             	},{
@@ -460,7 +464,7 @@
                     store:new Ext.data.SimpleStore(
                     {
                         fields:['id','name'],
-                        data:[['2M','2M'],['4M','4M'],['10M','10M'],['20M','20M'],['50M','50M'],['100M','100M']]
+                        data:[['2M','2M'],['4M','4M'],['10M','10M'],['20M','20M'],['50M','50M'],['100M','100M']]  //TODO
                     }),
                     labelWidth: 90,
                     width: 420,
@@ -473,6 +477,20 @@
                     queryMode:'local',
                     editable: false,
                     value:''
+                },{
+                    xtype:'datefield',
+                    fieldLabel: '预收月份',
+                    id: 'fc_pre_month',
+                    name: 'fc_pre_month',
+                    margin: '10 30 10 30',
+                    format:'Y-m',
+                    allowBlank: true,
+                    queryMode:'local',
+                    editable: false,
+                    value: Ext.Date.format(new Date(), 'Y-m'),
+                    labelWidth: 90,
+                    width: 420,
+                    disabled:true
                 },{
 	            	xtype:'textarea',
 	                fieldLabel: '备注信息',

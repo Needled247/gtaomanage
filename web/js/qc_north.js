@@ -392,7 +392,21 @@
 			            	}
 			            }
 			        }
-                 }
+                 },
+                {
+                    xtype:'datefield',
+                    fieldLabel: '预存月份',
+                    id: 'pre_month',
+                    name: 'pre_month',
+                    margin: '5 0 10 30',
+                    value: '',
+                    format: 'Y-m',
+                    labelWidth: 60,
+                    width: 190,
+                    allowBlank: true,
+                    blankText: '请输入预存月份',
+                    editable: false
+                }
             ],
 
             tbar: Ext.create('Ext.toolbar.Toolbar',{
@@ -430,9 +444,15 @@
                                                 Ext.getCmp('gm_cost').setDisabled(true);
                                                 Ext.getCmp('setup_cost').setDisabled(true);
                                                 Ext.getCmp('bank_card').setDisabled(false);
+                                                Ext.getCmp('bank_card').allowBlank=true;
                                                 Ext.getCmp('netpay_id').setDisabled(false);
+                                                Ext.getCmp('netpay_id').allowBlank=true;
                                                 Ext.getCmp('fc_quota').setDisabled(false);
+                                                Ext.getCmp('fc_quota').allowBlank=true;
                                                 Ext.getCmp('fc_bw').setDisabled(false);
+                                                Ext.getCmp('fc_bw').allowBlank=true;
+                                                Ext.getCmp('fc_pre_month').setDisabled(false);
+                                                Ext.getCmp('fc_pre_month').allowBlank=true;
                                                 Ext.getCmp('fc_rname').setRawValue(r.get('realname'));
                                                 Ext.getCmp('fc_date').setRawValue(r.get('charge_date'));
                                                 Ext.getCmp('fc_bs').setRawValue(r.get('bs_name'));
@@ -452,6 +472,8 @@
                                                 Ext.getCmp('fc_pt').setValue(r.get('pay_type'));
                                                 Ext.getCmp('fc_ct').setValue(r.get('charge_type'));
                                                 Ext.getCmp('fc_note').setValue(r.get('note'));
+                                                console.log(r.get('pre_month'));
+                                                Ext.getCmp('fc_pre_month').setValue(r.get('pre_month'));
                                             }else{
                                                 alert('很抱歉，您只能修改当月收费信息');
                                             }
@@ -521,6 +543,7 @@
                             params['bandwidth']=Ext.getCmp('qc_bw').getValue();
                             params['bankcard']=Ext.getCmp('qc_bank_card').getValue();
                             params['netpay_id']=Ext.getCmp('qc_netpay_id').getValue();
+                            params['pre_month']= Ext.Date.format(Ext.getCmp('pre_month').getValue(), 'Y-m'),
 
                             Ext.getCmp('qc_grid').getStore().loadPage(1);
                         }
@@ -549,6 +572,7 @@
                             Ext.getCmp('save_admin').reset();
                             Ext.getCmp('tel').reset();
                             Ext.getCmp('qc_shouju').reset();
+                            Ext.getCmp('pre_month').reset();
                             Ext.getCmp('qc_payee').reset();
                             Ext.getCmp('qc_admit').reset();
                             Ext.getCmp('qc_quota').reset();
@@ -600,6 +624,7 @@
                             reqStr+='&bandwidth='+encodeURI(encodeURI(params['bandwidth']));
                             reqStr+='&bankcard='+encodeURI(encodeURI(params['bankcard']));
                             reqStr+='&netpay_id='+encodeURI(encodeURI(params['netpay_id']));
+                            reqStr+='&pre_month='+encodeURI(encodeURI(params['pre_month']));
 //	        			window.location.href="get_qc_excel.jsp?"+reqStr;
                             window.open("get_qc_excel.jsp?"+reqStr);
                         }

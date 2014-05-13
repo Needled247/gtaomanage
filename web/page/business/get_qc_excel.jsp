@@ -28,13 +28,15 @@
     String bandwidth=java.net.URLDecoder.decode(request.getParameter("bandwidth"), "UTF-8");
     String bankcard=java.net.URLDecoder.decode(request.getParameter("bankcard"), "UTF-8");
     String netpay_id=java.net.URLDecoder.decode(request.getParameter("netpay_id"), "UTF-8");
+    String pre_month = java.net.URLDecoder.decode(request.getParameter("pre_month"), "UTF-8");
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
 	//System.out.println(qc_bs_name+","+charge_date+","+receipt_id+","+username+","+charge_type+","+note+","+realname+","+addr);
 	
 	String get_data_sql=
     "select ga.act_name,pt.pay_type_name,bi.name,fc.charge_date,fc.username,fc.receipt_id," +
     "fc.is_new,ct.charge_type_name,fc.note,fc.charge_amount,fc.save_admin,fc.save_time,mi.group_id,ui.srealname,ui.stele," +
     "tu.sfeephone,gc.contract_name,gc.is_gg,gc.is_xk,gc.contract_type,fc.shouju,fc.payee,fc.admit,fc.quota,fc.bandwidth," +
-    "fc.bankcard,fc.netpay_id  " +
+    "fc.bankcard,fc.netpay_id,fc.pre_month  " +
     "from gtm_act ga,gtm_pay_type pt,gtm_contract gc,gtm_business_info bi,GTM_MAINFORM_INFO mi," +
     "GTM_CHARGE_TYPE ct,GTM_FRONT_CHARGE_NEW fc,TBL_USERSINFO ui,tbl_users tu " +
     "where fc.act_sub_id=ga.act_id and fc.pay_type_id=pt.pay_type_id and fc.username=mi.username " +
@@ -132,10 +134,14 @@
                 get_data_sql+=" and fc.netpay_id like '%"+new String(netpay_id.getBytes("gbk"),"iso-8859-1")+"%'";
                 get_total_sql+=" and fc.netpay_id like '%"+new String(netpay_id.getBytes("gbk"),"iso-8859-1")+"%'";
             }
+            if(!pre_month.equals("")){
+                get_data_sql+=" and fc.pre_month=to_date('"+pre_month+"','yyyy-mm')";
+                get_total_sql+=" and fc.pre_month=to_date('"+pre_month+"','yyyy-mm')";
+            }
 		
 			get_data_sql+=" order by bi.name";
 			
-		gridStr+="所属营业厅,收费日期,所属片区,用户姓名,用户账号,联系电话,用户住址,发票号码,收据号码,支付方式,银行卡号,网银订单,收费类别,收费金额,活动名称,餐型类别,带宽,备注信息,是否新装用户,是否光改小区,是否写字楼,是否新开小区,所属合同,录入人,收款人,接待人,录入时间, \r\n";
+		gridStr+="所属营业厅,收费日期,所属片区,用户姓名,用户账号,联系电话,用户住址,发票号码,收据号码,支付方式,银行卡号,网银订单,收费类别,收费金额,活动名称,餐型类别,带宽,预收月份,备注信息,是否新装用户,是否光改小区,是否写字楼,是否新开小区,所属合同,录入人,收款人,接待人,录入时间, \r\n";
     System.out.println(get_data_sql);
 		rs=st.executeQuery(get_data_sql);
 		while(rs.next()){
@@ -192,6 +198,11 @@
             }
             if(rs.getString("bandwidth")!=null){
                 gridStr+=new String(rs.getString("bandwidth").getBytes("iso-8859-1"),"gbk").replaceAll(",", ";")+", ";
+            }else{
+                gridStr+=" , ";
+            }
+            if(rs.getString("pre_month")!=null){
+                gridStr+=sdf.format(rs.getDate("pre_month"))+", ";
             }else{
                 gridStr+=" , ";
             }
