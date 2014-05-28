@@ -13,7 +13,7 @@ import java.io.PrintWriter;
  */
 public class BaseServlet extends HttpServlet {
     public PrintWriter out = null;
-    public StringBuilder sb = new StringBuilder();
+    public StringBuilder stringBuilder = new StringBuilder();
     protected  GTM_Service service = new GTM_ServiceImpl();
 
     public void setContentTypeJson(HttpServletResponse response) throws IOException {

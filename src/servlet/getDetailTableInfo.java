@@ -1,12 +1,9 @@
 package servlet;
 
 import bean.ChargeTypeBean;
-import service.GTM_Service;
-import service.GTM_ServiceImpl;
 import tools.Tools;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -17,8 +14,7 @@ import java.util.*;
 /**
  * Created by HP on 14-4-18.
  */
-public class getDetailTableInfo extends HttpServlet {
-    GTM_Service service = new GTM_ServiceImpl();
+public class getDetailTableInfo extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         this.doPost(req,resp);
@@ -27,10 +23,12 @@ public class getDetailTableInfo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String chart_info = req.getParameter("chart_info");
+        //TODO
+        String department_id = req.getParameter("department_id");
+        String thisMonth = req.getParameter("month");
         Object[] paramArray = new ChargeTypeBean().str2CodeArray(chart_info);
         //获取上个月日期
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
-        String thisMonth = sdf.format(new Date());
         String lastMonth = Tools.datePlus(thisMonth, Calendar.MONTH);
         Object[] paramArray2 = Tools.concat(paramArray,new Object[]{thisMonth});
         /*
@@ -148,7 +146,7 @@ public class getDetailTableInfo extends HttpServlet {
             sb.deleteCharAt(sb.lastIndexOf(","));
         }
         sb.append("]");
-        resp.setContentType("text/json;charset=GBK");
+        super.setContentTypeJson(resp);
         PrintWriter out = resp.getWriter();
         out.print(sb);
         out.flush();

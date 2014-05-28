@@ -1,17 +1,17 @@
-﻿Ext.define('My.data_panel', {
+﻿Ext.define('My.stop_user_panel', {
     extend: 'Ext.panel.Panel',
     
     constructor: function() {
-        Ext.define('setup_Store', {
+        Ext.define('stop_user_Store', {
             extend: 'Ext.data.Model',
-            fields: ['num','num2', 'name']
+            fields: ['name','num','num2','num3']
         });
         var store = Ext.create('Ext.data.Store', {
-            model: 'setup_Store',
-            storeId:'main_chart',
+            model: 'stop_user_Store',
+            storeId:'stop_user_chart',
             proxy: {
                 type: 'ajax',
-                url: '/gtaomanage/getChartInfo',
+                url: '/gtaomanage/StopUserChartServlet',
                 method: 'POST',
                 actionMethods: { read: 'POST' },
                 reader: {
@@ -20,17 +20,11 @@
             },
             autoLoad: false
         });
-        store.load(
-            {
-                params:{
-                    bs_name:Ext.bs_did,
-                    month:Ext.util.Format.date(new Date(), 'Y-m')
-                }
-            });
+        store.load({params:{month:Ext.util.Format.date(Ext.getCmp('data_month').getValue(), 'Ym')}});
 
         var chart = Ext.create('Ext.chart.Chart', {
-            id:'main_chart',
-            name:'main_chart',
+            id:'stop_user_chart',
+            name:'stop_user_chart',
             theme:'MyFancy',
             animate: true,
             store: store,
@@ -38,11 +32,11 @@
                 {
                     type: 'Numeric',
                     position: 'left',
-                    fields: ['num', 'num2'],
+                    fields: ['num', 'num2','num3'],
                     label: {
                         renderer: Ext.util.Format.numberRenderer('0,0')
                     },
-                    title: '数量（本月）',
+                    title: '数量',
                     grid: true,
                     minimum: 0
                 },
@@ -57,23 +51,16 @@
                 {
                     type: 'column',
                     xField: 'name',
-                    yField: ['num','num2'],
+                    yField: ['num','num2','num3'],
                     style:{
                         width:'80'
                     },
                     highlight: true,
                     stacked: true,
-                    listeners:{
-                        itemmousedown:function(obj){
-                            Ext.chart_id = obj.storeItem.data['name'];
-                            Ext.create('My.data_detail');
-                            Ext.getCmp('data_detail').setTitle(obj.storeItem.data['name']);
-                        }
-                    },
                     label: {
                         display: 'outside',
                         'text-anchor': 'middle',
-                        field: ['num','num2'],
+                        field: ['num','num2','num3'],
                         renderer: Ext.util.Format.numberRenderer('0,0'),
                         orientation: 'horizontal',
                         color: '#333'
@@ -81,8 +68,8 @@
                     tips: {
                         trackMouse: true,
                         renderer: function(storeItem, item) {
-                            this.setTitle(storeItem.get('name')+"数量");
-                            this.update("完成"+storeItem.get('num')+"个<br>定额"+(parseInt(storeItem.get('num2'))+parseInt(storeItem.get('num')))+"个");
+                            this.setTitle(storeItem.get('name'));
+                            this.update("本月"+storeItem.get('num')+"个<br>预存包年"+parseInt(storeItem.get('num2'))+"个<br>预存其他"+parseInt(storeItem.get('num3'))+"个");
                         }
                     }
                 }
@@ -91,9 +78,9 @@
 
         Ext.apply(this, {
             region: 'center',
-            id: 'data_panel',
-            name: 'data_panel',
-            title:'分析结果',
+            id: 'stop_user_panel',
+            name: 'stop_user_panel',
+            title:'停机用户统计',
             layout:'fit',
             border: false,
             frame:true,

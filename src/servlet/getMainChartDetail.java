@@ -1,12 +1,9 @@
 package servlet;
 
 import bean.ChargeTypeBean;
-import service.GTM_Service;
-import service.GTM_ServiceImpl;
 import tools.Tools;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -16,8 +13,7 @@ import java.util.*;
 /**
  * Created by HP on 14-4-17.
  */
-public class getMainChartDetail extends HttpServlet {
-    private GTM_Service service = new GTM_ServiceImpl();
+public class getMainChartDetail extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         this.doPost(req,resp);
@@ -26,11 +22,13 @@ public class getMainChartDetail extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int type = Integer.parseInt(req.getParameter("type"));
-        String chart_info = req.getParameter("chart_info");
-        String date = Tools.Date2Str(new Date(),"yyyy-MM");
-        StringBuilder sb = new StringBuilder();
-        resp.setContentType("text/json;charset=GBK");
+        super.setContentTypeJson(resp);
         PrintWriter out = resp.getWriter();
+        String chart_info = req.getParameter("chart_info");
+        //TODO
+        String department_id = req.getParameter("department_id");
+        String date = req.getParameter("month");
+        StringBuilder sb = new StringBuilder();
         //取得交易类型编码
         ChargeTypeBean chargeType = new ChargeTypeBean();
         Object[] params = chargeType.str2CodeArray(chart_info);

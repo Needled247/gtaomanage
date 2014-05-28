@@ -6,6 +6,7 @@ import dao.GTM_Dao;
 import dao.GTM_DaoImpl;
 import tools.Tools;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -47,7 +48,7 @@ public class GTM_ServiceImpl implements GTM_Service {
     public long getChargeCountByBs(Object[] params) {
         String sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_NEW " +
                 "WHERE (CHARGE_TYPE_ID=? OR CHARGE_TYPE_ID=?) " +
-                "AND TO_CHAR(CHARGE_DATE,'yyyy-MM')=? AND BS_ID=?";
+                " AND BS_ID=? AND TO_CHAR(CHARGE_DATE,'yyyy-MM')=?";
         return getCount(sql, params);
     }
 
@@ -58,7 +59,7 @@ public class GTM_ServiceImpl implements GTM_Service {
     @Override
     public List<Map<String,Object>> getAllQuota() {
         String sql = "SELECT SUM(NEW_QUOTA),SUM(CHARGE_QUOTA),SUM(CHARGE_YEAR_QUOTA)," +
-                "SUM(CANCEL_QUOTA) FROM GTM_QUOTA";
+                "SUM(CANCEL_QUOTA) FROM GTM_BUSINESS_QUOTA";
         List<Map<String,Object>> result = dao.executeQuery(sql);
         return result;
     }
@@ -70,8 +71,8 @@ public class GTM_ServiceImpl implements GTM_Service {
      */
     @Override
     public List<Map<String,Object>> getBsQuota(Object[] params) {
-        String sql = "SELECT NEW_QUOTA,CHARGE_QUOTA,CHARGE_YEAR_QUOTA,CANCEL_QUOTA FROM GTM_QUOTA " +
-                "WHERE PARENT_ID=?";
+        String sql = "SELECT NEW_QUOTA,CHARGE_QUOTA,CHARGE_YEAR_QUOTA,CANCEL_QUOTA FROM GTM_BUSINESS_QUOTA " +
+                "WHERE DEPARTMENT_ID=?";
         List<Map<String,Object>> result = dao.executeQuery(sql, params);
         return result;
     }
@@ -358,5 +359,128 @@ public class GTM_ServiceImpl implements GTM_Service {
                     "AND CHARGE_TYPE_ID=?";
             return getCount(sql, new Object[]{month, charge_code});
         }
+    }
+
+    /**
+     * 获取预付某月交易数量
+     * @param month
+     * @param charge_code
+     * @return count
+     */
+    @Override
+    public long getPreChargeCount(String month, int charge_code) {
+        String sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_NEW " +
+                "WHERE CHARGE_TYPE_ID=? AND TO_CHAR(PRE_MONTH,'yyyymm')=? ";
+        return getCount(sql, new Object[]{charge_code,month});
+    }
+
+    /**
+     * 按营业厅、月份、交易、分组字段查询
+     * @param bsid
+     * @param month
+     * @param charge_code
+     * @param groupColumn
+     * @return  key,value
+     */
+    @Override
+    public List<Map<String, Object>> getChargeCountByGroup(int bsid, String month, Object[] charge_code, String groupColumn) {
+        String sql = "";
+        if(bsid==0){
+            sql = "SELECT "+groupColumn+" ,COUNT(*) FROM GTM_FRONT_CHARGE_NEW " +
+                    "WHERE TO_CHAR(CHARGE_DATE,'yyyy-mm')=? AND CHARGE_TYPE_ID=? " +
+                    "GROUP BY "+groupColumn;
+            return dao.executeQuery(sql, Tools.concat(new Object[]{month},charge_code));
+        }
+        else {
+            sql = "SELECT "+groupColumn+",COUNT(*) FROM GTM_FRONT_CHARGE_NEW " +
+                    "WHERE TO_CHAR(CHARGE_DATE,'yyyy-mm')=? AND BS_ID=? " +
+                    "AND CHARGE_TYPE_ID=? GROUP BY "+groupColumn;
+            return dao.executeQuery(sql,Tools.concat(new Object[]{month,bsid},charge_code));
+        }
+    }
+
+    /**
+     * 获取赠送月份用户的总数
+     * @param bsid
+     * @return
+     */
+    @Override
+    public List<Map<String,Object>> getHandselCount(int bsid) {
+        String sql = "";
+        if(bsid == 0){
+            sql = "SELECT ADMIT,COUNT(*) FROM GTM_MAINFORM_INFO " +
+                    "WHERE ADMIT>0 GROUP BY ADMIT ORDER BY ADMIT";
+            return dao.executeQuery(sql, new Object[]{});
+        }
+        else {
+            sql = "SELECT ADMIT,COUNT(*) FROM GTM_MAINFORM_INFO " +
+                    "WHERE ADMIT>0 AND DEPARTMENT_ID=? GROUP BY ADMIT " +
+                    "ORDER BY ADMIT";
+            return dao.executeQuery(sql, new Object[]{bsid});
+        }
+    }
+
+    /**
+     * 按用户在网时长获取用户数量
+     * @param month
+     * @return  Count
+     */
+    @Override
+    public long getUserCountByTime(int month) {
+        String sql = "SELECT COUNT(*) FROM TBL_USERS WHERE " +
+                "MONTHS_BETWEEN(SYSDATE,DFIRSTDATE)>? AND ISTATUS<>-9";
+        return getCount(sql, new Object[]{month});
+    }
+
+    /**
+     * 获取停机用户数量
+     * @param month
+     * @return count
+     */
+    @Override
+    public long getStopUserByMonth(String month) {
+        String suffix = Tools.validateTime2(month);
+        String sql = "SELECT COUNT(*) FROM TBL_USERS"+suffix+
+                " WHERE ITYPE<>0 AND ITYPE<>3 AND TO_CHAR(DOVERDATE,'yyyymm')=?";
+        return getCount(sql, new Object[]{month});
+    }
+
+    /**
+     * 获取停机注销用户数量
+     * @param month
+     * @return long
+     */
+    @Override
+    public long getCancelUserByMonth(String month) {
+        String suffix = Tools.validateTime2(month);
+        String thisMonth = Tools.datePlus2(month, Calendar.MONTH);
+        String suffixNew = Tools.validateTime2(thisMonth);
+        String sql = "SELECT COUNT(*) FROM TBL_USERS"+suffix+" t, TBL_USERS"+suffixNew+" tu " +
+                "WHERE t.ITYPE<>0 AND t.ITYPE<>3 AND  t.SUSERNAME=tu.SUSERNAME AND t.DOVERDATE=tu.DOVERDATE " +
+                "AND TO_CHAR(t.DOVERDATE,'yyyymm')=?";
+        return getCount(sql, new Object[]{month});
+    }
+
+    /**
+     * 按营业厅、月份获取收入
+     * @param bs
+     * @param month
+     * @return
+     */
+    @Override
+    public long getTotalIncome(int bs, String month) {
+        String get_total_sql=
+            "select sum(fc.charge_amount) from gtm_act ga,gtm_pay_type pt,gtm_contract gc,gtm_business_info bi," +
+                    "GTM_MAINFORM_INFO mi,GTM_CHARGE_TYPE ct,GTM_FRONT_CHARGE_NEW fc,TBL_USERSINFO ui,tbl_users tu " +
+                    "where fc.act_sub_id=ga.act_id and fc.pay_type_id=pt.pay_type_id and fc.username=mi.username " +
+                    "and fc.username=ui.susername and fc.username=tu.susername and fc.bs_id=bi.id and mi.contract_id=gc.contract_id " +
+                    "and fc.charge_type_id=ct.charge_type_id";
+        if(bs!=0){
+            get_total_sql += " and fc.bs_id="+bs;
+        }
+        if(!month.equals("")){
+            get_total_sql += " and to_char(fc.charge_date,'yyyyMM')='"+month+"'";
+        }
+        return getCount(get_total_sql, new Object[]{});
     }
 }

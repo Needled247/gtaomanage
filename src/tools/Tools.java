@@ -226,10 +226,44 @@ public class Tools
      * 日期-1操作，年为1、月为2
      * @param date
      * @param yearOrMonth
-     * @return
+     * @return  yyyy-MM
      */
     public static String datePlus(String date, int yearOrMonth){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
+        Date d = null;
+        try{
+            d = sdf.parse(date);
+        }
+        catch (ParseException e){
+            e.printStackTrace();
+        }
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(d);
+        Date result = null;
+        switch (yearOrMonth){
+            case 1 :
+                calendar.add(Calendar.YEAR,-1);
+                result = calendar.getTime();
+                break;
+            case 2 :
+                calendar.add(Calendar.MONTH,-1);
+                result = calendar.getTime();
+                break;
+            default:
+                result = null;
+                break;
+        }
+        return sdf.format(result);
+    }
+
+    /**
+     * 日期-1操作，年为1、月为2
+     * @param date
+     * @param yearOrMonth
+     * @return yyyyMM
+     */
+    public static String datePlus2(String date, int yearOrMonth){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
         Date d = null;
         try{
             d = sdf.parse(date);
@@ -316,6 +350,25 @@ public class Tools
         try {
             if(!sdf.format(sdf.parse(month)).equals(sdf.format(new Date()))){
                 suffix = month;
+            }
+        }
+        catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return suffix;
+    }
+
+    /**
+     * 比对时间，返回表名后缀
+     * @param month
+     * @return  suffix
+     */
+    public static String validateTime2(String month){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+        String suffix = "";
+        try {
+            if(!sdf.format(sdf.parse(month)).equals(sdf.format(new Date()))){
+                suffix = "_"+month;
             }
         }
         catch (ParseException e) {

@@ -1,4 +1,4 @@
-﻿Ext.define('My.data_detail', {
+﻿Ext.define('My.main_detail', {
     extend: 'Ext.Window',
     
     constructor: function() {
@@ -14,7 +14,7 @@
 
         var tblStore = Ext.create('Ext.data.JsonStore', {
             fields: ['class','thisMonth','lastMonth','plus'],//定义字段
-            storeId:'tblStore',
+            storeId:'mainTblStore',
             autoLoad:false,
             proxy:{
                 type:'ajax',
@@ -25,13 +25,13 @@
             }
         }).load({params:{
             chart_info:chartInfo,
-            department_id:Ext.bs_did,
-            month:Ext.util.Format.date(new Date(),'Y-m')
+            department_id:Ext.getCmp('data_bs').getValue(),
+            month:Ext.util.Format.date(Ext.getCmp('data_month').getValue(), 'Y-m')
         }});
 
         var store1 = Ext.create('Ext.data.JsonStore', {
             model:'chartModel',
-            storeId:'bandStore',
+            storeId:'mainBandStore',
             autoLoad:false,
             proxy:{
                 type:'ajax',
@@ -43,13 +43,13 @@
         }).load({params:{
             type:1,
             chart_info:chartInfo,
-            department_id:Ext.bs_did,
-            month:Ext.util.Format.date(new Date(),'Y-m')
+            department_id:Ext.getCmp('data_bs').getValue(),
+            month:Ext.util.Format.date(Ext.getCmp('data_month').getValue(), 'Y-m')
         }});
 
         var store2 = Ext.create('Ext.data.JsonStore', {
             model:'chartModel',
-            storeId:'mtStore',
+            storeId:'mainMtStore',
             autoLoad:false,
             proxy:{
                 type:'ajax',
@@ -61,14 +61,14 @@
         }).load({params:{
             type:2,
             chart_info:chartInfo,
-            department_id:Ext.bs_did,
-            month:Ext.util.Format.date(new Date(),'Y-m')
+            department_id:Ext.getCmp('data_bs').getValue(),
+            month:Ext.util.Format.date(Ext.getCmp('data_month').getValue(), 'Y-m')
         }});
 
 
         var store3 = Ext.create('Ext.data.JsonStore', {
             model:'chartModel',
-            storeId:'mainStore',
+            storeId:'mMainStore',
             autoLoad:false,
             proxy:{
                 type:'ajax',
@@ -81,8 +81,8 @@
             {params:{
                 type:0,
                 chart_info:chartInfo,
-                department_id:Ext.bs_did,
-                month:Ext.util.Format.date(new Date(),'Y-m')
+                department_id:Ext.getCmp('data_bs').getValue(),
+                month:Ext.util.Format.date(Ext.getCmp('data_month').getValue(), 'Y-m')
             }}
         );
 
@@ -237,8 +237,8 @@
         });
 
         Ext.apply(this, {
-        	id: 'data_detail',
-            name: 'data_detail',
+        	id: 'main_detail',
+            name: 'main_detail',
             title: '信息窗口',
         	layout:'fit',
         	width: window.screen.width-150,
@@ -251,8 +251,8 @@
             minimizable:true,
         items: [{
         	xtype: 'form',
-        	id:'mf_form',
-        	name:'mf_form',
+        	id:'m_form',
+        	name:'m_form',
             layout:'fit',
             bodyStyle:'background-color:transparent',
             tbar: Ext.create('Ext.toolbar.Toolbar',{
@@ -280,7 +280,7 @@
             	{
     				text: '关闭窗口',
     				handler: function(){
-    					Ext.getCmp('data_detail').close();
+    					Ext.getCmp('main_detail').close();
     				}        				
             	}
             ]

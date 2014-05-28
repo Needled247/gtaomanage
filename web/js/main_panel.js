@@ -1,14 +1,14 @@
-﻿Ext.define('My.data_panel', {
+﻿Ext.define('My.main_panel', {
     extend: 'Ext.panel.Panel',
     
     constructor: function() {
-        Ext.define('setup_Store', {
+        Ext.define('main_Store', {
             extend: 'Ext.data.Model',
             fields: ['num','num2', 'name']
         });
         var store = Ext.create('Ext.data.Store', {
-            model: 'setup_Store',
-            storeId:'main_chart',
+            model: 'main_Store',
+            storeId:'main_chart_store',
             proxy: {
                 type: 'ajax',
                 url: '/gtaomanage/getChartInfo',
@@ -23,14 +23,14 @@
         store.load(
             {
                 params:{
-                    bs_name:Ext.bs_did,
-                    month:Ext.util.Format.date(new Date(), 'Y-m')
+                    bs_name:Ext.getCmp('data_bs').getValue(),
+                    month:Ext.util.Format.date(Ext.getCmp('data_month').getValue(), 'Y-m')
                 }
             });
 
         var chart = Ext.create('Ext.chart.Chart', {
-            id:'main_chart',
-            name:'main_chart',
+            id:'main_data_chart',
+            name:'main_data_chart',
             theme:'MyFancy',
             animate: true,
             store: store,
@@ -66,8 +66,8 @@
                     listeners:{
                         itemmousedown:function(obj){
                             Ext.chart_id = obj.storeItem.data['name'];
-                            Ext.create('My.data_detail');
-                            Ext.getCmp('data_detail').setTitle(obj.storeItem.data['name']);
+                            Ext.create('My.main_detail');
+                            Ext.getCmp('main_detail').setTitle(obj.storeItem.data['name']);
                         }
                     },
                     label: {
@@ -91,8 +91,8 @@
 
         Ext.apply(this, {
             region: 'center',
-            id: 'data_panel',
-            name: 'data_panel',
+            id: 'main_panel',
+            name: 'main_panel',
             title:'分析结果',
             layout:'fit',
             border: false,

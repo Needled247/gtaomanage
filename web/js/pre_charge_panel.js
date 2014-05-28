@@ -23,7 +23,11 @@
             },
             autoLoad: false
         });
-        store.load({params:{month:Ext.util.Format.date(Ext.getCmp('data_month').getValue(), 'Ym')}});
+        store.load(
+            {
+                params:{month:Ext.util.Format.date(Ext.getCmp('data_month').getValue(), 'Ym'),
+                department_id:Ext.getCmp('data_bs').getValue()}
+            });
 
         var chart = Ext.create('Ext.chart.Chart', {
             id:'pre_charge_chart',
@@ -68,10 +72,17 @@
                         orientation: 'horizontal',
                         color: '#333'
                     },
+                    listeners:{
+                        itemmousedown:function(obj){
+                            Ext.chart_id = obj.storeItem.data['name'];
+                            Ext.create('My.pre_charge_detail');
+                            Ext.getCmp('pre_charge_detail').setTitle(obj.storeItem.data['name']);
+                        }
+                    },
                     tips: {
                         trackMouse: true,
                         renderer: function(storeItem, item) {
-                            this.setTitle(storeItem.get('name')+"在网用户数量");
+                            this.setTitle(storeItem.get('name'));
                             this.update(storeItem.get('num')+"个");
                         }
                     }

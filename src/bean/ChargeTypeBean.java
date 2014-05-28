@@ -15,8 +15,8 @@ public class ChargeTypeBean {
 
     public ChargeTypeBean() {
         xzArray = new Object[]{2, 3}; //新装ID
-        bnArray = new Object[]{4, 6};   //包年ID
-        qtArray = new Object[]{5, 7};  //其他ID
+        bnArray = new Object[]{6, 6};   //包年ID
+        qtArray = new Object[]{7, 7};  //其他ID
         tjArray = new Object[]{8, 9};    //停机ID
     }
 
@@ -66,8 +66,24 @@ public class ChargeTypeBean {
         else if(chartTypeStr.equals("停机注销")){
             return tjArray;
         }
+        else if(chartTypeStr.equals("预存包年")){
+            return new Object[]{yearPreCharge};
+        }
+        else if(chartTypeStr.equals("预存其他")){
+            return new Object[]{otherPreCharge};
+        }
         else {
             return new Object[]{};
+        }
+    }
+
+    public int switchCodeGenerator(String chart){
+        if(chart.equals("预存包年")){
+            return 1;
+        }
+        else
+        {
+            return 2;
         }
     }
 }

@@ -44,13 +44,23 @@
                                 'click':function(){
                                     Ext.getCmp('data_start').hide();
                                     Ext.getCmp('data_end').hide();
-                                    Ext.getCmp('data_bs').hide();
-                                    Ext.getCmp('data_month').hide();
+                                    Ext.getCmp('data_bs').show();
+                                    Ext.getCmp('data_month').show();
                                 }
                             }
                         },
                         {
                             text:'业务走势图',
+                            listeners:{
+                                'click':function(){
+                                    Ext.getCmp('data_start').show();
+                                    Ext.getCmp('data_end').show();
+                                    Ext.getCmp('data_bs').show();
+                                    Ext.getCmp('data_month').hide();
+                                }
+                            }
+                        },{
+                            text:'收入分析',
                             listeners:{
                                 'click':function(){
                                     Ext.getCmp('data_start').show();
@@ -140,7 +150,15 @@
                             },{
                                 text: '业务变更统计'
                             },{
-                                text: '赠送时长统计'
+                                text: '赠送时长统计',
+                                listeners:{
+                                    'click':function(){
+                                        Ext.getCmp('data_start').hide();
+                                        Ext.getCmp('data_end').hide();
+                                        Ext.getCmp('data_bs').show();
+                                        Ext.getCmp('data_month').hide();
+                                    }
+                                }
                             }
                         ],
                         listeners:{
@@ -166,13 +184,31 @@
                                     }
                                 }
                             },{
+                                text: '停机用户统计',
+                                listeners:{
+                                    'click':function(){
+                                        Ext.getCmp('data_start').hide();
+                                        Ext.getCmp('data_end').hide();
+                                        Ext.getCmp('data_bs').hide();
+                                        Ext.getCmp('data_month').show();
+                                    }
+                                }
+                            },{
                                 text: '停机注销用户统计'
                             },{
                                 text: '停机注销餐型分析'
                             },{
                                 text: '停机注销带宽分析'
                             },{
-                                text: '在网时间分析'
+                                text: '在网时间分析',
+                                listeners:{
+                                    'click':function(){
+                                        Ext.getCmp('data_start').hide();
+                                        Ext.getCmp('data_end').hide();
+                                        Ext.getCmp('data_bs').hide();
+                                        Ext.getCmp('data_month').hide();
+                                    }
+                                }
                             }
                         ],
                         listeners:{
@@ -377,7 +413,7 @@
                                 mainPanel.update();
                             }
                             catch (e){console.log(e);}
-                            mainPanel.add(Ext.create('My.data_panel'));
+                            mainPanel.add(Ext.create('My.main_panel'));
                             mainPanel.doLayout();
                             mainPanel.update();
                         }
@@ -444,6 +480,50 @@
                             }
                             catch(e){console.log(e);}
                             mainPanel.add(Ext.create('My.pre_charge_panel'));
+                            mainPanel.doLayout();
+                            mainPanel.update();
+                        }
+                        else if(charge_type=='赠送时长统计'){
+                            try{
+                                mainPanel.removeAll();
+                                mainPanel.doLayout();
+                                mainPanel.update();
+                            }
+                            catch(e){console.log(e);}
+                            mainPanel.add(Ext.create('My.handsel_panel'));
+                            mainPanel.doLayout();
+                            mainPanel.update();
+                        }
+                        else if(charge_type=='在网时间分析'){
+                            try{
+                                mainPanel.removeAll();
+                                mainPanel.doLayout();
+                                mainPanel.update();
+                            }
+                            catch(e){console.log(e);}
+                            mainPanel.add(Ext.create('My.user_time_panel'));
+                            mainPanel.doLayout();
+                            mainPanel.update();
+                        }
+                        else if(charge_type=='停机用户统计'){
+                            try{
+                                mainPanel.removeAll();
+                                mainPanel.doLayout();
+                                mainPanel.update();
+                            }
+                            catch(e){console.log(e);}
+                            mainPanel.add(Ext.create('My.stop_user_panel'));
+                            mainPanel.doLayout();
+                            mainPanel.update();
+                        }
+                        else if(charge_type=='收入分析'){
+                            try{
+                                mainPanel.removeAll();
+                                mainPanel.doLayout();
+                                mainPanel.update();
+                            }
+                            catch(e){console.log(e);}
+                            mainPanel.add(Ext.create('My.Income_panel'));
                             mainPanel.doLayout();
                             mainPanel.update();
                         }

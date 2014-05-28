@@ -141,6 +141,66 @@
         <url-pattern>/gtaomanage/NewBandWidthChartServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>PreChargeChartServlet</servlet-name>
+        <servlet-class>servlet.PreChargeChartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PreChargeChartServlet</servlet-name>
+        <url-pattern>/PreChargeChartServlet</url-pattern>
+        <url-pattern>/gtaomanage/PreChargeChartServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PreChargeDetailServlet</servlet-name>
+        <servlet-class>servlet.PreChargeDetailServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PreChargeDetailServlet</servlet-name>
+        <url-pattern>/PreChargeDetailServlet</url-pattern>
+        <url-pattern>/gtaomanage/PreChargeDetailServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>HandselChartServlet</servlet-name>
+        <servlet-class>servlet.HandselChartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HandselChartServlet</servlet-name>
+        <url-pattern>/HandselChartServlet</url-pattern>
+        <url-pattern>/gtaomanage/HandselChartServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UserUsedTimeChartServlet</servlet-name>
+        <servlet-class>servlet.UserUsedTimeChartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserUsedTimeChartServlet</servlet-name>
+        <url-pattern>/UserUsedTimeChartServlet</url-pattern>
+        <url-pattern>/gtaomanage/UserUsedTimeChartServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>StopUserChartServlet</servlet-name>
+        <servlet-class>servlet.StopUserChartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StopUserChartServlet</servlet-name>
+        <url-pattern>/StopUserChartServlet</url-pattern>
+        <url-pattern>/gtaomanage/StopUserChartServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getIncomeChartServlet</servlet-name>
+        <servlet-class>servlet.getIncomeChartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getIncomeChartServlet</servlet-name>
+        <url-pattern>/getIncomeChartServlet</url-pattern>
+        <url-pattern>/gtaomanage/getIncomeChartServlet</url-pattern>
+    </servlet-mapping>
+
   <welcome-file-list>
     <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>

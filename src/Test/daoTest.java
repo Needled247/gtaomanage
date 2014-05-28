@@ -1,8 +1,8 @@
 package Test;
 
-import org.junit.Assert;
 import org.junit.Test;
-import tools.Tools;
+import service.GTM_Service;
+import service.GTM_ServiceImpl;
 
 /**
  * Created by HP on 14-4-16.
@@ -20,12 +20,11 @@ public class daoTest {
         System.out.println(result.get(0));
     }
     */
+
     @Test
-    public void testTool(){
-        String[] dateArr = Tools.getDateInterval("201404","201404");
-        for(int i=0;i<dateArr.length;i++){
-            System.out.println(dateArr[i]);
-        }
-        Assert.assertEquals(dateArr[dateArr.length-1],"201404");
+    public void testGetStopCancel(){
+        GTM_Service service = new GTM_ServiceImpl();
+        String month = "201404";
+        System.out.println(service.getTotalIncome(0,month));
     }
 }

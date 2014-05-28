@@ -35,4 +35,11 @@ public interface GTM_Service {
     public boolean removeAreaQuota(String id, String department_id);
     public long getChargeCountByBsid(int bsid, String month, Object[] chargeCode);
     public long getChargeCountByCode(int bsid, String month, int charge_code);
+    public long getPreChargeCount(String month, int charge_code);
+    public List<Map<String,Object>> getChargeCountByGroup(int bsid, String month, Object[] charge_code, String groupColumn);
+    public List<Map<String,Object>> getHandselCount(int bsid);
+    public long getUserCountByTime(int month);
+    public long getStopUserByMonth(String month);
+    public long getCancelUserByMonth(String month);
+    public long getTotalIncome(int bs, String month);
 }
