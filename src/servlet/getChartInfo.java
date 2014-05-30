@@ -41,10 +41,10 @@ public class getChartInfo extends BaseServlet {
         long xzCount = 0, bnCount = 0, qtCount = 0, tjCount = 0;
         //定额
         int new_quota = 0, charge_quota = 0, charge_year_quota = 0, cancel_quota = 0;
+        if(bs_name.equals("")){bs_name="666";}
         /*
         部门ID大于600，取所有营业厅数据
          */
-        System.out.println(bs_name);
         if(Integer.parseInt(bs_name)>600){
             xzArray = Tools.concat(xzArray,tempAll);
             bnArray = Tools.concat(bnArray,tempAll);

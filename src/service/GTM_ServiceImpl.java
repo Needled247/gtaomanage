@@ -92,6 +92,20 @@ public class GTM_ServiceImpl implements GTM_Service {
     }
 
     /**
+     * 获取营业厅对应相依类型的带宽类型
+     * @param params
+     * @return List
+     */
+    @Override
+    public List<Map<String, Object>> getBsBandWidth(Object[] params) {
+        List<Map<String,Object>> result;
+        String sql = "SELECT DISTINCT BANDWIDTH FROM GTM_FRONT_CHARGE_NEW " +
+                "WHERE (CHARGE_TYPE_ID=? OR CHARGE_TYPE_ID=?) AND TO_CHAR(CHARGE_DATE,'yyyy-mm')=? AND BS_ID=?";
+        result = dao.executeQuery(sql,params);
+        return result;
+    }
+
+    /**
      * 获取对应交易类型的餐型类型
      * @param params
      * @return
@@ -101,6 +115,21 @@ public class GTM_ServiceImpl implements GTM_Service {
         List<Map<String,Object>> result;
         String sql = "SELECT DISTINCT QUOTA FROM GTM_FRONT_CHARGE_NEW " +
                 "WHERE (CHARGE_TYPE_ID=? OR CHARGE_TYPE_ID=?) AND TO_CHAR(CHARGE_DATE,'yyyy-mm')=?";
+        result = dao.executeQuery(sql,params);
+        return result;
+    }
+
+    /**
+     * 获取营业厅对应交易类型的餐型类型
+     * @param params
+     * @return
+     */
+    @Override
+    public List<Map<String, Object>> getBsPackageType(Object[] params) {
+        List<Map<String,Object>> result;
+        String sql = "SELECT DISTINCT QUOTA FROM GTM_FRONT_CHARGE_NEW " +
+                "WHERE (CHARGE_TYPE_ID=? OR CHARGE_TYPE_ID=?) AND TO_CHAR(CHARGE_DATE,'yyyy-mm')=?" +
+                " AND BS_ID=?";
         result = dao.executeQuery(sql,params);
         return result;
     }
@@ -119,6 +148,18 @@ public class GTM_ServiceImpl implements GTM_Service {
     }
 
     /**
+     * 按时间、交易类型、带宽、营业厅查询交易数量
+     * @param params
+     * @return  count
+     */
+    @Override
+    public long getBsBandWidthCount(Object[] params) {
+        String sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_NEW WHERE (CHARGE_TYPE_ID=? OR CHARGE_TYPE_ID=?)" +
+                " AND TO_CHAR(CHARGE_DATE,'yyyy-mm')=?  AND BANDWIDTH=? AND BS_ID=?";
+        return getCount(sql,params);
+    }
+
+    /**
      * 按时间、交易类型、餐型查询交易数量
      * @param params
      * @return
@@ -131,6 +172,18 @@ public class GTM_ServiceImpl implements GTM_Service {
     }
 
     /**
+     * 按营业厅、时间、交易类型、餐型查询交易数量
+     * @param params
+     * @return
+     */
+    @Override
+    public long getBsPackageCount(Object[] params) {
+        String sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_NEW WHERE (CHARGE_TYPE_ID=? OR CHARGE_TYPE_ID=?)" +
+                " AND TO_CHAR(CHARGE_DATE,'yyyy-mm')=? AND QUOTA=? AND BS_ID=?";
+        return getCount(sql,params);
+    }
+
+    /**
      * 餐型带宽组合查询
      * @param params
      * @return 数量
@@ -139,6 +192,18 @@ public class GTM_ServiceImpl implements GTM_Service {
     public long getAllCount(Object[] params) {
         String sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_NEW WHERE (CHARGE_TYPE_ID=? OR CHARGE_TYPE_ID=?)" +
                 " AND TO_CHAR(CHARGE_DATE,'yyyy-mm')=? AND BANDWIDTH=? AND QUOTA=?";
+        return getCount(sql,params);
+    }
+
+    /**
+     * 餐型带宽组合查询(营业厅)
+     * @param params
+     * @return 数量
+     */
+    @Override
+    public long getBsAllCount(Object[] params) {
+        String sql = "SELECT COUNT(*) FROM GTM_FRONT_CHARGE_NEW WHERE (CHARGE_TYPE_ID=? OR CHARGE_TYPE_ID=?)" +
+                " AND TO_CHAR(CHARGE_DATE,'yyyy-mm')=? AND BANDWIDTH=? AND QUOTA=? AND BS_ID=?";
         return getCount(sql,params);
     }
 

@@ -16,10 +16,15 @@ public interface GTM_Service {
     public List<Map<String,Object>> getAllQuota();
     public List<Map<String,Object>> getBsQuota(Object[] params);
     public List<Map<String,Object>> getBandWidth(Object[] params);
+    public List<Map<String,Object>> getBsBandWidth(Object[] params);
     public List<Map<String,Object>> getPackageType(Object[] params);
+    public List<Map<String,Object>> getBsPackageType(Object[] params);
     public long getBandWidthCount(Object[] params);
+    public long getBsBandWidthCount(Object[] params);
     public long getPackageCount(Object[] params);
+    public long getBsPackageCount(Object[] params);
     public long getAllCount(Object[] params);
+    public long getBsAllCount(Object[] params);
     public long getMonthUserCount(String tbl,Object[] params);
     public List<Map<String,Object>> getAllStation();
     public long getMonthTotalCount(String tbl);

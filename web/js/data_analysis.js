@@ -39,7 +39,7 @@
                     ignoreParentClicks: true,
                     items: [
                         {
-                            text: '本月综合分析',
+                            text: '综合分析',
                             listeners:{
                                 'click':function(){
                                     Ext.getCmp('data_start').hide();
@@ -61,6 +61,16 @@
                             }
                         },{
                             text:'收入分析',
+                            listeners:{
+                                'click':function(){
+                                    Ext.getCmp('data_start').show();
+                                    Ext.getCmp('data_end').show();
+                                    Ext.getCmp('data_bs').show();
+                                    Ext.getCmp('data_month').hide();
+                                }
+                            }
+                        },{
+                            text:'收入同期对比',
                             listeners:{
                                 'click':function(){
                                     Ext.getCmp('data_start').show();
@@ -406,7 +416,7 @@
                             mainPanel.doLayout();
                             mainPanel.update();
                         }
-                        else if(charge_type=='本月综合分析'){
+                        else if(charge_type=='综合分析'){
                             try{
                                 mainPanel.removeAll();
                                 mainPanel.doLayout();
@@ -517,6 +527,18 @@
                             mainPanel.update();
                         }
                         else if(charge_type=='收入分析'){
+                            try{
+                                mainPanel.removeAll();
+                                mainPanel.doLayout();
+                                mainPanel.update();
+                            }
+                            catch(e){console.log(e);}
+                            mainPanel.add(Ext.create('My.Income_panel'));
+                            mainPanel.doLayout();
+                            mainPanel.update();
+                        }
+                        //TODO
+                        else if(charge_type=='收入同期对比'){
                             try{
                                 mainPanel.removeAll();
                                 mainPanel.doLayout();
