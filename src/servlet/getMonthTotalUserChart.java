@@ -54,8 +54,10 @@ public class getMonthTotalUserChart extends HttpServlet {
             }
             long count = service.getMonthTotalCount(temp);
             long normalCount = service.getMonthTotalNormalCount(temp);
+            long innerCount = service.getInnerAccountNumber(temp);
             if(count!=0){
-                sb.append("{\"date\":\""+dateJson+"\",\"num\":\""+count+"\",\"normalNum\":\""+normalCount+"\"},");
+                sb.append("{\"date\":\""+dateJson+"\",\"num\":\""+count+
+                        "\",\"normalNum\":\""+normalCount+"\",\"innerNum\":\""+innerCount+"\"},");
             }
         }
         if(sb.length()>2){

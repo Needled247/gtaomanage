@@ -290,6 +290,35 @@ public class Tools
         return sdf.format(result);
     }
 
+
+    public static String datePlus2(String date, int yearOrMonth, int month){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        Date d = null;
+        try{
+            d = sdf.parse(date);
+        }
+        catch (ParseException e){
+            e.printStackTrace();
+        }
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(d);
+        Date result = null;
+        switch (yearOrMonth){
+            case 1 :
+                calendar.add(Calendar.YEAR, month);
+                result = calendar.getTime();
+                break;
+            case 2 :
+                calendar.add(Calendar.MONTH, month);
+                result = calendar.getTime();
+                break;
+            default:
+                result = null;
+                break;
+        }
+        return sdf.format(result);
+    }
+
     /**
      * 计算两个日期间隔--》数组（yyyyMM）
      * @param startDate
@@ -392,5 +421,18 @@ public class Tools
             e.printStackTrace();
         }
         return fmtTime;
+    }
+
+    public static String formatTime(String time){
+        SimpleDateFormat fm = new SimpleDateFormat("yyyyMMdd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
+        String returnTime = "";
+        try {
+            returnTime = sdf.format(fm.parse(time));
+        }
+        catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return returnTime;
     }
 }

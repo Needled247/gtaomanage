@@ -29,6 +29,7 @@ public interface GTM_Service {
     public List<Map<String,Object>> getAllStation();
     public long getMonthTotalCount(String tbl);
     public long getMonthTotalNormalCount(String tbl);
+    public long getInnerAccountNumber(String tbl);
     public List<GTM_BUSINESS_QUOTA> getBusinessQuota();
     public List<GTM_BUSINESS_QUOTA> getBusinessQuotaByBsid(String bs_id);
     public List<GTM_BUSINESS_QUOTA> getBusinessQuotaByMonth(String month);
@@ -47,4 +48,5 @@ public interface GTM_Service {
     public long getStopUserByMonth(String month);
     public long getCancelUserByMonth(String month);
     public long getTotalIncome(int bs, String month);
+    public long getIntervalIncome(int bs, String startDate, String endDate);
 }

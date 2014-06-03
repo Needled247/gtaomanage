@@ -238,19 +238,30 @@ public class GTM_ServiceImpl implements GTM_Service {
      */
     @Override
     public long getMonthTotalCount(String tbl) {
-        String sql = "SELECT COUNT(*) FROM TBL_USERS"+tbl+" WHERE ISTATUS<>-9";
+        String sql = "SELECT COUNT(*) FROM TBL_USERS"+tbl+" WHERE ISTATUS=1 AND ITYPE<>0 AND ITYPE<>3";
         return getCount(sql,new Object[]{});
     }
 
     /**
-     * 获取在网用户（正常状态）总数
+     * 获取在网用户（免费）总数
      * @param tbl
      * @return  count
      */
     @Override
     public long getMonthTotalNormalCount(String tbl) {
-        String sql = "SELECT COUNT(*) FROM TBL_USERS"+tbl+" WHERE ISTATUS=1";
+        String sql = "SELECT COUNT(*) FROM TBL_USERS"+tbl+" WHERE ISTATUS=1 AND ITYPE=0";
         return getCount(sql,new Object[]{});
+    }
+
+    /**
+     * 获取内部账号数量
+     * @param tbl
+     * @return  count
+     */
+    @Override
+    public long getInnerAccountNumber(String tbl) {
+        String sql = "SELECT COUNT(*) FROM TBL_USERS"+tbl+" WHERE ISTATUS=1 AND ITYPE=3";
+        return getCount(sql, new Object[]{});
     }
 
     /**
@@ -530,7 +541,7 @@ public class GTM_ServiceImpl implements GTM_Service {
      * 按营业厅、月份获取收入
      * @param bs
      * @param month
-     * @return
+     * @return total income
      */
     @Override
     public long getTotalIncome(int bs, String month) {
@@ -547,5 +558,32 @@ public class GTM_ServiceImpl implements GTM_Service {
             get_total_sql += " and to_char(fc.charge_date,'yyyyMM')='"+month+"'";
         }
         return getCount(get_total_sql, new Object[]{});
+    }
+
+    /**
+     * 获取某时间间隔的总收入
+     * @param bs
+     * @param startDate
+     * @param endDate
+     * @return  income
+     */
+    @Override
+    public long getIntervalIncome(int bs, String startDate, String endDate) {
+        String sql =
+                "select sum(fc.charge_amount) from gtm_act ga,gtm_pay_type pt,gtm_contract gc,gtm_business_info bi," +
+                        "GTM_MAINFORM_INFO mi,GTM_CHARGE_TYPE ct,GTM_FRONT_CHARGE_NEW fc,TBL_USERSINFO ui,tbl_users tu " +
+                        "where fc.act_sub_id=ga.act_id and fc.pay_type_id=pt.pay_type_id and fc.username=mi.username " +
+                        "and fc.username=ui.susername and fc.username=tu.susername and fc.bs_id=bi.id and mi.contract_id=gc.contract_id " +
+                        "and fc.charge_type_id=ct.charge_type_id";
+        if(bs!=0){
+            sql += " and fc.bs_id="+bs;
+        }
+        if(!startDate.equals("")){
+            sql += " and to_char(fc.charge_date,'yyyyMMdd')>='"+startDate+"'";
+        }
+        if(!endDate.equals("")){
+            sql += " and to_char(fc.charge_date,'yyyyMMdd')<='"+endDate+"'";
+        }
+        return getCount(sql, new Object[]{});
     }
 }

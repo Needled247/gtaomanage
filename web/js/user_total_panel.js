@@ -7,7 +7,8 @@
             fields: [
                 {name:'date',type:'string'},
                 {name:'num',type:'int'},
-                {name:'normalNum',type:'int'}
+                {name:'normalNum',type:'int'},
+                {name:'innerNum',type:'int'}
             ]
         });
         var store = Ext.create('Ext.data.Store', {
@@ -40,7 +41,7 @@
             axes: [{
                 type: 'Numeric',
                 position: 'left',
-                fields: ['num', 'normalNum'],
+                fields: ['num', 'normalNum','innerNum'],
                 label: {
                     renderer: Ext.util.Format.numberRenderer('0,0')
                 },
@@ -87,7 +88,7 @@
                 tips: {
                     trackMouse: true,
                     renderer: function(storeItem, item) {
-                        this.setTitle(storeItem.get('date')+"正常状态用户");
+                        this.setTitle(storeItem.get('date')+"免费用户");
                         this.update(storeItem.get('normalNum')+"个");
                     }
                 },
@@ -95,14 +96,40 @@
                 fill: true,
                 xField: 'date',
                 yField: 'normalNum',
-                title:'正常状态用户',
+                title:'免费用户',
                 markerConfig: {
                     type: 'circle',
                     size: 4,
                     radius: 4,
                     'stroke-width': 0
                 }
-            }]
+            },
+                {
+                    type: 'line',
+                    highlight: {
+                        size: 7,
+                        radius: 7
+                    },
+                    stacked: true,
+                    tips: {
+                        trackMouse: true,
+                        renderer: function(storeItem, item) {
+                            this.setTitle(storeItem.get('date')+"员工账号");
+                            this.update(storeItem.get('innerNum')+"个");
+                        }
+                    },
+                    axis: 'left',
+                    fill: true,
+                    xField: 'date',
+                    yField: 'innerNum',
+                    title:'员工账号',
+                    markerConfig: {
+                        type: 'circle',
+                        size: 4,
+                        radius: 4,
+                        'stroke-width': 0
+                    }
+                }]
         });
 
         Ext.apply(this, {

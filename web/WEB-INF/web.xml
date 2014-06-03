@@ -201,6 +201,16 @@
         <url-pattern>/gtaomanage/getIncomeChartServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>getIncomeContrastChartServlet</servlet-name>
+        <servlet-class>servlet.getIncomeContrastChartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getIncomeContrastChartServlet</servlet-name>
+        <url-pattern>/getIncomeContrastChartServlet</url-pattern>
+        <url-pattern>/gtaomanage/getIncomeContrastChartServlet</url-pattern>
+    </servlet-mapping>
+
   <welcome-file-list>
     <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>

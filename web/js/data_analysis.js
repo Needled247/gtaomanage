@@ -46,6 +46,8 @@
                                     Ext.getCmp('data_end').hide();
                                     Ext.getCmp('data_bs').show();
                                     Ext.getCmp('data_month').show();
+                                    Ext.getCmp('data_start_day').hide();
+                                    Ext.getCmp('data_end_day').hide();
                                 }
                             }
                         },
@@ -57,6 +59,8 @@
                                     Ext.getCmp('data_end').show();
                                     Ext.getCmp('data_bs').show();
                                     Ext.getCmp('data_month').hide();
+                                    Ext.getCmp('data_start_day').hide();
+                                    Ext.getCmp('data_end_day').hide();
                                 }
                             }
                         },{
@@ -67,14 +71,18 @@
                                     Ext.getCmp('data_end').show();
                                     Ext.getCmp('data_bs').show();
                                     Ext.getCmp('data_month').hide();
+                                    Ext.getCmp('data_start_day').hide();
+                                    Ext.getCmp('data_end_day').hide();
                                 }
                             }
                         },{
                             text:'收入同期对比',
                             listeners:{
                                 'click':function(){
-                                    Ext.getCmp('data_start').show();
-                                    Ext.getCmp('data_end').show();
+                                    Ext.getCmp('data_start_day').show();
+                                    Ext.getCmp('data_end_day').show();
+                                    Ext.getCmp('data_start').hide();
+                                    Ext.getCmp('data_end').hide();
                                     Ext.getCmp('data_bs').show();
                                     Ext.getCmp('data_month').hide();
                                 }
@@ -100,6 +108,8 @@
                                         Ext.getCmp('data_end').hide();
                                         Ext.getCmp('data_bs').hide();
                                         Ext.getCmp('data_month').show();
+                                        Ext.getCmp('data_start_day').hide();
+                                        Ext.getCmp('data_end_day').hide();
                                     }
                                 }
                             },{
@@ -110,6 +120,8 @@
                                         Ext.getCmp('data_end').hide();
                                         Ext.getCmp('data_bs').hide();
                                         Ext.getCmp('data_month').show();
+                                        Ext.getCmp('data_start_day').hide();
+                                        Ext.getCmp('data_end_day').hide();
                                     }
                                 }
                             },{
@@ -120,6 +132,8 @@
                                         Ext.getCmp('data_end').hide();
                                         Ext.getCmp('data_bs').hide();
                                         Ext.getCmp('data_month').show();
+                                        Ext.getCmp('data_start_day').hide();
+                                        Ext.getCmp('data_end_day').hide();
                                     }
                                 }
                             }
@@ -143,6 +157,8 @@
                                         Ext.getCmp('data_end').hide();
                                         Ext.getCmp('data_bs').hide();
                                         Ext.getCmp('data_month').show();
+                                        Ext.getCmp('data_start_day').hide();
+                                        Ext.getCmp('data_end_day').hide();
                                     }
                                 }
                             },{
@@ -155,6 +171,8 @@
                                         Ext.getCmp('data_end').hide();
                                         Ext.getCmp('data_bs').show();
                                         Ext.getCmp('data_month').show();
+                                        Ext.getCmp('data_start_day').hide();
+                                        Ext.getCmp('data_end_day').hide();
                                     }
                                 }
                             },{
@@ -167,6 +185,8 @@
                                         Ext.getCmp('data_end').hide();
                                         Ext.getCmp('data_bs').show();
                                         Ext.getCmp('data_month').hide();
+                                        Ext.getCmp('data_start_day').hide();
+                                        Ext.getCmp('data_end_day').hide();
                                     }
                                 }
                             }
@@ -191,6 +211,8 @@
                                         Ext.getCmp('data_end').hide();
                                         Ext.getCmp('data_bs').hide();
                                         Ext.getCmp('data_month').show();
+                                        Ext.getCmp('data_start_day').hide();
+                                        Ext.getCmp('data_end_day').hide();
                                     }
                                 }
                             },{
@@ -201,6 +223,8 @@
                                         Ext.getCmp('data_end').hide();
                                         Ext.getCmp('data_bs').hide();
                                         Ext.getCmp('data_month').show();
+                                        Ext.getCmp('data_start_day').hide();
+                                        Ext.getCmp('data_end_day').hide();
                                     }
                                 }
                             },{
@@ -217,6 +241,8 @@
                                         Ext.getCmp('data_end').hide();
                                         Ext.getCmp('data_bs').hide();
                                         Ext.getCmp('data_month').hide();
+                                        Ext.getCmp('data_start_day').hide();
+                                        Ext.getCmp('data_end_day').hide();
                                     }
                                 }
                             }
@@ -241,6 +267,8 @@
                                         Ext.getCmp('data_end').hide();
                                         Ext.getCmp('data_bs').hide();
                                         Ext.getCmp('data_month').show();
+                                        Ext.getCmp('data_start_day').hide();
+                                        Ext.getCmp('data_end_day').hide();
                                     }
                                 }
                             },
@@ -252,6 +280,8 @@
                                         Ext.getCmp('data_end').show();
                                         Ext.getCmp('data_bs').hide();
                                         Ext.getCmp('data_month').hide();
+                                        Ext.getCmp('data_start_day').hide();
+                                        Ext.getCmp('data_end_day').hide();
                                     }
                                 }
                             }
@@ -324,7 +354,6 @@
                     hidden:true
                 },
                 {
-                    //通用
                     xtype:'datefield',
                     fieldLabel: '起始月份',
                     id: 'data_start',
@@ -346,7 +375,6 @@
                         }
                     }
                 },{
-                    //通用
                     xtype:'datefield',
                     fieldLabel: '截止月份',
                     id: 'data_end',
@@ -365,6 +393,49 @@
                     listeners: {
                         change: function(obj){
                             Ext.getCmp('data_start').setMaxValue(obj.getRawValue());
+                        }
+                    }
+                },
+                {
+                    xtype:'datefield',
+                    fieldLabel: '起始时间',
+                    id: 'data_start_day',
+                    name: 'data_start_day',
+                    margin: '0 5 5 0',
+                    value: Ext.Date.format(new Date(), 'Ymd'),
+                    format: 'Ymd',
+                    maxValue: new Date(),
+                    labelWidth: 60,
+                    width: 190,
+                    submitFormat : String,
+                    allowBlank: true,
+                    blankText: '请输入起始时间',
+                    editable: false,
+                    hidden:true,
+                    listeners: {
+                        change: function(obj){
+                            Ext.getCmp('data_end_day').setMinValue(obj.getRawValue());
+                        }
+                    }
+                },{
+                    xtype:'datefield',
+                    fieldLabel: '截止时间',
+                    id: 'data_end_day',
+                    name: 'data_end_day',
+                    margin: '0 5 5 0',
+                    value: Ext.Date.format(new Date(), 'Ymd'),
+                    format: 'Ymd',
+                    maxValue: new Date(),
+                    submitFormat : String,
+                    labelWidth: 60,
+                    width: 190,
+                    allowBlank: false,
+                    blankText: '请输入截止时间',
+                    editable: false,
+                    hidden:true,
+                    listeners: {
+                        change: function(obj){
+                            Ext.getCmp('data_start_day').setMaxValue(obj.getRawValue());
                         }
                     }
                 },
@@ -537,7 +608,6 @@
                             mainPanel.doLayout();
                             mainPanel.update();
                         }
-                        //TODO
                         else if(charge_type=='收入同期对比'){
                             try{
                                 mainPanel.removeAll();
@@ -545,7 +615,7 @@
                                 mainPanel.update();
                             }
                             catch(e){console.log(e);}
-                            mainPanel.add(Ext.create('My.Income_panel'));
+                            mainPanel.add(Ext.create('My.Income_contrast_panel'));
                             mainPanel.doLayout();
                             mainPanel.update();
                         }
