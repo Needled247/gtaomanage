@@ -258,7 +258,7 @@
 		            		id: 'save_admin',
 		            		name: 'save_admin',
 		                    fieldLabel: '录入人员',
-		                    margin: '5 0 10 30',
+                            margin: '5 0 10 30',
 		                    labelWidth: 85,
 					      	width: 200,
 					      	value:'',
@@ -271,7 +271,20 @@
 			            			}
 			            		}
 			            	}
-	            		}]
+	            		},
+                        {
+                            xtype:'datefield',
+                            fieldLabel: '统计月份',
+                            id: 'contract_date',
+                            name: 'contract_date',
+                            margin: '5 0 10 30',
+			              	value: Ext.Date.format(new Date(), 'Ym'),
+                            format: 'Ym',
+                            maxValue: new Date(),
+                            labelWidth: 60,
+                            width: 200,
+                            editable: false
+                        }]
             
         });
         

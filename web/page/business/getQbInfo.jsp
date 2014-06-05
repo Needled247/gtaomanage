@@ -1,12 +1,16 @@
-<%@page language="java" import="java.util.Date" pageEncoding="UTF-8"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Calendar"%>
+<%@page language="java" pageEncoding="UTF-8"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="ds.ConnPoolBean"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
+<%@ page import="service.GTM_Service" %>
+<%@ page import="service.GTM_ServiceImpl" %>
+<%@ page import="tools.Tools" %>
+<%@ page import="java.util.Calendar" %>
+<%@ page import="java.text.NumberFormat" %>
 
-<%	
+<%
+    GTM_Service service = new GTM_ServiceImpl();
 	String startPage=request.getParameter("start");
 	String countPage=request.getParameter("limit");
 	String qb_hetong=request.getParameter("qb_hetong");
@@ -23,6 +27,7 @@
 	String startDate=request.getParameter("startDate");
 	String endDate=request.getParameter("endDate");
 	String save_admin=request.getParameter("save_admin");
+    String contractDate = request.getParameter("date");
 	//System.out.println(qb_hetong+","+big_id+","+qydate+","+xqtime+","+ggtime+","+qb_bs_name+","+ht_type+","+isgg+","+isxk+","+isjz+","+jzbrand);
 	
 	String temp="";
@@ -76,7 +81,7 @@
 	String get_group_sql="select * from (select gc.contract_id,count(username) from GTM_MAINFORM_INFO gmf join tbl_users tu on tu.susername=gmf.username and tu.istatus<>-9 right join gtm_contract gc on gc.contract_id=gmf.contract_id"+temp+" group by gc.contract_id) where rownum<=";
 	String get_data_sql="select * from gtm_contract gc,gtm_business_info bi where gc.hall_id=bi.id and gc.contract_id=";
 	String get_count_sql="select count(contract_id) from (select gc.contract_id,count(username) from GTM_MAINFORM_INFO gmf join tbl_users tu on tu.susername=gmf.username and tu.istatus<>-9 right join gtm_contract gc on gc.contract_id=gmf.contract_id"+temp+" group by gc.contract_id)";
-	String gridStr="";
+	StringBuilder sb = new StringBuilder();
 	int count=0;
 	Connection conn=null;
 	Statement st=null;
@@ -99,82 +104,110 @@
 			if(count!=0){
 				rs=st.executeQuery(get_group_sql);
 				while(rs.next()){							
-					gridStr+="{";					
-					gridStr+="user_num:'"+rs.getInt(2)+"',";
+					sb.append("{");
+					sb.append("user_num:'"+rs.getInt(2)+"',");
 					data_rs=data_st.executeQuery(get_data_sql+rs.getInt(1));
 					data_rs.next();
 					if(data_rs.getInt("live_num")==0){
-						gridStr+="user_percent:'<b><font color=red>0.00</font>%</b>',";
+						sb.append("user_percent:'<b><font color=red>0.00</font>%</b>',");
 					}else{
-						gridStr+="user_percent:'<b><font color=red>"+String.format("%.2f",(rs.getFloat(2)/data_rs.getInt("live_num"))*100)+"</font>%</b>',";
+						sb.append("user_percent:'<b><font color=red>"+String.format("%.2f",(rs.getFloat(2)/data_rs.getInt("live_num"))*100)+"</font>%</b>',");
 					}
-					gridStr+="bi_id:'"+data_rs.getInt("contract_id")+"',";
-					gridStr+="contract_name:'"+new String(data_rs.getString("contract_name").getBytes("iso-8859-1"),"gbk")+"',";
-					gridStr+="big_id:'"+data_rs.getInt("big_id")+"',";
-					gridStr+="hall_id:'"+new String(data_rs.getString("name").getBytes("iso-8859-1"),"gbk")+"',";
+                    //获取合同编号
+                    int contract_id = data_rs.getInt("contract_id");
+                    String thisMonthSuffix = Tools.validateTime2(contractDate);
+                    String lastMonth = Tools.datePlus2(contractDate, Calendar.MONTH);
+                    String lastMonthSuffix = Tools.validateTime2(lastMonth);
+                    //获取查询月和上月在网用户数
+                    double thisMonthUserCount = service.getUserCountByContract(contract_id, thisMonthSuffix);
+                    double lastMonthUserCount = service.getUserCountByContract(contract_id, lastMonthSuffix);
+                    double persent = 0;
+                    String fmtPercent;
+                    NumberFormat nf = NumberFormat.getPercentInstance();
+                    nf.setMinimumFractionDigits(2);
+                    if(lastMonthUserCount!=0){
+                        persent = ((thisMonthUserCount-lastMonthUserCount)/lastMonthUserCount);
+                        fmtPercent = nf.format(persent);
+                    }
+                    else {
+                        fmtPercent = "-.-";
+                    }
+                    sb.append("bi_id:'" + contract_id + "',");
+					sb.append("contract_name:'"+new String(data_rs.getString("contract_name").getBytes("iso-8859-1"),"gbk")+"',");
+					sb.append("big_id:'"+data_rs.getInt("big_id")+"',");
+					sb.append("hall_id:'"+new String(data_rs.getString("name").getBytes("iso-8859-1"),"gbk")+"',");
+                    sb.append("userCount:'"+(long)thisMonthUserCount+"',");
+                    sb.append("userCount2:'"+(long)lastMonthUserCount+"',");
+                    if (fmtPercent.contains("-")){
+                        sb.append("percent:'<b><font color=green>"+fmtPercent+"</font></b>',");
+                    }
+                    else {
+                        sb.append("percent:'<b><font color=red>"+fmtPercent+"</font></b>',");
+                    }
+
 					if(data_rs.getInt("contract_type")==1){
-						gridStr+="contract_type:'社区合同',";
+						sb.append("contract_type:'社区合同',");
 					}else if(data_rs.getInt("contract_type")==2){
-						gridStr+="contract_type:'写字楼合同',";
+						sb.append("contract_type:'写字楼合同',");
 					}else if(data_rs.getInt("contract_type")==3){
-						gridStr+="contract_type:'无合同',";
+						sb.append("contract_type:'无合同',");
 					}
 					if(data_rs.getDate("sign_date")!=null){
-						gridStr+="sign_date:'"+data_rs.getDate("sign_date")+"',";
+						sb.append("sign_date:'"+data_rs.getDate("sign_date")+"',");
 					}else{
-						gridStr+="sign_date:'',";
+						sb.append("sign_date:'',");
 					}
 					if(data_rs.getDate("xq_open_date")!=null){
-						gridStr+="xq_open_date:'"+data_rs.getDate("xq_open_date")+"',";
+						sb.append("xq_open_date:'"+data_rs.getDate("xq_open_date")+"',");
 					}else{
-						gridStr+="xq_open_date:'',";
+						sb.append("xq_open_date:'',");
 					}
 					if(data_rs.getDate("gg_open_date")!=null){
-						gridStr+="gg_open_date:'"+data_rs.getDate("gg_open_date")+"',";
+						sb.append("gg_open_date:'"+data_rs.getDate("gg_open_date")+"',");
 					}else{
-						gridStr+="gg_open_date:'',";
+						sb.append("gg_open_date:'',");
 					}
 					if(data_rs.getInt("is_gg")==1){
-						gridStr+="is_gg:'是',";
+						sb.append("is_gg:'是',");
 					}else if(data_rs.getInt("is_gg")==0){
-						gridStr+="is_gg:'否',";
+						sb.append("is_gg:'否',");
 					}
 					if(data_rs.getInt("is_xk")==1){
-						gridStr+="is_xk:'是',";
+						sb.append("is_xk:'是',");
 					}else if(data_rs.getInt("is_xk")==0){
-						gridStr+="is_xk:'否',";
+						sb.append("is_xk:'否',");
 					}
 					if(data_rs.getInt("is_jz")==1){
-						gridStr+="is_jz:'是',";
+						sb.append("is_jz:'是',");
 					}else if(data_rs.getInt("is_jz")==0){
-						gridStr+="is_jz:'否',";
+						sb.append("is_jz:'否',");
 					}
 					if(data_rs.getString("jz_brand")!=null){
-						gridStr+="jz_brand:'"+new String(data_rs.getString("jz_brand").getBytes("iso-8859-1"),"gbk")+"',";
+						sb.append("jz_brand:'"+new String(data_rs.getString("jz_brand").getBytes("iso-8859-1"),"gbk")+"',");
 					}else{
-						gridStr+="jz_brand:'',";
+						sb.append("jz_brand:'',");
 					}
 					if(data_rs.getString("live_num")!=null){
-						gridStr+="live_num:'"+data_rs.getString("live_num")+"',";
+						sb.append("live_num:'"+data_rs.getString("live_num")+"',");
 					}else{
-						gridStr+="live_num:'',";
+						sb.append("live_num:'',");
 					}
 					if(data_rs.getString("gg_live_num")!=null){
-						gridStr+="gg_live_num:'"+data_rs.getString("gg_live_num")+"',";
+						sb.append("gg_live_num:'"+data_rs.getString("gg_live_num")+"',");
 					}else{
-						gridStr+="gg_live_num:'',";
+						sb.append("gg_live_num:'',");
 					}
 					if(data_rs.getString("save_time")!=null){
-						gridStr+="save_time:'"+data_rs.getString("save_time")+"',";
+						sb.append("save_time:'"+data_rs.getString("save_time")+"',");
 					}else{
-						gridStr+="save_time:'',";
+						sb.append("save_time:'',");
 					}
 					if(data_rs.getString("save_admin")!=null){
-						gridStr+="save_admin:'"+new String(data_rs.getString("save_admin").getBytes("iso-8859-1"),"gbk")+"'";
+						sb.append("save_admin:'"+new String(data_rs.getString("save_admin").getBytes("iso-8859-1"),"gbk")+"'");
 					}else{
-						gridStr+="save_admin:''";
+						sb.append("save_admin:''");
 					}
-					gridStr+="},";
+					sb.append("},");
 				}
 			}
 		
@@ -186,12 +219,9 @@
 		st.close();
 		data_conn.close();
 		conn.close();
-		
-		gridStr=gridStr.replaceFirst(",$", "");
-	
-	
+
 	//System.out.println(gridStr);
 	response.setContentType("text/json;charset=UTF-8");
-	response.getWriter().print("{totalCount:"+count+",data:["+gridStr+"]}");
+	response.getWriter().print("{totalCount:"+count+",data:["+sb+"]}");
 	
 %>

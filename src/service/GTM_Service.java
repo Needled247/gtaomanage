@@ -49,4 +49,5 @@ public interface GTM_Service {
     public long getCancelUserByMonth(String month);
     public long getTotalIncome(int bs, String month);
     public long getIntervalIncome(int bs, String startDate, String endDate);
+    public long getUserCountByContract(int contract_id, String suffix);
 }

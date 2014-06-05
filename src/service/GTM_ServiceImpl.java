@@ -586,4 +586,16 @@ public class GTM_ServiceImpl implements GTM_Service {
         }
         return getCount(sql, new Object[]{});
     }
+
+    /**
+     * 按合同号、日期获取交易数量
+     * @param contract_id
+     * @return  user count
+     */
+    @Override
+    public long getUserCountByContract(int contract_id, String suffix) {
+        String sql = "SELECT COUNT(*) FROM GTM_MAINFORM_INFO MF,TBL_USERS"+suffix+" TU" +
+                " WHERE MF.USERNAME=TU.SUSERNAME AND MF.CONTRACT_ID=? AND TU.ISTATUS=1";
+        return getCount(sql, new Object[]{contract_id});
+    }
 }

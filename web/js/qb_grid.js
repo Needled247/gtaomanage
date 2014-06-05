@@ -13,6 +13,9 @@
             			'contract_name',
             			'big_id',
             			'hall_id',
+                        'userCount',
+                        'userCount2',
+                        'percent',
             			'contract_type',
             			'sign_date',
             			'xq_open_date',
@@ -83,6 +86,18 @@
                 header: '合同名称',
                 dataIndex: 'contract_name',
                 width: 300
+            },{
+                header: '本月在网用户数',
+                dataIndex: 'userCount',
+                width: 150
+            },{
+                header: '上月在网用户数',
+                dataIndex: 'userCount2',
+                width: 150
+            },{
+                header: '增长率',
+                dataIndex: 'percent',
+                width: 100
             },{
                 header: '合同类型',
                 dataIndex: 'contract_type',

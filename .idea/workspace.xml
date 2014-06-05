@@ -15,16 +15,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/Income_contrast_panel.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/servlet/getIncomeContrastChartServlet.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/GTM_Service.java" afterPath="$PROJECT_DIR$/src/service/GTM_Service.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/GTM_ServiceImpl.java" afterPath="$PROJECT_DIR$/src/service/GTM_ServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tools/Tools.java" afterPath="$PROJECT_DIR$/src/tools/Tools.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Test/daoTest.java" afterPath="$PROJECT_DIR$/src/Test/daoTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/data_analysis.js" afterPath="$PROJECT_DIR$/web/js/data_analysis.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/servlet/getMonthTotalUserChart.java" afterPath="$PROJECT_DIR$/src/servlet/getMonthTotalUserChart.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/user_total_panel.js" afterPath="$PROJECT_DIR$/web/js/user_total_panel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/page/business/getQbInfo.jsp" afterPath="$PROJECT_DIR$/web/page/business/getQbInfo.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/qb_grid.js" afterPath="$PROJECT_DIR$/web/js/qb_grid.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/qb_north.js" afterPath="$PROJECT_DIR$/web/js/qb_north.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/query_buildinfo.js" afterPath="$PROJECT_DIR$/web/js/query_buildinfo.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="gtaomanage.iws" />
@@ -95,29 +91,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="data_analysis.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/js/data_analysis.js">
+      <file leaf-file-name="getQbInfo.jsp" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/page/business/getQbInfo.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="292" column="178" selection-start="14186" selection-end="14186" vertical-scroll-proportion="0.41269842" vertical-offset="7170" max-vertical-offset="16225">
-              <folding />
+            <state line="138" column="97" selection-start="6093" selection-end="6093" vertical-scroll-proportion="0.46268657" vertical-offset="3326" max-vertical-offset="5800">
+              <folding>
+                <marker date="1401960611656" expanded="true" signature="2844:3098" placeholder="select * fro..contract_id..." />
+                <marker date="1401960611656" expanded="true" signature="2859:3082" placeholder="select gc.co..GTM_MAINFORM_INFO..." />
+                <marker date="1401960611656" expanded="true" signature="3123:3216" placeholder="select * fro..gtm_contract..." />
+                <marker date="1401960611656" expanded="true" signature="3242:3498" placeholder="select count..contract_id..." />
+                <marker date="1401960611656" expanded="true" signature="3274:3497" placeholder="select gc.co..GTM_MAINFORM_INFO..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="getMonthTotalUserChart.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/servlet/getMonthTotalUserChart.java">
+      <file leaf-file-name="qb_grid.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/js/qb_grid.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="98" selection-start="2053" selection-end="2053" vertical-scroll-proportion="0.0" vertical-offset="900" max-vertical-offset="1625">
-              <folding />
+            <state line="97" column="26" selection-start="2804" selection-end="2804" vertical-scroll-proportion="0.0" vertical-offset="2250" max-vertical-offset="4425">
+              <folding>
+                <marker date="1401960116360" expanded="false" signature="4190:4207" placeholder="..." />
+                <marker date="1401960116360" expanded="false" signature="4297:4314" placeholder="..." />
+                <marker date="1401960116360" expanded="false" signature="4413:4430" placeholder="..." />
+                <marker date="1401960116360" expanded="false" signature="4522:4539" placeholder="..." />
+                <marker date="1401960116360" expanded="false" signature="4630:4647" placeholder="..." />
+                <marker date="1401960116360" expanded="false" signature="4741:4758" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user_total_panel.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/js/user_total_panel.js">
+      <file leaf-file-name="Tools.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/tools/Tools.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="98" column="27" selection-start="3284" selection-end="3284" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3825">
-              <folding />
+            <state line="265" column="59" selection-start="8681" selection-end="8687" vertical-scroll-proportion="0.0" vertical-offset="6156" max-vertical-offset="10775">
+              <folding>
+                <marker date="1401781331309" expanded="true" signature="5129:5180" placeholder="SELECT SPOLI..GTM_POLICY..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -125,7 +136,7 @@
       <file leaf-file-name="GTM_Service.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/service/GTM_Service.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="21" selection-start="1287" selection-end="1287" vertical-scroll-proportion="0.0" vertical-offset="397" max-vertical-offset="1350">
+            <state line="51" column="38" selection-start="2631" selection-end="2631" vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="1375">
               <folding />
             </state>
           </provider>
@@ -134,7 +145,7 @@
       <file leaf-file-name="GTM_ServiceImpl.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/service/GTM_ServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="251" column="87" selection-start="7402" selection-end="7467" vertical-scroll-proportion="0.0" vertical-offset="5951" max-vertical-offset="14675">
+            <state line="595" column="38" selection-start="18822" selection-end="18844" vertical-scroll-proportion="0.0" vertical-offset="14353" max-vertical-offset="14975">
               <folding />
             </state>
           </provider>
@@ -158,10 +169,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/web/js/cancel_quota_panel.js" />
-        <option value="$PROJECT_DIR$/src/servlet/CancelQuotaChartServlet.java" />
-        <option value="$PROJECT_DIR$/src/servlet/ChargeQuotaChartServlet.java" />
-        <option value="$PROJECT_DIR$/src/servlet/NewQuotaChartServlet.java" />
         <option value="$PROJECT_DIR$/web/js/charge_quota_panel.js" />
         <option value="$PROJECT_DIR$/src/servlet/TrendChartServlet.java" />
         <option value="$PROJECT_DIR$/web/js/trend_panel.js" />
@@ -204,11 +211,15 @@
         <option value="$PROJECT_DIR$/src/servlet/getIncomeContrastChartServlet.java" />
         <option value="$PROJECT_DIR$/src/tools/Tools.java" />
         <option value="$PROJECT_DIR$/web/js/Income_contrast_panel.js" />
-        <option value="$PROJECT_DIR$/src/service/GTM_Service.java" />
-        <option value="$PROJECT_DIR$/src/service/GTM_ServiceImpl.java" />
         <option value="$PROJECT_DIR$/web/js/user_total_panel.js" />
         <option value="$PROJECT_DIR$/src/servlet/getMonthTotalUserChart.java" />
         <option value="$PROJECT_DIR$/web/js/data_analysis.js" />
+        <option value="$PROJECT_DIR$/web/js/query_buildinfo.js" />
+        <option value="$PROJECT_DIR$/web/js/qb_north.js" />
+        <option value="$PROJECT_DIR$/src/service/GTM_ServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/service/GTM_Service.java" />
+        <option value="$PROJECT_DIR$/web/js/qb_grid.js" />
+        <option value="$PROJECT_DIR$/web/page/business/getQbInfo.jsp" />
       </list>
     </option>
   </component>
@@ -322,6 +333,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="page" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gtaomanage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gtaomanage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -337,6 +366,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gtaomanage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gtaomanage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tools" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -391,6 +438,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gtaomanage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gtaomanage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dao" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -897,11 +962,11 @@
       </method>
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Application.InsDataTool" />
-      <item index="1" class="java.lang.String" itemvalue="Application.InsContractTool" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.daoTest" />
-      <item index="3" class="java.lang.String" itemvalue="Resin.Resin 4.0" />
-      <item index="4" class="java.lang.String" itemvalue="Tomcat Server.Tomcat 7.0" />
+      <item index="0" class="java.lang.String" itemvalue="Resin.Resin 4.0" />
+      <item index="1" class="java.lang.String" itemvalue="Tomcat Server.Tomcat 7.0" />
+      <item index="2" class="java.lang.String" itemvalue="Application.InsDataTool" />
+      <item index="3" class="java.lang.String" itemvalue="Application.InsContractTool" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.daoTest" />
     </list>
     <recent_temporary>
       <list size="3">
@@ -1044,7 +1109,9 @@
       <workItem from="1401416283160" duration="20444000" />
       <workItem from="1401460999803" duration="1371000" />
       <workItem from="1401503251321" duration="9468000" />
-      <workItem from="1401762824387" duration="19933000" />
+      <workItem from="1401762824387" duration="20357000" />
+      <workItem from="1401848948572" duration="11101000" />
+      <workItem from="1401935241711" duration="16408000" />
     </task>
     <task id="LOCAL-00001" summary="2013-11-11(2)">
       <created>1384161602394</created>
@@ -1094,11 +1161,15 @@
       <created>1401442459142</created>
       <updated>1401442459142</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="2014-06-03&#10;">
+      <created>1401789296080</created>
+      <updated>1401789296080</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="827684000" />
+    <option name="totallyTimeSpent" value="855617000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1217,7 +1288,8 @@
     <MESSAGE value="2014-05-15&#10;" />
     <MESSAGE value="2014-05-28&#10;" />
     <MESSAGE value="2014-05-30&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="2014-05-30&#10;" />
+    <MESSAGE value="2014-06-03&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="2014-06-03&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1229,41 +1301,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/servlet/BaseServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="38" selection-start="379" selection-end="379" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="800" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/servlet/AreaQuotaServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="37" selection-start="3475" selection-end="3475" vertical-scroll-proportion="0.9840708" vertical-offset="869" max-vertical-offset="3200" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/servlet/BusinessStationQuotaServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="13" selection-start="531" selection-end="531" vertical-scroll-proportion="-0.48672566" vertical-offset="450" max-vertical-offset="1700" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/servlet/PreChargeChartServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="27" selection-start="898" selection-end="902" vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="1200" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/pre_charge_detail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="41" selection-start="1623" selection-end="1623" vertical-scroll-proportion="0.51903117" vertical-offset="975" max-vertical-offset="3050" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bean/ChargeTypeBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="77" selection-start="516" selection-end="516" vertical-scroll-proportion="0.29372936" vertical-offset="272" max-vertical-offset="2025" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/servlet/PreChargeDetailServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="84" selection-start="682" selection-end="682" vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="2225" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/servlet/UserUsedTimeChartServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="39" column="43" selection-start="1322" selection-end="1322" vertical-scroll-proportion="1.475548" vertical-offset="0" max-vertical-offset="1150" />
@@ -1408,80 +1445,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/page/business/get_dz_excel.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="72" selection-start="2559" selection-end="2559" vertical-scroll-proportion="0.8436945" vertical-offset="600" max-vertical-offset="10500">
-          <folding>
-            <marker date="1398222675043" expanded="true" signature="-1:-1" placeholder="select * fro..charge_date..." />
-            <marker date="1398222675043" expanded="true" signature="-1:-1" placeholder="select * fro..." />
-            <marker date="1398222675043" expanded="true" signature="-1:-1" placeholder="select fc.ch..gtm_front_charge_new..." />
-            <marker date="1398222675043" expanded="true" signature="-1:-1" placeholder="select nc.ch..gtm_nonuser_charge..." />
-            <marker date="1398222675043" expanded="true" signature="-1:-1" placeholder="select sum(s..pay_type_id..." />
-            <marker date="1398222675043" expanded="true" signature="-1:-1" placeholder="select fc.pa..gtm_front_charge_new..." />
-            <marker date="1398222675043" expanded="true" signature="-1:-1" placeholder="select sum(s..pay_type_id..." />
-            <marker date="1398222675043" expanded="true" signature="-1:-1" placeholder="select sum(s..." />
-            <marker date="1398222675043" expanded="true" signature="-1:-1" placeholder="select fc.pa..gtm_front_charge_new..." />
-            <marker date="1398222675043" expanded="true" signature="-1:-1" placeholder="select nc.pa..gtm_nonuser_charge..." />
-            <marker date="1398222675043" expanded="true" signature="-1:-1" placeholder="select zc.zc..gtm_zc_charge..." />
-            <marker date="1398222675043" expanded="true" signature="-1:-1" placeholder="select sum(z..gtm_zc_charge..." />
-            <marker date="1398222675043" expanded="true" signature="-1:-1" placeholder="select sum(z..gtm_zc_charge..." />
-            <marker date="1398222675043" expanded="true" signature="-1:-1" placeholder="SELECT SUM(f..gtm_front_charge_new..." />
-            <marker date="1398222675043" expanded="true" signature="-1:-1" placeholder="select sum(z..gtm_zc_charge..." />
-            <marker date="1398222675043" expanded="true" signature="-1:-1" placeholder="select sum(s..pay_type_id..." />
-            <marker date="1398222675043" expanded="true" signature="-1:-1" placeholder="select fc.pa..gtm_front_charge_new..." />
-            <marker date="1398222675043" expanded="true" signature="-1:-1" placeholder="select nc.pa..gtm_nonuser_charge..." />
-            <marker date="1398222675043" expanded="true" signature="-1:-1" placeholder="SELECT fc.CH..GTM_FRONT_CHARGE_NEW..." />
-            <marker date="1398222675043" expanded="true" signature="-1:-1" placeholder="SELECT fc.CH..GTM_FRONT_CHARGE_NEW..." />
-            <marker date="1398222675043" expanded="true" signature="-1:-1" placeholder="SELECT fc.CH..GTM_FRONT_CHARGE_NEW..." />
-            <marker date="1398222675043" expanded="true" signature="-1:-1" placeholder="SELECT fc.CH..GTM_FRONT_CHARGE_NEW..." />
-            <marker date="1398222675043" expanded="true" signature="-1:-1" placeholder="SELECT fc.CH..GTM_FRONT_CHARGE_NEW..." />
-            <marker date="1398222675043" expanded="true" signature="-1:-1" placeholder="SELECT nc.CH..GTM_NONUSER_CHARGE..." />
-            <marker date="1398222675043" expanded="true" signature="-1:-1" placeholder="SELECT nc.CH..GTM_NONUSER_CHARGE..." />
-          </folding>
-        </state>
+        <state line="43" column="72" selection-start="2559" selection-end="2559" vertical-scroll-proportion="0.8436945" vertical-offset="600" max-vertical-offset="10500" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/page/business/get_fc_save_user.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.5607477" vertical-offset="300" max-vertical-offset="1950">
-          <folding>
-            <marker date="1392101821107" expanded="true" signature="-1:-1" placeholder="SELECT tui.S..TBL_USERSINFO..." />
-          </folding>
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.5607477" vertical-offset="300" max-vertical-offset="1950" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/page/business/get_hd_excel.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.4018692" vertical-offset="750" max-vertical-offset="2750">
-          <folding>
-            <marker date="1398222724414" expanded="true" signature="-1:-1" placeholder="select disti..gtm_front_charge_new..." />
-            <marker date="1398222724414" expanded="true" signature="-1:-1" placeholder="select count..gtm_front_charge_new..." />
-            <marker date="1398222724414" expanded="true" signature="-1:-1" placeholder="select count..gtm_front_charge_new..." />
-            <marker date="1398222724414" expanded="true" signature="-1:-1" placeholder="select count..gtm_front_charge_new..." />
-          </folding>
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.4018692" vertical-offset="750" max-vertical-offset="2750" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/page/business/get_ic_excel.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="79" selection-start="0" selection-end="4371" vertical-scroll-proportion="0.5328597" vertical-offset="450" max-vertical-offset="5125">
-          <folding>
-            <marker date="1398222817155" expanded="true" signature="-1:-1" placeholder="select gc.co..GTM_MAINFORM_INFO..." />
-            <marker date="1398222817155" expanded="true" signature="-1:-1" placeholder="select sum(n..gtm_nonuser_charge..." />
-            <marker date="1398222817155" expanded="true" signature="-1:-1" placeholder="select sum(n..gtm_nonuser_charge..." />
-            <marker date="1398222817155" expanded="true" signature="-1:-1" placeholder="select sum(f..GTM_MAINFORM_INFO..." />
-            <marker date="1398222817155" expanded="true" signature="-1:-1" placeholder="select sum(f..GTM_MAINFORM_INFO..." />
-            <marker date="1398222817155" expanded="true" signature="-1:-1" placeholder="select sum(f..GTM_MAINFORM_INFO..." />
-            <marker date="1398222817155" expanded="true" signature="-1:-1" placeholder="select sum(f..GTM_MAINFORM_INFO..." />
-            <marker date="1398222817155" expanded="true" signature="-1:-1" placeholder="select sum(f..GTM_MAINFORM_INFO..." />
-            <marker date="1398222817155" expanded="true" signature="-1:-1" placeholder="select sum(f..GTM_MAINFORM_INFO..." />
-            <marker date="1398222817155" expanded="true" signature="-1:-1" placeholder="select sum(f..GTM_MAINFORM_INFO..." />
-            <marker date="1398222817155" expanded="true" signature="-1:-1" placeholder="select sum(f..GTM_MAINFORM_INFO..." />
-            <marker date="1398222817155" expanded="true" signature="-1:-1" placeholder="select ct.ch..GTM_MAINFORM_INFO..." />
-            <marker date="1398222817155" expanded="true" signature="-1:-1" placeholder="select sum(n..gtm_nonuser_charge..." />
-            <marker date="1398222817155" expanded="true" signature="-1:-1" placeholder="select ct.ch..GTM_MAINFORM_INFO..." />
-            <marker date="1398222817155" expanded="true" signature="-1:-1" placeholder="select sum(c..gtm_front_charge_new..." />
-            <marker date="1398222817155" expanded="true" signature="-1:-1" placeholder="select sum(c..gtm_nonuser_charge..." />
-          </folding>
-        </state>
+        <state line="30" column="79" selection-start="0" selection-end="4371" vertical-scroll-proportion="0.5328597" vertical-offset="450" max-vertical-offset="5125" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/servlet/HandselChartServlet.java">
@@ -1491,66 +1470,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Test/daoTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="53" selection-start="763" selection-end="763" vertical-scroll-proportion="0.0" vertical-offset="600" max-vertical-offset="1025">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/page/business/get_zc_excel.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.5420561" vertical-offset="825" max-vertical-offset="1825">
-          <folding>
-            <marker date="1398222817145" expanded="true" signature="-1:-1" placeholder="select zt.zc..gtm_zc_type..." />
-            <marker date="1398222817145" expanded="true" signature="-1:-1" placeholder="select sum(z..gtm_zc_charge..." />
-          </folding>
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.5420561" vertical-offset="825" max-vertical-offset="1825" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/page/business/getIcInfo.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-11.35514" vertical-offset="6075" max-vertical-offset="6675">
-          <folding>
-            <marker date="1393403126040" expanded="true" signature="-1:-1" placeholder="select * fro..contract_id..." />
-            <marker date="1393403126040" expanded="true" signature="-1:-1" placeholder="select gc.co..GTM_MAINFORM_INFO..." />
-            <marker date="1393403126040" expanded="true" signature="-1:-1" placeholder="select sum(n..gtm_nonuser_charge..." />
-            <marker date="1393403126040" expanded="true" signature="-1:-1" placeholder="select sum(n..gtm_nonuser_charge..." />
-            <marker date="1393403126040" expanded="true" signature="-1:-1" placeholder="select sum(n..gtm_nonuser_charge..." />
-            <marker date="1393403126040" expanded="true" signature="-1:-1" placeholder="select sum(f..GTM_MAINFORM_INFO..." />
-            <marker date="1393403126040" expanded="true" signature="-1:-1" placeholder="select sum(f..GTM_MAINFORM_INFO..." />
-            <marker date="1393403126040" expanded="true" signature="-1:-1" placeholder="select sum(f..GTM_MAINFORM_INFO..." />
-            <marker date="1393403126040" expanded="true" signature="-1:-1" placeholder="select sum(f..GTM_MAINFORM_INFO..." />
-            <marker date="1393403126040" expanded="true" signature="-1:-1" placeholder="select ct.ch..GTM_MAINFORM_INFO..." />
-            <marker date="1393403126040" expanded="true" signature="-1:-1" placeholder="select count..gtm_contract..." />
-            <marker date="1393403126040" expanded="true" signature="-1:-1" placeholder="select sum(f..GTM_MAINFORM_INFO..." />
-            <marker date="1393403126040" expanded="true" signature="-1:-1" placeholder="select sum(f..GTM_MAINFORM_INFO..." />
-            <marker date="1393403126040" expanded="true" signature="-1:-1" placeholder="select sum(f..GTM_MAINFORM_INFO..." />
-            <marker date="1393403126040" expanded="true" signature="-1:-1" placeholder="select sum(f..GTM_MAINFORM_INFO..." />
-            <marker date="1393403126040" expanded="true" signature="-1:-1" placeholder="select sum(c..gtm_front_charge_new..." />
-            <marker date="1393403126040" expanded="true" signature="-1:-1" placeholder="select sum(c..gtm_nonuser_charge..." />
-            <marker date="1393403126040" expanded="true" signature="-1:-1" placeholder="select ct.ch..GTM_MAINFORM_INFO..." />
-          </folding>
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-11.35514" vertical-offset="6075" max-vertical-offset="6675" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/page/business/save_invoice.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.6916058" vertical-offset="927" max-vertical-offset="1475">
-          <folding>
-            <marker date="1391626599444" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-          </folding>
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.6916058" vertical-offset="927" max-vertical-offset="1475" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/page/business/getLogInfo.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.1214954" vertical-offset="600" max-vertical-offset="1575">
-          <folding>
-            <marker date="1376887487563" expanded="true" signature="-1:-1" placeholder="select l.log..gtm_department_info..." />
-            <marker date="1376887487563" expanded="true" signature="-1:-1" placeholder="select count..gtm_department_info..." />
-          </folding>
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.1214954" vertical-offset="600" max-vertical-offset="1575" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
@@ -1567,41 +1504,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tools/Tools.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="427" column="60" selection-start="13249" selection-end="13249" vertical-scroll-proportion="0.0" vertical-offset="10131" max-vertical-offset="10775">
-          <folding>
-            <marker date="1401781331309" expanded="true" signature="-1:-1" placeholder="SELECT SPOLI..GTM_POLICY..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/js/Income_contrast_panel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="46" selection-start="2207" selection-end="2207" vertical-scroll-proportion="0.6097561" vertical-offset="1475" max-vertical-offset="2550">
-          <folding />
-        </state>
+        <state line="66" column="46" selection-start="2207" selection-end="2207" vertical-scroll-proportion="0.6097561" vertical-offset="1475" max-vertical-offset="2550" />
       </provider>
     </entry>
     <entry file="jar://E:/Coding/apache-tomcat-7.0.33/lib/servlet-api.jar!/javax/servlet/ServletRequest.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="42" selection-start="568" selection-end="635" vertical-scroll-proportion="0.34700856" vertical-offset="297" max-vertical-offset="2150">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/GTM_Service.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="21" selection-start="1287" selection-end="1287" vertical-scroll-proportion="0.0" vertical-offset="397" max-vertical-offset="1350">
-          <folding />
-        </state>
+        <state line="21" column="42" selection-start="568" selection-end="635" vertical-scroll-proportion="0.34700856" vertical-offset="297" max-vertical-offset="2150" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/user_total_panel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="27" selection-start="3284" selection-end="3284" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3825">
-          <folding />
-        </state>
+        <state line="98" column="27" selection-start="3284" selection-end="3284" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3825" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/servlet/getMonthTotalUserChart.java">
@@ -1611,17 +1526,100 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/GTM_ServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/web/js/data_analysis.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="251" column="87" selection-start="7402" selection-end="7467" vertical-scroll-proportion="0.0" vertical-offset="5951" max-vertical-offset="14675">
+        <state line="283" column="83" selection-start="13830" selection-end="13830" vertical-scroll-proportion="0.41269842" vertical-offset="6945" max-vertical-offset="16225" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Test/daoTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="53" selection-start="763" selection-end="763" vertical-scroll-proportion="0.41373533" vertical-offset="428" max-vertical-offset="1025">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/data_analysis.js">
+    <entry file="file://$PROJECT_DIR$/src/dao/GTM_DaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="292" column="178" selection-start="14186" selection-end="14186" vertical-scroll-proportion="0.41269842" vertical-offset="7170" max-vertical-offset="16225">
+        <state line="20" column="13" selection-start="581" selection-end="581" vertical-scroll-proportion="-3.9782245" vertical-offset="2550" max-vertical-offset="5425">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/qb_tabPanel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="700">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/new_bw_panel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="43" selection-start="811" selection-end="832" vertical-scroll-proportion="0.5794702" vertical-offset="525" max-vertical-offset="2350">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/query_buildinfo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="124" column="62" selection-start="4898" selection-end="4898" vertical-scroll-proportion="0.8178808" vertical-offset="2853" max-vertical-offset="6875">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/qb_north.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="283" column="42" selection-start="8788" selection-end="8788" vertical-scroll-proportion="0.6918033" vertical-offset="6653" max-vertical-offset="7475">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tools/Tools.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="265" column="59" selection-start="8681" selection-end="8687" vertical-scroll-proportion="0.0" vertical-offset="6156" max-vertical-offset="10775">
+          <folding>
+            <marker date="1401781331309" expanded="true" signature="5129:5180" placeholder="SELECT SPOLI..GTM_POLICY..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/GTM_Service.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="38" selection-start="2631" selection-end="2631" vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="1375">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/GTM_ServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="595" column="38" selection-start="18822" selection-end="18844" vertical-scroll-proportion="0.0" vertical-offset="14353" max-vertical-offset="14975">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/qb_grid.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="97" column="26" selection-start="2804" selection-end="2804" vertical-scroll-proportion="0.0" vertical-offset="2250" max-vertical-offset="4425">
+          <folding>
+            <marker date="1401960116360" expanded="false" signature="4190:4207" placeholder="..." />
+            <marker date="1401960116360" expanded="false" signature="4297:4314" placeholder="..." />
+            <marker date="1401960116360" expanded="false" signature="4413:4430" placeholder="..." />
+            <marker date="1401960116360" expanded="false" signature="4522:4539" placeholder="..." />
+            <marker date="1401960116360" expanded="false" signature="4630:4647" placeholder="..." />
+            <marker date="1401960116360" expanded="false" signature="4741:4758" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/page/business/getQbInfo.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="138" column="97" selection-start="6093" selection-end="6093" vertical-scroll-proportion="0.46268657" vertical-offset="3326" max-vertical-offset="5800">
+          <folding>
+            <marker date="1401960611656" expanded="true" signature="2844:3098" placeholder="select * fro..contract_id..." />
+            <marker date="1401960611656" expanded="true" signature="2859:3082" placeholder="select gc.co..GTM_MAINFORM_INFO..." />
+            <marker date="1401960611656" expanded="true" signature="3123:3216" placeholder="select * fro..gtm_contract..." />
+            <marker date="1401960611656" expanded="true" signature="3242:3498" placeholder="select count..contract_id..." />
+            <marker date="1401960611656" expanded="true" signature="3274:3497" placeholder="select gc.co..GTM_MAINFORM_INFO..." />
+          </folding>
         </state>
       </provider>
     </entry>

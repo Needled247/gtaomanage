@@ -121,6 +121,7 @@
 	        			params['startDate']=Ext.getCmp('startDate').getRawValue();
 	        			params['endDate']=Ext.getCmp('endDate').getRawValue();
 	        			params['save_admin']=Ext.getCmp('save_admin').getValue();
+                        params['date']=Ext.util.Format.date(Ext.getCmp('contract_date').getValue(),'Ym');
 	        			Ext.getCmp('qb_grid').getStore().loadPage(1);
 	        		}        		
         		},
