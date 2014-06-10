@@ -55,7 +55,16 @@
                 type: 'bar',
                 axis: 'bottom',
                 xField: 'name',
-                yField: ['data1', 'data2']
+                yField: ['data1', 'data2'],
+                title:['停机数量','停机定额'],
+                label: {
+                    display: 'outside',
+                    'text-anchor': 'middle',
+                    field: ['data1','data2'],
+                    renderer: Ext.util.Format.numberRenderer('0,0'),
+                    orientation: 'horizontal',
+                    color: '#333'
+                }
             }]
         });
 

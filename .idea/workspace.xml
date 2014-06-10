@@ -15,12 +15,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4bdbe449-5c88-4371-a0f0-0be5076e9a7b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/GTM_Service.java" afterPath="$PROJECT_DIR$/src/service/GTM_Service.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/servlet/CancelUserChartServlet.java" afterPath="$PROJECT_DIR$/src/servlet/CancelUserChartServlet.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/GTM_ServiceImpl.java" afterPath="$PROJECT_DIR$/src/service/GTM_ServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/page/business/getQbInfo.jsp" afterPath="$PROJECT_DIR$/web/page/business/getQbInfo.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/qb_grid.js" afterPath="$PROJECT_DIR$/web/js/qb_grid.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/qb_north.js" afterPath="$PROJECT_DIR$/web/js/qb_north.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/query_buildinfo.js" afterPath="$PROJECT_DIR$/web/js/query_buildinfo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/cancel_quota_panel.js" afterPath="$PROJECT_DIR$/web/js/cancel_quota_panel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/charge_quota_panel.js" afterPath="$PROJECT_DIR$/web/js/charge_quota_panel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/new_quota_panel.js" afterPath="$PROJECT_DIR$/web/js/new_quota_panel.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="gtaomanage.iws" />
@@ -91,61 +90,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="getQbInfo.jsp" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/page/business/getQbInfo.jsp">
+      <file leaf-file-name="data_panel.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/js/data_panel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="138" column="97" selection-start="6093" selection-end="6093" vertical-scroll-proportion="0.46268657" vertical-offset="3326" max-vertical-offset="5800">
-              <folding>
-                <marker date="1401960611656" expanded="true" signature="2844:3098" placeholder="select * fro..contract_id..." />
-                <marker date="1401960611656" expanded="true" signature="2859:3082" placeholder="select gc.co..GTM_MAINFORM_INFO..." />
-                <marker date="1401960611656" expanded="true" signature="3123:3216" placeholder="select * fro..gtm_contract..." />
-                <marker date="1401960611656" expanded="true" signature="3242:3498" placeholder="select count..contract_id..." />
-                <marker date="1401960611656" expanded="true" signature="3274:3497" placeholder="select gc.co..GTM_MAINFORM_INFO..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="qb_grid.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/js/qb_grid.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="97" column="26" selection-start="2804" selection-end="2804" vertical-scroll-proportion="0.0" vertical-offset="2250" max-vertical-offset="4425">
-              <folding>
-                <marker date="1401960116360" expanded="false" signature="4190:4207" placeholder="..." />
-                <marker date="1401960116360" expanded="false" signature="4297:4314" placeholder="..." />
-                <marker date="1401960116360" expanded="false" signature="4413:4430" placeholder="..." />
-                <marker date="1401960116360" expanded="false" signature="4522:4539" placeholder="..." />
-                <marker date="1401960116360" expanded="false" signature="4630:4647" placeholder="..." />
-                <marker date="1401960116360" expanded="false" signature="4741:4758" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Tools.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/tools/Tools.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="265" column="59" selection-start="8681" selection-end="8687" vertical-scroll-proportion="0.0" vertical-offset="6156" max-vertical-offset="10775">
-              <folding>
-                <marker date="1401781331309" expanded="true" signature="5129:5180" placeholder="SELECT SPOLI..GTM_POLICY..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GTM_Service.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/service/GTM_Service.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="38" selection-start="2631" selection-end="2631" vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="1375">
+            <state line="71" column="21" selection-start="2318" selection-end="2673" vertical-scroll-proportion="0.0" vertical-offset="1575" max-vertical-offset="2750">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GTM_ServiceImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/service/GTM_ServiceImpl.java">
+      <file leaf-file-name="cancel_quota_panel.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/js/cancel_quota_panel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="595" column="38" selection-start="18822" selection-end="18844" vertical-scroll-proportion="0.0" vertical-offset="14353" max-vertical-offset="14975">
+            <state line="57" column="139" selection-start="1847" selection-end="1847" vertical-scroll-proportion="0.5849582" vertical-offset="1215" max-vertical-offset="2225">
               <folding />
             </state>
           </provider>
@@ -169,9 +126,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/web/js/charge_quota_panel.js" />
-        <option value="$PROJECT_DIR$/src/servlet/TrendChartServlet.java" />
-        <option value="$PROJECT_DIR$/web/js/trend_panel.js" />
         <option value="$PROJECT_DIR$/web/js/new_package_panel.js" />
         <option value="$PROJECT_DIR$/src/servlet/NewPackageChartServlet.java" />
         <option value="$PROJECT_DIR$/web/js/new_bw_panel.js" />
@@ -195,8 +149,6 @@
         <option value="$PROJECT_DIR$/web/js/user_time_panel.js" />
         <option value="$PROJECT_DIR$/src/servlet/UserUsedTimeChartServlet.java" />
         <option value="$PROJECT_DIR$/src/servlet/StopUserChartServlet.java" />
-        <option value="$PROJECT_DIR$/web/js/stop_user_panel.js" />
-        <option value="$PROJECT_DIR$/src/servlet/CancelUserChartServlet.java" />
         <option value="$PROJECT_DIR$/src/servlet/getIncomeChartServlet.java" />
         <option value="$PROJECT_DIR$/web/js/Income_panel.js" />
         <option value="$PROJECT_DIR$/web/js/data_panel.js" />
@@ -216,10 +168,15 @@
         <option value="$PROJECT_DIR$/web/js/data_analysis.js" />
         <option value="$PROJECT_DIR$/web/js/query_buildinfo.js" />
         <option value="$PROJECT_DIR$/web/js/qb_north.js" />
-        <option value="$PROJECT_DIR$/src/service/GTM_ServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/service/GTM_Service.java" />
         <option value="$PROJECT_DIR$/web/js/qb_grid.js" />
         <option value="$PROJECT_DIR$/web/page/business/getQbInfo.jsp" />
+        <option value="$PROJECT_DIR$/src/servlet/CancelUserChartServlet.java" />
+        <option value="$PROJECT_DIR$/src/service/GTM_ServiceImpl.java" />
+        <option value="$PROJECT_DIR$/web/js/new_quota_panel.js" />
+        <option value="$PROJECT_DIR$/web/js/charge_quota_panel.js" />
+        <option value="$PROJECT_DIR$/web/js/stop_user_panel.js" />
+        <option value="$PROJECT_DIR$/web/js/cancel_quota_panel.js" />
       </list>
     </option>
   </component>
@@ -267,8 +224,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -316,24 +271,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="WEB-INF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gtaomanage" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gtaomanage" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="page" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -461,6 +398,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1111,7 +1050,13 @@
       <workItem from="1401503251321" duration="9468000" />
       <workItem from="1401762824387" duration="20357000" />
       <workItem from="1401848948572" duration="11101000" />
-      <workItem from="1401935241711" duration="16408000" />
+      <workItem from="1401935241711" duration="16476000" />
+      <workItem from="1402021070601" duration="10065000" />
+      <workItem from="1402215681027" duration="7916000" />
+      <workItem from="1402281513975" duration="1448000" />
+      <workItem from="1402284874770" duration="6435000" />
+      <workItem from="1402372186125" duration="23000" />
+      <workItem from="1402384647969" duration="5572000" />
     </task>
     <task id="LOCAL-00001" summary="2013-11-11(2)">
       <created>1384161602394</created>
@@ -1165,11 +1110,15 @@
       <created>1401789296080</created>
       <updated>1401789296080</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="2014-06-05&#10;">
+      <created>1401961507831</created>
+      <updated>1401961507831</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="855617000" />
+    <option name="totallyTimeSpent" value="887144000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1206,7 +1155,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44323483" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947975" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43505478" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43390357" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27527216" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32237872" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
@@ -1217,7 +1166,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32902735" sideWeight="0.52931595" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286385" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22727273" sideWeight="0.53094465" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.45878693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3903577" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
@@ -1234,18 +1183,18 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24960127" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32826748" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32970452" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43505478" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43390357" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947975" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27527216" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32736155" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286385" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22727273" sideWeight="0.53094465" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22727273" sideWeight="0.53094465" order="0" side_tool="false" content_ui="combo" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.45878693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3903577" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1289,7 +1238,8 @@
     <MESSAGE value="2014-05-28&#10;" />
     <MESSAGE value="2014-05-30&#10;" />
     <MESSAGE value="2014-06-03&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="2014-06-03&#10;" />
+    <MESSAGE value="2014-06-05&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="2014-06-05&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1301,38 +1251,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/servlet/UserUsedTimeChartServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="43" selection-start="1322" selection-end="1322" vertical-scroll-proportion="1.475548" vertical-offset="0" max-vertical-offset="1150" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/pre_charge_panel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="93" selection-start="799" selection-end="868" vertical-scroll-proportion="0.48615918" vertical-offset="394" max-vertical-offset="2775" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/servlet/StopUserChartServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="61" selection-start="1659" selection-end="1662" vertical-scroll-proportion="0.0" vertical-offset="738" max-vertical-offset="1350" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/stop_user_panel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="99" selection-start="2412" selection-end="2412" vertical-scroll-proportion="2.9089377" vertical-offset="0" max-vertical-offset="2425" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/druid-config.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.24038461" vertical-offset="75" max-vertical-offset="625" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/servlet/CancelUserChartServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="8" selection-start="803" selection-end="803" vertical-scroll-proportion="0.0" vertical-offset="94" max-vertical-offset="725">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/js/user_time_panel.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="43" column="35" selection-start="1345" selection-end="1345" vertical-scroll-proportion="1.7622951" vertical-offset="0" max-vertical-offset="2500" />
@@ -1350,9 +1268,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/servlet/getIncomeChartServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="20" selection-start="1664" selection-end="1664" vertical-scroll-proportion="0.0" vertical-offset="31" max-vertical-offset="1425">
-          <folding />
-        </state>
+        <state line="48" column="20" selection-start="1664" selection-end="1664" vertical-scroll-proportion="0.0" vertical-offset="31" max-vertical-offset="1425" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/Income_panel.js">
@@ -1363,11 +1279,6 @@
     <entry file="file://$PROJECT_DIR$/web/js/handsel_panel.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="27" column="93" selection-start="785" selection-end="854" vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="2425" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/data_panel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="41" selection-start="616" selection-end="616" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="2750" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/main_panel.js">
@@ -1540,86 +1451,106 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/dao/GTM_DaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="13" selection-start="581" selection-end="581" vertical-scroll-proportion="-3.9782245" vertical-offset="2550" max-vertical-offset="5425">
-          <folding />
-        </state>
+        <state line="20" column="13" selection-start="581" selection-end="581" vertical-scroll-proportion="-3.9782245" vertical-offset="2550" max-vertical-offset="5425" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/qb_tabPanel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="700">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="700" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/new_bw_panel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="43" selection-start="811" selection-end="832" vertical-scroll-proportion="0.5794702" vertical-offset="525" max-vertical-offset="2350">
-          <folding />
-        </state>
+        <state line="28" column="43" selection-start="811" selection-end="832" vertical-scroll-proportion="0.5794702" vertical-offset="525" max-vertical-offset="2350" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/query_buildinfo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="124" column="62" selection-start="4898" selection-end="4898" vertical-scroll-proportion="0.8178808" vertical-offset="2853" max-vertical-offset="6875">
-          <folding />
-        </state>
+        <state line="124" column="62" selection-start="4898" selection-end="4898" vertical-scroll-proportion="0.8178808" vertical-offset="2853" max-vertical-offset="6875" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/qb_north.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="283" column="42" selection-start="8788" selection-end="8788" vertical-scroll-proportion="0.6918033" vertical-offset="6653" max-vertical-offset="7475">
-          <folding />
-        </state>
+        <state line="283" column="42" selection-start="8788" selection-end="8788" vertical-scroll-proportion="0.6918033" vertical-offset="6653" max-vertical-offset="7475" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/tools/Tools.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="265" column="59" selection-start="8681" selection-end="8687" vertical-scroll-proportion="0.0" vertical-offset="6156" max-vertical-offset="10775">
-          <folding>
-            <marker date="1401781331309" expanded="true" signature="5129:5180" placeholder="SELECT SPOLI..GTM_POLICY..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/GTM_Service.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="38" selection-start="2631" selection-end="2631" vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="1375">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/GTM_ServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="595" column="38" selection-start="18822" selection-end="18844" vertical-scroll-proportion="0.0" vertical-offset="14353" max-vertical-offset="14975">
+        <state line="288" column="123" selection-start="9345" selection-end="9345" vertical-scroll-proportion="0.45081967" vertical-offset="6625" max-vertical-offset="10775">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/qb_grid.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="97" column="26" selection-start="2804" selection-end="2804" vertical-scroll-proportion="0.0" vertical-offset="2250" max-vertical-offset="4425">
-          <folding>
-            <marker date="1401960116360" expanded="false" signature="4190:4207" placeholder="..." />
-            <marker date="1401960116360" expanded="false" signature="4297:4314" placeholder="..." />
-            <marker date="1401960116360" expanded="false" signature="4413:4430" placeholder="..." />
-            <marker date="1401960116360" expanded="false" signature="4522:4539" placeholder="..." />
-            <marker date="1401960116360" expanded="false" signature="4630:4647" placeholder="..." />
-            <marker date="1401960116360" expanded="false" signature="4741:4758" placeholder="..." />
-          </folding>
-        </state>
+        <state line="97" column="26" selection-start="2804" selection-end="2804" vertical-scroll-proportion="0.0" vertical-offset="2250" max-vertical-offset="4425" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/page/business/getQbInfo.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="138" column="97" selection-start="6093" selection-end="6093" vertical-scroll-proportion="0.46268657" vertical-offset="3326" max-vertical-offset="5800">
-          <folding>
-            <marker date="1401960611656" expanded="true" signature="2844:3098" placeholder="select * fro..contract_id..." />
-            <marker date="1401960611656" expanded="true" signature="2859:3082" placeholder="select gc.co..GTM_MAINFORM_INFO..." />
-            <marker date="1401960611656" expanded="true" signature="3123:3216" placeholder="select * fro..gtm_contract..." />
-            <marker date="1401960611656" expanded="true" signature="3242:3498" placeholder="select count..contract_id..." />
-            <marker date="1401960611656" expanded="true" signature="3274:3497" placeholder="select gc.co..GTM_MAINFORM_INFO..." />
-          </folding>
+        <state line="56" column="42" selection-start="2099" selection-end="2099" vertical-scroll-proportion="2.4866786" vertical-offset="0" max-vertical-offset="5800" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/servlet/CancelUserChartServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="99" selection-start="432" selection-end="432" vertical-scroll-proportion="0.2680067" vertical-offset="90" max-vertical-offset="725">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/servlet/getUserMonthChart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="70" column="50" selection-start="2484" selection-end="2484" vertical-scroll-proportion="-0.15606937" vertical-offset="1479" max-vertical-offset="1825">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/GTM_Service.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="16" selection-start="1064" selection-end="1064" vertical-scroll-proportion="-0.28901735" vertical-offset="675" max-vertical-offset="1375">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/GTM_ServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="255" column="168" selection-start="7570" selection-end="7570" vertical-scroll-proportion="0.72254336" vertical-offset="5925" max-vertical-offset="15000">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/new_quota_panel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="20" selection-start="1713" selection-end="1713" vertical-scroll-proportion="0.44568247" vertical-offset="1190" max-vertical-offset="2225">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/charge_quota_panel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="52" selection-start="2018" selection-end="2018" vertical-scroll-proportion="0.0" vertical-offset="1140" max-vertical-offset="2275">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/stop_user_panel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="40" selection-start="1989" selection-end="1989" vertical-scroll-proportion="0.32998326" vertical-offset="1303" max-vertical-offset="2425">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/data_panel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="71" column="21" selection-start="2318" selection-end="2673" vertical-scroll-proportion="0.0" vertical-offset="1575" max-vertical-offset="2750">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/cancel_quota_panel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="139" selection-start="1847" selection-end="1847" vertical-scroll-proportion="0.5849582" vertical-offset="1215" max-vertical-offset="2225">
+          <folding />
         </state>
       </provider>
     </entry>

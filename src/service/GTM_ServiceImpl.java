@@ -214,7 +214,8 @@ public class GTM_ServiceImpl implements GTM_Service {
      */
     @Override
     public long getMonthUserCount(String tbl,Object[] params) {
-        String sql = "SELECT COUNT(*) FROM TBL_USERS"+tbl+" t ,TBL_DISTLIST d WHERE t.ISTATUS<>-9 " +
+        String sql = "SELECT COUNT(*) FROM TBL_USERS"+tbl+" t ,TBL_DISTLIST d " +
+                "WHERE t.ISTATUS=1 AND t.ITYPE<>0 AND t.ITYPE<>3 " +
                 "AND t.IDISTID=d.IDISTID AND d.ISTATIONID=?";
         return getCount(sql,params);
     }

@@ -57,7 +57,16 @@
                 type: 'bar',
                 axis: 'bottom',
                 xField: 'name',
-                yField: ['data1', 'data2','data3','data4']
+                yField: ['data1', 'data2','data3','data4'],
+                title:['包年续费','包年定额','其他续费','其他定额'],
+                label: {
+                    display: 'outside',
+                    'text-anchor': 'middle',
+                    field: ['data1', 'data2','data3','data4'],
+                    renderer: Ext.util.Format.numberRenderer('0,0'),
+                    orientation: 'horizontal',
+                    color: '#333'
+                }
             }]
         });
 

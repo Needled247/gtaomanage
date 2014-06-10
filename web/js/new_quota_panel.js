@@ -55,7 +55,16 @@
                 type: 'bar',
                 axis: 'bottom',
                 xField: 'name',
-                yField: ['data1', 'data2']
+                yField: ['data1', 'data2'],
+                title:['新装数量','新装定额'],
+                label: {
+                    display: 'outside',
+                    'text-anchor': 'middle',
+                    field: ['data1','data2'],
+                    renderer: Ext.util.Format.numberRenderer('0,0'),
+                    orientation: 'horizontal',
+                    color: '#333'
+                }
             }]
         });
 
